@@ -1,0 +1,6 @@
+api_key=
+app_name=AstroXplore
+author=David Jerman
+version=2022.08.27
+apod_url=https://api.nasa.gov/planetary/apod
+insight_url=https://api.nasa.gov/insight_weather/
