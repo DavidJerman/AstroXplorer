@@ -28,6 +28,9 @@ private slots:
     void updateWelcomeData(QNetworkReply *reply);
 
 private:
+    // Resize handler
+    void resizeEvent(QResizeEvent* event);
+
     void updateWelcomeVideo(const QUrl &videoUrl);
     void setWelcomeImageInformation(QJsonObject &jsonObj);
 

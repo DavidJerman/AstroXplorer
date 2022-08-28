@@ -32,6 +32,11 @@ MainWindow::MainWindow(QWidget *parent)
     QNetworkRequest request;
     request.setUrl(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY));
     manager->get(request);
+
+    // Certain UI properties
+    ui->WelcomeImageLabel->setScaledContents(false);
+    ui->WelcomeImageExplanationTextBrowser->setOpenLinks(true);
+    ui->WelcomeImageExplanationTextBrowser->setOpenExternalLinks(true);
 }
 
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
@@ -45,6 +50,9 @@ void MainWindow::updateWelcomeData(QNetworkReply* reply) {
     auto parsedData = APIHandler::parseJSON(answer);
 
     // This assumes the API always works correctly
+
+    ui->WelcomeImageExplanationTextBrowser->clear();
+
     // Image
     if (parsedData.find("media_type").value().toString() == "image") {
         // Save json for later use
@@ -77,6 +85,12 @@ void MainWindow::updateWelcomeData(QNetworkReply* reply) {
         auto jsonData = file.readAll();
 
         parsedData = APIHandler::parseJSON(jsonData);
+
+        ui->WelcomeImageExplanationTextBrowser->append(QString::fromStdString(std::string("A video of the day was found, but cannot be displayed. Here is the link to it: ")
+                                                                              + "<a href=\""
+                                                                              + parsedData.find("url")->toString().toStdString()
+                                                                              + "\">YouTube</a><br>"));
+
     }
 
     setWelcomeImageInformation(parsedData);
@@ -122,8 +136,13 @@ void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
          date = jsonObj.find("date")->toString();
 
     ui->WelcomeImageTitleLabel->setText(title);
-    ui->WelcomeImageExplanationLabel->setText(explanation);
+    ui->WelcomeImageExplanationTextBrowser->append(explanation);
     ui->WelcomeImageDateLabel->setText(date);
+}
+
+// On window resize, change image aspect ration - TODO
+void MainWindow::resizeEvent(QResizeEvent* event) {
+    QMainWindow::resizeEvent(event);
 }
 
 MainWindow::~MainWindow()
