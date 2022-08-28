@@ -37,6 +37,27 @@ MainWindow::MainWindow(QWidget *parent)
     ui->WelcomeImageLabel->setScaledContents(false);
     ui->WelcomeImageExplanationTextBrowser->setOpenLinks(true);
     ui->WelcomeImageExplanationTextBrowser->setOpenExternalLinks(true);
+
+    // Center the checkboxes
+    ui->FHAZ_Curiosity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->FHAZ_Opportunity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->FHAZ_Spirit->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->RHAZ_Curiosity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->RHAZ_Opportunity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->RHAZ_Spirit->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->MAST_Curiosity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->CHEMCAM_Curiosity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->MAHLI_Curiosity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->MARDI_Curiosity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->NAVCAM_Curiosity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->NAVCAM_Opportunity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->NAVCAM_Spirit->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->PANCAM_Opportunity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->PANCAM_Spirit->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->MINITES_Opportunity->setStyleSheet("margin-left:50%; margin-right:50%;");
+    ui->MINITES_Spirit->setStyleSheet("margin-left:50%; margin-right:50%;");
+
+    // Other
 }
 
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
