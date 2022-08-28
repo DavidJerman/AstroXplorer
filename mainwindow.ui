@@ -24,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="Tabs">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="WelcomeTab">
        <attribute name="title">
@@ -139,11 +139,18 @@
           </property>
           <widget class="QWidget" name="SearchTab">
            <attribute name="title">
-            <string>Search</string>
+            <string>Download</string>
            </attribute>
            <layout class="QHBoxLayout" name="horizontalLayout_19">
             <item>
-             <widget class="QListWidget" name="MarsRoverImagesListView"/>
+             <layout class="QGridLayout" name="SearchGridLayout"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QGridLayout" name="MarsRoverImagesCfg" rowstretch="1,1,1,1,1,1,1,1,1,1" columnstretch="3,1,1,1" rowminimumheight="1,1,1,1,1,1,1,1,1,1">
@@ -1259,8 +1266,144 @@
           </widget>
           <widget class="QWidget" name="ResultTab">
            <attribute name="title">
-            <string>Result</string>
+            <string>Browse</string>
            </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_20">
+            <item>
+             <widget class="QTabWidget" name="RoversTabs">
+              <property name="currentIndex">
+               <number>1</number>
+              </property>
+              <widget class="QWidget" name="CuriosityTab">
+               <attribute name="title">
+                <string>Curiosity</string>
+               </attribute>
+               <layout class="QHBoxLayout" name="horizontalLayout_21">
+                <item>
+                 <widget class="QTabWidget" name="CuriosityCamerasTab">
+                  <property name="currentIndex">
+                   <number>6</number>
+                  </property>
+                  <widget class="QWidget" name="C_FHAZ_Tab">
+                   <attribute name="title">
+                    <string>FHAZ</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="C_RHAZ_Tab">
+                   <attribute name="title">
+                    <string>RHAZ</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="C_MAST_Tab">
+                   <attribute name="title">
+                    <string>MAST</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="C_CHEMCAM_Tab">
+                   <attribute name="title">
+                    <string>CHEMCAM</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="C_MAHLI_Tab">
+                   <attribute name="title">
+                    <string>MAHLI</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="C_MARDI_Tab">
+                   <attribute name="title">
+                    <string>MARDI</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="C_NAVCAM_Tab">
+                   <attribute name="title">
+                    <string>NAVCAM</string>
+                   </attribute>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="OpportunityTab">
+               <attribute name="title">
+                <string>Opportunity</string>
+               </attribute>
+               <layout class="QHBoxLayout" name="horizontalLayout_22">
+                <item>
+                 <widget class="QTabWidget" name="OpportunityCamerasTab">
+                  <property name="currentIndex">
+                   <number>4</number>
+                  </property>
+                  <widget class="QWidget" name="O_FHAZ_Tab">
+                   <attribute name="title">
+                    <string>FHAZ</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="O_RHAZ_Tab">
+                   <attribute name="title">
+                    <string>RHAZ</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="O_NAVCAM_Tab">
+                   <attribute name="title">
+                    <string>NAVCAM</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="O_PANCAM_Tab">
+                   <attribute name="title">
+                    <string>PANCAM</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="O_MINITES_Tab">
+                   <attribute name="title">
+                    <string>MINITES</string>
+                   </attribute>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="SpiritTab">
+               <attribute name="title">
+                <string>Spirit</string>
+               </attribute>
+               <layout class="QHBoxLayout" name="horizontalLayout_23">
+                <item>
+                 <widget class="QTabWidget" name="SpiritCamerasTab">
+                  <property name="currentIndex">
+                   <number>4</number>
+                  </property>
+                  <widget class="QWidget" name="S_NAVCAM_Tab">
+                   <attribute name="title">
+                    <string>FHAZ</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="S_FHAZ_Tab">
+                   <attribute name="title">
+                    <string>RHAZ</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="S_RHAZ_Tab">
+                   <attribute name="title">
+                    <string>NAVCAM</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="S_MINITES_Tab">
+                   <attribute name="title">
+                    <string>PANCAM</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="S_PANCAM_Tab">
+                   <attribute name="title">
+                    <string>MINITES</string>
+                   </attribute>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
