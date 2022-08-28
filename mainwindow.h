@@ -38,5 +38,7 @@ private:
     std::map<std::string, std::string> config;
     Ui::MainWindow *ui;
     QNetworkAccessManager *manager;
+
+    const int CORNER_RADIUS;
 };
 #endif // MAINWINDOW_H

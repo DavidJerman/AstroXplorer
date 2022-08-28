@@ -30,38 +30,56 @@
        <attribute name="title">
         <string>Welcome</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="1,2,1,16">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="4,16">
         <item>
-         <widget class="QLabel" name="WelcomeImageTitleLabel">
-          <property name="text">
-           <string>Loading data...</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QTextBrowser" name="WelcomeImageExplanationTextBrowser">
+         <widget class="QFrame" name="WelcomeImageInfoFrame">
           <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
+           <enum>QFrame::StyledPanel</enum>
           </property>
           <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
+           <enum>QFrame::Raised</enum>
           </property>
-          <property name="documentTitle">
-           <string>Explanation</string>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-          <property name="placeholderText">
-           <string>Loading data...</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="WelcomeImageDateLabel">
-          <property name="text">
-           <string>Loading data...</string>
-          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,2,1">
+           <item>
+            <widget class="QLineEdit" name="WelcomeImageTitleTextEdit">
+             <property name="text">
+              <string>Loading data...</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextBrowser" name="WelcomeImageExplanationTextBrowser">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="documentTitle">
+              <string>Explanation</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="placeholderText">
+              <string>Loading data...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="WelcomeImageDateTextEdit">
+             <property name="text">
+              <string>Loading data...</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>

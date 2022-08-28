@@ -3,10 +3,12 @@
 
 #include "cfgloader.h"
 #include "apihandler.h"
+#include "imagemanipulation.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , CORNER_RADIUS(25)
 {
     ui->setupUi(this);
 
@@ -137,6 +139,7 @@ void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
 
     // Sets the image to label
     QPixmap pic(QString::fromStdString(filePath));
+    ImageManipulation::roundEdges(pic, CORNER_RADIUS);
     ui->WelcomeImageLabel->setPixmap(pic);
 }
 
@@ -146,6 +149,7 @@ void MainWindow::updateWelcomeVideo(const QUrl &videoUrl) {
     auto filePath = config.find("welcome_image_path")->second;
 
     QPixmap pic(QString::fromStdString(filePath));
+    ImageManipulation::roundEdges(pic, CORNER_RADIUS);
     ui->WelcomeImageLabel->setPixmap(pic);
     return;
 }
@@ -156,9 +160,9 @@ void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
          explanation = jsonObj.find("explanation")->toString(),
          date = jsonObj.find("date")->toString();
 
-    ui->WelcomeImageTitleLabel->setText(title);
+    ui->WelcomeImageTitleTextEdit->setText(title);
     ui->WelcomeImageExplanationTextBrowser->append(explanation);
-    ui->WelcomeImageDateLabel->setText(date);
+    ui->WelcomeImageDateTextEdit->setText(date);
 }
 
 // On window resize, change image aspect ration - TODO

@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
         cfgloader.cpp
         apihandler.h
         apihandler.cpp
+        imagemanipulation.h
+        imagemanipulation.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
