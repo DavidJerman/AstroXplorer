@@ -18,19 +18,30 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="WelcomeImageTitleLabel">
         <property name="text">
          <string>TextLabel</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="frame">
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+       <widget class="QLabel" name="WelcomeImageExplanationLabel">
+        <property name="text">
+         <string>TextLabel</string>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="WelcomeImageDateLabel">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="WelcomeImageLabel">
+        <property name="text">
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>

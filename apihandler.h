@@ -17,6 +17,7 @@ public:
 
     static QJsonObject parseJSON(const std::string data);
     static QJsonObject parseJSON(const QString data);
+    static QJsonObject parseJSON(const QByteArray &data);
 };
 
 #endif // APIHANDLER_H

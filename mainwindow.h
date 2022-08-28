@@ -7,8 +7,9 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 
-#include <QNetworkProxyFactory>
-#include <QWeb>
+#include <QPixmap>
+
+#include <QFile>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,6 +29,7 @@ private slots:
 
 private:
     void updateWelcomeVideo(const QUrl &videoUrl);
+    void setWelcomeImageInformation(QJsonObject &jsonObj);
 
 private:
     std::map<std::string, std::string> config;
