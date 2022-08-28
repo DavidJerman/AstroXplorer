@@ -13,6 +13,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS WebView)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -21,6 +25,8 @@ set(PROJECT_SOURCES
         mainwindow.ui
         cfgloader.h
         cfgloader.cpp
+        apihandler.h
+        apihandler.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -47,6 +53,10 @@ else()
 endif()
 
 target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Network)
+target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::WebView)
 
 set_target_properties(AstroXplorer PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
