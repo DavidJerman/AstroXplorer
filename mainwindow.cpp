@@ -181,6 +181,8 @@ void MainWindow::updateWelcomeData(QNetworkReply* reply) {
     }
 
     setWelcomeImageInformation(parsedData);
+
+    reply->deleteLater();
 }
 
 void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
@@ -209,6 +211,9 @@ void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
     QPixmap pic(QString::fromStdString(filePath));
     ImageManipulation::roundEdges(pic, CORNER_RADIUS);
     ui->WelcomeImageLabel->setPixmap(pic);
+
+    // Delete old data
+    reply->deleteLater();
 }
 
 void MainWindow::updateWelcomeVideo(const QUrl &videoUrl) {
@@ -252,6 +257,7 @@ void MainWindow::MarsRoverCamera_SetImages(QNetworkReply* reply, QString origin)
     auto photos = parsedData.find("photos")->toArray();
     for (const auto &photo: photos)
         fetchAPIData(photo.toObject().value("img_src").toString(), origin);
+    reply->deleteLater();
 }
 
 void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QListWidget* list) {
@@ -266,6 +272,9 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
     item->setSizeHint(label->sizeHint());
     list->addItem(item);
     list->setItemWidget(item, label);
+
+    // Delete old data
+    reply->deleteLater();
 }
 
 // Placeholder
