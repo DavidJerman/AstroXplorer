@@ -33,14 +33,37 @@ private slots:
 
     void on_O_FHAZ_DATE_Button_clicked();
 
+    void on_O_RHAZ_SOLS_Button_clicked();
+
+    void on_O_RHAZ_DATE_Button_clicked();
+
 private:
     // Rover imagery
     // GeneralisedFunctions
     void MarsRoverCamera_SetImages(QNetworkReply* reply, QString origin);
-    void MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QListWidget *list); // TODO: Add the actual image container
+    void MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QListWidget *list);
+    void MarsRoverCamera_AddImageToContainer(); // Temporary placeholder to make code work
 
     // Tab specific functions
+    void C_FHAZ_SetImages(QNetworkReply* reply);
+    void C_RHAZ_SetImages(QNetworkReply* reply);
+    void C_MAST_SetImages(QNetworkReply* reply);
+    void C_CHEMCAM_SetImages(QNetworkReply* reply);
+    void C_MAHLI_SetImages(QNetworkReply* reply);
+    void C_MARDI_SetImages(QNetworkReply* reply);
+    void C_NAVCAM_SetImages(QNetworkReply* reply);
+
     void O_FHAZ_SetImages(QNetworkReply* reply);
+    void O_RHAZ_SetImages(QNetworkReply* reply);
+    void O_NAVCAM_SetImages(QNetworkReply* reply);
+    void O_PANCAM_SetImages(QNetworkReply* reply);
+    void O_MINITES_SetImages(QNetworkReply* reply);
+
+    void S_FHAZ_SetImages(QNetworkReply* reply);
+    void S_RHAZ_SetImages(QNetworkReply* reply);
+    void S_NAVCAM_SetImages(QNetworkReply* reply);
+    void S_PANCAM_SetImages(QNetworkReply* reply);
+    void S_MINITES_SetImages(QNetworkReply* reply);
 
 private:
     void updateWelcomeImage(QNetworkReply* reply);

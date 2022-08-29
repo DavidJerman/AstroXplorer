@@ -57,6 +57,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MINITES_Opportunity->setStyleSheet("margin-left:50%; margin-right:50%;");
     ui->MINITES_Spirit->setStyleSheet("margin-left:50%; margin-right:50%;");
 
+    // Mars rover imagery
+    ui->O_FHAZ_List->setVerticalScrollMode(QListWidget::ScrollPerPixel);
+
+    // TODO: Set max values for spinboxes etc.
+
     // Other
 }
 
@@ -74,8 +79,40 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
     else if (origin == "apod_image") updateWelcomeImage(reply);
 
     // Rover imagery
-    else if (origin == "O_FHAZ") O_FHAZ_SetImages(reply);
-    else if (origin == "O_FHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_FHAZ_List);
+    else if (origin == "C_FHAZ") C_FHAZ_SetImages(reply);
+    else if (origin == "C_FHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_RHAZ") C_RHAZ_SetImages(reply);
+    else if (origin == "C_RHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_MAST") C_MAST_SetImages(reply);
+    else if (origin == "C_MAST_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_CHEMCAM") C_CHEMCAM_SetImages(reply);
+    else if (origin == "C_CHEMCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_MAHLI") C_MAHLI_SetImages(reply);
+    else if (origin == "C_MAHLI_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_MARDI") C_MARDI_SetImages(reply);
+    else if (origin == "C_MARDI_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_NAVCAM") C_NAVCAM_SetImages(reply);
+    else if (origin == "C_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_FHAZ") C_FHAZ_SetImages(reply);
+    else if (origin == "O_FHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_RHAZ") O_RHAZ_SetImages(reply);
+    else if (origin == "O_RHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_NAVCAM") O_NAVCAM_SetImages(reply);
+    else if (origin == "O_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_PANCAM") O_PANCAM_SetImages(reply);
+    else if (origin == "O_PANCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_MINITES") O_MINITES_SetImages(reply);
+    else if (origin == "O_MINITES_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_FHAZ") S_FHAZ_SetImages(reply);
+    else if (origin == "S_FHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_RHAZ") S_RHAZ_SetImages(reply);
+    else if (origin == "S_RHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_NAVCAM") S_NAVCAM_SetImages(reply);
+    else if (origin == "S_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_PANCAM") S_PANCAM_SetImages(reply);
+    else if (origin == "S_PANCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_MINITES") S_MINITES_SetImages(reply);
+    else if (origin == "S_MINITES_Photo") MarsRoverCamera_AddImageToContainer();
 }
 
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
@@ -207,20 +244,23 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
     auto label = new QLabel();
     QPixmap p;
     p.loadFromData(answer);
-    list->addItem(item);
     label->setPixmap(p);
+
+    // UI element property change
+    item->setSizeHint(label->sizeHint());
+    list->addItem(item);
     list->setItemWidget(item, label);
 }
 
 void MainWindow::on_O_FHAZ_SOLS_Button_clicked()
 {
     ui->O_FHAZ_List->clear();
-    QUrl url = APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
-                                                                   config.find("api_key")->second,
-                                                                   "opportunity",
-                                                                   "FHAZ",
-                                                                   std::to_string(ui->O_FHAZ_Sols->value()));
-    fetchAPIData(url, "O_FHAZ");
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "opportunity",
+                                                                     "FHAZ",
+                                                                     std::to_string(ui->O_FHAZ_Sols->value())),
+                 "O_FHAZ");
 }
 
 
@@ -229,7 +269,105 @@ void MainWindow::on_O_FHAZ_DATE_Button_clicked()
 
 }
 
-void MainWindow::O_FHAZ_SetImages(QNetworkReply* reply) {
+void MainWindow::on_O_RHAZ_SOLS_Button_clicked()
+{
+    ui->O_RHAZ_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "opportunity",
+                                                                     "RHAZ",
+                                                                     std::to_string(ui->O_FHAZ_Sols->value())),
+                 "O_RHAZ");
+}
+
+
+void MainWindow::on_O_RHAZ_DATE_Button_clicked()
+{
+
+}
+
+// Rover-camera specific functions
+void MainWindow::C_FHAZ_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "C_FHAZ_Photo");
+}
+
+void MainWindow::C_RHAZ_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "C_RHAZ_Photo");
+}
+
+void MainWindow::C_MAST_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "C_MAST_Photo");
+}
+
+void MainWindow::C_CHEMCAM_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "C_CHEMCAM_Photo");
+}
+
+void MainWindow::C_MAHLI_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "C_MAHLI_Photo");
+}
+
+void MainWindow::C_MARDI_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "C_MARDI_Photo");
+}
+
+void MainWindow::C_NAVCAM_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "C_NAVCAM_Photo");
+}
+
+void MainWindow::O_FHAZ_SetImages(QNetworkReply* reply)
+{
     MarsRoverCamera_SetImages(reply, "O_FHAZ_Photo");
 }
 
+void MainWindow::O_RHAZ_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "O_RHAZ_Photo");
+}
+
+void MainWindow::O_NAVCAM_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "O_NAVCAM_Photo");
+}
+
+void MainWindow::O_PANCAM_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "O_PANCAM_Photo");
+}
+
+void MainWindow::O_MINITES_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "O_MINITES_Photo");
+}
+
+void MainWindow::S_FHAZ_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "S_FHAZ_Photo");
+}
+
+void MainWindow::S_RHAZ_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "S_RHAZ_Photo");
+}
+
+void MainWindow::S_NAVCAM_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "S_NAVCAM_Photo");
+}
+
+void MainWindow::S_PANCAM_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "S_PANCAM_Photo");
+}
+
+void MainWindow::S_MINITES_SetImages(QNetworkReply* reply)
+{
+    MarsRoverCamera_SetImages(reply, "S_MINITES_Photo");
+}
