@@ -11,6 +11,8 @@
 
 #include <QFile>
 
+#include <QListWidget>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -24,15 +26,33 @@ public:
     ~MainWindow();
 
 private slots:
+    void onRequestFinished(QNetworkReply *reply);
+
+    // Rover imagery
+    void on_O_FHAZ_SOLS_Button_clicked();
+
+    void on_O_FHAZ_DATE_Button_clicked();
+
+private:
+    // Rover imagery
+    // GeneralisedFunctions
+    void MarsRoverCamera_SetImages(QNetworkReply* reply, QString origin);
+    void MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QListWidget *list); // TODO: Add the actual image container
+
+    // Tab specific functions
+    void O_FHAZ_SetImages(QNetworkReply* reply);
+
+private:
     void updateWelcomeImage(QNetworkReply* reply);
     void updateWelcomeData(QNetworkReply *reply);
 
-private:
     // Resize handler
     void resizeEvent(QResizeEvent* event);
 
     void updateWelcomeVideo(const QUrl &videoUrl);
     void setWelcomeImageInformation(QJsonObject &jsonObj);
+
+    void fetchAPIData(QUrl url, QString origin);
 
 private:
     std::map<std::string, std::string> config;

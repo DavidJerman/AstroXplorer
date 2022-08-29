@@ -29,11 +29,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     manager = new QNetworkAccessManager(this);
 
-    QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(updateWelcomeData(QNetworkReply*)));
+    QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onRequestFinished(QNetworkReply*)));
 
-    QNetworkRequest request;
-    request.setUrl(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY));
-    manager->get(request);
+    fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), "apod_json");
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
@@ -62,6 +60,24 @@ MainWindow::MainWindow(QWidget *parent)
     // Other
 }
 
+void MainWindow::fetchAPIData(QUrl url, QString origin) {
+    QNetworkRequest request;
+    request.setUrl(url);
+    auto res = manager->get(request);
+    res->setProperty("origin", origin);
+}
+
+void MainWindow::onRequestFinished(QNetworkReply *reply) {
+    auto origin = reply->property("origin");
+    // APOD
+    if (origin == "apod_json") updateWelcomeData(reply);
+    else if (origin == "apod_image") updateWelcomeImage(reply);
+
+    // Rover imagery
+    else if (origin == "O_FHAZ") O_FHAZ_SetImages(reply);
+    else if (origin == "O_FHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_FHAZ_List);
+}
+
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
     if (reply->error()) {
         qDebug() << reply->errorString();
@@ -88,12 +104,7 @@ void MainWindow::updateWelcomeData(QNetworkReply* reply) {
         file.write(answer);
         file.close();
 
-        // Bind signal to slot
-        QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(updateWelcomeImage(QNetworkReply*)));
-
-        QNetworkRequest request;
-        request.setUrl(QUrl(parsedData.find("url").value().toString()));
-        manager->get(request);
+        fetchAPIData(QUrl(parsedData.find("url").value().toString()), "apod_image");
     }
     // Video
     if (parsedData.find("media_type").value().toString() == "video") {
@@ -126,6 +137,10 @@ void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
     }
 
     auto answer = reply->readAll();
+    if (answer.isEmpty()) {
+        qDebug() << "Could not obtain APOD image!";
+        return;
+    }
 
     // Saves the file
     auto filePath = config.find("welcome_image_path")->second;
@@ -175,3 +190,46 @@ MainWindow::~MainWindow()
     delete ui;
     delete manager;
 }
+
+// Mars Rover Imagery
+void MainWindow::MarsRoverCamera_SetImages(QNetworkReply* reply, QString origin) {
+    auto answer = reply->readAll();
+    auto parsedData = APIHandler::parseJSON(answer);
+    if (parsedData.isEmpty()) qDebug() << "No imagery!";
+    auto photos = parsedData.find("photos")->toArray();
+    for (const auto &photo: photos)
+        fetchAPIData(photo.toObject().value("img_src").toString(), origin);
+}
+
+void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QListWidget* list) {
+    auto answer = reply->readAll();
+    auto item = new QListWidgetItem("");
+    auto label = new QLabel();
+    QPixmap p;
+    p.loadFromData(answer);
+    list->addItem(item);
+    label->setPixmap(p);
+    list->setItemWidget(item, label);
+}
+
+void MainWindow::on_O_FHAZ_SOLS_Button_clicked()
+{
+    ui->O_FHAZ_List->clear();
+    QUrl url = APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                   config.find("api_key")->second,
+                                                                   "opportunity",
+                                                                   "FHAZ",
+                                                                   std::to_string(ui->O_FHAZ_Sols->value()));
+    fetchAPIData(url, "O_FHAZ");
+}
+
+
+void MainWindow::on_O_FHAZ_DATE_Button_clicked()
+{
+
+}
+
+void MainWindow::O_FHAZ_SetImages(QNetworkReply* reply) {
+    MarsRoverCamera_SetImages(reply, "O_FHAZ_Photo");
+}
+
