@@ -30,12 +30,39 @@ private slots:
 
     // Rover imagery
     void on_O_FHAZ_SOLS_Button_clicked();
-
     void on_O_FHAZ_DATE_Button_clicked();
-
     void on_O_RHAZ_SOLS_Button_clicked();
-
     void on_O_RHAZ_DATE_Button_clicked();
+    void on_S_RHAZ_DATE_Button_clicked();
+    void on_S_RHAZ_SOLS_Button_clicked();
+    void on_S_PANCAM_SOLS_Button_clicked();
+    void on_S_PANCAM_DATE_Button_clicked();
+    void on_S_NAVCAM_SOLS_Button_clicked();
+    void on_S_NAVCAM_DATE_Button_clicked();
+    void on_S_MINITES_SOLS_Button_clicked();
+    void on_S_MINITES_DATE_Button_clicked();
+    void on_S_FHAZ_SOLS_Button_clicked();
+    void on_S_FHAZ_DATE_Button_clicked();
+    void on_O_PANCAM_SOLS_Button_clicked();
+    void on_O_PANCAM_DATE_Button_clicked();
+    void on_O_NAVCAM_SOLS_Button_clicked();
+    void on_O_NAVCAM_DATE_Button_clicked();
+    void on_O_MINITES_SOLS_Button_clicked();
+    void on_O_MINITES_DATE_Button_clicked();
+    void on_C_NAVCAM_SOLS_Button_clicked();
+    void on_C_NAVCAM_DATE_Button_clicked();
+    void on_C_MAST_SOLS_Button_clicked();
+    void on_C_MAST_DATE_Button_clicked();
+    void on_C_MARDI_SOLS_Button_clicked();
+    void on_C_MARDI_DATE_Button_clicked();
+    void on_C_MAHLI_SOLS_Button_clicked();
+    void on_C_MAHLI_DATE_Button_clicked();
+    void on_C_FHAZ_SOLS_Button_clicked();
+    void on_C_FHAZ_DATE_Button_clicked();
+    void on_C_CHEMCAM_SOLS_Button_clicked();
+    void on_C_CHEMCAM_DATE_Button_clicked();
+    void on_C_RHAZ_SOLS_Button_clicked();
+    void on_C_RHAZ_DATE_Button_clicked();
 
 private:
     // Rover imagery

@@ -80,39 +80,55 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
 
     // Rover imagery
     else if (origin == "C_FHAZ") C_FHAZ_SetImages(reply);
-    else if (origin == "C_FHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_FHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List);
+
     else if (origin == "C_RHAZ") C_RHAZ_SetImages(reply);
-    else if (origin == "C_RHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_RHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_RHAZ_List);
+
     else if (origin == "C_MAST") C_MAST_SetImages(reply);
-    else if (origin == "C_MAST_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_MAST_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_MAST_List);
+
     else if (origin == "C_CHEMCAM") C_CHEMCAM_SetImages(reply);
-    else if (origin == "C_CHEMCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_CHEMCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_CHEMCAM_List);
+
     else if (origin == "C_MAHLI") C_MAHLI_SetImages(reply);
-    else if (origin == "C_MAHLI_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_MAHLI_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_MAHLI_List);
+
     else if (origin == "C_MARDI") C_MARDI_SetImages(reply);
-    else if (origin == "C_MARDI_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_MARDI_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_MARDI_List);
+
     else if (origin == "C_NAVCAM") C_NAVCAM_SetImages(reply);
-    else if (origin == "C_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "C_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_NAVCAM_List);
+
     else if (origin == "O_FHAZ") C_FHAZ_SetImages(reply);
-    else if (origin == "O_FHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_FHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List);
+
     else if (origin == "O_RHAZ") O_RHAZ_SetImages(reply);
-    else if (origin == "O_RHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_RHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_RHAZ_List);
+
     else if (origin == "O_NAVCAM") O_NAVCAM_SetImages(reply);
-    else if (origin == "O_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_NAVCAM_List);
+
     else if (origin == "O_PANCAM") O_PANCAM_SetImages(reply);
-    else if (origin == "O_PANCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_PANCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_PANCAM_List);
+
     else if (origin == "O_MINITES") O_MINITES_SetImages(reply);
-    else if (origin == "O_MINITES_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "O_MINITES_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_MINITES_List);
+
     else if (origin == "S_FHAZ") S_FHAZ_SetImages(reply);
-    else if (origin == "S_FHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_FHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_FHAZ_List);
+
     else if (origin == "S_RHAZ") S_RHAZ_SetImages(reply);
-    else if (origin == "S_RHAZ_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_RHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_RHAZ_List);
+
     else if (origin == "S_NAVCAM") S_NAVCAM_SetImages(reply);
-    else if (origin == "S_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_NAVCAM_List);
+
     else if (origin == "S_PANCAM") S_PANCAM_SetImages(reply);
-    else if (origin == "S_PANCAM_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_PANCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_PANCAM_List);
+
     else if (origin == "S_MINITES") S_MINITES_SetImages(reply);
-    else if (origin == "S_MINITES_Photo") MarsRoverCamera_AddImageToContainer();
+    else if (origin == "S_MINITES_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_MINITES_List);
 }
 
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
@@ -252,37 +268,8 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
     list->setItemWidget(item, label);
 }
 
-void MainWindow::on_O_FHAZ_SOLS_Button_clicked()
-{
-    ui->O_FHAZ_List->clear();
-    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
-                                                                     config.find("api_key")->second,
-                                                                     "opportunity",
-                                                                     "FHAZ",
-                                                                     std::to_string(ui->O_FHAZ_Sols->value())),
-                 "O_FHAZ");
-}
-
-
-void MainWindow::on_O_FHAZ_DATE_Button_clicked()
-{
-
-}
-
-void MainWindow::on_O_RHAZ_SOLS_Button_clicked()
-{
-    ui->O_RHAZ_List->clear();
-    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
-                                                                     config.find("api_key")->second,
-                                                                     "opportunity",
-                                                                     "RHAZ",
-                                                                     std::to_string(ui->O_FHAZ_Sols->value())),
-                 "O_RHAZ");
-}
-
-
-void MainWindow::on_O_RHAZ_DATE_Button_clicked()
-{
+// Placeholder
+void MainWindow::MarsRoverCamera_AddImageToContainer() {
 
 }
 
@@ -370,4 +357,308 @@ void MainWindow::S_PANCAM_SetImages(QNetworkReply* reply)
 void MainWindow::S_MINITES_SetImages(QNetworkReply* reply)
 {
     MarsRoverCamera_SetImages(reply, "S_MINITES_Photo");
+}
+
+// Rover camera on click events
+void MainWindow::on_S_RHAZ_SOLS_Button_clicked()
+{
+    ui->S_RHAZ_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "spirit",
+                                                                     "RHAZ",
+                                                                     std::to_string(ui->S_RHAZ_Sols->value())),
+                 "S_RHAZ");
+}
+
+
+void MainWindow::on_S_RHAZ_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_S_PANCAM_SOLS_Button_clicked()
+{
+    ui->S_PANCAM_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "spirit",
+                                                                     "PANCAM",
+                                                                     std::to_string(ui->S_PANCAM_Sols->value())),
+                 "S_PANCAM");
+}
+
+
+void MainWindow::on_S_PANCAM_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_S_NAVCAM_SOLS_Button_clicked()
+{
+    ui->S_NAVCAM_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "spirit",
+                                                                     "NAVCAM",
+                                                                     std::to_string(ui->S_NAVCAM_Sols->value())),
+                 "O_NAVCAM");
+}
+
+
+void MainWindow::on_S_NAVCAM_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_S_MINITES_SOLS_Button_clicked()
+{
+    ui->S_MINITES_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "spirit",
+                                                                     "MINITES",
+                                                                     std::to_string(ui->O_MINITES_Sols->value())),
+                 "O_MINITES");
+}
+
+
+void MainWindow::on_S_MINITES_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_S_FHAZ_SOLS_Button_clicked()
+{
+    ui->S_FHAZ_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "spirit",
+                                                                     "FHAZ",
+                                                                     std::to_string(ui->S_FHAZ_Sols->value())),
+                 "O_FHAZ");
+}
+
+
+void MainWindow::on_S_FHAZ_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_O_RHAZ_SOLS_Button_clicked()
+{
+    ui->O_RHAZ_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "opportunity",
+                                                                     "RHAZ",
+                                                                     std::to_string(ui->O_RHAZ_Sols->value())),
+                 "O_RHAZ");
+}
+
+
+void MainWindow::on_O_RHAZ_DATE_Button_clicked()
+{
+
+}
+
+void MainWindow::on_O_PANCAM_SOLS_Button_clicked()
+{
+    ui->O_PANCAM_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "opportunity",
+                                                                     "PANCAM",
+                                                                     std::to_string(ui->O_PANCAM_Sols->value())),
+                 "O_PANCAM");
+}
+
+
+void MainWindow::on_O_PANCAM_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_O_NAVCAM_SOLS_Button_clicked()
+{
+    ui->O_NAVCAM_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "opportunity",
+                                                                     "NAVCAM",
+                                                                     std::to_string(ui->O_NAVCAM_Sols->value())),
+                 "O_NAVCAM");
+}
+
+
+void MainWindow::on_O_NAVCAM_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_O_MINITES_SOLS_Button_clicked()
+{
+    ui->O_MINITES_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "opportunity",
+                                                                     "MINITEST",
+                                                                     std::to_string(ui->O_MINITES_Sols->value())),
+                 "O_MINITES");
+}
+
+
+void MainWindow::on_O_MINITES_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_O_FHAZ_SOLS_Button_clicked()
+{
+    ui->O_FHAZ_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "opportunity",
+                                                                     "FHAZ",
+                                                                     std::to_string(ui->O_FHAZ_Sols->value())),
+                 "O_FHAZ");
+}
+
+
+void MainWindow::on_O_FHAZ_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_C_NAVCAM_SOLS_Button_clicked()
+{
+    ui->C_NAVCAM_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "curiosity",
+                                                                     "NAVCAM",
+                                                                     std::to_string(ui->C_NAVCAM_Sols->value())),
+                 "C_NAVCAM");
+}
+
+
+void MainWindow::on_C_NAVCAM_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_C_MAST_SOLS_Button_clicked()
+{
+    ui->C_MAST_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "curiosity",
+                                                                     "MAST",
+                                                                     std::to_string(ui->C_MAST_Sols->value())),
+                 "C_MAST");
+}
+
+
+void MainWindow::on_C_MAST_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_C_MARDI_SOLS_Button_clicked()
+{
+    ui->C_MARDI_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "curiosity",
+                                                                     "MARDI",
+                                                                     std::to_string(ui->C_MARDI_Sols->value())),
+                 "C_MARDI");
+}
+
+
+void MainWindow::on_C_MARDI_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_C_MAHLI_SOLS_Button_clicked()
+{
+    ui->C_MAHLI_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "curiosity",
+                                                                     "MAHLI",
+                                                                     std::to_string(ui->C_MAHLI_Sols->value())),
+                 "C_MAHLI");
+}
+
+
+void MainWindow::on_C_MAHLI_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_C_FHAZ_SOLS_Button_clicked()
+{
+    ui->C_FHAZ_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "curiosity",
+                                                                     "FHAZ",
+                                                                     std::to_string(ui->C_FHAZ_Sols->value())),
+                 "C_FHAZ");
+}
+
+
+void MainWindow::on_C_FHAZ_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_C_CHEMCAM_SOLS_Button_clicked()
+{
+    ui->C_CHEMCAM_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "curiosity",
+                                                                     "CHEMCAM",
+                                                                     std::to_string(ui->C_CHEMCAM_Sols->value())),
+                 "C_CHEMCAM");
+}
+
+
+void MainWindow::on_C_CHEMCAM_DATE_Button_clicked()
+{
+
+}
+
+
+void MainWindow::on_C_RHAZ_SOLS_Button_clicked()
+{
+    ui->C_RHAZ_List->clear();
+    fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                     config.find("api_key")->second,
+                                                                     "curiosity",
+                                                                     "RHAZ",
+                                                                     std::to_string(ui->C_RHAZ_Sols->value())),
+                 "C_RHAZ");
+}
+
+void MainWindow::on_C_RHAZ_DATE_Button_clicked()
+{
+
 }

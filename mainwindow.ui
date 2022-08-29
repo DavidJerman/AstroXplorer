@@ -1272,7 +1272,7 @@
             <item>
              <widget class="QTabWidget" name="RoversTabs">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="CuriosityTab">
                <attribute name="title">
@@ -1282,42 +1282,679 @@
                 <item>
                  <widget class="QTabWidget" name="CuriosityCamerasTab">
                   <property name="currentIndex">
-                   <number>6</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="C_FHAZ_Tab">
                    <attribute name="title">
                     <string>FHAZ</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_34" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="C_FHAZ_Grid">
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="C_FHAZ_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="C_FHAZ_Sols"/>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="C_FHAZ_Date"/>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="C_FHAZ_DATE_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="C_FHAZ_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="C_FHAZ_SOLS_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="C_FHAZ_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="C_FHAZ_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_3">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="C_FHAZ_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_35">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="C_FHAZ_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="C_RHAZ_Tab">
                    <attribute name="title">
                     <string>RHAZ</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_36" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="C_RHAZ_Grid">
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="C_RHAZ_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="C_RHAZ_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="C_RHAZ_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="C_RHAZ_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="C_RHAZ_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="C_RHAZ_Sols"/>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="C_RHAZ_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="C_RHAZ_Date"/>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_8">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="C_RHAZ_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_37">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="C_RHAZ_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="C_MAST_Tab">
                    <attribute name="title">
                     <string>MAST</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_38" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="C_MAST_Grid">
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="C_MAST_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="C_MAST_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="C_MAST_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="C_MAST_Date"/>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="C_MAST_Sols"/>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="C_MAST_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="C_MAST_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="C_MAST_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_6">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="C_MAST_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_39">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="C_MAST_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="C_CHEMCAM_Tab">
                    <attribute name="title">
                     <string>CHEMCAM</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_40" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="C_CHEMCAM_Grid">
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="C_CHEMCAM_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="C_CHEMCAM_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="C_CHEMCAM_DATE_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="C_CHEMCAM_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="C_CHEMCAM_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="C_CHEMCAM_Date"/>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="C_CHEMCAM_Sols"/>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="C_CHEMCAM_SOLS_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_2">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="C_CHEMCAM_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_41">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="C_CHEMCAM_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="C_MAHLI_Tab">
                    <attribute name="title">
                     <string>MAHLI</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_42" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="C_MAHLI_Grid">
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="C_MAHLI_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="C_MAHLI_Sols"/>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="C_MAHLI_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="C_MAHLI_Date"/>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="C_MAHLI_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="C_MAHLI_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="C_MAHLI_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="C_MAHLI_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_4">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="C_MAHLI_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_43">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="C_MAHLI_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="C_MARDI_Tab">
                    <attribute name="title">
                     <string>MARDI</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_44" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="C_MARDI_Grid">
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="C_MARDI_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="C_MARDI_Sols"/>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="C_MARDI_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="C_MARDI_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="C_MARDI_Date"/>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="C_MARDI_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="C_MARDI_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="C_MARDI_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_5">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="C_MARDI_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_45">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="C_MARDI_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="C_NAVCAM_Tab">
                    <attribute name="title">
                     <string>NAVCAM</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_46" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="C_NAVCAM_Grid">
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="C_NAVCAM_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="C_NAVCAM_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="C_NAVCAM_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="C_NAVCAM_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="C_NAVCAM_Date"/>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="C_NAVCAM_Sols"/>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="C_NAVCAM_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="C_NAVCAM_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_7">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="C_NAVCAM_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_47">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="C_NAVCAM_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </widget>
                 </item>
@@ -1331,7 +1968,7 @@
                 <item>
                  <widget class="QTabWidget" name="OpportunityCamerasTab">
                   <property name="currentIndex">
-                   <number>4</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="O_FHAZ_Tab">
                    <attribute name="title">
@@ -1531,57 +2168,57 @@
                    </attribute>
                    <layout class="QHBoxLayout" name="horizontalLayout_28" stretch="3,8">
                     <item>
-                     <layout class="QGridLayout" name="gridLayout">
+                     <layout class="QGridLayout" name="O_NAVCAM_Grid">
                       <item row="1" column="1">
-                       <widget class="QSpinBox" name="spinBox"/>
+                       <widget class="QSpinBox" name="O_NAVCAM_Sols"/>
                       </item>
                       <item row="4" column="0">
-                       <widget class="QLabel" name="label_4">
+                       <widget class="QLabel" name="O_NAVCAM_2">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="1" column="0">
-                       <widget class="QLabel" name="label_3">
+                       <widget class="QLabel" name="O_NAVCAM_1">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Sols</string>
                         </property>
                        </widget>
                       </item>
                       <item row="4" column="1">
-                       <widget class="QDateEdit" name="dateEdit"/>
+                       <widget class="QDateEdit" name="O_NAVCAM_Date"/>
                       </item>
                       <item row="0" column="0">
-                       <widget class="QLabel" name="label_2">
+                       <widget class="QLabel" name="O_NAVCAM_0">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Search by Mars Sols</string>
                         </property>
                        </widget>
                       </item>
                       <item row="3" column="0">
-                       <widget class="QLabel" name="label_5">
+                       <widget class="QLabel" name="O_NAVCAM_3">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Search by Earth Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="2" column="1">
-                       <widget class="QPushButton" name="pushButton">
+                       <widget class="QPushButton" name="O_NAVCAM_SOLS_Button">
                         <property name="text">
                          <string>PushButton</string>
                         </property>
                        </widget>
                       </item>
                       <item row="5" column="1">
-                       <widget class="QPushButton" name="pushButton_2">
+                       <widget class="QPushButton" name="O_NAVCAM_DATE_Button">
                         <property name="text">
                          <string>PushButton</string>
                         </property>
                        </widget>
                       </item>
                       <item row="6" column="1">
-                       <spacer name="verticalSpacer">
+                       <spacer name="spacer_10">
                         <property name="orientation">
                          <enum>Qt::Vertical</enum>
                         </property>
@@ -1596,7 +2233,7 @@
                      </layout>
                     </item>
                     <item>
-                     <widget class="QFrame" name="frame">
+                     <widget class="QFrame" name="O_NAVCAM_Frame">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1614,7 +2251,7 @@
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QListWidget" name="listWidget"/>
+                        <widget class="QListWidget" name="O_NAVCAM_List"/>
                        </item>
                       </layout>
                      </widget>
@@ -1627,57 +2264,57 @@
                    </attribute>
                    <layout class="QHBoxLayout" name="horizontalLayout_31" stretch="3,8">
                     <item>
-                     <layout class="QGridLayout" name="gridLayout_2">
+                     <layout class="QGridLayout" name="O_PANCAM_Grid">
                       <item row="2" column="1">
-                       <widget class="QPushButton" name="pushButton_3">
+                       <widget class="QPushButton" name="O_PANCAM_SOLS_Button">
                         <property name="text">
                          <string>PushButton</string>
                         </property>
                        </widget>
                       </item>
                       <item row="0" column="0">
-                       <widget class="QLabel" name="label_6">
+                       <widget class="QLabel" name="O_PANCAM_0">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Search by Mars Sols</string>
                         </property>
                        </widget>
                       </item>
                       <item row="3" column="0">
-                       <widget class="QLabel" name="label_9">
+                       <widget class="QLabel" name="O_PANCAM_3">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Search by Earth Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="1" column="1">
-                       <widget class="QSpinBox" name="spinBox_2"/>
+                       <widget class="QSpinBox" name="O_PANCAM_Sols"/>
                       </item>
                       <item row="5" column="1">
-                       <widget class="QPushButton" name="pushButton_4">
+                       <widget class="QPushButton" name="O_PANCAM_DATE_Button">
                         <property name="text">
                          <string>PushButton</string>
                         </property>
                        </widget>
                       </item>
                       <item row="4" column="1">
-                       <widget class="QDateEdit" name="dateEdit_2"/>
+                       <widget class="QDateEdit" name="O_PANCAM_Date"/>
                       </item>
                       <item row="4" column="0">
-                       <widget class="QLabel" name="label_8">
+                       <widget class="QLabel" name="O_PANCAM_2">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="1" column="0">
-                       <widget class="QLabel" name="label_7">
+                       <widget class="QLabel" name="O_PANCAM_1">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Sols</string>
                         </property>
                        </widget>
                       </item>
                       <item row="6" column="1">
-                       <spacer name="verticalSpacer_2">
+                       <spacer name="spacer_11">
                         <property name="orientation">
                          <enum>Qt::Vertical</enum>
                         </property>
@@ -1692,7 +2329,7 @@
                      </layout>
                     </item>
                     <item>
-                     <widget class="QFrame" name="frame_2">
+                     <widget class="QFrame" name="O_PANCAM_Frame">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1710,7 +2347,7 @@
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QListWidget" name="listWidget_2"/>
+                        <widget class="QListWidget" name="O_PANCAM_List"/>
                        </item>
                       </layout>
                      </widget>
@@ -1732,57 +2369,57 @@
                      <number>9</number>
                     </property>
                     <item>
-                     <layout class="QGridLayout" name="gridLayout_3">
+                     <layout class="QGridLayout" name="O_MINITES_Grid">
                       <item row="4" column="0">
-                       <widget class="QLabel" name="label_12">
+                       <widget class="QLabel" name="O_MINITES_2">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="2" column="1">
-                       <widget class="QPushButton" name="pushButton_5">
+                       <widget class="QPushButton" name="O_MINITES_SOLS_Button">
                         <property name="text">
                          <string>PushButton</string>
                         </property>
                        </widget>
                       </item>
                       <item row="4" column="1">
-                       <widget class="QDateEdit" name="dateEdit_3"/>
+                       <widget class="QDateEdit" name="O_MINITES_Date"/>
                       </item>
                       <item row="1" column="0">
-                       <widget class="QLabel" name="label_11">
+                       <widget class="QLabel" name="O_MINITES_1">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Sols</string>
                         </property>
                        </widget>
                       </item>
                       <item row="0" column="0">
-                       <widget class="QLabel" name="label_10">
+                       <widget class="QLabel" name="O_MINITES_0">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Search by Mars Sols</string>
                         </property>
                        </widget>
                       </item>
                       <item row="5" column="1">
-                       <widget class="QPushButton" name="pushButton_6">
+                       <widget class="QPushButton" name="O_MINITES_DATE_Button">
                         <property name="text">
                          <string>PushButton</string>
                         </property>
                        </widget>
                       </item>
                       <item row="3" column="0">
-                       <widget class="QLabel" name="label_13">
+                       <widget class="QLabel" name="O_MINITES_3">
                         <property name="text">
-                         <string>TextLabel</string>
+                         <string>Search by Earth Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="1" column="1">
-                       <widget class="QSpinBox" name="spinBox_3"/>
+                       <widget class="QSpinBox" name="O_MINITES_Sols"/>
                       </item>
                       <item row="6" column="1">
-                       <spacer name="verticalSpacer_3">
+                       <spacer name="spacer_9">
                         <property name="orientation">
                          <enum>Qt::Vertical</enum>
                         </property>
@@ -1797,7 +2434,7 @@
                      </layout>
                     </item>
                     <item>
-                     <widget class="QFrame" name="frame_3">
+                     <widget class="QFrame" name="O_MINITES_Frame">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1815,7 +2452,7 @@
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QListWidget" name="listWidget_3"/>
+                        <widget class="QListWidget" name="O_MINITES_List"/>
                        </item>
                       </layout>
                      </widget>
@@ -1834,32 +2471,487 @@
                 <item>
                  <widget class="QTabWidget" name="SpiritCamerasTab">
                   <property name="currentIndex">
-                   <number>4</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="S_NAVCAM_Tab">
                    <attribute name="title">
                     <string>FHAZ</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_48" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="S_NAVCAM_Grid">
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="S_NAVCAM_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="S_NAVCAM_Sols"/>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="S_NAVCAM_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="S_NAVCAM_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="S_NAVCAM_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="S_NAVCAM_Date"/>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="S_NAVCAM_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="S_NAVCAM_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_14">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="S_NAVCAM_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_49">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="S_NAVCAM_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="S_FHAZ_Tab">
                    <attribute name="title">
                     <string>RHAZ</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_50" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="S_FHAZ_Grid">
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="S_FHAZ_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="S_FHAZ_Sols"/>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="S_FHAZ_Date"/>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="S_FHAZ_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="S_FHAZ_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="S_FHAZ_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="S_FHAZ_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="S_FHAZ_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_12">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="S_FHAZ_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_51">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="S_FHAZ_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="S_RHAZ_Tab">
                    <attribute name="title">
                     <string>NAVCAM</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_52" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="S_RHAZ_Grid">
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="S_RHAZ_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="S_RHAZ_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="S_RHAZ_Date"/>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="S_RHAZ_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="S_RHAZ_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="S_RHAZ_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="S_RHAZ_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="S_RHAZ_Sols"/>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_16">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="S_RHAZ_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_53">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="S_RHAZ_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="S_MINITES_Tab">
                    <attribute name="title">
                     <string>PANCAM</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_54" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="S_MINITES_Grid">
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="S_MINITES_Date"/>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="S_MINITES_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="S_MINITES_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="S_MINITES_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="S_MINITES_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="S_MINITES_Sols"/>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="S_MINITES_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="S_MINITES_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_13">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="S_MINITES_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_55">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="S_MINITES_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="S_PANCAM_Tab">
                    <attribute name="title">
                     <string>MINITES</string>
                    </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_56" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="S_PANCAM_Grid">
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="S_PANCAM_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="S_PANCAM_DATE_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="S_PANCAM_Date"/>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="S_PANCAM_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="S_PANCAM_Sols"/>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="S_PANCAM_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="S_PANCAM_SOLS_Button">
+                        <property name="text">
+                         <string>PushButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="S_PANCAM_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_15">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="S_PANCAM_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_57">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="S_PANCAM_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </widget>
                 </item>
