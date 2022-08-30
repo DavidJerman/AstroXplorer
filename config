@@ -4,3 +4,7 @@ author=David Jerman
 version=2022.08.27
 apod_url=https://api.nasa.gov/planetary/apod
 insight_url=https://api.nasa.gov/insight_weather/
+mars_rover_url=https://api.nasa.gov/mars-photos/api/v1/rovers/
+welcome_image_path=./images/apod.jpg
+welcome_image_metadata=./apod/apod.json
+mars_rover_images_path=./mars_rover_photos/

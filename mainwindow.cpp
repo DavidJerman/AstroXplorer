@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
         return;
     this->config = CfgLoader::getConfig();
 
+
+
     // This part handles requests
     const auto _API_KEY = config.find("api_key");
     if (_API_KEY == config.end()) return;
@@ -311,9 +313,6 @@ void MainWindow::resizeEvent(QResizeEvent* event) {
 
 MainWindow::~MainWindow()
 {
-    ui->C_RoverManifestList->clear();
-    ui->O_RoverManifestList->clear();
-    ui->S_RoverManifestList->clear();
     delete ui;
     delete manager;
 }
