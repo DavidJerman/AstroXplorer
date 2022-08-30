@@ -4,6 +4,9 @@
 #include "cfgloader.h"
 #include "apihandler.h"
 #include "imagemanipulation.h"
+#include "enums.h"
+
+typedef ORIGIN O;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onRequestFinished(QNetworkReply*)));
 
     updateStatus("Fetching welcome image...");
-    fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), "apod_json");
+    fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), O::APOD_JSON);
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
@@ -101,15 +104,15 @@ MainWindow::MainWindow(QWidget *parent)
     fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
                                                                   config.find("api_key")->second,
                                                                   "curiosity"),
-                 "curiosity");
+                 O::CURIOSITY);
     fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
                                                                   config.find("api_key")->second,
                                                                   "opportunity"),
-                 "opportunity");
+                 O::OPPORTUNITY);
     fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
                                                                   config.find("api_key")->second,
                                                                   "spirit"),
-                 "spirit");
+                 O::SPIRIT);
 
     // Other
 }
@@ -133,8 +136,8 @@ void MainWindow::imagePopUp(QListWidgetItem* item) {
     label->setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
-void MainWindow::fetchAPIData(QUrl url, QString origin) {
-    updateStatus("Fetching data for " + origin + "...");
+void MainWindow::fetchAPIData(QUrl url, ORIGIN origin) {
+    updateStatus("Fetching data for " + E::eToQs(origin) + "...");
 
     QNetworkRequest request;
     request.setUrl(url);
@@ -143,67 +146,52 @@ void MainWindow::fetchAPIData(QUrl url, QString origin) {
 }
 
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
-    auto origin = reply->property("origin");
-    // APOD
-    if (origin == "apod_json") updateWelcomeData(reply);
-    else if (origin == "apod_image") updateWelcomeImage(reply);
-
-    // Rover imagery
-    else if (origin == "C_FHAZ") C_FHAZ_SetImages(reply);
-    else if (origin == "C_FHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List);
-
-    else if (origin == "C_RHAZ") C_RHAZ_SetImages(reply);
-    else if (origin == "C_RHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_RHAZ_List);
-
-    else if (origin == "C_MAST") C_MAST_SetImages(reply);
-    else if (origin == "C_MAST_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_MAST_List);
-
-    else if (origin == "C_CHEMCAM") C_CHEMCAM_SetImages(reply);
-    else if (origin == "C_CHEMCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_CHEMCAM_List);
-
-    else if (origin == "C_MAHLI") C_MAHLI_SetImages(reply);
-    else if (origin == "C_MAHLI_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_MAHLI_List);
-
-    else if (origin == "C_MARDI") C_MARDI_SetImages(reply);
-    else if (origin == "C_MARDI_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_MARDI_List);
-
-    else if (origin == "C_NAVCAM") C_NAVCAM_SetImages(reply);
-    else if (origin == "C_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_NAVCAM_List);
-
-    else if (origin == "O_FHAZ") C_FHAZ_SetImages(reply);
-    else if (origin == "O_FHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List);
-
-    else if (origin == "O_RHAZ") O_RHAZ_SetImages(reply);
-    else if (origin == "O_RHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_RHAZ_List);
-
-    else if (origin == "O_NAVCAM") O_NAVCAM_SetImages(reply);
-    else if (origin == "O_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_NAVCAM_List);
-
-    else if (origin == "O_PANCAM") O_PANCAM_SetImages(reply);
-    else if (origin == "O_PANCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_PANCAM_List);
-
-    else if (origin == "O_MINITES") O_MINITES_SetImages(reply);
-    else if (origin == "O_MINITES_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->O_MINITES_List);
-
-    else if (origin == "S_FHAZ") S_FHAZ_SetImages(reply);
-    else if (origin == "S_FHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_FHAZ_List);
-
-    else if (origin == "S_RHAZ") S_RHAZ_SetImages(reply);
-    else if (origin == "S_RHAZ_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_RHAZ_List);
-
-    else if (origin == "S_NAVCAM") S_NAVCAM_SetImages(reply);
-    else if (origin == "S_NAVCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_NAVCAM_List);
-
-    else if (origin == "S_PANCAM") S_PANCAM_SetImages(reply);
-    else if (origin == "S_PANCAM_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_PANCAM_List);
-
-    else if (origin == "S_MINITES") S_MINITES_SetImages(reply);
-    else if (origin == "S_MINITES_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_MINITES_List);
-
-    // Rover manifest
-    else if (origin == "curiosity") updateRoverManifest(reply, ui->C_RoverManifestList, "curiosity", ui->C_RoverImageLabel);
-    else if (origin == "opportunity") updateRoverManifest(reply, ui->O_RoverManifestList, "opportunity", ui->O_RoverImageLabel);
-    else if (origin == "spirit") updateRoverManifest(reply, ui->S_RoverManifestList, "spirit", ui->S_RoverImageLabel);
+    auto origin = reply->property("origin").value<ORIGIN>();
+    switch (origin) {
+        // APOD
+        case O::APOD_JSON: updateWelcomeData(reply); break;
+        case O::APOD_IMAGE: updateWelcomeImage(reply); break;
+        // Rover imagery
+        case O::C_FHAZ: C_FHAZ_SetImages(reply); break;
+        case O::C_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List); break;
+        case O::C_RHAZ: C_RHAZ_SetImages(reply); break;
+        case O::C_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_RHAZ_List); break;
+        case O::C_MAST: C_MAST_SetImages(reply); break;
+        case O::C_MAST_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MAST_List); break;
+        case O::C_CHEMCAM: C_CHEMCAM_SetImages(reply); break;
+        case O::C_CHEMCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_CHEMCAM_List); break;
+        case O::C_MAHLI: C_MAHLI_SetImages(reply); break;
+        case O::C_MAHLI_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MAHLI_List); break;
+        case O::C_MARDI: C_MARDI_SetImages(reply); break;
+        case O::C_MARDI_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MARDI_List); break;
+        case O::C_NAVCAM: C_NAVCAM_SetImages(reply); break;
+        case O::C_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_NAVCAM_List); break;
+        case O::O_FHAZ: C_FHAZ_SetImages(reply); break;
+        case O::O_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List); break;
+        case O::O_RHAZ: O_RHAZ_SetImages(reply); break;
+        case O::O_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_RHAZ_List); break;
+        case O::O_NAVCAM: O_NAVCAM_SetImages(reply); break;
+        case O::O_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_NAVCAM_List); break;
+        case O::O_PANCAM: O_PANCAM_SetImages(reply); break;
+        case O::O_PANCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_PANCAM_List); break;
+        case O::O_MINITES: O_MINITES_SetImages(reply); break;
+        case O::O_MINITES_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_MINITES_List); break;
+        case O::S_FHAZ: S_FHAZ_SetImages(reply); break;
+        case O::S_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_FHAZ_List); break;
+        case O::S_RHAZ: S_RHAZ_SetImages(reply); break;
+        case O::S_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_RHAZ_List); break;
+        case O::S_NAVCAM: S_NAVCAM_SetImages(reply); break;
+        case O::S_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_NAVCAM_List); break;
+        case O::S_PANCAM: S_PANCAM_SetImages(reply); break;
+        case O::S_PANCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_PANCAM_List); break;
+        case O::S_MINITES: S_MINITES_SetImages(reply); break;
+        case O::S_MINITES_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_MINITES_List); break;
+        // Rover manifest
+        case O::CURIOSITY: updateRoverManifest(reply, ui->C_RoverManifestList, O::CURIOSITY, ui->C_RoverImageLabel); break;
+        case O::OPPORTUNITY: updateRoverManifest(reply, ui->O_RoverManifestList, O::OPPORTUNITY, ui->O_RoverImageLabel); break;
+        case O::SPIRIT: updateRoverManifest(reply, ui->S_RoverManifestList, O::SPIRIT, ui->S_RoverImageLabel); break;
+        default: reply->deleteLater();
+    }
 }
 
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
@@ -235,7 +223,7 @@ void MainWindow::updateWelcomeData(QNetworkReply* reply) {
         file.write(answer);
         file.close();
 
-        fetchAPIData(QUrl(parsedData.find("url").value().toString()), "apod_image");
+        fetchAPIData(QUrl(parsedData.find("url").value().toString()), O::APOD_IMAGE);
     }
     // Video
     if (parsedData.find("media_type").value().toString() == "video") {
@@ -333,7 +321,7 @@ MainWindow::~MainWindow()
 }
 
 // Mars Rover Imagery
-void MainWindow::MarsRoverCamera_SetImages(QNetworkReply* reply, QString origin) {
+void MainWindow::MarsRoverCamera_SetImages(QNetworkReply* reply, ORIGIN origin) {
     auto answer = reply->readAll();
     auto parsedData = APIHandler::parseJSON(answer);
     if (parsedData.isEmpty()) {
@@ -384,87 +372,87 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
 // Rover-camera specific functions
 void MainWindow::C_FHAZ_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "C_FHAZ_Photo");
+    MarsRoverCamera_SetImages(reply, O::C_FHAZ_P);
 }
 
 void MainWindow::C_RHAZ_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "C_RHAZ_Photo");
+    MarsRoverCamera_SetImages(reply, O::C_RHAZ_P);
 }
 
 void MainWindow::C_MAST_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "C_MAST_Photo");
+    MarsRoverCamera_SetImages(reply, O::C_MAST_P);
 }
 
 void MainWindow::C_CHEMCAM_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "C_CHEMCAM_Photo");
+    MarsRoverCamera_SetImages(reply, O::C_CHEMCAM_P);
 }
 
 void MainWindow::C_MAHLI_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "C_MAHLI_Photo");
+    MarsRoverCamera_SetImages(reply, O::C_MAHLI_P);
 }
 
 void MainWindow::C_MARDI_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "C_MARDI_Photo");
+    MarsRoverCamera_SetImages(reply, O::C_MARDI_P);
 }
 
 void MainWindow::C_NAVCAM_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "C_NAVCAM_Photo");
+    MarsRoverCamera_SetImages(reply, O::C_NAVCAM_P);
 }
 
 void MainWindow::O_FHAZ_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "O_FHAZ_Photo");
+    MarsRoverCamera_SetImages(reply, O::O_FHAZ_P);
 }
 
 void MainWindow::O_RHAZ_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "O_RHAZ_Photo");
+    MarsRoverCamera_SetImages(reply, O::O_RHAZ_P);
 }
 
 void MainWindow::O_NAVCAM_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "O_NAVCAM_Photo");
+    MarsRoverCamera_SetImages(reply, O::O_NAVCAM_P);
 }
 
 void MainWindow::O_PANCAM_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "O_PANCAM_Photo");
+    MarsRoverCamera_SetImages(reply, O::O_PANCAM_P);
 }
 
 void MainWindow::O_MINITES_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "O_MINITES_Photo");
+    MarsRoverCamera_SetImages(reply, O::O_MINITES_P);
 }
 
 void MainWindow::S_FHAZ_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "S_FHAZ_Photo");
+    MarsRoverCamera_SetImages(reply, O::S_FHAZ_P);
 }
 
 void MainWindow::S_RHAZ_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "S_RHAZ_Photo");
+    MarsRoverCamera_SetImages(reply, O::S_RHAZ_P);
 }
 
 void MainWindow::S_NAVCAM_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "S_NAVCAM_Photo");
+    MarsRoverCamera_SetImages(reply, O::S_NAVCAM_P);
 }
 
 void MainWindow::S_PANCAM_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "S_PANCAM_Photo");
+    MarsRoverCamera_SetImages(reply, O::S_PANCAM_P);
 }
 
 void MainWindow::S_MINITES_SetImages(QNetworkReply* reply)
 {
-    MarsRoverCamera_SetImages(reply, "S_MINITES_Photo");
+    MarsRoverCamera_SetImages(reply, O::S_MINITES_P);
 }
 
 
@@ -477,7 +465,7 @@ void MainWindow::on_S_RHAZ_SOLS_Button_clicked()
                                                                      "spirit",
                                                                      "RHAZ",
                                                                      std::to_string(ui->S_RHAZ_Sols->value())),
-                 "S_RHAZ");
+                 O::S_RHAZ);
 }
 
 
@@ -489,7 +477,7 @@ void MainWindow::on_S_RHAZ_DATE_Button_clicked()
                                                                           "spirit",
                                                                           "RHAZ",
                                                                           APIHandler::dateToString(ui->S_RHAZ_Date->date())),
-                 "S_RHAZ");
+                 O::S_RHAZ);
 }
 
 
@@ -501,7 +489,7 @@ void MainWindow::on_S_PANCAM_SOLS_Button_clicked()
                                                                      "spirit",
                                                                      "PANCAM",
                                                                      std::to_string(ui->S_PANCAM_Sols->value())),
-                 "S_PANCAM");
+                 O::S_PANCAM);
 }
 
 
@@ -513,7 +501,7 @@ void MainWindow::on_S_PANCAM_DATE_Button_clicked()
                                                                           "spirit",
                                                                           "PANCAM",
                                                                           APIHandler::dateToString(ui->S_PANCAM_Date->date())),
-                 "S_PANCAM");
+                 O::S_PANCAM);
 }
 
 
@@ -525,7 +513,7 @@ void MainWindow::on_S_NAVCAM_SOLS_Button_clicked()
                                                                      "spirit",
                                                                      "NAVCAM",
                                                                      std::to_string(ui->S_NAVCAM_Sols->value())),
-                 "S_NAVCAM");
+                 O::S_NAVCAM);
 }
 
 
@@ -537,7 +525,7 @@ void MainWindow::on_S_NAVCAM_DATE_Button_clicked()
                                                                           "spirit",
                                                                           "NAVCAM",
                                                                           APIHandler::dateToString(ui->S_NAVCAM_Date->date())),
-                 "S_NAVCAM");
+                 O::S_NAVCAM);
 }
 
 
@@ -549,7 +537,7 @@ void MainWindow::on_S_MINITES_SOLS_Button_clicked()
                                                                      "spirit",
                                                                      "MINITES",
                                                                      std::to_string(ui->O_MINITES_Sols->value())),
-                 "S_MINITES");
+                 O::S_MINITES);
 }
 
 
@@ -561,7 +549,7 @@ void MainWindow::on_S_MINITES_DATE_Button_clicked()
                                                                           "spirit",
                                                                           "MINITES",
                                                                           APIHandler::dateToString(ui->S_MINITES_Date->date())),
-                 "S_MINITES");
+                 O::S_MINITES);
 }
 
 
@@ -573,7 +561,7 @@ void MainWindow::on_S_FHAZ_SOLS_Button_clicked()
                                                                      "spirit",
                                                                      "FHAZ",
                                                                      std::to_string(ui->S_FHAZ_Sols->value())),
-                 "S_FHAZ");
+                 O::S_FHAZ);
 }
 
 
@@ -585,7 +573,7 @@ void MainWindow::on_S_FHAZ_DATE_Button_clicked()
                                                                           "spirit",
                                                                           "FHAZ",
                                                                           APIHandler::dateToString(ui->S_FHAZ_Date->date())),
-                 "S_FHAZ");
+                 O::S_FHAZ);
 }
 
 
@@ -597,7 +585,7 @@ void MainWindow::on_O_RHAZ_SOLS_Button_clicked()
                                                                      "opportunity",
                                                                      "RHAZ",
                                                                      std::to_string(ui->O_RHAZ_Sols->value())),
-                 "O_RHAZ");
+                 O::O_RHAZ);
 }
 
 
@@ -609,7 +597,7 @@ void MainWindow::on_O_RHAZ_DATE_Button_clicked()
                                                                           "opportunity",
                                                                           "RHAZ",
                                                                           APIHandler::dateToString(ui->O_RHAZ_Date->date())),
-                 "O_RHAZ");
+                 O::O_RHAZ);
 }
 
 void MainWindow::on_O_PANCAM_SOLS_Button_clicked()
@@ -620,7 +608,7 @@ void MainWindow::on_O_PANCAM_SOLS_Button_clicked()
                                                                      "opportunity",
                                                                      "PANCAM",
                                                                      std::to_string(ui->O_PANCAM_Sols->value())),
-                 "O_PANCAM");
+                 O::O_PANCAM);
 }
 
 
@@ -632,7 +620,7 @@ void MainWindow::on_O_PANCAM_DATE_Button_clicked()
                                                                           "opportunity",
                                                                           "PANCAM",
                                                                           APIHandler::dateToString(ui->O_PANCAM_Date->date())),
-                 "O_PANCAM");
+                 O::O_PANCAM);
 }
 
 
@@ -644,7 +632,7 @@ void MainWindow::on_O_NAVCAM_SOLS_Button_clicked()
                                                                      "opportunity",
                                                                      "NAVCAM",
                                                                      std::to_string(ui->O_NAVCAM_Sols->value())),
-                 "O_NAVCAM");
+                 O::O_NAVCAM);
 }
 
 
@@ -656,7 +644,7 @@ void MainWindow::on_O_NAVCAM_DATE_Button_clicked()
                                                                           "opportunity",
                                                                           "NAVCAM",
                                                                           APIHandler::dateToString(ui->O_NAVCAM_Date->date())),
-                 "O_NAVCAM");
+                 O::O_NAVCAM);
 }
 
 
@@ -668,7 +656,7 @@ void MainWindow::on_O_MINITES_SOLS_Button_clicked()
                                                                      "opportunity",
                                                                      "MINITEST",
                                                                      std::to_string(ui->O_MINITES_Sols->value())),
-                 "O_MINITES");
+                 O::O_MINITES);
 }
 
 
@@ -680,7 +668,7 @@ void MainWindow::on_O_MINITES_DATE_Button_clicked()
                                                                           "opportunity",
                                                                           "MINITES",
                                                                           APIHandler::dateToString(ui->O_MINITES_Date->date())),
-                 "O_MINITES");
+                 O::O_MINITES);
 }
 
 
@@ -692,7 +680,7 @@ void MainWindow::on_O_FHAZ_SOLS_Button_clicked()
                                                                      "opportunity",
                                                                      "FHAZ",
                                                                      std::to_string(ui->O_FHAZ_Sols->value())),
-                 "O_FHAZ");
+                 O::O_FHAZ);
 }
 
 
@@ -704,7 +692,7 @@ void MainWindow::on_O_FHAZ_DATE_Button_clicked()
                                                                           "opportunity",
                                                                           "FHAZ",
                                                                           APIHandler::dateToString(ui->O_FHAZ_Date->date())),
-                 "O_FHAZ");
+                 O::O_FHAZ);
 }
 
 
@@ -716,7 +704,7 @@ void MainWindow::on_C_NAVCAM_SOLS_Button_clicked()
                                                                      "curiosity",
                                                                      "NAVCAM",
                                                                      std::to_string(ui->C_NAVCAM_Sols->value())),
-                 "C_NAVCAM");
+                 O::C_NAVCAM);
 }
 
 
@@ -728,7 +716,7 @@ void MainWindow::on_C_NAVCAM_DATE_Button_clicked()
                                                                           "curiosity",
                                                                           "NAVCAM",
                                                                           APIHandler::dateToString(ui->C_NAVCAM_Date->date())),
-                 "C_NAVCAM");
+                 O::C_NAVCAM);
 }
 
 
@@ -740,7 +728,7 @@ void MainWindow::on_C_MAST_SOLS_Button_clicked()
                                                                      "curiosity",
                                                                      "MAST",
                                                                      std::to_string(ui->C_MAST_Sols->value())),
-                 "C_MAST");
+                 O::C_MAST);
 }
 
 
@@ -752,7 +740,7 @@ void MainWindow::on_C_MAST_DATE_Button_clicked()
                                                                           "curiosity",
                                                                           "MAST",
                                                                           APIHandler::dateToString(ui->C_MAST_Date->date())),
-                 "C_MAST");
+                 O::C_MAST);
 }
 
 
@@ -764,7 +752,7 @@ void MainWindow::on_C_MARDI_SOLS_Button_clicked()
                                                                      "curiosity",
                                                                      "MARDI",
                                                                      std::to_string(ui->C_MARDI_Sols->value())),
-                 "C_MARDI");
+                 O::C_MARDI);
 }
 
 
@@ -776,7 +764,7 @@ void MainWindow::on_C_MARDI_DATE_Button_clicked()
                                                                           "curiosity",
                                                                           "MARDI",
                                                                           APIHandler::dateToString(ui->C_MARDI_Date->date())),
-                 "C_MARDI");
+                 O::C_MARDI);
 }
 
 
@@ -788,7 +776,7 @@ void MainWindow::on_C_MAHLI_SOLS_Button_clicked()
                                                                      "curiosity",
                                                                      "MAHLI",
                                                                      std::to_string(ui->C_MAHLI_Sols->value())),
-                 "C_MAHLI");
+                 O::C_MAHLI);
 }
 
 
@@ -800,7 +788,7 @@ void MainWindow::on_C_MAHLI_DATE_Button_clicked()
                                                                           "curiosity",
                                                                           "MAHLI",
                                                                           APIHandler::dateToString(ui->C_MAHLI_Date->date())),
-                 "C_MAHLI");
+                 O::C_MAHLI);
 }
 
 
@@ -812,7 +800,7 @@ void MainWindow::on_C_FHAZ_SOLS_Button_clicked()
                                                                      "curiosity",
                                                                      "FHAZ",
                                                                      std::to_string(ui->C_FHAZ_Sols->value())),
-                 "C_FHAZ");
+                 O::C_FHAZ);
 }
 
 
@@ -824,7 +812,7 @@ void MainWindow::on_C_FHAZ_DATE_Button_clicked()
                                                                           "curiosity",
                                                                           "FHAZ",
                                                                           APIHandler::dateToString(ui->C_FHAZ_Date->date())),
-                 "C_FHAZ");
+                 O::C_FHAZ);
 }
 
 
@@ -836,7 +824,7 @@ void MainWindow::on_C_CHEMCAM_SOLS_Button_clicked()
                                                                      "curiosity",
                                                                      "CHEMCAM",
                                                                      std::to_string(ui->C_CHEMCAM_Sols->value())),
-                 "C_CHEMCAM");
+                 O::C_CHEMCAM);
 }
 
 
@@ -848,7 +836,7 @@ void MainWindow::on_C_CHEMCAM_DATE_Button_clicked()
                                                                           "curiosity",
                                                                           "CHEMCAM",
                                                                           APIHandler::dateToString(ui->C_CHEMCAM_Date->date())),
-                 "C_CHEMCAM");
+                 O::C_CHEMCAM);
 }
 
 
@@ -860,7 +848,7 @@ void MainWindow::on_C_RHAZ_SOLS_Button_clicked()
                                                                      "curiosity",
                                                                      "RHAZ",
                                                                      std::to_string(ui->C_RHAZ_Sols->value())),
-                 "C_RHAZ");
+                 O::C_RHAZ);
 }
 
 void MainWindow::on_C_RHAZ_DATE_Button_clicked()
@@ -871,13 +859,13 @@ void MainWindow::on_C_RHAZ_DATE_Button_clicked()
                                                                           "curiosity",
                                                                           "RHAZ",
                                                                           APIHandler::dateToString(ui->C_RHAZ_Date->date())),
-                 "C_RHAZ");
+                 O::C_RHAZ);
 }
 
-void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, QString origin, QLabel* imageLabel) {
+void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, ORIGIN origin, QLabel* imageLabel) {
     // Rover image
     const int MAX_SIZE = 550;
-    std::string filePath = config.find("mars_rover_images_path")->second + origin.toStdString() + ".jpg";
+    std::string filePath = config.find("mars_rover_images_path")->second + E::eToS(origin) + ".jpg";
     QPixmap pic(QString::fromStdString(filePath));
     imageLabel->setPixmap(pic);
 

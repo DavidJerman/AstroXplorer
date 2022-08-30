@@ -48,8 +48,8 @@ QUrl APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(const std::string 
 }
 
 QUrl APIHandler::getMarsRoverManifest_API_Request_URL(const std::string MARS_ROVER_URL,
-                                                 const std::string API_KEY,
-                                                 const std::string rover) {
+                                                      const std::string API_KEY,
+                                                      const std::string rover) {
     std::string api_url = MARS_ROVER_URL + rover + "?api_key=" + API_KEY;
     return {QString::fromStdString(api_url)};
 }

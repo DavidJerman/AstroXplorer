@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         apihandler.cpp
         imagemanipulation.h
         imagemanipulation.cpp
+        enums.h
+        enums.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

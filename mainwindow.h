@@ -12,6 +12,8 @@
 #include <QListWidget>
 #include <QMessageBox>
 
+#include "enums.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -66,7 +68,7 @@ private slots:
 private:
     // Rover imagery
     // GeneralisedFunctions
-    void MarsRoverCamera_SetImages(QNetworkReply* reply, QString origin);
+    void MarsRoverCamera_SetImages(QNetworkReply* reply, ORIGIN origin);
     void MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QListWidget *list);
 
     // Tab specific functions
@@ -91,7 +93,7 @@ private:
     void S_MINITES_SetImages(QNetworkReply* reply);
 
     // Rover manifest
-    void updateRoverManifest(QNetworkReply* reply, QListWidget* list, QString origin, QLabel* imageLabel);
+    void updateRoverManifest(QNetworkReply* reply, QListWidget* list, ORIGIN origin, QLabel* imageLabel);
 
 private:
     void updateWelcomeImage(QNetworkReply* reply);
@@ -103,7 +105,7 @@ private:
     void updateWelcomeVideo(const QUrl &videoUrl);
     void setWelcomeImageInformation(QJsonObject &jsonObj);
 
-    void fetchAPIData(QUrl url, QString origin);
+    void fetchAPIData(QUrl url, ORIGIN origin);
 
     void updateStatus(QString msg);
     void popUpDialog(QString msg);
