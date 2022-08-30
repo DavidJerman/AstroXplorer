@@ -103,18 +103,16 @@ MainWindow::MainWindow(QWidget *parent)
     // Rover manifest data setup
     fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
                                                                   config.find("api_key")->second,
-                                                                  "curiosity"),
+                                                                  O::CURIOSITY),
                  O::CURIOSITY);
     fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
                                                                   config.find("api_key")->second,
-                                                                  "opportunity"),
+                                                                  O::OPPORTUNITY),
                  O::OPPORTUNITY);
     fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
                                                                   config.find("api_key")->second,
-                                                                  "spirit"),
+                                                                  O::SPIRIT),
                  O::SPIRIT);
-
-    // Other
 }
 
 void MainWindow::updateStatus(QString msg) {
@@ -366,7 +364,7 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
     reply->deleteLater();
 
     // Update status
-    updateStatus("Photo fetched!");
+    updateStatus("Photo(s) fetched!");
 }
 
 // Rover-camera specific functions
@@ -462,8 +460,8 @@ void MainWindow::on_S_RHAZ_SOLS_Button_clicked()
     ui->S_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "spirit",
-                                                                     "RHAZ",
+                                                                     O::SPIRIT,
+                                                                     O::RHAZ,
                                                                      std::to_string(ui->S_RHAZ_Sols->value())),
                  O::S_RHAZ);
 }
@@ -474,8 +472,8 @@ void MainWindow::on_S_RHAZ_DATE_Button_clicked()
     ui->S_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "spirit",
-                                                                          "RHAZ",
+                                                                          O::SPIRIT,
+                                                                          O::RHAZ,
                                                                           APIHandler::dateToString(ui->S_RHAZ_Date->date())),
                  O::S_RHAZ);
 }
@@ -486,8 +484,8 @@ void MainWindow::on_S_PANCAM_SOLS_Button_clicked()
     ui->S_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "spirit",
-                                                                     "PANCAM",
+                                                                     O::SPIRIT,
+                                                                     O::PANCAM,
                                                                      std::to_string(ui->S_PANCAM_Sols->value())),
                  O::S_PANCAM);
 }
@@ -498,8 +496,8 @@ void MainWindow::on_S_PANCAM_DATE_Button_clicked()
     ui->S_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "spirit",
-                                                                          "PANCAM",
+                                                                          O::SPIRIT,
+                                                                          O::PANCAM,
                                                                           APIHandler::dateToString(ui->S_PANCAM_Date->date())),
                  O::S_PANCAM);
 }
@@ -510,8 +508,8 @@ void MainWindow::on_S_NAVCAM_SOLS_Button_clicked()
     ui->S_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "spirit",
-                                                                     "NAVCAM",
+                                                                     O::SPIRIT,
+                                                                     O::NAVCAM,
                                                                      std::to_string(ui->S_NAVCAM_Sols->value())),
                  O::S_NAVCAM);
 }
@@ -522,8 +520,8 @@ void MainWindow::on_S_NAVCAM_DATE_Button_clicked()
     ui->S_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "spirit",
-                                                                          "NAVCAM",
+                                                                          O::SPIRIT,
+                                                                          O::NAVCAM,
                                                                           APIHandler::dateToString(ui->S_NAVCAM_Date->date())),
                  O::S_NAVCAM);
 }
@@ -534,8 +532,8 @@ void MainWindow::on_S_MINITES_SOLS_Button_clicked()
     ui->S_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "spirit",
-                                                                     "MINITES",
+                                                                     O::SPIRIT,
+                                                                     O::MINITES,
                                                                      std::to_string(ui->O_MINITES_Sols->value())),
                  O::S_MINITES);
 }
@@ -546,8 +544,8 @@ void MainWindow::on_S_MINITES_DATE_Button_clicked()
     ui->S_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "spirit",
-                                                                          "MINITES",
+                                                                          O::SPIRIT,
+                                                                          O::MINITES,
                                                                           APIHandler::dateToString(ui->S_MINITES_Date->date())),
                  O::S_MINITES);
 }
@@ -558,8 +556,8 @@ void MainWindow::on_S_FHAZ_SOLS_Button_clicked()
     ui->S_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "spirit",
-                                                                     "FHAZ",
+                                                                     O::SPIRIT,
+                                                                     O::FHAZ,
                                                                      std::to_string(ui->S_FHAZ_Sols->value())),
                  O::S_FHAZ);
 }
@@ -570,8 +568,8 @@ void MainWindow::on_S_FHAZ_DATE_Button_clicked()
     ui->S_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "spirit",
-                                                                          "FHAZ",
+                                                                          O::SPIRIT,
+                                                                          O::FHAZ,
                                                                           APIHandler::dateToString(ui->S_FHAZ_Date->date())),
                  O::S_FHAZ);
 }
@@ -582,8 +580,8 @@ void MainWindow::on_O_RHAZ_SOLS_Button_clicked()
     ui->O_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "opportunity",
-                                                                     "RHAZ",
+                                                                     O::OPPORTUNITY,
+                                                                     O::RHAZ,
                                                                      std::to_string(ui->O_RHAZ_Sols->value())),
                  O::O_RHAZ);
 }
@@ -594,8 +592,8 @@ void MainWindow::on_O_RHAZ_DATE_Button_clicked()
     ui->O_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "opportunity",
-                                                                          "RHAZ",
+                                                                          O::OPPORTUNITY,
+                                                                          O::RHAZ,
                                                                           APIHandler::dateToString(ui->O_RHAZ_Date->date())),
                  O::O_RHAZ);
 }
@@ -605,8 +603,8 @@ void MainWindow::on_O_PANCAM_SOLS_Button_clicked()
     ui->O_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "opportunity",
-                                                                     "PANCAM",
+                                                                     O::OPPORTUNITY,
+                                                                     O::PANCAM,
                                                                      std::to_string(ui->O_PANCAM_Sols->value())),
                  O::O_PANCAM);
 }
@@ -617,8 +615,8 @@ void MainWindow::on_O_PANCAM_DATE_Button_clicked()
     ui->O_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "opportunity",
-                                                                          "PANCAM",
+                                                                          O::OPPORTUNITY,
+                                                                          O::PANCAM,
                                                                           APIHandler::dateToString(ui->O_PANCAM_Date->date())),
                  O::O_PANCAM);
 }
@@ -629,8 +627,8 @@ void MainWindow::on_O_NAVCAM_SOLS_Button_clicked()
     ui->O_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "opportunity",
-                                                                     "NAVCAM",
+                                                                     O::OPPORTUNITY,
+                                                                     O::NAVCAM,
                                                                      std::to_string(ui->O_NAVCAM_Sols->value())),
                  O::O_NAVCAM);
 }
@@ -641,8 +639,8 @@ void MainWindow::on_O_NAVCAM_DATE_Button_clicked()
     ui->O_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "opportunity",
-                                                                          "NAVCAM",
+                                                                          O::OPPORTUNITY,
+                                                                          O::NAVCAM,
                                                                           APIHandler::dateToString(ui->O_NAVCAM_Date->date())),
                  O::O_NAVCAM);
 }
@@ -653,8 +651,8 @@ void MainWindow::on_O_MINITES_SOLS_Button_clicked()
     ui->O_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "opportunity",
-                                                                     "MINITEST",
+                                                                     O::OPPORTUNITY,
+                                                                     O::MINITES,
                                                                      std::to_string(ui->O_MINITES_Sols->value())),
                  O::O_MINITES);
 }
@@ -665,8 +663,8 @@ void MainWindow::on_O_MINITES_DATE_Button_clicked()
     ui->O_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "opportunity",
-                                                                          "MINITES",
+                                                                          O::OPPORTUNITY,
+                                                                          O::MINITES,
                                                                           APIHandler::dateToString(ui->O_MINITES_Date->date())),
                  O::O_MINITES);
 }
@@ -677,8 +675,8 @@ void MainWindow::on_O_FHAZ_SOLS_Button_clicked()
     ui->O_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "opportunity",
-                                                                     "FHAZ",
+                                                                     O::OPPORTUNITY,
+                                                                     O::FHAZ,
                                                                      std::to_string(ui->O_FHAZ_Sols->value())),
                  O::O_FHAZ);
 }
@@ -689,8 +687,8 @@ void MainWindow::on_O_FHAZ_DATE_Button_clicked()
     ui->O_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "opportunity",
-                                                                          "FHAZ",
+                                                                          O::OPPORTUNITY,
+                                                                          O::FHAZ,
                                                                           APIHandler::dateToString(ui->O_FHAZ_Date->date())),
                  O::O_FHAZ);
 }
@@ -701,8 +699,8 @@ void MainWindow::on_C_NAVCAM_SOLS_Button_clicked()
     ui->C_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "curiosity",
-                                                                     "NAVCAM",
+                                                                     O::CURIOSITY,
+                                                                     O::NAVCAM,
                                                                      std::to_string(ui->C_NAVCAM_Sols->value())),
                  O::C_NAVCAM);
 }
@@ -713,8 +711,8 @@ void MainWindow::on_C_NAVCAM_DATE_Button_clicked()
     ui->C_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "curiosity",
-                                                                          "NAVCAM",
+                                                                          O::CURIOSITY,
+                                                                          O::NAVCAM,
                                                                           APIHandler::dateToString(ui->C_NAVCAM_Date->date())),
                  O::C_NAVCAM);
 }
@@ -725,8 +723,8 @@ void MainWindow::on_C_MAST_SOLS_Button_clicked()
     ui->C_MAST_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "curiosity",
-                                                                     "MAST",
+                                                                     O::CURIOSITY,
+                                                                     O::MAST,
                                                                      std::to_string(ui->C_MAST_Sols->value())),
                  O::C_MAST);
 }
@@ -737,8 +735,8 @@ void MainWindow::on_C_MAST_DATE_Button_clicked()
     ui->C_MAST_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "curiosity",
-                                                                          "MAST",
+                                                                          O::CURIOSITY,
+                                                                          O::MAST,
                                                                           APIHandler::dateToString(ui->C_MAST_Date->date())),
                  O::C_MAST);
 }
@@ -749,8 +747,8 @@ void MainWindow::on_C_MARDI_SOLS_Button_clicked()
     ui->C_MARDI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "curiosity",
-                                                                     "MARDI",
+                                                                     O::CURIOSITY,
+                                                                     O::MARDI,
                                                                      std::to_string(ui->C_MARDI_Sols->value())),
                  O::C_MARDI);
 }
@@ -761,8 +759,8 @@ void MainWindow::on_C_MARDI_DATE_Button_clicked()
     ui->C_MARDI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "curiosity",
-                                                                          "MARDI",
+                                                                          O::CURIOSITY,
+                                                                          O::MARDI,
                                                                           APIHandler::dateToString(ui->C_MARDI_Date->date())),
                  O::C_MARDI);
 }
@@ -773,8 +771,8 @@ void MainWindow::on_C_MAHLI_SOLS_Button_clicked()
     ui->C_MAHLI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "curiosity",
-                                                                     "MAHLI",
+                                                                     O::CURIOSITY,
+                                                                     O::MAHLI,
                                                                      std::to_string(ui->C_MAHLI_Sols->value())),
                  O::C_MAHLI);
 }
@@ -785,8 +783,8 @@ void MainWindow::on_C_MAHLI_DATE_Button_clicked()
     ui->C_MAHLI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "curiosity",
-                                                                          "MAHLI",
+                                                                          O::CURIOSITY,
+                                                                          O::MAHLI,
                                                                           APIHandler::dateToString(ui->C_MAHLI_Date->date())),
                  O::C_MAHLI);
 }
@@ -797,8 +795,8 @@ void MainWindow::on_C_FHAZ_SOLS_Button_clicked()
     ui->C_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "curiosity",
-                                                                     "FHAZ",
+                                                                     O::CURIOSITY,
+                                                                     O::FHAZ,
                                                                      std::to_string(ui->C_FHAZ_Sols->value())),
                  O::C_FHAZ);
 }
@@ -809,8 +807,8 @@ void MainWindow::on_C_FHAZ_DATE_Button_clicked()
     ui->C_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "curiosity",
-                                                                          "FHAZ",
+                                                                          O::CURIOSITY,
+                                                                          O::FHAZ,
                                                                           APIHandler::dateToString(ui->C_FHAZ_Date->date())),
                  O::C_FHAZ);
 }
@@ -821,8 +819,8 @@ void MainWindow::on_C_CHEMCAM_SOLS_Button_clicked()
     ui->C_CHEMCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "curiosity",
-                                                                     "CHEMCAM",
+                                                                     O::CURIOSITY,
+                                                                     O::CHEMCAM,
                                                                      std::to_string(ui->C_CHEMCAM_Sols->value())),
                  O::C_CHEMCAM);
 }
@@ -833,8 +831,8 @@ void MainWindow::on_C_CHEMCAM_DATE_Button_clicked()
     ui->C_CHEMCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "curiosity",
-                                                                          "CHEMCAM",
+                                                                          O::CURIOSITY,
+                                                                          O::CHEMCAM,
                                                                           APIHandler::dateToString(ui->C_CHEMCAM_Date->date())),
                  O::C_CHEMCAM);
 }
@@ -845,8 +843,8 @@ void MainWindow::on_C_RHAZ_SOLS_Button_clicked()
     ui->C_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
-                                                                     "curiosity",
-                                                                     "RHAZ",
+                                                                     O::CURIOSITY,
+                                                                     O::RHAZ,
                                                                      std::to_string(ui->C_RHAZ_Sols->value())),
                  O::C_RHAZ);
 }
@@ -856,8 +854,8 @@ void MainWindow::on_C_RHAZ_DATE_Button_clicked()
     ui->C_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
-                                                                          "curiosity",
-                                                                          "RHAZ",
+                                                                          O::CURIOSITY,
+                                                                          O::RHAZ,
                                                                           APIHandler::dateToString(ui->C_RHAZ_Date->date())),
                  O::C_RHAZ);
 }

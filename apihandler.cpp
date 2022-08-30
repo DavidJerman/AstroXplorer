@@ -29,27 +29,27 @@ std::string APIHandler::dateToString(QDate date) {
 
 QUrl APIHandler::getMarsRoverImagerySols_API_Request_URL(const std::string MARS_ROVER_URL,
                                                          const std::string API_KEY,
-                                                         const std::string rover,
-                                                         const std::string camera,
+                                                         ORIGIN rover,
+                                                         ORIGIN camera,
                                                          const std::string sol)
 {
-    std::string api_url = MARS_ROVER_URL + rover + "/photos" + "?camera=" + camera + "&sol=" + sol + "&api_key=" + API_KEY;
+    std::string api_url = MARS_ROVER_URL + E::eToS(rover) + "/photos" + "?camera=" + E::eToS(camera) + "&sol=" + sol + "&api_key=" + API_KEY;
     return {QString::fromStdString(api_url)};
 }
 
 QUrl APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(const std::string MARS_ROVER_URL,
                                                               const std::string API_KEY,
-                                                              const std::string rover,
-                                                              const std::string camera,
+                                                              ORIGIN rover,
+                                                              ORIGIN camera,
                                                               const std::string date)
 {
-    std::string api_url = MARS_ROVER_URL + rover + "/photos" + "?camera=" + camera + "&earth_date=" + date + "&api_key=" + API_KEY;
+    std::string api_url = MARS_ROVER_URL + E::eToS(rover) + "/photos" + "?camera=" + E::eToS(camera) + "&earth_date=" + date + "&api_key=" + API_KEY;
     return {QString::fromStdString(api_url)};
 }
 
 QUrl APIHandler::getMarsRoverManifest_API_Request_URL(const std::string MARS_ROVER_URL,
                                                       const std::string API_KEY,
-                                                      const std::string rover) {
-    std::string api_url = MARS_ROVER_URL + rover + "?api_key=" + API_KEY;
+                                                      ORIGIN rover) {
+    std::string api_url = MARS_ROVER_URL + E::eToS(rover) + "?api_key=" + API_KEY;
     return {QString::fromStdString(api_url)};
 }
