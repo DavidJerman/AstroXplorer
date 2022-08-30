@@ -1284,7 +1284,7 @@
             <item>
              <widget class="QTabWidget" name="RoversTabs">
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="CuriosityTab">
                <attribute name="title">
@@ -1980,7 +1980,7 @@
                 <item>
                  <widget class="QTabWidget" name="OpportunityCamerasTab">
                   <property name="currentIndex">
-                   <number>4</number>
+                   <number>3</number>
                   </property>
                   <widget class="QWidget" name="O_FHAZ_Tab">
                    <attribute name="title">

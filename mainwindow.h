@@ -68,7 +68,6 @@ private:
     // GeneralisedFunctions
     void MarsRoverCamera_SetImages(QNetworkReply* reply, QString origin);
     void MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QListWidget *list);
-    void MarsRoverCamera_AddImageToContainer(); // Temporary placeholder to make code work
 
     // Tab specific functions
     void C_FHAZ_SetImages(QNetworkReply* reply);

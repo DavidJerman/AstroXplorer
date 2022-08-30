@@ -117,7 +117,6 @@ void MainWindow::imagePopUp(QListWidgetItem* item) {
     auto label = new QLabel();
     auto widget = dynamic_cast<QLabel*> (item->listWidget()->itemWidget(item));
     label->setPixmap(widget->pixmap());
-    label->setScaledContents(true);
     label->show();
     label->setAttribute(Qt::WA_DeleteOnClose, true);
 }
@@ -348,13 +347,11 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
 
     // Set size
     label->setScaledContents(true);
-    label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     label->setFixedHeight(SIZE);
-    label->setFixedWidth(p.width() * (SIZE * 1.0 / p.width()));
+    label->setFixedWidth(p.width() * ((double)SIZE / p.height()));
     label->setMargin(5);
 
-    // UI element property change
-    item->setSizeHint(QSize(SIZE + 5, SIZE));
+    item->setSizeHint(QSize(p.width() * ((double)SIZE / p.height()), SIZE));
     list->addItem(item);
     list->setItemWidget(item, label);
 
@@ -363,11 +360,6 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
 
     // Update status
     updateStatus("Photo fetched!");
-}
-
-// Placeholder
-void MainWindow::MarsRoverCamera_AddImageToContainer() {
-
 }
 
 // Rover-camera specific functions
