@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QDate>
 
 class APIHandler
 {
@@ -18,6 +19,8 @@ public:
     static QJsonObject parseJSON(const std::string data);
     static QJsonObject parseJSON(const QString data);
     static QJsonObject parseJSON(const QByteArray &data);
+
+    static std::string dateToString(QDate date);
 
     static QUrl getMarsRoverImagerySols_API_Request_URL(const std::string MARS_ROVER_URL,
                                                         const std::string API_KEY,

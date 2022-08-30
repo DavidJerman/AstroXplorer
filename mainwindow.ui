@@ -21,6 +21,9 @@
     </sizepolicy>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5" stretch="100,1">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -1284,7 +1287,7 @@
             <item>
              <widget class="QTabWidget" name="RoversTabs">
               <property name="currentIndex">
-               <number>1</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="CuriosityTab">
                <attribute name="title">
@@ -1294,7 +1297,7 @@
                 <item>
                  <widget class="QTabWidget" name="CuriosityCamerasTab">
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>6</number>
                   </property>
                   <widget class="QWidget" name="C_FHAZ_Tab">
                    <attribute name="title">
@@ -1980,7 +1983,7 @@
                 <item>
                  <widget class="QTabWidget" name="OpportunityCamerasTab">
                   <property name="currentIndex">
-                   <number>3</number>
+                   <number>4</number>
                   </property>
                   <widget class="QWidget" name="O_FHAZ_Tab">
                    <attribute name="title">
@@ -2483,65 +2486,65 @@
                 <item>
                  <widget class="QTabWidget" name="SpiritCamerasTab">
                   <property name="currentIndex">
-                   <number>3</number>
+                   <number>2</number>
                   </property>
-                  <widget class="QWidget" name="S_NAVCAM_Tab">
+                  <widget class="QWidget" name="S_RHAZ_Tab">
                    <attribute name="title">
-                    <string>FHAZ</string>
+                    <string>RHAZ</string>
                    </attribute>
-                   <layout class="QHBoxLayout" name="horizontalLayout_48" stretch="3,8">
+                   <layout class="QHBoxLayout" name="horizontalLayout_52" stretch="3,8">
                     <item>
-                     <layout class="QGridLayout" name="S_NAVCAM_Grid">
-                      <item row="1" column="0">
-                       <widget class="QLabel" name="S_NAVCAM_1">
-                        <property name="text">
-                         <string>Sols</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="1">
-                       <widget class="QSpinBox" name="S_NAVCAM_Sols"/>
-                      </item>
-                      <item row="2" column="1">
-                       <widget class="QPushButton" name="S_NAVCAM_SOLS_Button">
-                        <property name="text">
-                         <string>Go</string>
-                        </property>
-                       </widget>
-                      </item>
+                     <layout class="QGridLayout" name="S_RHAZ_Grid">
                       <item row="3" column="0">
-                       <widget class="QLabel" name="S_NAVCAM_3">
+                       <widget class="QLabel" name="S_RHAZ_3">
                         <property name="text">
                          <string>Search by Earth Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="4" column="0">
-                       <widget class="QLabel" name="S_NAVCAM_2">
+                       <widget class="QLabel" name="S_RHAZ_2">
                         <property name="text">
                          <string>Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="4" column="1">
-                       <widget class="QDateEdit" name="S_NAVCAM_Date"/>
+                       <widget class="QDateEdit" name="S_RHAZ_Date"/>
                       </item>
-                      <item row="5" column="1">
-                       <widget class="QPushButton" name="S_NAVCAM_DATE_Button">
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="S_RHAZ_1">
                         <property name="text">
-                         <string>Go</string>
+                         <string>Sols</string>
                         </property>
                        </widget>
                       </item>
                       <item row="0" column="0">
-                       <widget class="QLabel" name="S_NAVCAM_0">
+                       <widget class="QLabel" name="S_RHAZ_0">
                         <property name="text">
                          <string>Search by Mars Sols</string>
                         </property>
                        </widget>
                       </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="S_RHAZ_DATE_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="S_RHAZ_SOLS_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="S_RHAZ_Sols"/>
+                      </item>
                       <item row="6" column="1">
-                       <spacer name="spacer_14">
+                       <spacer name="spacer_16">
                         <property name="orientation">
                          <enum>Qt::Vertical</enum>
                         </property>
@@ -2556,14 +2559,14 @@
                      </layout>
                     </item>
                     <item>
-                     <widget class="QFrame" name="S_NAVCAM_Frame">
+                     <widget class="QFrame" name="S_RHAZ_Frame">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_49">
+                      <layout class="QHBoxLayout" name="horizontalLayout_53">
                        <property name="topMargin">
                         <number>0</number>
                        </property>
@@ -2574,7 +2577,7 @@
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QListWidget" name="S_NAVCAM_List"/>
+                        <widget class="QListWidget" name="S_RHAZ_List"/>
                        </item>
                       </layout>
                      </widget>
@@ -2583,7 +2586,7 @@
                   </widget>
                   <widget class="QWidget" name="S_FHAZ_Tab">
                    <attribute name="title">
-                    <string>RHAZ</string>
+                    <string>FHAZ</string>
                    </attribute>
                    <layout class="QHBoxLayout" name="horizontalLayout_50" stretch="3,8">
                     <item>
@@ -2677,63 +2680,63 @@
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="S_RHAZ_Tab">
+                  <widget class="QWidget" name="S_NAVCAM_Tab">
                    <attribute name="title">
                     <string>NAVCAM</string>
                    </attribute>
-                   <layout class="QHBoxLayout" name="horizontalLayout_52" stretch="3,8">
+                   <layout class="QHBoxLayout" name="horizontalLayout_48" stretch="3,8">
                     <item>
-                     <layout class="QGridLayout" name="S_RHAZ_Grid">
+                     <layout class="QGridLayout" name="S_NAVCAM_Grid">
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="S_NAVCAM_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="S_NAVCAM_Sols"/>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="S_NAVCAM_SOLS_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
                       <item row="3" column="0">
-                       <widget class="QLabel" name="S_RHAZ_3">
+                       <widget class="QLabel" name="S_NAVCAM_3">
                         <property name="text">
                          <string>Search by Earth Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="4" column="0">
-                       <widget class="QLabel" name="S_RHAZ_2">
+                       <widget class="QLabel" name="S_NAVCAM_2">
                         <property name="text">
                          <string>Date</string>
                         </property>
                        </widget>
                       </item>
                       <item row="4" column="1">
-                       <widget class="QDateEdit" name="S_RHAZ_Date"/>
+                       <widget class="QDateEdit" name="S_NAVCAM_Date"/>
                       </item>
-                      <item row="1" column="0">
-                       <widget class="QLabel" name="S_RHAZ_1">
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="S_NAVCAM_DATE_Button">
                         <property name="text">
-                         <string>Sols</string>
+                         <string>Go</string>
                         </property>
                        </widget>
                       </item>
                       <item row="0" column="0">
-                       <widget class="QLabel" name="S_RHAZ_0">
+                       <widget class="QLabel" name="S_NAVCAM_0">
                         <property name="text">
                          <string>Search by Mars Sols</string>
                         </property>
                        </widget>
                       </item>
-                      <item row="5" column="1">
-                       <widget class="QPushButton" name="S_RHAZ_DATE_Button">
-                        <property name="text">
-                         <string>Go</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="2" column="1">
-                       <widget class="QPushButton" name="S_RHAZ_SOLS_Button">
-                        <property name="text">
-                         <string>Go</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="1">
-                       <widget class="QSpinBox" name="S_RHAZ_Sols"/>
-                      </item>
                       <item row="6" column="1">
-                       <spacer name="spacer_16">
+                       <spacer name="spacer_14">
                         <property name="orientation">
                          <enum>Qt::Vertical</enum>
                         </property>
@@ -2748,14 +2751,14 @@
                      </layout>
                     </item>
                     <item>
-                     <widget class="QFrame" name="S_RHAZ_Frame">
+                     <widget class="QFrame" name="S_NAVCAM_Frame">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_53">
+                      <layout class="QHBoxLayout" name="horizontalLayout_49">
                        <property name="topMargin">
                         <number>0</number>
                        </property>
@@ -2766,7 +2769,7 @@
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QListWidget" name="S_RHAZ_List"/>
+                        <widget class="QListWidget" name="S_NAVCAM_List"/>
                        </item>
                       </layout>
                      </widget>
@@ -2990,7 +2993,7 @@
        <string>Welcome!</string>
       </property>
       <property name="margin">
-       <number>3</number>
+       <number>6</number>
       </property>
      </widget>
     </item>

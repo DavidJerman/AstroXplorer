@@ -23,6 +23,10 @@ QJsonObject APIHandler::parseJSON(const QByteArray &data) {
     return jsonDocument.object();
 }
 
+std::string APIHandler::dateToString(QDate date) {
+    return std::to_string(date.year()) + "-" + std::to_string(date.month()) + "-" + std::to_string(date.day());
+}
+
 QUrl APIHandler::getMarsRoverImagerySols_API_Request_URL(const std::string MARS_ROVER_URL,
                                                          const std::string API_KEY,
                                                          const std::string rover,
