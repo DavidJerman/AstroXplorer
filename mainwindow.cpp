@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onRequestFinished(QNetworkReply*)));
 
+    ui->StatusLabel->setText("Fetching welcome image...");
     fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), "apod_json");
 
     // Certain UI properties
@@ -65,7 +66,19 @@ MainWindow::MainWindow(QWidget *parent)
     // Other
 }
 
+void MainWindow::updateStatus(QString msg) {
+    ui->StatusLabel->setText(msg);
+}
+
+void MainWindow::popUpDialog(QString msg) {
+    QMessageBox msgBox;
+    msgBox.setText(msg);
+    msgBox.exec();
+}
+
 void MainWindow::fetchAPIData(QUrl url, QString origin) {
+    updateStatus("Fetching data...");
+
     QNetworkRequest request;
     request.setUrl(url);
     auto res = manager->get(request);
@@ -132,6 +145,9 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
 }
 
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
+
+    updateStatus("Fetching image of the day...");
+
     if (reply->error()) {
         qDebug() << reply->errorString();
         return;
@@ -193,7 +209,7 @@ void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
 
     auto answer = reply->readAll();
     if (answer.isEmpty()) {
-        qDebug() << "Could not obtain APOD image!";
+        updateStatus("Could not obtain APOD image!");
         return;
     }
 
@@ -214,6 +230,8 @@ void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
 
     // Delete old data
     reply->deleteLater();
+
+    updateStatus("Welcome image fetched!");
 }
 
 void MainWindow::updateWelcomeVideo(const QUrl &videoUrl) {
@@ -253,10 +271,22 @@ MainWindow::~MainWindow()
 void MainWindow::MarsRoverCamera_SetImages(QNetworkReply* reply, QString origin) {
     auto answer = reply->readAll();
     auto parsedData = APIHandler::parseJSON(answer);
-    if (parsedData.isEmpty()) qDebug() << "No imagery!";
+    if (parsedData.isEmpty()) {
+        popUpDialog("Failed to get any data from the API");
+        updateStatus("Failed to get any data from the API!");
+    }
     auto photos = parsedData.find("photos")->toArray();
-    for (const auto &photo: photos)
-        fetchAPIData(photo.toObject().value("img_src").toString(), origin);
+    if (photos.isEmpty()) {
+        popUpDialog("No photos were found for this query");
+        updateStatus("No photos were found for this query");
+    }
+    else {
+        updateStatus("Fetching images...");
+
+        for (const auto &photo: photos)
+            fetchAPIData(photo.toObject().value("img_src").toString(), origin);
+    }
+
     reply->deleteLater();
 }
 
@@ -275,6 +305,9 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
 
     // Delete old data
     reply->deleteLater();
+
+    // Update status
+    updateStatus("Photo fetched!");
 }
 
 // Placeholder
