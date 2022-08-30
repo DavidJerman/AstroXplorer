@@ -1284,7 +1284,7 @@
             <item>
              <widget class="QTabWidget" name="RoversTabs">
               <property name="currentIndex">
-               <number>2</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="CuriosityTab">
                <attribute name="title">
@@ -1294,7 +1294,7 @@
                 <item>
                  <widget class="QTabWidget" name="CuriosityCamerasTab">
                   <property name="currentIndex">
-                   <number>6</number>
+                   <number>0</number>
                   </property>
                   <widget class="QWidget" name="C_FHAZ_Tab">
                    <attribute name="title">
@@ -2483,7 +2483,7 @@
                 <item>
                  <widget class="QTabWidget" name="SpiritCamerasTab">
                   <property name="currentIndex">
-                   <number>4</number>
+                   <number>3</number>
                   </property>
                   <widget class="QWidget" name="S_NAVCAM_Tab">
                    <attribute name="title">
@@ -2773,105 +2773,9 @@
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="S_MINITES_Tab">
-                   <attribute name="title">
-                    <string>PANCAM</string>
-                   </attribute>
-                   <layout class="QHBoxLayout" name="horizontalLayout_54" stretch="3,8">
-                    <item>
-                     <layout class="QGridLayout" name="S_MINITES_Grid">
-                      <item row="4" column="1">
-                       <widget class="QDateEdit" name="S_MINITES_Date"/>
-                      </item>
-                      <item row="4" column="0">
-                       <widget class="QLabel" name="S_MINITES_2">
-                        <property name="text">
-                         <string>Date</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="2" column="1">
-                       <widget class="QPushButton" name="S_MINITES_SOLS_Button">
-                        <property name="text">
-                         <string>Go</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="0" column="0">
-                       <widget class="QLabel" name="S_MINITES_0">
-                        <property name="text">
-                         <string>Search by Mars Sols</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="0">
-                       <widget class="QLabel" name="S_MINITES_1">
-                        <property name="text">
-                         <string>Sols</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="1">
-                       <widget class="QSpinBox" name="S_MINITES_Sols"/>
-                      </item>
-                      <item row="5" column="1">
-                       <widget class="QPushButton" name="S_MINITES_DATE_Button">
-                        <property name="text">
-                         <string>Go</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="3" column="0">
-                       <widget class="QLabel" name="S_MINITES_3">
-                        <property name="text">
-                         <string>Search by Earth Date</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="6" column="1">
-                       <spacer name="spacer_13">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>20</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="S_MINITES_Frame">
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_55">
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item>
-                        <widget class="QListWidget" name="S_MINITES_List"/>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
                   <widget class="QWidget" name="S_PANCAM_Tab">
                    <attribute name="title">
-                    <string>MINITES</string>
+                    <string>PANCAM</string>
                    </attribute>
                    <layout class="QHBoxLayout" name="horizontalLayout_56" stretch="3,8">
                     <item>
@@ -2959,6 +2863,102 @@
                        </property>
                        <item>
                         <widget class="QListWidget" name="S_PANCAM_List"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="S_MINITES_Tab">
+                   <attribute name="title">
+                    <string>MINITES</string>
+                   </attribute>
+                   <layout class="QHBoxLayout" name="horizontalLayout_54" stretch="3,8">
+                    <item>
+                     <layout class="QGridLayout" name="S_MINITES_Grid">
+                      <item row="4" column="1">
+                       <widget class="QDateEdit" name="S_MINITES_Date"/>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="S_MINITES_2">
+                        <property name="text">
+                         <string>Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="S_MINITES_SOLS_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="S_MINITES_0">
+                        <property name="text">
+                         <string>Search by Mars Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="S_MINITES_1">
+                        <property name="text">
+                         <string>Sols</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="S_MINITES_Sols"/>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QPushButton" name="S_MINITES_DATE_Button">
+                        <property name="text">
+                         <string>Go</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="S_MINITES_3">
+                        <property name="text">
+                         <string>Search by Earth Date</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <spacer name="spacer_13">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="S_MINITES_Frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_55">
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="S_MINITES_List"/>
                        </item>
                       </layout>
                      </widget>

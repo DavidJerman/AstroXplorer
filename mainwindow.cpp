@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onRequestFinished(QNetworkReply*)));
 
-    ui->StatusLabel->setText("Fetching welcome image...");
+    updateStatus("Fetching welcome image...");
     fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), "apod_json");
 
     // Certain UI properties
@@ -58,6 +58,42 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MINITES_Opportunity->setStyleSheet("margin-left:50%; margin-right:50%;");
     ui->MINITES_Spirit->setStyleSheet("margin-left:50%; margin-right:50%;");
 
+    // Connect all lists
+    QObject::connect(ui->C_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->C_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->C_MAST_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->C_CHEMCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->C_MAHLI_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->C_MARDI_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->C_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->O_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->O_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->O_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->O_PANCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->O_MINITES_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->S_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->S_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->S_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->S_PANCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->S_MINITES_List, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(imagePopUp(QListWidgetItem*)));
+
     // Mars rover imagery
     ui->O_FHAZ_List->setVerticalScrollMode(QListWidget::ScrollPerPixel);
 
@@ -76,8 +112,18 @@ void MainWindow::popUpDialog(QString msg) {
     msgBox.exec();
 }
 
+void MainWindow::imagePopUp(QListWidgetItem* item) {
+    // Im just not sure, how to handle potential memory leaks here
+    auto label = new QLabel();
+    auto widget = dynamic_cast<QLabel*> (item->listWidget()->itemWidget(item));
+    label->setPixmap(widget->pixmap());
+    label->setScaledContents(true);
+    label->show();
+    label->setAttribute(Qt::WA_DeleteOnClose, true);
+}
+
 void MainWindow::fetchAPIData(QUrl url, QString origin) {
-    updateStatus("Fetching data...");
+    updateStatus("Fetching data for " + origin + "...");
 
     QNetworkRequest request;
     request.setUrl(url);
@@ -298,8 +344,17 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
     p.loadFromData(answer);
     label->setPixmap(p);
 
+    constexpr int SIZE = 240;
+
+    // Set size
+    label->setScaledContents(true);
+    label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    label->setFixedHeight(SIZE);
+    label->setFixedWidth(p.width() * (SIZE * 1.0 / p.width()));
+    label->setMargin(5);
+
     // UI element property change
-    item->setSizeHint(label->sizeHint());
+    item->setSizeHint(QSize(SIZE + 5, SIZE));
     list->addItem(item);
     list->setItemWidget(item, label);
 

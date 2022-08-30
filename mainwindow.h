@@ -63,8 +63,6 @@ private slots:
     void on_C_RHAZ_SOLS_Button_clicked();
     void on_C_RHAZ_DATE_Button_clicked();
 
-    void on_SpiritCamerasTab_tabCloseRequested(int index);
-
 private:
     // Rover imagery
     // GeneralisedFunctions
@@ -107,6 +105,9 @@ private:
 
     void updateStatus(QString msg);
     void popUpDialog(QString msg);
+
+private slots:
+    void imagePopUp(QListWidgetItem*);
 
 private:
     std::map<std::string, std::string> config;
