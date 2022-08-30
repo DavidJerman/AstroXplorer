@@ -32,6 +32,9 @@ public:
                                                              const std::string rover,
                                                              const std::string camera,
                                                              const std::string date);
+    static QUrl getMarsRoverManifest_API_Request_URL(const std::string MARS_ROVER_URL,
+                                                     const std::string API_KEY,
+                                                     const std::string rover);
 };
 
 #endif // APIHANDLER_H

@@ -97,7 +97,19 @@ MainWindow::MainWindow(QWidget *parent)
     // Mars rover imagery
     ui->O_FHAZ_List->setVerticalScrollMode(QListWidget::ScrollPerPixel);
 
-    // TODO: Set max values for spinboxes etc.
+    // Rover manifest data setup
+    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                  config.find("api_key")->second,
+                                                                  "curiosity"),
+                 "curiosity");
+    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                  config.find("api_key")->second,
+                                                                  "opportunity"),
+                 "opportunity");
+    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                  config.find("api_key")->second,
+                                                                  "spirit"),
+                 "spirit");
 
     // Other
 }
@@ -187,6 +199,11 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
 
     else if (origin == "S_MINITES") S_MINITES_SetImages(reply);
     else if (origin == "S_MINITES_Photo") MarsRoverCamera_AddImageToContainer(reply, ui->S_MINITES_List);
+
+    // Rover manifest
+    else if (origin == "curiosity") updateRoverManifest(reply, ui->C_RoverManifestList, "curiosity", ui->C_RoverImageLabel);
+    else if (origin == "opportunity") updateRoverManifest(reply, ui->O_RoverManifestList, "opportunity", ui->O_RoverImageLabel);
+    else if (origin == "spirit") updateRoverManifest(reply, ui->S_RoverManifestList, "spirit", ui->S_RoverImageLabel);
 }
 
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
@@ -308,6 +325,9 @@ void MainWindow::resizeEvent(QResizeEvent* event) {
 
 MainWindow::~MainWindow()
 {
+    ui->C_RoverManifestList->clear();
+    ui->O_RoverManifestList->clear();
+    ui->S_RoverManifestList->clear();
     delete ui;
     delete manager;
 }
@@ -355,7 +375,6 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
     list->addItem(item);
     list->setItemWidget(item, label);
 
-    // Delete old data
     reply->deleteLater();
 
     // Update status
@@ -447,6 +466,7 @@ void MainWindow::S_MINITES_SetImages(QNetworkReply* reply)
 {
     MarsRoverCamera_SetImages(reply, "S_MINITES_Photo");
 }
+
 
 // Rover camera on click events
 void MainWindow::on_S_RHAZ_SOLS_Button_clicked()
@@ -852,4 +872,56 @@ void MainWindow::on_C_RHAZ_DATE_Button_clicked()
                                                                           "RHAZ",
                                                                           APIHandler::dateToString(ui->C_RHAZ_Date->date())),
                  "C_RHAZ");
+}
+
+void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, QString origin, QLabel* imageLabel) {
+    // Rover image
+    const int MAX_SIZE = 550;
+    std::string filePath = config.find("mars_rover_images_path")->second + origin.toStdString() + ".jpg";
+    QPixmap pic(QString::fromStdString(filePath));
+    imageLabel->setPixmap(pic);
+
+    imageLabel->setScaledContents(true);
+    imageLabel->setMaximumHeight(MAX_SIZE);
+    imageLabel->setMaximumWidth(MAX_SIZE);
+
+    // Manifest data
+    auto parsedData = APIHandler::parseJSON(reply->readAll());
+    auto parsedObj = parsedData.value("rover").toObject();
+
+    for (const auto& key: parsedObj.keys()) {
+        auto item = parsedObj.value(key);
+        // auto _size = item.size();
+        if (item.isArray()) {
+
+            auto k = key.toStdString();
+            if (k != "cameras") break;
+            for (auto &c: k) c = toupper(c);
+
+            QListWidgetItem* i = new QListWidgetItem("");
+            i->setText(QString::fromStdString(k));
+            list->addItem(i);
+
+            for (const auto j: item.toArray()) {
+                auto obj = j.toObject();
+                auto v = obj.value("full_name").toString().toStdString();;
+                i = new QListWidgetItem();
+                i->setText(QString::fromStdString("\t" + v));
+                list->addItem(i);
+            }
+
+        } else {
+
+            QListWidgetItem* i = new QListWidgetItem("");
+            auto k = key.toStdString();
+            std::string v;
+            if (item.isString()) v = item.toString().toStdString();
+            else v = std::to_string(item.toInt());
+            for (auto & c: k) c = toupper(c);
+            i->setText(QString::fromStdString(k + ": " + v));
+            list->addItem(i);
+        }
+    }
+
+    reply->deleteLater();
 }

@@ -90,6 +90,9 @@ private:
     void S_PANCAM_SetImages(QNetworkReply* reply);
     void S_MINITES_SetImages(QNetworkReply* reply);
 
+    // Rover manifest
+    void updateRoverManifest(QNetworkReply* reply, QListWidget* list, QString origin, QLabel* imageLabel);
+
 private:
     void updateWelcomeImage(QNetworkReply* reply);
     void updateWelcomeData(QNetworkReply *reply);
@@ -104,6 +107,9 @@ private:
 
     void updateStatus(QString msg);
     void popUpDialog(QString msg);
+
+    // Memory management
+    void clearQList(QListWidget* list);
 
 private slots:
     void imagePopUp(QListWidgetItem*);

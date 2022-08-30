@@ -2,7 +2,7 @@
 
 QUrl APIHandler::getAPOD_API_Request_URL(const std::string &APOD_URL, const std::string &API_KEY) {
     std::string api_url =  APOD_URL + "?api_key=" + API_KEY;
-    return QUrl(QString::fromStdString(api_url));
+    return {QString::fromStdString(api_url)};
 }
 
 QJsonObject APIHandler::parseJSON(const QString data) {
@@ -34,7 +34,7 @@ QUrl APIHandler::getMarsRoverImagerySols_API_Request_URL(const std::string MARS_
                                                          const std::string sol)
 {
     std::string api_url = MARS_ROVER_URL + rover + "/photos" + "?camera=" + camera + "&sol=" + sol + "&api_key=" + API_KEY;
-    return QUrl(QString::fromStdString(api_url));
+    return {QString::fromStdString(api_url)};
 }
 
 QUrl APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(const std::string MARS_ROVER_URL,
@@ -44,5 +44,12 @@ QUrl APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(const std::string 
                                                               const std::string date)
 {
     std::string api_url = MARS_ROVER_URL + rover + "/photos" + "?camera=" + camera + "&earth_date=" + date + "&api_key=" + API_KEY;
-    return QUrl(QString::fromStdString(api_url));
+    return {QString::fromStdString(api_url)};
+}
+
+QUrl APIHandler::getMarsRoverManifest_API_Request_URL(const std::string MARS_ROVER_URL,
+                                                 const std::string API_KEY,
+                                                 const std::string rover) {
+    std::string api_url = MARS_ROVER_URL + rover + "?api_key=" + API_KEY;
+    return {QString::fromStdString(api_url)};
 }

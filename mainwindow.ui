@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1222</width>
+    <width>932</width>
     <height>648</height>
    </rect>
   </property>
@@ -20,10 +20,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_5" stretch="100,1">
-    <property name="spacing">
-     <number>0</number>
-    </property>
+   <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -36,10 +33,10 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
+    <item row="0" column="0">
      <widget class="QTabWidget" name="Tabs">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="WelcomeTab">
        <attribute name="title">
@@ -1287,7 +1284,7 @@
             <item>
              <widget class="QTabWidget" name="RoversTabs">
               <property name="currentIndex">
-               <number>2</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="CuriosityTab">
                <attribute name="title">
@@ -1297,7 +1294,7 @@
                 <item>
                  <widget class="QTabWidget" name="CuriosityCamerasTab">
                   <property name="currentIndex">
-                   <number>6</number>
+                   <number>3</number>
                   </property>
                   <widget class="QWidget" name="C_FHAZ_Tab">
                    <attribute name="title">
@@ -2984,10 +2981,148 @@
        <attribute name="title">
         <string>Mars Rover Manifest</string>
        </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QTabWidget" name="RoverManifestTabs">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="CuriosityManifestTab">
+           <attribute name="title">
+            <string>Curiosity</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="1">
+             <widget class="QListWidget" name="C_RoverManifestList"/>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="C_RoverImageLabel">
+              <property name="text">
+               <string>Loading image...</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <spacer name="spacer_18">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="2">
+             <spacer name="spacer_17">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="OpportunityManifestTab">
+           <attribute name="title">
+            <string>Opportunity</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="1">
+             <widget class="QListWidget" name="O_RoverManifestList"/>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="O_RoverImageLabel">
+              <property name="text">
+               <string>Loading image...</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <spacer name="spacer_20">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="2">
+             <spacer name="spacer_19">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="SpiritManifestTab">
+           <attribute name="title">
+            <string>Spirit</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <widget class="QLabel" name="S_RoverImageLabel">
+              <property name="text">
+               <string>Loading image...</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QListWidget" name="S_RoverManifestList"/>
+            </item>
+            <item row="1" column="0">
+             <spacer name="spacer_22">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="2">
+             <spacer name="spacer_21">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
-    <item>
+    <item row="1" column="0">
      <widget class="QLabel" name="StatusLabel">
       <property name="text">
        <string>Welcome!</string>
