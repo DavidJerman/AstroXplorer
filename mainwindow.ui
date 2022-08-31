@@ -36,7 +36,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="Tabs">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="WelcomeTab">
        <attribute name="title">
@@ -107,16 +107,16 @@
             <number>0</number>
            </property>
            <property name="leftMargin">
-            <number>0</number>
+            <number>18</number>
            </property>
            <property name="topMargin">
             <number>0</number>
            </property>
            <property name="rightMargin">
-            <number>0</number>
+            <number>18</number>
            </property>
            <property name="bottomMargin">
-            <number>0</number>
+            <number>9</number>
            </property>
            <item>
             <widget class="QLabel" name="WelcomeImageLabel">
@@ -133,6 +133,19 @@
               <string>Loading image...</string>
              </property>
             </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>

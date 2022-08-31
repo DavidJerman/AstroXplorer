@@ -115,6 +115,9 @@ MainWindow::MainWindow(QWidget *parent)
                                                                   config.find("api_key")->second,
                                                                   O::SPIRIT),
                  O::SPIRIT);
+
+    // Welcome image scaling
+    ui->WelcomeImageLabel->setScaledContents(true);
 }
 
 void MainWindow::updateStatus(QString msg) {
@@ -277,11 +280,14 @@ void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
     QPixmap pic(QString::fromStdString(filePath));
     ImageManipulation::roundEdges(pic, CORNER_RADIUS);
     ui->WelcomeImageLabel->setPixmap(pic);
+    ui->WelcomeImageLabel->update();
 
     // Delete old data
     reply->deleteLater();
 
     updateStatus("Welcome image fetched!");
+
+    resizeWelcomeImage();
 }
 
 void MainWindow::updateWelcomeVideo(const QUrl &videoUrl) {
@@ -309,6 +315,27 @@ void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
 // On window resize, change image aspect ration - TODO
 void MainWindow::resizeEvent(QResizeEvent* event) {
     QMainWindow::resizeEvent(event);
+    resizeWelcomeImage();
+}
+
+void MainWindow::resizeWelcomeImage() {
+    if (ui->WelcomeTab->isActiveWindow()) {
+        auto maxW = ui->WelcomeImageDateTextEdit->width() - 18;
+        auto maxH = ui->Tabs->height() - ui->WelcomeImageInfoFrame->height() - 70;
+
+        auto w = ui->WelcomeImageLabel->pixmap().width();
+        auto h = ui->WelcomeImageLabel->pixmap().height();
+
+        auto wP = (double)w / (double)maxW;
+        auto hP = (double)h / (double)maxH;
+
+        auto max = std::max(wP, hP);
+
+        if (max > 1) {
+            ui->WelcomeImageLabel->setMaximumHeight(h / max);
+            ui->WelcomeImageLabel->setMaximumWidth(w / max);
+        }
+    }
 }
 
 MainWindow::~MainWindow()

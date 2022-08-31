@@ -98,6 +98,7 @@ private:
 private:
     void updateWelcomeImage(QNetworkReply* reply);
     void updateWelcomeData(QNetworkReply *reply);
+    void resizeWelcomeImage();
 
     // Resize handler
     void resizeEvent(QResizeEvent* event);
