@@ -319,23 +319,21 @@ void MainWindow::resizeEvent(QResizeEvent* event) {
 }
 
 void MainWindow::resizeWelcomeImage() {
-    if (ui->WelcomeTab->isActiveWindow()) {
-        auto maxW = ui->WelcomeImageDateTextEdit->width() - 18;
-        auto maxH = ui->Tabs->height() - ui->WelcomeImageInfoFrame->height() - 70;
+     auto maxW = ui->WelcomeImageDateTextEdit->width() - 18;
+     auto maxH = ui->Tabs->height() - ui->WelcomeImageInfoFrame->height() - 70;
 
-        auto w = ui->WelcomeImageLabel->pixmap().width();
-        auto h = ui->WelcomeImageLabel->pixmap().height();
+     auto w = ui->WelcomeImageLabel->pixmap().width();
+     auto h = ui->WelcomeImageLabel->pixmap().height();
 
-        auto wP = (double)w / (double)maxW;
-        auto hP = (double)h / (double)maxH;
+     auto wP = (double)w / (double)maxW;
+     auto hP = (double)h / (double)maxH;
 
-        auto max = std::max(wP, hP);
+     auto max = std::max(wP, hP);
 
-        if (max > 1) {
-            ui->WelcomeImageLabel->setMaximumHeight(h / max);
-            ui->WelcomeImageLabel->setMaximumWidth(w / max);
-        }
-    }
+     if (max > 1) {
+         ui->WelcomeImageLabel->setMaximumHeight(h / max);
+         ui->WelcomeImageLabel->setMaximumWidth(w / max);
+     }
 }
 
 MainWindow::~MainWindow()
@@ -886,7 +884,53 @@ void MainWindow::on_C_RHAZ_DATE_Button_clicked()
                  O::C_RHAZ);
 }
 
+void MainWindow::limitCameraInputWidgetRanges(QSpinBox* solsWidget, QString& maxSol, QDateEdit* dateWidget, QString& maxDate, QString& landingDate) {
+    solsWidget->setMinimum(0);
+    solsWidget->setMaximum(maxSol.toInt());
+    dateWidget->setMinimumDate(QDate::fromString(landingDate, "yyyy-MM-dd"));
+    dateWidget->setMaximumDate(QDate::fromString(maxDate, "yyyy-MM-dd"));
+}
+
+void MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate) {
+    switch (origin) {
+        case O::CURIOSITY: {
+            limitCameraInputWidgetRanges(ui->C_FHAZ_Sols, maxSol, ui->C_FHAZ_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->C_RHAZ_Sols, maxSol, ui->C_RHAZ_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->C_MAST_Sols, maxSol, ui->C_MAST_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->C_CHEMCAM_Sols, maxSol, ui->C_CHEMCAM_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->C_MAHLI_Sols, maxSol, ui->C_MAHLI_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->C_MARDI_Sols, maxSol, ui->C_MARDI_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->C_NAVCAM_Sols, maxSol, ui->C_NAVCAM_Date, maxDate, landingDate);
+        };
+        break;
+
+        case O::OPPORTUNITY: {
+            limitCameraInputWidgetRanges(ui->O_FHAZ_Sols, maxSol, ui->O_FHAZ_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->O_RHAZ_Sols, maxSol, ui->O_RHAZ_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->O_NAVCAM_Sols, maxSol, ui->O_NAVCAM_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->O_PANCAM_Sols, maxSol, ui->O_PANCAM_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->O_MINITES_Sols, maxSol, ui->O_MINITES_Date, maxDate, landingDate);
+        };
+        break;
+
+        case O::SPIRIT: {
+            limitCameraInputWidgetRanges(ui->S_FHAZ_Sols, maxSol, ui->S_FHAZ_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->S_RHAZ_Sols, maxSol, ui->S_RHAZ_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->S_NAVCAM_Sols, maxSol, ui->S_NAVCAM_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->S_PANCAM_Sols, maxSol, ui->S_PANCAM_Date, maxDate, landingDate);
+            limitCameraInputWidgetRanges(ui->S_MINITES_Sols, maxSol, ui->S_MINITES_Date, maxDate, landingDate);
+        };
+        break;
+
+        default: return;
+    }
+}
+
 void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, ORIGIN origin, QLabel* imageLabel) {
+
+    // Set ranges on rover imagery input widgets
+    QString maxSol, maxDate, landingDate;
+
     // Rover image
     const int MAX_SIZE = 550;
     std::string filePath = config.find("mars_rover_images_path")->second + E::eToS(origin) + ".jpg";
@@ -929,11 +973,18 @@ void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, OR
             std::string v;
             if (item.isString()) v = item.toString().toStdString();
             else v = std::to_string(item.toInt());
+
+            if (k == "landing_date") landingDate = QString::fromStdString(v);
+            else if (k == "max_sol") maxSol = QString::fromStdString(v);
+            else if (k == "max_date") maxDate = QString::fromStdString(v);
+
             for (auto & c: k) c = toupper(c);
             i->setText(QString::fromStdString(k + ": " + v));
             list->addItem(i);
         }
     }
+
+    limitRoverImageryInputWidgetRanges(origin, maxSol, maxDate, landingDate);
 
     reply->deleteLater();
 }

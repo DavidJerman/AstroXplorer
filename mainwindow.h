@@ -12,6 +12,9 @@
 #include <QListWidget>
 #include <QMessageBox>
 
+#include <QSpinBox>
+#include <QDateEdit>
+
 #include "enums.h"
 
 QT_BEGIN_NAMESPACE
@@ -91,6 +94,10 @@ private:
     void S_NAVCAM_SetImages(QNetworkReply* reply);
     void S_PANCAM_SetImages(QNetworkReply* reply);
     void S_MINITES_SetImages(QNetworkReply* reply);
+
+    // Limit rover imagery input widget range
+    void limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate);
+    void limitCameraInputWidgetRanges(QSpinBox* solsWidget, QString& maxSol, QDateEdit* dateWidget, QString& maxDate, QString& landingDate);
 
     // Rover manifest
     void updateRoverManifest(QNetworkReply* reply, QListWidget* list, ORIGIN origin, QLabel* imageLabel);
