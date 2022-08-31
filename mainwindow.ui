@@ -36,7 +36,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="Tabs">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="WelcomeTab">
        <attribute name="title">
@@ -3132,6 +3132,11 @@
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>NASA Image and Video Library</string>
+       </attribute>
       </widget>
      </widget>
     </item>
