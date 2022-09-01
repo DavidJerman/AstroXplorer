@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?> <rss version="2.0" xml:base="http://www.nasa.gov/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/"> <channel> <title>NASACast: This Week @NASA Audio</title>
+ <description>A weekly audio summary of the latest news, events and mission activities at NASA.</description>
+ <link>http://www.nasa.gov/</link>
+ <atom:link rel="self" href="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss" />
+ <language>en-us</language>
+ <image> <url>http://www.nasa.gov/images/content/175183main_twan_itunes_1400.jpg</url>
+ <title>NASACast: This Week @NASA Audio</title>
+ <link>http://www.nasa.gov/</link>
+</image>
+ <copyright>no copyright</copyright>
+ <managingEditor>jim.wilson@nasa.gov</managingEditor>
+ <webMaster>jim.wilson@nasa.gov</webMaster>
+ <itunes:subtitle>This Week @ NASA audio podcast episodes</itunes:subtitle>
+ <itunes:summary>A weekly audio summary of the latest news, events and mission activities at NASA.</itunes:summary>
+ <itunes:category text="Science &amp; Medicine" />
+ <itunes:keywords>This Week @ NASA, podcast, audio</itunes:keywords>
+ <itunes:image href="https://www.nasa.gov/sites/default/files/thumbnails/image/twan-logo.png" />
+ <itunes:author>National Aeronautics and Space Administration (NASA)</itunes:author>
+ <itunes:explicit>no</itunes:explicit>
+ <itunes:owner> <itunes:email>jim.wilson@nasa.gov</itunes:email>
+ <itunes:name>Brian Dunbar</itunes:name>
+</itunes:owner>
+ <item> <title>This Week @NASA, Aug. 26, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-aug-26-2022</link>
+ <description>Artemis I is Flight Ready and “Go for Launch!” and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/twn_082622_social.mp3" length="5480990" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-aug-26-2022</guid>
+ <pubDate>Fri, 26 Aug 2022 14:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, Aug. 19, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-aug-19-2022</link>
+ <description>Artemis I Moon Rocket and Spacecraft Moved to the Launch Pad and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nhq_2022_0819_twn_social.mp3" length="6339988" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-aug-19-2022</guid>
+ <pubDate>Fri, 19 Aug 2022 14:35 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, Aug. 12, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-aug-12-2022</link>
+ <description>Countdown to Artemis I Moon Mission and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/twn_081222_social.mp3" length="6956425" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-aug-12-2022</guid>
+ <pubDate>Fri, 12 Aug 2022 16:18 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, Aug. 5, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-aug-5-2022</link>
+ <description>NASA Previews Artemis I Moon Mission and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nhq_2022_0805_twn_social.mp3" length="6079874" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-aug-5-2022</guid>
+ <pubDate>Fri, 05 Aug 2022 13:51 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, July 29, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-july-29-2022</link>
+ <description>The Benefits of Space Station Research and Development and more...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nhq_2022_0729_twn_social.mp3" length="6526271" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-july-29-2022</guid>
+ <pubDate>Fri, 29 Jul 2022 13:33 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, July 22, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-july-22-2022</link>
+ <description>Commercial Cargo Spacecraft Docks to the Space Station and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/twan_site_072222.mp3" length="7081787" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-july-22-2022</guid>
+ <pubDate>Fri, 22 Jul 2022 16:42 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, July 15, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-july-15-2022</link>
+ <description>The Webb Space Telescope’s New Look at the Cosmos and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nhq_2022_0715_twn_social.mp3" length="6385927" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-july-15-2022</guid>
+ <pubDate>Fri, 15 Jul 2022 13:51 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, July 8, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-july-8-2022</link>
+ <description>Ready to Showcase Webb Telescope’s First Full-Color Images and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nhq_2022_0708_twn_social.mp3" length="6049069" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-july-8-2022</guid>
+ <pubDate>Fri, 08 Jul 2022 13:43 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, July 1, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-july-1-2022</link>
+ <description>CAPSTONE Launches to Test Unique Orbit Around the Moon and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nhq_2022_0701_twn_social.mp3" length="4390331" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-july-1-2022</guid>
+ <pubDate>Fri, 01 Jul 2022 08:28 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+ <item> <title>This Week @NASA, June 24, 2022</title>
+ <link>http://www.nasa.gov/mediacast/this-week-nasa-june-24-2022</link>
+ <description>NASA Announces Artemis Concept Awards for Nuclear Power on Moon and more ...</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nhq_2022_0624_twn.mp3" length="6123673" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/mediacast/this-week-nasa-june-24-2022</guid>
+ <pubDate>Fri, 24 Jun 2022 13:20 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/TWAN_podcast.rss">NASACast: This Week @NASA Audio</source>
+</item>
+</channel>
+</rss>

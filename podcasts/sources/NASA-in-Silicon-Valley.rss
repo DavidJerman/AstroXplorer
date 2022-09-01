@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="utf-8" ?> <rss version="2.0" xml:base="http://www.nasa.gov/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/"> <channel> <title>NASA in Silicon Valley</title>
+ <description>An in-depth look at the various researchers, scientists, engineers, and all around cool people who work at NASA to push the boundaries of innovation.</description>
+ <link>http://www.nasa.gov/</link>
+ <atom:link rel="self" href="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss" />
+ <language>en-us</language>
+ <image> <url>http://www.nasa.gov/sites/default/files/thumbnails/image/arc-siliconvalley-audiopodcast-thumbnail.jpeg</url>
+ <title>NASA in Silicon Valley</title>
+ <link>http://www.nasa.gov/</link>
+</image>
+ <copyright>094665</copyright>
+ <managingEditor>jerry.l.colen@nasa.gov</managingEditor>
+ <webMaster>jerry.l.colen@nasa.gov</webMaster>
+ <itunes:subtitle>NASA in Silicon Valley audio podcast episodes</itunes:subtitle>
+ <itunes:summary>An in-depth look at the various researchers, scientists, engineers, and all around cool people who work at NASA to push the boundaries of innovation.</itunes:summary>
+ <itunes:category text="Science &amp; Medicine" />
+ <itunes:keywords>NASA in Silicon Valley, podcast, nasa podcast, nasa ames, ames, nasa silicon valley</itunes:keywords>
+ <itunes:image href="https://www.nasa.gov/sites/default/files/thumbnails/image/nisv_albumcover.jpg" />
+ <itunes:author>National Aeronautics and Space Administration (NASA)</itunes:author>
+ <itunes:explicit>no</itunes:explicit>
+ <itunes:owner> <itunes:email>jerry.l.colen@nasa.gov</itunes:email>
+ <itunes:name>Jerry Colen</itunes:name>
+</itunes:owner>
+ <item> <title>NASA in Silicon Valley Live – Air Taxis and the Future of Flight</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-air-taxis</link>
+ <description>In this episode streamed on Dec. 19, 2019, we talk about air taxis and the future of flight.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_air_taxis.mp3" length="114572288" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-air-taxis</guid>
+ <pubDate>Wed, 08 Jan 2020 15:53 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live – Halloween Costume and Cosplay Contest</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-halloween-cosplay-contest</link>
+ <description>In this episode streamed on Oct. 24, 2019, we host our second annual NASA-themed Halloween costume and cosplay contest!</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_halloween_cosplay_contest.mp3" length="141424832" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-halloween-cosplay-contest</guid>
+ <pubDate>Mon, 04 Nov 2019 14:30 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live – Is There Life on Mars?</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-is-there-life-on-mars</link>
+ <description>In this episode we talk about how we’re developing new tools to search for life on Mars.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_life_on_mars.mp3" length="85264256" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-is-there-life-on-mars</guid>
+ <pubDate>Fri, 20 Sep 2019 14:20 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Space Robots</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-space-robots</link>
+ <description>In this episode streamed on August 29, 2019, we talk about how we design and build robots to work with humans in space.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_space_robots.mp3" length="108397568" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-space-robots</guid>
+ <pubDate>Tue, 03 Sep 2019 18:11 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - How to Get an Internship at NASA</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-intern-day</link>
+ <description>In this episode we talk about how to get an internship at NASA.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_intern_day.mp3" length="82966016" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-intern-day</guid>
+ <pubDate>Mon, 05 Aug 2019 16:48 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Apollo 50th Anniversary Show</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-apollo-50th-anniversary</link>
+ <description>On July 20, 1969, humans took their first steps on the Moon. In this episode streamed on July 18, 2019, we talk about this historic achievement and our future plans to go to the Moon and on to Mars.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_apollo_50.mp3" length="107581376" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-apollo-50th-anniversary</guid>
+ <pubDate>Fri, 19 Jul 2019 13:59 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Moon 2024: Countdown to Arrival</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-moon-2024-countdown-to-arrival</link>
+ <description>In this episode streamed on June 19, 2019, we talk about our plans to land astronauts on the Moon by 2024 and how exploring the Moon will help us prepare to send humans to Mars.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_moon_2024.mp3" length="97991552" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-moon-2024-countdown-to-arrival</guid>
+ <pubDate>Mon, 24 Jun 2019 18:07 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Holiday Unboxing</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-holiday-unboxing</link>
+ <description>In this episode streamed on Dec. 20, 2018, we get into the holiday spirit with a special holiday unboxing episode, where we showcase some of the amazing gifts NASA’s Ames Research Center has contributed to the agency’s mission of exploration and scientific discovery.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_holiday_unboxing.mp3" length="279727400" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-holiday-unboxing</guid>
+ <pubDate>Thu, 20 Dec 2018 18:52 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jennifer Dungan Talks About Studying the Earth with Satellites</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-jennifer-dungan</link>
+ <description>A conversation with Jennifer Dungan, a research scientist at NASA’s Ames Research Center and project manager for the big-data Earth science initiative, the NASA Earth Exchange.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_jennifer_dungan.mp3" length="57667556" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-jennifer-dungan</guid>
+ <pubDate>Fri, 14 Dec 2018 15:13 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Exploring Space with the World’s Largest Flying Telescope</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-worlds-largest-flying-telescope</link>
+ <description>In this episode streamed on Dec. 6, 2018, we talk about SOFIA, the world&#039;s largest flying telescope, and the history of airborne astronomy.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_live_-_exploring_space_with_the_worlds_largest_flying_telescope.mp3" length="140537144" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-worlds-largest-flying-telescope</guid>
+ <pubDate>Fri, 14 Dec 2018 13:20 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - The Science of Heat Shields</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-the-science-of-heat-shields</link>
+ <description>In this episode streamed on Nov. 15, 2018, we talk about the science of heat shields, how spacecraft survive the extreme temperatures experienced during atmospheric entry and more!</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisvlive-ep07-the-science-of-heat-shields.mp3" length="141523724" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-the-science-of-heat-shields</guid>
+ <pubDate>Fri, 30 Nov 2018 16:45 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - The Wonder Women of NASA</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-the-wonder-women-of-nasa</link>
+ <description>In this episode streamed on Nov. 8, 2018, we talk with some brilliant wonder women of NASA about their research, what it’s like to work at NASA’s Ames Research Center and more!</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisvlive-ep06-the-wonder-women-of-nasa_0.mp3" length="278220908" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-the-wonder-women-of-nasa</guid>
+ <pubDate>Mon, 19 Nov 2018 15:44 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Halloween Costume and Cosplay Contest</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-halloween-costume-and-cosplay-contest</link>
+ <description>In this episode streamed on Oct. 25, 2018, we host our first-ever NASA-themed Halloween costume and cosplay contest!</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisvlive-ep05-costumes-and-cosplay.mp3" length="210083204" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-halloween-costume-and-cosplay-contest</guid>
+ <pubDate>Tue, 06 Nov 2018 13:42 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Linda Jensen and Kerry Zarchi Talk About Leadership Training</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-linda-jensen-and-kerry-zarchi</link>
+ <description>A conversation with Linda Jensen, associate director for Workforce Culture and Engagement and Kerry Zarchi, the branch chief for Entry Systems and Vehicle Development and also the acting branch chief for Aerothermodynamics. Both are at NASA&#039;s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_linda_jensen_kerry_zarchi_v2.mp3" length="66056096" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-linda-jensen-and-kerry-zarchi</guid>
+ <pubDate>Fri, 19 Oct 2018 18:04 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Robotic Exploration of the Moon</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-robotic-exploration-of-the-moon</link>
+ <description>In this episode streamed on Oct. 11, 2018, we talk about exploring the Moon with robots, NASA’s 60th anniversary and more!</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisvlive-ep04-moon.mp3" length="138338480" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-robotic-exploration-of-the-moon</guid>
+ <pubDate>Tue, 16 Oct 2018 17:21 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Let’s Play Space Video Games!</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-lets-play-space-video-games</link>
+ <description>In this episode streamed on Sept. 27, 2018, we talk about space video games, exploring deep space and more.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/arc-20180927-aav3136-nisvlive-ep03.mp3" length="213417740" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-lets-play-space-video-games</guid>
+ <pubDate>Tue, 02 Oct 2018 19:48 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Genius Space Hacks</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-genius-space-hacks</link>
+ <description>In this episode streamed on Sept. 13, 2018, we talk about studying life in space. Plus, we share some genius space hacks for doing life science research on Earth and aboard the International Space Station.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/arc-20180913-aav3133-nisvlive-ep02.mp3" length="138594260" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-genius-space-hacks</guid>
+ <pubDate>Tue, 18 Sep 2018 15:47 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Searching for Life Beyond Earth</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-searching-for-life-beyond-earth</link>
+ <description>In this episode streamed on Aug. 30, 2018, we talk with NASA Administrator Jim Bridenstine and hear from scientists advancing the search for life beyond Earth by exploring an alien world deep in Earth’s ocean.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/arc-20180830-aav3127-nisvlive-ep01.mp3" length="143010380" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-searching-for-life-beyond-earth</guid>
+ <pubDate>Fri, 14 Sep 2018 14:12 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Eugene Tu and Carol Carroll Talk About NASA Ames Research Center</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep100-eugene-tu-and-carol-carroll</link>
+ <description>A conversation with the leadership of NASA&#039;s Ames Research Center in Silicon Valley, Center Director Eugene Tu and Deputy Center Director Carol Carroll.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep100_eugene_tu_carol_caroll.mp3" length="84533852" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep100-eugene-tu-and-carol-carroll</guid>
+ <pubDate>Fri, 20 Jul 2018 15:32 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Ruth Globus and Jon Galazka Talk About Biology Data from Space</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep99-ruth-globus-john-galazka</link>
+ <description>A conversation with Jon Galazka, project scientist for NASA’s GeneLab, and Ruth Globus, a rodent research project scientist, at NASA&#039;s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep99-ruth_globus_john_galazka.mp3" length="75375884" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep99-ruth-globus-john-galazka</guid>
+ <pubDate>Fri, 13 Jul 2018 17:33 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>James De Buizer Talks About SOFIA’s New Zealand Observations</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep98-james-de-buizer</link>
+ <description>A conversation with James De Buizer, the science planning and instrument support manager for the Stratospheric Observatory for Infrared Astronomy or SOFIA.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep98-james-de_buizer.mp3" length="97191308" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep98-james-de-buizer</guid>
+ <pubDate>Fri, 06 Jul 2018 14:43 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Komal Sadhwani Talks About Law on Earth for the Benefit of Space</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep97-komal-sadhwani</link>
+ <description>A conversation with Komal Sadhwani, an attorney at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep97-komal-sadhwani.mp3" length="65797184" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep97-komal-sadhwani</guid>
+ <pubDate>Fri, 29 Jun 2018 15:30 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Donovan Mathias and Eric Stern Talk About Asteroid Threats</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep96-donovan-mathias-and-eric-stern</link>
+ <description>A conversation with Donovan Mathias and Eric Stern. Eric is a research scientist here at Ames who supports the agency’s Planetary Defense initiative, and Donovan is an aerospace engineer in the NASA Advanced Supercomputing Division.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep96-eric-stern-and-donovan-mathias.mp3" length="79657328" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep96-donovan-mathias-and-eric-stern</guid>
+ <pubDate>Fri, 22 Jun 2018 12:16 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Lynn Harper and Monsi Roman Talk About The Vascular Tissue Challenge</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep95-lynn-harper-monsi-roman</link>
+ <description>Lynn Harper and Monsi Roman Talk About The Vascular Tissue Challenge</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep95-lynn_harper-monsi_roman.mp3" length="69669380" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep95-lynn-harper-monsi-roman</guid>
+ <pubDate>Fri, 15 Jun 2018 17:56 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Alan Rhodes and Harvey Moseley Talk About Creating SOFIA’s Instruments</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep94-alan-rhodes-harvey-moseley</link>
+ <description>A conversation with Alan Rhodes, instrument development manager for the Stratospheric Observatory for Infrared Astronomy at NASA’s Ames Research Center in Silicon Valley, and Harvey Moseley a senior astrophysicist at NASA&#039;s Goddard Space Flight Center in Greenbelt, Maryland.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep94-alan_rhodes-harvey_moseley.mp3" length="79426604" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep94-alan-rhodes-harvey-moseley</guid>
+ <pubDate>Fri, 08 Jun 2018 16:31 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Parimal Kopardekar Talks About Managing Drones in our Skies</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep93-parimal-kopardekar</link>
+ <description>A rerun of a conversation with Parimal Kopardekar, NASA’s senior technologist for the Air Transportation System at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep93-parimal-kopardekar.mp3" length="62766452" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep93-parimal-kopardekar</guid>
+ <pubDate>Fri, 01 Jun 2018 16:04 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Lika Guhathakurta and Ryan McGranaghan Talk About Space Weather</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep92-lika-guhathakurta-and-ryan-mcgranaghan</link>
+ <description>A conversation with Lika Guhathakurta, lead program scientist for new initiatives in the Exploration Technology Directorate at NASA&#039;s Ames Research Center in Silicon Valley, and Ryan McGranaghan, postdoctoral researcher from NASA’s Jet Propulsion Laboratory in Pasadena, California.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep92-lika-ryan.mp3" length="95562668" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep92-lika-guhathakurta-and-ryan-mcgranaghan</guid>
+ <pubDate>Fri, 25 May 2018 13:49 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jon Jenkins Talks About Kepler and TESS Data, from Pixels to Planets</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep91-jon-jenkins</link>
+ <description>A conversation with Jon Jenkins, the science lead for the Science Processing Operations Center at NASA&#039;s Ames Research Center in Silicon Valley. At the SPOC, the raw data from NASA’s newly launched planet hunter, TESS, is prepared for scientists to analyze.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep91-jon-jenkins.mp3" length="81282836" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep91-jon-jenkins</guid>
+ <pubDate>Fri, 18 May 2018 17:19 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Karen Bradford Talks About Connecting People</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep90-karen-bradford</link>
+ <description>A conversation with Karen Bradford, chief of staff for the center director at NASA&#039;s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep90-karen-bradford.mp3" length="106644728" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep90-karen-bradford</guid>
+ <pubDate>Fri, 11 May 2018 14:38 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Robin Aube-Warren Talks About the DART Team and Center Operations</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep89-robin-aube</link>
+ <description>A conversation with Robin Aube-Warren, the director of center operations at NASA&#039;s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep89-robin-aube-warren_0.mp3" length="60205520" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep89-robin-aube</guid>
+ <pubDate>Thu, 03 May 2018 18:10 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Robin Beck Talks About Designing Heat Shields to Protect Spacecraft</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep88-robin-beck</link>
+ <description>A conversation with Robin Beck, an engineer at NASA’s Ames Research Center in California’s Silicon Valley who develops, designs and tests heat shield materials.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep88-robin-beck.mp3" length="91671680" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep88-robin-beck</guid>
+ <pubDate>Fri, 27 Apr 2018 13:38 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA and the USGS, a Shared History in Remote Sensing</title>
+ <link>http://www.nasa.gov/ames/nisv-ep87-usgs-shared-history</link>
+ <description>A conversation with Jim Brass, Bruce Coffland from NASA and Susan Benjamin USGS director of the Western Geographic Science Center. They discuss the shared history between NASA and the USGS in remote sensing.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep87-usgs-shared-history.mp3" length="57036980" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-ep87-usgs-shared-history</guid>
+ <pubDate>Mon, 23 Apr 2018 13:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Doug Caldwell Talks About the Data Pipeline for the TESS Mission</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep86-doug-caldwell</link>
+ <description>A conversation with Doug Caldwell, instrument scientist for the Kepler Space Telescope, and who’s now working on NASA’s next planet-hunting mission— the Transiting Exoplanet Survey Satellite or TESS.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep86-doug-caldwell.mp3" length="77067164" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep86-doug-caldwell</guid>
+ <pubDate>Fri, 13 Apr 2018 10:52 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Kimberly Ennico Smith Talks About Pluto and Studying Space With SOFIA</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep85-kimberly-ennico-smith</link>
+ <description>A rerun of a conversation with Kimberly Ennico Smith, project scientist for SOFIA, the Stratospheric Observatory for Infrared Astronomy, at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep85-kimberly-ennico-smith.mp3" length="79109228" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep85-kimberly-ennico-smith</guid>
+ <pubDate>Thu, 05 Apr 2018 13:37 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Sharmila Bhattacharya on Studying How Biology Changes in Space</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep84-sharmila-bhattacharya</link>
+ <description>A conversation with Sharmila Bhattacharya, senior scientist in the Space Biosciences Research branch at NASA&#039;s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep84-sharmila-battacharya.mp3" length="70659092" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep84-sharmila-bhattacharya</guid>
+ <pubDate>Fri, 30 Mar 2018 09:47 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jessie Dotson and Geert Barentsen, Kepler’s Contributions to Astronomy</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep83-keplers-contributions-to-astronomy</link>
+ <description>A conversation with Jessie Dotson, Kepler’s project scientist, and Geert Barentsen, director of the mission&#039;s guest observer office, talking about how NASA’s first planet-hunting mission has contributed so much to the field of astronomy.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep-83-keplers-contributions-to-astronomy.mp3" length="77444048" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep83-keplers-contributions-to-astronomy</guid>
+ <pubDate>Fri, 23 Mar 2018 14:29 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Charlie Sobeck Talks About Kepler’s Upcoming End of Flight</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-ep82-Charlie-Sobeck-Keplers-Upcoming-End-of-Flight</link>
+ <description>A conversation with Charlie Sobeck, Kepler’s former mission manager and now system engineer at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv-ep-82-charlie-sobeck-talks-about-keplers-eof-v2.mp3" length="72719948" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-ep82-Charlie-Sobeck-Keplers-Upcoming-End-of-Flight</guid>
+ <pubDate>Thu, 15 Mar 2018 14:30 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Marianne Sowa and Jack Miller Discuss Radiation Science Using GeneLab</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Marianne-Sowa-Jack-Miller</link>
+ <description>A conversation with and Marianne Sowa, branch chief of the Space Biosciences Research branch at NASA&#039;s Ames Research Center in Silicon Valley, and Jack Miller, Lawrence Berkeley Laboratory, about radiation science using GeneLab.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_episode_81_marianne_sowa_jack_miller_genelab.mp3" length="74630468" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Marianne-Sowa-Jack-Miller</guid>
+ <pubDate>Fri, 09 Mar 2018 16:59 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Chris McKay and Ron Oremland Talk About Ocean Worlds and the Search for Life</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Chris-McKay-Ron-Oremland</link>
+ <description>A conversation with Chris McKay from NASA and Ronald Oremland from the U.S. Geological Survey about ocean worlds and the search for life. This is the third episode of a mini-series about NASA and USGS collaboration.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_episode_80_chris_mckay_ron_oremland_nasa_usgs.mp3" length="56758232" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Chris-McKay-Ron-Oremland</guid>
+ <pubDate>Thu, 01 Mar 2018 13:31 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Chad Frost and Susan De La Cruz Talk About the “Social Networks” of Wildlife</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Chad-Frost-Susan-de-La-Cruz</link>
+ <description>A conversation with Chad Frost from NASA and Susan De La Cruz from the USGS. This is the second episode of a mini-series about NASA and USGS collaboration. In this episode they focus on tracking wildlife and what that information can tell us about the social networks between animals.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_79_chad_frost_susan_de_la_cruz.mp3" length="70865804" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Chad-Frost-Susan-de-La-Cruz</guid>
+ <pubDate>Fri, 23 Feb 2018 12:52 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Ian Brosnan and Colin Williams Talk About the USGS Moving to NASA Ames</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Ian-Brosnan-and-Colin-Williams</link>
+ <description>A conversation with Ian Brosnan from NASA and Colin Williams from the USGS. This is the first episode of a mini-series about NASA and USGS collaboration. To hear more from Ian Brosnan, listen to his previous NASA in Silicon Valley episode, Ian Brosnan Talks About How NASA Collaborates and Shares Data with Other Agencies.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_episode_78_usgs_introduction.mp3" length="58889036" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Ian-Brosnan-and-Colin-Williams</guid>
+ <pubDate>Fri, 16 Feb 2018 09:35 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Meet NASA in Silicon Valley</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-meet-nasa-in-silicon-valley</link>
+ <description>In this episode streamed on Feb. 12, 2018, we talk about the exciting research happening at NASA&#039;s Ames Research Center with Center Director Eugene Tu and participants of the 2018 #StateOfNASA NASA Social event at Ames.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisvlive-ep04-moon_0.mp3" length="138338480" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-meet-nasa-in-silicon-valley</guid>
+ <pubDate>Mon, 12 Feb 2018 15:24 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Ep. 03 - Let’s Play Space Video Games!</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-Ep3-Lets-Play-Space-Video-Games</link>
+ <description>In our third episode, we’re playing space-based games with NASA gamers! We talk about how true to life space-based games are with NASA researchers/gamers Chad Frost, Thomas Lambot and Mary Beth Wilhelm.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_live_ep3_lets_play_space_games.mp3" length="138536840" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-Ep3-Lets-Play-Space-Video-Games</guid>
+ <pubDate>Thu, 08 Feb 2018 14:36 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Episode 02 - Self-driving Robots, Planes and Automobiles</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-live-Ep2-Self-driving-Robots-Planes-and-Automobiles</link>
+ <description>We’ve launched a live video show on Twitch called NASA in Silicon Valley Live! This is an audio-only version of our premiere episode that streamed on Jan. 12. In it, we talk about going back to the Moon with NASA rock stars Jim Green and Greg Schmidt.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_live_ep2_robots_self-driving_cars_autos.mp3" length="142636628" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-live-Ep2-Self-driving-Robots-Planes-and-Automobiles</guid>
+ <pubDate>Thu, 01 Feb 2018 15:30 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jose Benavides Talks About NASA&#039;s Star Wars-inspired Robots Aboard The International Space Station</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jose-Benavides-re-posting</link>
+ <description>A conversation with Jose Benavides, engineer with the Advanced Control and Evolvable Systems Group in the Intelligent Systems Division at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_episode_77_re-post_jose_benavides.mp3" length="62400008" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jose-Benavides-re-posting</guid>
+ <pubDate>Thu, 25 Jan 2018 16:42 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Terry Fong Talks About Virtual Reality, Self-Driving Cars and the Future of Robotics</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Terry-Fong-Re-Posting</link>
+ <description>For episode 76, we&#039;re re-posting episode 24, a conversation with Terry Fong, senior scientist for autonomous systems and lead for the Intelligent Robotics Group at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_episode_76_terry_fong.mp3" length="71678036" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Terry-Fong-Re-Posting</guid>
+ <pubDate>Thu, 18 Jan 2018 18:35 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA in Silicon Valley Live - Episode 01 - We&#039;re Going Back to the Moon!</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Going-Back-to-the-Moon</link>
+ <description>We’ve launched a live video show on Twitch called NASA in Silicon Valley Live! This is an audio-only version of our premiere episode that streamed on Jan. 12. In it, we talk about going back to the Moon with NASA rock stars Jim Green and Greg Schmidt.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_live_were_going_back_to_the_moon.mp3" length="158897972" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Going-Back-to-the-Moon</guid>
+ <pubDate>Tue, 16 Jan 2018 18:20 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Coming Soon to Twitch: NASA in Silicon Valley Live</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Coming-Soon-to-Twitch</link>
+ <description>We’re launching a new live show on Twitch called NASA in Silicon Valley Live!</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_coming_soon_to_twitch_nisv_live.mp3" length="3617588" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Coming-Soon-to-Twitch</guid>
+ <pubDate>Thu, 11 Jan 2018 16:57 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Throwback Thursday Featuring Veteran Astronaut Steve Smith</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Steve-Smith</link>
+ <description>The rebroadcast of a conversation with veteran astronaut Steven Smith, former Associate Director for International Space Station Science Directorate at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_episode_75_throwback_thursday_steve_smith_v2.mp3" length="60950936" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Steve-Smith</guid>
+ <pubDate>Thu, 04 Jan 2018 17:08 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>2017 End of Year Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-2017-end-of-year</link>
+ <description>An end of year compilation of conversations with various NASA scientists, engineers, and researchers throughout 2017 on the NASA in Silicon Valley Podcast.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_episode_74_2017_end_of_year.mp3" length="74252540" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-2017-end-of-year</guid>
+ <pubDate>Fri, 29 Dec 2017 14:10 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Steven Zornetzer Talks About Building the Greenest Building in Government</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Steve-Zornetzer</link>
+ <description>A conversation with Steven Zornetzer, the associate center director at NASA’s Ames Research Center in California’s Silicon Valley, discussing Sustainability Base.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_episode_73_-_steven_zornetzer.mp3" length="62151536" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Steve-Zornetzer</guid>
+ <pubDate>Thu, 21 Dec 2017 15:14 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Kimberly Ennico Smith and Michael Person Talk About Steering SOFIA Through Triton’s Shadow</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Kimberly-Ennico-Smith-Michael-Person</link>
+ <description>A conversation with Kimberly Ennico Smith, the project scientist for the SOFIA mission at NASA’s Ames Research Center in Silicon Valley, and Michael Person, a research scientist at the Massachusetts Institute of Technology, discussing the science behind using an occultation to learn more about objects in space, such as Neptune’s moon Triton.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_72_kimberlyesmith_michael_person.mp3" length="85043324" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Kimberly-Ennico-Smith-Michael-Person</guid>
+ <pubDate>Thu, 14 Dec 2017 17:32 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>John Hogan Talks About Life Support in Space</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-John-Hogan</link>
+ <description>A conversation with John Hogan, an environmental scientist at the bioengineering branch at NASA’s Ames Research Center.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_71_john_hogan.mp3" length="57704096" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-John-Hogan</guid>
+ <pubDate>Thu, 07 Dec 2017 16:11 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Sylvain Costes Talks About NASA’s Treasure Trove of Space Biology Data</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Sylvain-Costes</link>
+ <description>A conversation with Sylvain Costes, the Project Manager for GeneLab, a space biology database run out of NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_70_sylvain_costes.mp3" length="73683560" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Sylvain-Costes</guid>
+ <pubDate>Thu, 30 Nov 2017 17:02 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Dennis Leveson-Gower and Shane Kimbrough Talk About the Science and Cargo NASA Sends to Space</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Dennis-Leveson-Gower-and-Shane-Kimbrough</link>
+ <description>A conversation with project scientist Dennis Leveson-Gower and astronaut Shane Kimbrough on the cargo sent up to the International Space Station, and the science it contains.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_69_dennis_leveson-gower_and_shane_kimbrough.mp3" length="105438908" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Dennis-Leveson-Gower-and-Shane-Kimbrough</guid>
+ <pubDate>Wed, 22 Nov 2017 16:31 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Kevin Sato Talks About Preparing Humans for Mars</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Kevin-Sato</link>
+ <description>A conversation with Kevin Sato, the Project Scientist and Deputy Project Manager of NASA’s Space Biology research projects.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_68_kevin_sato.mp3" length="62761232" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Kevin-Sato</guid>
+ <pubDate>Thu, 16 Nov 2017 16:54 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Roger Hunter Talks About Taking Big Risks with Small Satellites</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Roger-Hunter</link>
+ <description>A conversation with Roger Hunter, Program Manager for the Spacecraft Technology Program at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_67_roger_hunter.mp3" length="64431632" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Roger-Hunter</guid>
+ <pubDate>Thu, 09 Nov 2017 11:59 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Stevan Spremo Talks About Boxing Up Bacteria for Space Travel</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Stevan-Spremo</link>
+ <description>A conversation with Stevan Spremo, Space Flight Project Manager at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_66_stevan_sepremo.mp3" length="68192120" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Stevan-Spremo</guid>
+ <pubDate>Fri, 03 Nov 2017 08:18 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Bron Nelson and Dimitris Menemenlis Talk About Modeling Oceans and Ice With Supercomputers</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Bron-Nelson-Dimitris-Menemenlis</link>
+ <description>A conversation with Bron Nelson, a computer programmer with the Data Analysis and Visualization Group at NASA’s Ames Research Center in Silicon Valley, and Dimitris Menemenlis, a research scientist working with the Estimation of the Circulation and Climate of the Ocean (ECCO) project at NASA’s Jet Propulsion Laboratory.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_65_bron_and_dimitris.mp3" length="91375184" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Bron-Nelson-Dimitris-Menemenlis</guid>
+ <pubDate>Thu, 26 Oct 2017 13:44 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Adam Moreno Talks About Supercomputing for Global Systems</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Adam-Moreno</link>
+ <description>A conversation with Adam Moreno, a postdoctoral fellow working with the NASA Earth Exchange at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_64_adam_moreno.mp3" length="61030280" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Adam-Moreno</guid>
+ <pubDate>Thu, 19 Oct 2017 14:28 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Chris Potter Talks about Wildfires and a Changing Climate</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Chris-Potter</link>
+ <description>A conversation with Chris Potter, a Senior Research Scientist at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_63_chris_potter.mp3" length="64627904" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Chris-Potter</guid>
+ <pubDate>Thu, 12 Oct 2017 13:45 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Astronomy from 40,000 Feet and 43.5 Degrees South: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Astronomy-from-40000-Feet</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on August 31, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_astronomy_from_40000.mp3" length="8938856" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Astronomy-from-40000-Feet</guid>
+ <pubDate>Tue, 10 Oct 2017 13:27 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Ved Chirayath Talks About Imaging Through the Ocean Surface</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Ved-Chirayath</link>
+ <description>A conversation with Ved Chirayath, research scientist and lead for the Laboratory for Advanced Sensing at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_62_ved_chirayath.mp3" length="67729628" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Ved-Chirayath</guid>
+ <pubDate>Thu, 05 Oct 2017 12:54 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Solving the Mystery of Pluto’s Giant Blades of Ice: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Solving-Mystery-Pluto-Giant-Blades-Ice</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on September 26, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_plutos_giant_blades_of_ice.mp3" length="10868168" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Solving-Mystery-Pluto-Giant-Blades-Ice</guid>
+ <pubDate>Fri, 29 Sep 2017 16:11 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Leighton Quon Talks About New Air Traffic System Demonstrations</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Leighton-Quon</link>
+ <description>A conversation with Leighton Quon, project manager in the Airspace Technology Division at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_61_leighton_quon.mp3" length="72398396" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Leighton-Quon</guid>
+ <pubDate>Thu, 28 Sep 2017 11:56 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jessica Marquez Talks About Planning and Managing Daily Tasks for Astronauts</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jessica-Marquez</link>
+ <description>A conversation with Jessica Marquez, human systems engineer and research scientist at NASA’s Ames Research Center.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_60_jessica_marquez.mp3" length="63805232" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jessica-Marquez</guid>
+ <pubDate>Thu, 21 Sep 2017 09:23 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Air Traffic “Win-Win” Wins NASA Software of the Year: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Air-Traffic-Wins-NASA-Software-Year</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on September 1, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_air_traffic_nasa_software_of_the_year.mp3" length="4604168" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Air-Traffic-Wins-NASA-Software-Year</guid>
+ <pubDate>Tue, 19 Sep 2017 13:39 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Three Cassini Scientists Give a Fond Farewell to the Mission</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Three-Cassini-Scientists</link>
+ <description>A conversation with three members of the original Cassini science team: Jeff Cuzzi, the mission’s interdisciplinary scientist for rings; Dale Cruikshank, an astronomer and planetary scientist studying Saturn’s icy moons; and Chris McKay, a planetary scientist and one of the original collaborators on the Huygens probe.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_59_cassini_finale.mp3" length="80359940" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Three-Cassini-Scientists</guid>
+ <pubDate>Thu, 14 Sep 2017 10:38 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Rodents Help NASA Take the Next Step to Mars: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Rodents-Help-NASA-Take-Next-Step-Mars</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on August 14, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_rodents_help_nasa_to_mars.mp3" length="12327680" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Rodents-Help-NASA-Take-Next-Step-Mars</guid>
+ <pubDate>Tue, 12 Sep 2017 15:32 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jeff Cuzzi Talks About Saturn and the Many Things Cassini Taught Us</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jeff-Cuzzi</link>
+ <description>A conversation with Jeff Cuzzi, interdisciplinary scientist for rings on the Cassini mission and researcher in the Planetary Systems Branch at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_58_jeff_cuzzi.mp3" length="59519612" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jeff-Cuzzi</guid>
+ <pubDate>Thu, 07 Sep 2017 16:58 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Doing Science with Transits and Occultations: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Doing-Science-with-Transits-and-Occultations</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on August 17, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_science_transits_occultations.mp3" length="16783472" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Doing-Science-with-Transits-and-Occultations</guid>
+ <pubDate>Tue, 05 Sep 2017 16:35 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Chris McKay Talks About Life in Extreme Places</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Chris-McKay</link>
+ <description>A conversation with Chris McKay, senior scientist at the Planetary Systems Branch of NASA&#039;s Ames Research Center who works on projects from Cassini to Curiosity.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_57_chris_mckay.mp3" length="70255064" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Chris-McKay</guid>
+ <pubDate>Thu, 31 Aug 2017 17:54 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jerry Davis Talks About Cybersecurity and Information Sharing at NASA</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jerry-Davis</link>
+ <description>A conversation with Jerry Davis, the Chief Information Officer at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_56_jerry_davis.mp3" length="65163476" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jerry-Davis</guid>
+ <pubDate>Thu, 24 Aug 2017 13:33 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Lika Guhathakurta Talks About Studying the Sun and the 2017 Total Solar Eclipse</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Lika-Guhathakurta</link>
+ <description>A conversation with Madhulika Guhathakurta, lead program scientist for new initiatives in the Exploration Technology Directorate at NASA&#039;s Ames Research Center in Silicon Valley, and the lead scientist for the 2017 total solar eclipse.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_55_lika_guhathakarta.mp3" length="87897620" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Lika-Guhathakurta</guid>
+ <pubDate>Thu, 17 Aug 2017 14:25 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Eclipse Balloons: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Eclipse-Balloons</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on July 27, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_eclipse_balloons.mp3" length="11770184" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Eclipse-Balloons</guid>
+ <pubDate>Thu, 17 Aug 2017 13:05 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Charlie Sobeck talks about Kepler, Troubleshooting, Transits and Eclipses</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Charlie-Sobeck</link>
+ <description>A conversation with Charlie Sobeck, Kepler mission manager at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_54_charlie_sobeck.mp3" length="60326624" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Charlie-Sobeck</guid>
+ <pubDate>Thu, 10 Aug 2017 10:20 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Hanwant Singh Talks About Earth Science and His Selection as a Finalist for the 2017 Sammies Awards</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Hanwant-Singh</link>
+ <description>A conversation with Hanwant Singh, atmospheric research director at NASA&#039;s Ames Research Center, and finalist for the 2017 Samuel J. Heyman Service to America awards.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_53_hanwant_singh.mp3" length="56008640" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Hanwant-Singh</guid>
+ <pubDate>Thu, 03 Aug 2017 13:53 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>The Dark Side of the Crater: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-The-Dark-Side-of-the-Crater</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on July 26, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_the_dark_side_of_the_crater.mp3" length="14026268" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-The-Dark-Side-of-the-Crater</guid>
+ <pubDate>Mon, 31 Jul 2017 17:23 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Uland Wong Talks About Robots on the Moon</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Uland-Wong</link>
+ <description>A conversation with Uland Wong, senior computer scientist in the Intelligent Robotics Group at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_52_uland_wong.mp3" length="55981496" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Uland-Wong</guid>
+ <pubDate>Thu, 27 Jul 2017 15:46 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Brian Day Talks About Tracking Fireballs</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Brian-Day</link>
+ <description>A conversation with Brian Day, the Director of Communication and Citizen Science for NASA’s Solar System Exploration Research Virtual Institute.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_51_brian_day.mp3" length="72836876" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Brian-Day</guid>
+ <pubDate>Thu, 20 Jul 2017 10:35 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jack Boyd Talks About His 70 Years with NASA (and NACA)</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jack-Boyd</link>
+ <description>A conversation with Jack Boyd, Senior Advisor to the Center Director at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_50_jack_boyd.mp3" length="81417512" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jack-Boyd</guid>
+ <pubDate>Fri, 14 Jul 2017 13:14 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>William Reach Talks About NASA’s Flying Telescope in New Zealand</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-William-Reach</link>
+ <description>A conversation with William Reach, Deputy Director at the SOFIA Science Center at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_49_william_reach.mp3" length="54594020" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-William-Reach</guid>
+ <pubDate>Fri, 07 Jul 2017 08:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Bill Thigpen Talks About How NASA Uses Supercomputers</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Bill-Thigpen</link>
+ <description>A conversation with Bill Thigpen, Branch Chief of Advanced Computing at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_48_bill_thigpen.mp3" length="62291432" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Bill-Thigpen</guid>
+ <pubDate>Thu, 29 Jun 2017 08:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Geert Barentsen Talks About Bringing People Together To Contribute to Exoplanet Science</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Geert-Barentsen</link>
+ <description>A conversation with Geert Barentsen, the Guest Observer Office director for the Kepler and K2 mission at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_47_geert_barentsen.mp3" length="64840880" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Geert-Barentsen</guid>
+ <pubDate>Fri, 23 Jun 2017 13:08 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Podcast Archive 2009: NASA’s Kepler Mission to Look for Earth-like Planets</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-2009-NASA-Kepler-Mission-Look-for-Earth-like-Planets</link>
+ <description>Originally aired on February 27, 2009, a conversation on the Kepler Mission with Principal Investigator William Borucki, Deputy Principal Investigator David Koch, and Kepler Science Council Member Alan Boss from the Carnegie Institute of Washington.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_46_kepler_archive_show.mp3" length="34788296" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-2009-NASA-Kepler-Mission-Look-for-Earth-like-Planets</guid>
+ <pubDate>Wed, 21 Jun 2017 01:31 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Susan Thompson Talks About Creating Kepler Planet Catalogs</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Susan-Thompson</link>
+ <description>A conversation with Susan Thompson, Kepler research scientist for the SETI Institute at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_45_susan_thompson.mp3" length="60120956" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Susan-Thompson</guid>
+ <pubDate>Mon, 19 Jun 2017 09:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>SOFIA Finds Cool Dust Around Energetic Active Black Holes: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-SOFIA-Finds-Cool-Dust-Around-Energetic-Active-Black-Holes</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on June 13, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_black_hole_cool_dust.mp3" length="9604928" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-SOFIA-Finds-Cool-Dust-Around-Energetic-Active-Black-Holes</guid>
+ <pubDate>Fri, 16 Jun 2017 03:30 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Natalie Batalha Talks About Hunting Exoplanets with the Kepler Space Telescope</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Natalie-Batalha</link>
+ <description>A conversation with one of TIME Magazine’s 100 Most Influential People, Natalie Batalha, the Kepler mission project scientist at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_44_natalie_batalha.mp3" length="74315180" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Natalie-Batalha</guid>
+ <pubDate>Wed, 14 Jun 2017 13:50 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Understanding Star Formation in the Nucleus of Galaxy IC 342: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Understanding-Star-Formation-Nucleus-Galaxy-IC-342</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on May 23, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_sofia_nucleus_of_galaxy_ic_342.mp3" length="10090388" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Understanding-Star-Formation-Nucleus-Galaxy-IC-342</guid>
+ <pubDate>Mon, 12 Jun 2017 14:17 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Bruce Yost Talks About Small Satellite Collaboration with NASA</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Bruce-Yost</link>
+ <description>A conversation with Bruce Yost, the Director of the Small Spacecraft Systems Virtual Institute (or S3VI) at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_43_bruce_yost.mp3" length="51792968" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Bruce-Yost</guid>
+ <pubDate>Thu, 08 Jun 2017 12:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Leticha Hawkins Talks About How to Get a Job At NASA</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Leticha-Hawkins</link>
+ <description>A conversation with Leticha Hawkins, a recruiter at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_42_leticha_hawkins.mp3" length="71322070" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Leticha-Hawkins</guid>
+ <pubDate>Tue, 30 May 2017 05:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Parimal Kopardekar Talks About Managing Drones in our Skies</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Parimal-Kopardekar</link>
+ <description>A conversation with Parimal Kopardekar, NASA’s senior technologist for the Air Transportation System at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_41_parimal_kopardekar.mp3" length="61181660" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Parimal-Kopardekar</guid>
+ <pubDate>Thu, 25 May 2017 03:33 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jessie Dotson Talks About Discovering Exoplanets</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jessie-Dotson</link>
+ <description>A conversation with Jessie Dotson, project scientist for the Kepler spacecraft’s K2 mission at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_40_jessie_dotson_0.mp3" length="61975100" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jessie-Dotson</guid>
+ <pubDate>Mon, 22 May 2017 16:15 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jonathan Galazka Talks About Designing Experiments for the International Space Station</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jonathan-Galazka</link>
+ <description>A conversation with Johnathan Galazka, a scientist in the Space Biosciences Research Branch at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_39_jonathan_m_galazka.mp3" length="53891408" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jonathan-Galazka</guid>
+ <pubDate>Thu, 18 May 2017 12:48 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>SOFIA Confirms Nearby Planetary System is Similar to Our Own: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-SOFIA-Planetary-System-Similar-Own</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on May 2, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_sofia_nearby_system_similar_to_our_own.mp3" length="11489348" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-SOFIA-Planetary-System-Similar-Own</guid>
+ <pubDate>Fri, 12 May 2017 12:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Marc Murbach Talks About Building Small Cube Satellites</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Marc-Murbach</link>
+ <description>A conversation with Marc Murbach, the Principal Investigator for the Technology Education Satellite (TechEdSat) based at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_38_marc_murbach.mp3" length="51551804" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Marc-Murbach</guid>
+ <pubDate>Thu, 11 May 2017 13:53 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Formation Time of Mega Basins on Mars: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Mega-Basins-Mars</link>
+ <description>A feature from NASA&#039;s Ames Research Center in Silicon Valley originally posted on April 26, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_mega_basins_mars.mp3" length="11760788" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Mega-Basins-Mars</guid>
+ <pubDate>Mon, 08 May 2017 12:41 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jose Benavides Talks About NASA&#039;s Star Wars-inspired Robots Aboard The International Space Station</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jose-Benavides</link>
+ <description>A conversation with Jose Benavides, engineer with the Advanced Control and Evolvable Systems Group in the Intelligent Systems Division at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_37_jose_benavides.mp3" length="60431024" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jose-Benavides</guid>
+ <pubDate>Thu, 04 May 2017 04:42 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Steve Ord Talks About Launching New Technologies Into Space</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Steve-Ord</link>
+ <description>A conversation with Steve Ord, Technology Manager within the Flight Opportunities Program at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_36_steve_ord.mp3" length="50906612" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Steve-Ord</guid>
+ <pubDate>Fri, 28 Apr 2017 11:39 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Experiment Reveals Earth Microbes’ Likely Fate on Mars: Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-nineteen-miles-up</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on March 30, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_nineteen_miles_up.mp3" length="7683968" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-nineteen-miles-up</guid>
+ <pubDate>Mon, 24 Apr 2017 16:25 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Brian Glass Talks About Searching For Evidence of Life On Mars</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Brian-Glass</link>
+ <description>A conversation with Brian Glass, Principal Investigator of the Atacama Rover Astrobiology Drilling Studies (ARADS) project at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_35_brian_glass.mp3" length="49228904" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Brian-Glass</guid>
+ <pubDate>Thu, 20 Apr 2017 13:32 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jerry Colen Talks About Creating the NASA App</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jerry-Colen</link>
+ <description>A conversation with Jerry Colen, NASA IT Manager for the Office of Public Affairs at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_34_jerry_colen.mp3" length="68237012" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jerry-Colen</guid>
+ <pubDate>Fri, 14 Apr 2017 14:11 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Kimberly Ennico Smith Talks About Pluto and Studying Space With A Flying Telescope</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Kimberly-Ennico</link>
+ <description>A conversation with Kimberly Ennico Smith, Project Scientist for SOFIA at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_33_kim_enico.mp3" length="75161864" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Kimberly-Ennico</guid>
+ <pubDate>Thu, 06 Apr 2017 11:53 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Brian Gore Talks About Exploring The Limits of Human Performance</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Brian-Gore</link>
+ <description>A conversation with Brian Gore, Human Systems Integration Division at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_32_brian_gore.mp3" length="67307852" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Brian-Gore</guid>
+ <pubDate>Thu, 30 Mar 2017 16:51 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Yvonne Pendleton Talks About Building A Dream Team For Exploring The Solar System</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Yvonne-Pendleton</link>
+ <description>A conversation with Dr. Yvonne Pendleton, the Director of the Solar System Exploration Research Virtual Institute (SSERVI).</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_31_dr_yvonne_pendleton.mp3" length="56173592" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Yvonne-Pendleton</guid>
+ <pubDate>Tue, 21 Mar 2017 18:25 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Ali Guarneros Luna Talks About Engineering a New Path to Space</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Ali-Guarneros-Luna</link>
+ <description>A conversation with Ali Guarneros Luna, NASA Engineer and Deputy Project Manager at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_30_ali_guarneros_luna.mp3" length="55302896" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Ali-Guarneros-Luna</guid>
+ <pubDate>Fri, 17 Mar 2017 11:03 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Edward Montiel &amp; Matthew Richter Talk About Observing Mars, Venus And More From Earth&#039;s Stratosphere</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Edward-Montiel-and-Matthew-Richter</link>
+ <description>A conversation about NASA’s Stratospheric Observatory for Infrared Astronomy (SOFIA) and the Echelon-Cross-Echelle Spectrograph (EXES) science instrument with Matthew Richter, Principle Investigator, and Edward Montiel, Postdoctoral Scholar.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_sofia_edward_montiel_matthew_richter.mp3" length="64112168" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Edward-Montiel-and-Matthew-Richter</guid>
+ <pubDate>Thu, 09 Mar 2017 16:47 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Elizabeth Pane Talks About Sending Science Experiments To The International Space Station</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Elizabeth-Pane</link>
+ <description>A conversation with Elizabeth Pane, ISS Payload Manager in the Flight Systems and Implementation Branch at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_28_elizabeth_pane.mp3" length="49717496" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Elizabeth-Pane</guid>
+ <pubDate>Thu, 23 Feb 2017 11:55 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Unique Tiltrotor Test Rig: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Unique-Tiltrotor-Test-Rig</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on January 13, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_unique_tiltrotor.mp3" length="10123796" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Unique-Tiltrotor-Test-Rig</guid>
+ <pubDate>Thu, 16 Feb 2017 16:56 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Ian Brosnan Talks About How NASA Collaborates And Shares Data With Other Agencies</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Ian-Brosnan</link>
+ <description>A conversation with Ian Brosnan, Special Assistant for New National Aeronautics and Space Administration and United States Geological Survey Science Initiatives.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_27_ian_brosnan.mp3" length="50232188" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Ian-Brosnan</guid>
+ <pubDate>Thu, 26 Jan 2017 13:55 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>SOFIA Shows Ceres&#039; True Composition: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-SOFIA-Shows-Ceres-True-Composition</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on January 19, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_sofia_dont_judge_an_asteroid_by_its_cover.mp3" length="11195984" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-SOFIA-Shows-Ceres-True-Composition</guid>
+ <pubDate>Thu, 26 Jan 2017 13:44 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Jeremy Frank Talks About How Automated Technology Will Help Humans Reach Mars</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Jeremy-Frank</link>
+ <description>A conversation with Jeremy Frank, Principle Investigator for the Autonomous Systems and Operations Project at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_26_jeremy_frank.mp3" length="57383588" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Jeremy-Frank</guid>
+ <pubDate>Thu, 19 Jan 2017 17:26 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>SOFIA Makes Observations of Jupiter: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-SOFIA-Makes-Observations-of-Jupiter</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on January 5, 2017.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_sofia_makes_observations_of_jupiter.mp3" length="10843112" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-SOFIA-Makes-Observations-of-Jupiter</guid>
+ <pubDate>Thu, 12 Jan 2017 17:21 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Nettie Roozeboom Talks About Designing And Testing Future NASA Aircraft And Spacecraft</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Nettie-Roozeboom</link>
+ <description>A conversation with Nettie Roozeboom, aerospace engineer in the Wind Tunnel Division at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_25_nettie_roozeboom.mp3" length="57301112" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Nettie-Roozeboom</guid>
+ <pubDate>Wed, 11 Jan 2017 18:44 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Terry Fong Talks About Virtual Reality, Self-Driving Cars And The Future Of Robotics</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Terry-Fong</link>
+ <description>A conversation with Terry Fong, Senior Scientist for Autonomous Systems and Lead for the Intelligent Robotics Group at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_24_terry_fong.mp3" length="70310396" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Terry-Fong</guid>
+ <pubDate>Thu, 05 Jan 2017 19:00 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA In Silicon Valley Podcast: End Of Year Clip Show</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-End-of-Year-Clip-Show</link>
+ <description>An end of year compilation of conversations with various NASA scientists, engineers, and researchers throughout 2016 on the NASA in Silicon Valley Podcast.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_23_end_of_year_2016.mp3" length="73178264" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-End-of-Year-Clip-Show</guid>
+ <pubDate>Wed, 28 Dec 2016 19:03 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Lynn Rothschild Talks About Creating Synthetic Organisms And NASA’s Search For Life Beyond Earth</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Lynn-Rothschild</link>
+ <description>A conversation with Lynn Rothschild, astrobiologist and synthetic biologist in the Earth Science Division at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_22_lynn_rothschild.mp3" length="59140640" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Lynn-Rothschild</guid>
+ <pubDate>Wed, 21 Dec 2016 08:15 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>SOFIA Super Heated Gas Streams: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-SOFIA-Super-Heated-Gas-Streams</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on December 8, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_sofia_super_heated_gas_streams.mp3" length="10103960" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-SOFIA-Super-Heated-Gas-Streams</guid>
+ <pubDate>Fri, 16 Dec 2016 14:00 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>SOFIA Expanding New Frontiers: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-SOFIA-Expanding-New-Frontiers</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on November 15, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_sofia_expanding_new_frontiers.mp3" length="12642968" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-SOFIA-Expanding-New-Frontiers</guid>
+ <pubDate>Fri, 16 Dec 2016 13:38 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Exo-Brake: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Exo-Brake</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on December 13, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_exo_brake_small_spacecraft.mp3" length="9616412" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Exo-Brake</guid>
+ <pubDate>Thu, 15 Dec 2016 14:08 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Michelle Eshow Talks About How NASA Is Working To Improve Air Travel For Everyone</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Michelle-Eshow</link>
+ <description>A conversation with Michelle Eshow, Software Lead for Air Traffic Management at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_21_michelle_eshow.mp3" length="50814740" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Michelle-Eshow</guid>
+ <pubDate>Wed, 14 Dec 2016 04:15 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Kai Goebel Talks About Teaching Robots How To Think</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Kai-Goebel</link>
+ <description>A conversation with Kai Goebel, Tech Area Lead for Discovery and Systems Health at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_20_kai_goebel.mp3" length="54637868" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Kai-Goebel</guid>
+ <pubDate>Wed, 07 Dec 2016 09:25 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>John Marmie Talks About NASA’s Plan To Mine A Large Near-Earth Asteroid</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-John-Marmie</link>
+ <description>A conversation with John Marmie, Asteroid Redirect Mission Commercial Partnerships &amp; Hosted Payload Lead.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_john_marmie.mp3" length="71999588" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-John-Marmie</guid>
+ <pubDate>Wed, 30 Nov 2016 14:53 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Daniel Andrews Talks About Exploring The Moon With Robots</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Daniel-Andrews</link>
+ <description>A conversation with Daniel Andrews, Project Manager for NASA’s Resource Prospector mission.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_18_dan_andrews.mp3" length="64027604" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Daniel-Andrews</guid>
+ <pubDate>Tue, 22 Nov 2016 16:58 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>BASALT: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-BASALT</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on November 16, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_basalt.mp3" length="15739472" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-BASALT</guid>
+ <pubDate>Mon, 21 Nov 2016 13:26 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Darlene Lim Talks About Some Of The Challenges Of Doing Science On Mars</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Darlene-Lim</link>
+ <description>A conversation with Darlene Lim, Principal Investigator on NASA’s Biologic Analog Science Associated with Lave Terrains (BASALT) project.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_17_darlene_lim.mp3" length="60314096" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Darlene-Lim</guid>
+ <pubDate>Wed, 16 Nov 2016 11:14 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Leedjia Svec Talks About Advancing Diversity In STEM</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Leedjia-Svec</link>
+ <description>A conversation with U.S. Navy Lieutenant Commander Leedjia Svec, Director of Military Programs at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_16_leedjia_svec.mp3" length="54278732" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Leedjia-Svec</guid>
+ <pubDate>Wed, 09 Nov 2016 12:21 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>POSIDON WB-57F Aircraft Investigates Convective Transport and Low Ozone Over Guam: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-POSIDON-WB-57F-Aircraft-Investigates-Convective-Transport</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on October 14, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_posidon.mp3" length="3820124" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-POSIDON-WB-57F-Aircraft-Investigates-Convective-Transport</guid>
+ <pubDate>Tue, 08 Nov 2016 17:00 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA Conducts &#039;Out of Sight&#039; Drone Tests in Nevada: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-NASA-Conducts-Out-of-Sight-Drone-Tests-in-Nevada</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on October 19, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_out_of_site_drone_tests_nevada.mp3" length="18792128" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-NASA-Conducts-Out-of-Sight-Drone-Tests-in-Nevada</guid>
+ <pubDate>Mon, 07 Nov 2016 12:53 EST</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Stuart Rogers: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Stuart-Rogers</link>
+ <description>A conversation with Stuart Rogers, a NASA Aerospace Engineer in the Advanced Supercomputing Division at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_15_stu_rodgers.mp3" length="51501692" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Stuart-Rogers</guid>
+ <pubDate>Wed, 02 Nov 2016 03:11 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA Establishes the Small Spacecraft Systems Virtual Institute: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Small-Spacecraft-Systems-Virtual-Institute</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on October 21, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_nasa_establishes_sssvi.mp3" length="11710676" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Small-Spacecraft-Systems-Virtual-Institute</guid>
+ <pubDate>Fri, 28 Oct 2016 01:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>James Cockrell, Small Spacecrafts: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-James-Cockrell</link>
+ <description>A conversation with James Cockrell, Project Manager for Small Spacecrafts.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_14_james_cockrell.mp3" length="63803144" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-James-Cockrell</guid>
+ <pubDate>Wed, 26 Oct 2016 14:03 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Pamela Marcum, SOFIA: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Pamela-Marcum</link>
+ <description>A conversation with Pamela Marcum, Project Scientist on the Stratospheric Observatory for Infrared Astronomy project, also known as SOFIA.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_episode_13_pamela_marcum.mp3" length="62904260" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Pamela-Marcum</guid>
+ <pubDate>Wed, 19 Oct 2016 12:47 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>SOFIA Detects Collapsing Clouds Becoming Young Suns: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-SOFIA-Detects-Collapsing-Clouds-Becoming-Young-Suns</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on October 5, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_sofia_detects_clouds_becoming_stars.mp3" length="8736320" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-SOFIA-Detects-Collapsing-Clouds-Becoming-Young-Suns</guid>
+ <pubDate>Mon, 17 Oct 2016 13:17 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Elisa Quintana, Kepler/K2 Mission: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Elisa-Quintana</link>
+ <description>A conversation with Elissa Quintana, NASA research scientist for the Kepler and K2 mission at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_elisa_quintana.mp3" length="54377912" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Elisa-Quintana</guid>
+ <pubDate>Wed, 12 Oct 2016 14:38 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Erin Flynn-Evans, Fatigue Countermeasures: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Erin-Flynn-Evans</link>
+ <description>A conversation with Dr. Erin Flynn-Evans, Research Psychologist and the Director of the Fatigue Countermeasures Laboratory at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_dr_erin_flynn_evans.mp3" length="57269792" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Erin-Flynn-Evans</guid>
+ <pubDate>Wed, 05 Oct 2016 12:52 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>40 Years of Safer Aviation Through Reporting: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-40-Years-of-Safer-Aviation-Through-Reporting</link>
+ <description>A feature from NASA’s Ames Research Center in Silicon Valley originally posted on September 28, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_asrs_40years.mp3" length="13950056" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-40-Years-of-Safer-Aviation-Through-Reporting</guid>
+ <pubDate>Mon, 03 Oct 2016 14:06 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Alex Mazhari, NASA SpaceShop: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Alex-Mazhari</link>
+ <description>A conversation with Alex Mazhari, Manager of the NASA SpaceShop Rapid Prototyping Lab at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_alex_mazhari.mp3" length="53403860" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Alex-Mazhari</guid>
+ <pubDate>Wed, 28 Sep 2016 04:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Steve Howell, Senior Research Scientist on Astrophysics: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Steve-Howell</link>
+ <description>A conversation with Steve Howell, NASA Senior Research Scientist on astrophysics.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_steve_howell.mp3" length="48424040" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Steve-Howell</guid>
+ <pubDate>Wed, 21 Sep 2016 11:33 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Know Thy Star, Know Thy Planet: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Know-Thy-Star-Know-Thy-Planet</link>
+ <description>A feature story from NASA’s Ames Research Center in Silicon Valley originally posted on September 14, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_know_thy_star_know_thy_planet.mp3" length="16065244" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Know-Thy-Star-Know-Thy-Planet</guid>
+ <pubDate>Tue, 20 Sep 2016 13:23 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Zachary Burkland, Small Business Innovation Research: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Zachary-Burkland</link>
+ <description>A conversation with Zachary Burkland, Business Manager with the Small Business Innovation Research/Small Business Technology Transfer (SBIR/STTR) office.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_zach_burkland.mp3" length="52419368" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Zachary-Burkland</guid>
+ <pubDate>Wed, 14 Sep 2016 18:40 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA Flies to Africa to Study Climate Effects of Smoke on Clouds: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Africa-Study-Clouds</link>
+ <description>A news feature from NASA’s Ames Research Center in Silicon Valley originally posted on August 24, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_africa_study_clouds.mp3" length="14402177" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Africa-Study-Clouds</guid>
+ <pubDate>Thu, 08 Sep 2016 17:39 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Gary Martin, Director of Partnerships: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Gary-Martin</link>
+ <description>A conversation with Gary Martin, Director of Partnerships at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_gary_martin.mp3" length="35994158" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Gary-Martin</guid>
+ <pubDate>Wed, 07 Sep 2016 11:55 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Rus Belikov and Eduardo Bendek: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Rus-Belikov-and-Eduardo-Bendek</link>
+ <description>A conversation with Rus Belikov and Eduardo Bendek, senior research scientists at NASA’s Ames Research Center, working on next generation technology to directly image planets beyond the solar system.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_rus_belikov_edwardo_bendek.mp3" length="64768886" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Rus-Belikov-and-Eduardo-Bendek</guid>
+ <pubDate>Wed, 31 Aug 2016 18:27 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>&quot;Kitchen Smoke&quot; Molecules in Nebula: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Kitchen-Smoke-Molecules-in-Nebula</link>
+ <description>A news feature from NASA’s SOFIA mission originally posted on August 16, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_molecules_in_nebula_offer_clues.mp3" length="9361712" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Kitchen-Smoke-Molecules-in-Nebula</guid>
+ <pubDate>Mon, 29 Aug 2016 13:12 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Kepler Watches Stellar Dancers in the Pleiades Cluster: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Kepler-Watches-Stellar-Dancers</link>
+ <description>A news feature from NASA’s Kepler and K2 mission originally posted on August 12, 2016.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_kepler_watches_stellar_dancers.mp3" length="17042419" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Kepler-Watches-Stellar-Dancers</guid>
+ <pubDate>Mon, 29 Aug 2016 12:42 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Thomas Barclay: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-Thomas-Barclay</link>
+ <description>A conversation with Thomas Barclay, Senior Research Scientist on the Kepler/K2 Mission at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_thomas_barclay.mp3" length="55280972" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-Thomas-Barclay</guid>
+ <pubDate>Wed, 24 Aug 2016 12:15 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>David J. Smith: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-david-j-smith</link>
+ <description>A conversation with David J. Smith, NASA Research Scientist at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_david_j_smith.mp3" length="54274556" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-david-j-smith</guid>
+ <pubDate>Wed, 17 Aug 2016 11:13 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Power of Pink Provides NASA with Pressure Pictures: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-power-of-pink</link>
+ <description>Power of Pink Provides NASA with Pressure Pictures: NASA in Silicon Valley Podcast</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_power_of_pink.mp3" length="16455656" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-power-of-pink</guid>
+ <pubDate>Tue, 16 Aug 2016 10:09 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Laura Iraci: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-laura-iraci</link>
+ <description>A conversation with Laura Iraci, NASA Research Scientist and AJAX Principle Investigator at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_laura_iraci.mp3" length="53921684" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-laura-iraci</guid>
+ <pubDate>Wed, 10 Aug 2016 11:54 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Astronomers Help Focus Research in the Search for Another Earth: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-astronomers</link>
+ <description>Astronomers Help Focus Research in the Search for Another Earth: NASA in Silicon Valley Podcast</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_ahfritsfae.mp3" length="3340928" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-astronomers</guid>
+ <pubDate>Tue, 09 Aug 2016 11:37 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Steven Smith: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-steven-smith</link>
+ <description>A conversation with Steven Smith, Associate Director for International Space Station Science Directorate at NASA’s Ames Research Center in Silicon Valley.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_steve_smith.mp3" length="58884860" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-steven-smith</guid>
+ <pubDate>Wed, 03 Aug 2016 04:02 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Mary Beth Wilhelm: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-mary-beth-wilhelm</link>
+ <description>Mary Beth Wilhelm, NASA Research Scientist, Planetary Science Branch: NASA in Silicon Valley Podcast</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nisv_mary_beth_whilhelm.mp3" length="48523160" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-mary-beth-wilhelm</guid>
+ <pubDate>Wed, 27 Jul 2016 11:41 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>NASA’s Kepler Confirms 100+ Exoplanets During Its K2 Mission: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-kepler-100</link>
+ <description>NASA’s Kepler Confirms 100+ Exoplanets During Its K2 Mission: NASA in Silicon Valley Podcast</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_kepler_confirms_100_planets.mp3" length="13631636" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-kepler-100</guid>
+ <pubDate>Tue, 26 Jul 2016 17:20 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+ <item> <title>Introduction: NASA in Silicon Valley Podcast</title>
+ <link>http://www.nasa.gov/ames/nisv-podcast-introduction</link>
+ <description>NASA in Silicon Valley, a new podcast series from NASA’s Ames Research Center located in the heart of Silicon Valley</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/atoms/audio/nasa_in_silicon_valley_introduction.mp3" length="7276808" type="audio/mpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/ames/nisv-podcast-introduction</guid>
+ <pubDate>Wed, 20 Jul 2016 10:09 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/NASA-in-Silicon-Valley.rss">NASA in Silicon Valley</source>
+</item>
+</channel>
+</rss>
