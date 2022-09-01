@@ -5,11 +5,13 @@
 #include <QFile>
 #include <string>
 #include <vector>
+#include "podcast.h"
 
 class Podcasts
 {
 private:
     static std::vector<QDomDocument*> podcastDOMs;
+    static std::vector<Podcast*> podcasts;
 public:
     Podcasts();
 
@@ -18,7 +20,10 @@ public:
 
     static bool loadPodcasts();
 
+    static void clearPodcastDOMs();
     static void clearPodcasts();
+
+    static bool loadPodcastsFromSourceFolder(QString folder);
 };
 
 #endif // PODCASTS_H

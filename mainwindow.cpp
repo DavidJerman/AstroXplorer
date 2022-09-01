@@ -991,6 +991,7 @@ void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, OR
 
 void MainWindow::on_LoadPodcastsButton_clicked()
 {
-    Podcasts::addPodcastFromXML(QString("C:\\Users\\david\\OneDrive\\Documents\\C++\\Projects\\AstroXplorer\\podcasts\\sources\\Gravity-Assist.rss"));
+    updateStatus("Loading podcasts...");
+    Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
+    updateStatus("Podcasts loaded");
 }
-

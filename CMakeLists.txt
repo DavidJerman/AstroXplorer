@@ -33,6 +33,10 @@ set(PROJECT_SOURCES
         enums.cpp
         podcasts.h
         podcasts.cpp
+        podcast.h
+        podcast.cpp
+        podcastepisode.h
+        podcastepisode.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
