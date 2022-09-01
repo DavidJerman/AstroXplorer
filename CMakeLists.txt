@@ -16,7 +16,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS WebView)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Xml)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -31,6 +31,8 @@ set(PROJECT_SOURCES
         imagemanipulation.cpp
         enums.h
         enums.cpp
+        podcasts.h
+        podcasts.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -60,7 +62,7 @@ target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Network)
 target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
-target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::WebView)
+target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Xml)
 
 set_target_properties(AstroXplorer PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

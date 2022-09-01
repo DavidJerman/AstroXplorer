@@ -16,6 +16,7 @@
 #include <QDateEdit>
 
 #include "enums.h"
+#include "podcasts.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -123,6 +124,8 @@ private:
 
 private slots:
     void imagePopUp(QListWidgetItem*);
+
+    void on_LoadPodcastsButton_clicked();
 
 private:
     std::map<std::string, std::string> config;
