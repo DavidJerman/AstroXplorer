@@ -8,6 +8,7 @@
 #include "podcasts.h"
 
 #include <sstream>
+#include <QFontDatabase>
 
 typedef ORIGIN O;
 
@@ -139,6 +140,7 @@ MainWindow::MainWindow(QWidget *parent)
                      this, SLOT(populateEpisodesList(QListWidgetItem*)));
     QObject::connect(ui->EpisodeSelectorList, SIGNAL(itemClicked(QListWidgetItem*)),
                      this, SLOT(playEpisode(QListWidgetItem*)));
+    ui->EpisodeDateLabel->setMargin(5);
 }
 
 void MainWindow::updateStatus(QString msg) {
@@ -1106,7 +1108,12 @@ void MainWindow::updatePodcastsList() {
         linkLabel->setText("Link: " + podcast->getLink());
         languageLabel->setText("Language: " + podcast->getLanguage());
 
+        titleLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "bold", 13)));
         descriptionTextEdit->setReadOnly(true);
+        descriptionTextEdit->setFrameStyle(0);
+        descriptionTextEdit->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 11)));
+        linkLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 10)));
+        languageLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 10)));
 
         informationLayout->addWidget(titleLabel);
         informationLayout->addWidget(descriptionTextEdit);
@@ -1127,6 +1134,7 @@ void MainWindow::updatePodcastsList() {
         if (file.open(QIODevice::ReadOnly)) {
             QPixmap p (filePath);
             p = p.scaled(SIZE, SIZE);
+            ImageManipulation::roundEdges(p, 20);
             imageLabel->setPixmap(p);
             updateStatus("Cached thumbnail(s) found!");
         } else {
@@ -1157,6 +1165,7 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
     if (file.open(QIODevice::ReadOnly)) {
         p = QPixmap (filePath);
         p = p.scaled(SIZE, SIZE);
+        ImageManipulation::roundEdges(p, 20);
 
         updateStatus("Cached thumbnail(s) found!");
     } else {
@@ -1193,7 +1202,11 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
         dateLabel->setText("Date: " + episode->getDate());
         webUrlLabel->setText("Transcript: " + episode->getWebUrl());
 
+        titleLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "bold", 10)));
         descriptionLabel->setReadOnly(true);
+        descriptionLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 9)));
+        webUrlLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 9)));
+
 
         informationLayout->addWidget(titleLabel);
         informationLayout->addWidget(descriptionLabel);
@@ -1234,6 +1247,7 @@ void MainWindow::playEpisode(PodcastEpisode* episode) {
     if (file.open(QIODevice::ReadOnly)) {
         p = QPixmap (filePath);
         p = p.scaled(SIZE, SIZE);
+        ImageManipulation::roundEdges(p, 20);
 
         updateStatus("Cached thumbnail(s) found!");
     } else {
@@ -1246,7 +1260,7 @@ void MainWindow::playEpisode(PodcastEpisode* episode) {
     auto audioUrl = episode->getMP3Url();
 
     ui->EpisodeThumbnailLabel->setPixmap(p);
-    ui->EpisodeTitleLabel->setText(title);
+    ui->EpisodeTitleTextEdit->setText(title);
     ui->EpisodeDateLabel->setText(date);
 
     mediaPlayer->stop();
@@ -1254,6 +1268,8 @@ void MainWindow::playEpisode(PodcastEpisode* episode) {
     mediaPlayer->play();
 
     this->episode = episode;
+
+    setButtonToPlay(false);
 
     updateStatus("Playing " + episode->getTitle());
 }
@@ -1299,7 +1315,7 @@ void MainWindow::onPositionChanged(qint64 position) {
         int seconds = position % 60;
         std::string time;
         if (hours != 0)
-            time = std::to_string(hours) + ":" + (hours > 9 ? "" : "0") + std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
+            time = std::to_string(hours) + ":" + (minutes > 9 ? "" : "0") + std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
         else
             time = std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
         ui->CurrentTimeLabel->setText(QString::fromStdString(time));
@@ -1322,14 +1338,24 @@ void MainWindow::on_AudioProgressBar_sliderReleased()
 
 void MainWindow::on_PausePlayButton_clicked()
 {
-    if (mediaPlayer->playbackState() == QMediaPlayer::PlayingState)
+    if (mediaPlayer->playbackState() == QMediaPlayer::PlayingState) {
         mediaPlayer->pause();
-    else if (mediaPlayer->playbackState() == QMediaPlayer::PausedState)
+        setButtonToPlay(true);
+    }
+    else if (mediaPlayer->playbackState() == QMediaPlayer::PausedState) {
         mediaPlayer->play();
+        setButtonToPlay(false);
+    }
+
+}
+
+void MainWindow::setButtonToPlay(bool state) {
+    if (!state) ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "stop.png")));
+    else ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "play.png")));
 }
 
 void MainWindow::onPlaybackStateChanged(QMediaPlayer::PlaybackState) {
-    if (mediaPlayer->playbackState() == QMediaPlayer::StoppedState) {
+    if (mediaPlayer->playbackState() == QMediaPlayer::StoppedState && mediaPlayer->mediaStatus() == QMediaPlayer::EndOfMedia) {
         // This is for now, later there will be an auto-play option
         resetAudioControlsPane();
         resetAudio();
@@ -1343,7 +1369,8 @@ void MainWindow::resetAudioControlsPane() {
     ui->CurrentTimeLabel->setText("0:00");
     ui->EpisodeThumbnailLabel->setPixmap({});
     ui->EpisodeDateLabel->setText("");
-    ui->EpisodeTitleLabel->setText("");
+    ui->EpisodeTitleTextEdit->setText("");
+    setButtonToPlay(true);
 }
 
 void MainWindow::resetAudio() {

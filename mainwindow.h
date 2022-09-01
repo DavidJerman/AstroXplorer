@@ -137,6 +137,7 @@ private:
     void playEpisode(PodcastEpisode*);
     void playNextEpisode(PodcastEpisode*);
     void playPrevEpisode(PodcastEpisode*);
+    void setButtonToPlay(bool);
 
 private slots:
     void populateEpisodesList(QListWidgetItem* item);

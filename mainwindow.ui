@@ -3204,12 +3204,6 @@
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="1" column="0" colspan="2">
-            <widget class="QListWidget" name="PodcastSelectorList"/>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLineEdit" name="SearchPodcastLineEdit"/>
-           </item>
            <item row="2" column="1">
             <widget class="QPushButton" name="SearchPodcastButton">
              <property name="font">
@@ -3221,6 +3215,12 @@
               <string>Search</string>
              </property>
             </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QListWidget" name="PodcastSelectorList"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLineEdit" name="SearchPodcastLineEdit"/>
            </item>
            <item row="0" column="0" colspan="2">
             <widget class="QPushButton" name="LoadPodcastsButton">
@@ -3245,7 +3245,7 @@
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <layout class="QGridLayout" name="gridLayout_8">
+          <layout class="QGridLayout" name="gridLayout_8" rowstretch="1,0,0" columnstretch="0,0,0,0,0,0,0,0,0,0">
            <item row="0" column="0">
             <spacer name="horizontalSpacer">
              <property name="orientation">
@@ -3259,24 +3259,7 @@
              </property>
             </spacer>
            </item>
-           <item row="0" column="5">
-            <widget class="QPushButton" name="PausePlayButton">
-             <property name="font">
-              <font>
-               <pointsize>13</pointsize>
-               <bold>true</bold>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Pause/Play</string>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="8">
+           <item row="0" column="9">
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -3289,128 +3272,350 @@
              </property>
             </spacer>
            </item>
-           <item row="0" column="7">
-            <widget class="QPushButton" name="NextEpButton">
-             <property name="font">
-              <font>
-               <pointsize>13</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>-&gt;</string>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QLabel" name="CurrentTimeLabel">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>0:00</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1" rowspan="2">
-            <widget class="QLabel" name="EpisodeThumbnailLabel">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="6">
-            <widget class="QPushButton" name="SkipTimeForwardButton">
-             <property name="font">
-              <font>
-               <pointsize>13</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>15s &gt;&gt;</string>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="3">
-            <widget class="QPushButton" name="PreviousEpButton">
-             <property name="font">
-              <font>
-               <pointsize>13</pointsize>
-               <bold>true</bold>
-              </font>
+            <widget class="QFrame" name="AudioCFrame">
+             <property name="minimumSize">
+              <size>
+               <width>10</width>
+               <height>0</height>
+              </size>
              </property>
-             <property name="text">
-              <string>&lt;-</string>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
              </property>
-             <property name="flat">
-              <bool>true</bool>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
              </property>
+             <layout class="QGridLayout" name="gridLayout_10" rowstretch="1,1,0">
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item row="2" column="1" colspan="3">
+               <widget class="QSlider" name="AudioProgressBar">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="4">
+               <widget class="QLabel" name="MaxTimeLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>0:00</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="CurrentTimeLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>0:00</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="5">
+               <widget class="QFrame" name="AudioButtonFrame">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_58">
+                 <property name="spacing">
+                  <number>12</number>
+                 </property>
+                 <item>
+                  <widget class="QPushButton" name="PreviousEpButton">
+                   <property name="font">
+                    <font>
+                     <pointsize>16</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/back.png</normaloff>icons/back.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>28</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="SkiptimeBackButton">
+                   <property name="font">
+                    <font>
+                     <pointsize>16</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/back_15.png</normaloff>icons/back_15.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>28</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="PausePlayButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Snap ITC</family>
+                     <pointsize>20</pointsize>
+                     <bold>false</bold>
+                     <underline>false</underline>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/play.png</normaloff>icons/play.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>28</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="SkipTimeForwardButton">
+                   <property name="font">
+                    <font>
+                     <pointsize>16</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/front_15.png</normaloff>icons/front_15.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>28</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="NextEpButton">
+                   <property name="font">
+                    <font>
+                     <pointsize>16</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/front.png</normaloff>icons/front.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>28</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="EpisodeTitleLabel">
-             <property name="text">
-              <string/>
+           <item row="0" column="2" rowspan="2">
+            <widget class="QFrame" name="EpInfoFrame">
+             <property name="cursor">
+              <cursorShape>SizeAllCursor</cursorShape>
              </property>
-            </widget>
-           </item>
-           <item row="1" column="4" colspan="3">
-            <widget class="QSlider" name="AudioProgressBar">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
              </property>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QPushButton" name="SkiptimeBackButton">
-             <property name="font">
-              <font>
-               <pointsize>13</pointsize>
-               <bold>true</bold>
-              </font>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
              </property>
-             <property name="text">
-              <string>&lt;&lt; 15s</string>
+             <property name="lineWidth">
+              <number>0</number>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLabel" name="EpisodeDateLabel">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="7">
-            <widget class="QLabel" name="MaxTimeLabel">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>0:00</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
+             <layout class="QGridLayout" name="gridLayout_9">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item row="1" column="0" rowspan="2">
+               <widget class="QLabel" name="EpisodeThumbnailLabel">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="1">
+               <widget class="QTextEdit" name="EpisodeTitleTextEdit">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Plain</enum>
+                </property>
+                <property name="lineWidth">
+                 <number>0</number>
+                </property>
+                <property name="verticalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                </property>
+                <property name="horizontalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="EpisodeDateLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <spacer name="verticalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
