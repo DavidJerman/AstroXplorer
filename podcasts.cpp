@@ -76,7 +76,7 @@ bool Podcasts::loadPodcasts() {
                 }
             } else if (item.tagName() == "item") {
                 // Get info on the episode
-                PodcastEpisode* episode = new PodcastEpisode();
+                PodcastEpisode* episode = new PodcastEpisode(podcast->getID());
                 auto subItem = item.firstChild().toElement();
                 while (!subItem.isNull()) {
                     if (subItem.tagName() == "title") episode->setTitle(subItem.text());

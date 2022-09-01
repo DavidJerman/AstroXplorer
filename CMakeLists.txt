@@ -17,6 +17,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Xml)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Multimedia)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -67,6 +68,7 @@ target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Network)
 target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
 target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Xml)
+target_link_libraries(AstroXplorer PRIVATE Qt${QT_VERSION_MAJOR}::Multimedia)
 
 set_target_properties(AstroXplorer PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

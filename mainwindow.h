@@ -16,7 +16,11 @@
 #include <QDateEdit>
 #include <QListWidgetItem>
 
+#include <QtMultimedia/QMediaPlayer>
+#include <QtMultimedia/QAudioOutput>
+
 #include "enums.h"
+#include "podcastepisode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -128,20 +132,50 @@ private:
     void updatePodcastsList();
     void clearPodcastsList();
     void clearEpisodesList();
+    void resetAudioControlsPane();
+    void resetAudio();
+    void playEpisode(PodcastEpisode*);
+    void playNextEpisode(PodcastEpisode*);
+    void playPrevEpisode(PodcastEpisode*);
 
 private slots:
     void populateEpisodesList(QListWidgetItem* item);
 
     void playEpisode(QListWidgetItem* item);
 
+    void onDurationChanged(qint64 duration);
+
+    void onPositionChanged(qint64 position);
+
+    void onPlaybackStateChanged(QMediaPlayer::PlaybackState);
+
     void imagePopUp(QListWidgetItem*);
 
     void on_LoadPodcastsButton_clicked();
+
+    void on_AudioProgressBar_sliderPressed();
+
+    void on_AudioProgressBar_sliderReleased();
+
+    void on_PausePlayButton_clicked();
+
+    void on_SkiptimeBackButton_clicked();
+
+    void on_SkipTimeForwardButton_clicked();
+
+    void on_NextEpButton_clicked();
+
+    void on_PreviousEpButton_clicked();
 
 private:
     std::map<std::string, std::string> config;
     Ui::MainWindow *ui;
     QNetworkAccessManager *manager;
+    QMediaPlayer* mediaPlayer;
+    QAudioOutput* audioOutput;
+
+    bool AudioProgressBarLocked {false};
+    PodcastEpisode* episode {nullptr};
 
     const int CORNER_RADIUS;
 };

@@ -9,10 +9,11 @@ private:
     QString title, link, description, MP3Url, webUrl, date, rssSource;
     static unsigned int IDCounter;
     unsigned int ID;
+    unsigned int PID;
 public:
     PodcastEpisode(QString& title, QString& link, QString& description, QString& MP3Url,
-                   QString& webUrl, QString& date, QString& rssSource);
-    PodcastEpisode() = default;
+                   QString& webUrl, QString& date, QString& rssSource, unsigned int PID);
+    PodcastEpisode(unsigned int PID);
 
 
     const QString &getTitle() const;
@@ -31,7 +32,7 @@ public:
     void setRssSource(const QString &newRssSource);
 
     unsigned int getID() const;
-    void setID(unsigned int newID);
+    unsigned int getPID() const;
 };
 
 #endif // PODCASTEPISODE_H

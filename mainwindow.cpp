@@ -18,6 +18,21 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Media
+    mediaPlayer = new QMediaPlayer();
+    audioOutput = new QAudioOutput();
+    mediaPlayer->setAudioOutput(audioOutput);\
+    audioOutput->setVolume(100);
+
+    QObject::connect(mediaPlayer, SIGNAL(durationChanged(qint64)),
+                     this, SLOT(onDurationChanged(qint64)));
+
+    QObject::connect(mediaPlayer, SIGNAL(positionChanged(qint64)),
+                     this, SLOT(onPositionChanged(qint64)));
+
+    QObject::connect(mediaPlayer, SIGNAL(playbackStateChanged(QMediaPlayer::PlaybackState)),
+                     this, SLOT(onPlaybackStateChanged(QMediaPlayer::PlaybackState)));
+
     // Load config
     auto response = CfgLoader::loadConfig("config");
     if (!response)
@@ -388,6 +403,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete manager;
+    delete mediaPlayer;
 }
 
 // Mars Rover Imagery
@@ -1053,7 +1069,12 @@ void MainWindow::clearEpisodesList() {
 }
 
 void MainWindow::updatePodcastsList() {
+
+    updateStatus("Loading podcasts...");
+
     clearPodcastsList();
+    clearEpisodesList();
+
     for (const auto &podcast: Podcasts::getPodcasts()) {
         // Create the frame with all the labels
         auto mainLayout = new QHBoxLayout();
@@ -1065,7 +1086,7 @@ void MainWindow::updatePodcastsList() {
         QFrame* informationFrame = new QFrame();
         informationFrame->setLayout(informationLayout);
 
-        const int SIZE = 240;
+        const int SIZE = 220;
         QLabel* imageLabel = new QLabel();
         imageLabel->setText("Loading image...");
         imageLabel->setScaledContents(true);
@@ -1113,9 +1134,14 @@ void MainWindow::updatePodcastsList() {
             updateStatus("Downloading thumbnails...");
         }
     }
+
+    updateStatus("Podcasts loaded!");
+
 }
 
 void MainWindow::populateEpisodesList(QListWidgetItem* item) {
+
+    updateStatus("Loading epsiodes...");
 
     clearEpisodesList();
 
@@ -1123,7 +1149,7 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
     auto ID = widget->property("ID").toInt();
     auto podcast = Podcasts::getPodcastById(ID);
 
-    const int SIZE = 160;
+    const int SIZE = 140;
     auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(podcast->getTitle()) + ".jpg";
     QFile file;
     QPixmap p;
@@ -1184,8 +1210,169 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
 
         imageLabel->setPixmap(p);
     }
+
+    updateStatus("Episodes loaded!");
+
 }
 
 void MainWindow::playEpisode(QListWidgetItem* item) {
+    auto widget = dynamic_cast<QFrame*> (item->listWidget()->itemWidget(item));
+    auto ID = widget->property("ID").toInt();
+    auto episode = Podcasts::getEpisodeById(ID);
 
+    playEpisode(episode);
 }
+
+void MainWindow::playEpisode(PodcastEpisode* episode) {
+    if (!episode) return;
+
+    const unsigned int SIZE = 80;
+    auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(Podcasts::getPodcastById(episode->getPID())->getTitle()) + ".jpg";
+    QFile file;
+    QPixmap p;
+    file.setFileName(filePath);
+    if (file.open(QIODevice::ReadOnly)) {
+        p = QPixmap (filePath);
+        p = p.scaled(SIZE, SIZE);
+
+        updateStatus("Cached thumbnail(s) found!");
+    } else {
+        popUpDialog("Podcast data is corrupt, please reload the podcasts!");
+        return;
+    }
+
+    auto title = episode->getTitle();
+    auto date = episode->getDate();
+    auto audioUrl = episode->getMP3Url();
+
+    ui->EpisodeThumbnailLabel->setPixmap(p);
+    ui->EpisodeTitleLabel->setText(title);
+    ui->EpisodeDateLabel->setText(date);
+
+    mediaPlayer->stop();
+    mediaPlayer->setSource(QUrl(audioUrl));
+    mediaPlayer->play();
+
+    this->episode = episode;
+
+    updateStatus("Playing " + episode->getTitle());
+}
+
+void MainWindow::playNextEpisode(PodcastEpisode* currentEpisode) {
+    if (!currentEpisode) return;
+    auto nextEpisode = Podcasts::getEpisodeById(currentEpisode->getID() + 1);
+    if (nextEpisode)
+        if (currentEpisode->getPID() == nextEpisode->getPID())
+            playEpisode(nextEpisode);
+}
+
+void MainWindow::playPrevEpisode(PodcastEpisode* currentEpisode) {
+    if (!currentEpisode) return;
+    if (currentEpisode->getID() < 1) return;
+    auto nextEpisode = Podcasts::getEpisodeById(currentEpisode->getID() - 1);
+    if (nextEpisode)
+        if (currentEpisode->getPID() == nextEpisode->getPID())
+            playEpisode(nextEpisode);
+}
+
+void MainWindow::onDurationChanged(qint64 duration) {
+    duration /= 1000;
+    int hours = duration / 3600;
+    int minutes = (duration - (hours * 3600)) / 60;
+    int seconds = duration % 60;
+    std::string time;
+    if (hours != 0)
+        time = std::to_string(hours) + ":" + (hours > 9 ? "" : "0") + std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
+    else
+        time = std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
+    ui->MaxTimeLabel->setText(QString::fromStdString(time));
+    ui->AudioProgressBar->setMaximum(duration * 1000);
+}
+
+void MainWindow::onPositionChanged(qint64 position) {
+    if (!AudioProgressBarLocked)
+        ui->AudioProgressBar->setValue(position);
+    if (position % 1000) {
+        position /= 1000;
+        int hours = position / 3600;
+        int minutes = (position - (hours * 3600)) / 60;
+        int seconds = position % 60;
+        std::string time;
+        if (hours != 0)
+            time = std::to_string(hours) + ":" + (hours > 9 ? "" : "0") + std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
+        else
+            time = std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
+        ui->CurrentTimeLabel->setText(QString::fromStdString(time));
+    }
+}
+
+void MainWindow::on_AudioProgressBar_sliderPressed()
+{
+    AudioProgressBarLocked = true;
+}
+
+
+void MainWindow::on_AudioProgressBar_sliderReleased()
+{
+    if (mediaPlayer->mediaStatus() == QMediaPlayer::BufferedMedia)
+        mediaPlayer->setPosition(ui->AudioProgressBar->sliderPosition());
+    AudioProgressBarLocked = false;
+}
+
+
+void MainWindow::on_PausePlayButton_clicked()
+{
+    if (mediaPlayer->playbackState() == QMediaPlayer::PlayingState)
+        mediaPlayer->pause();
+    else if (mediaPlayer->playbackState() == QMediaPlayer::PausedState)
+        mediaPlayer->play();
+}
+
+void MainWindow::onPlaybackStateChanged(QMediaPlayer::PlaybackState) {
+    if (mediaPlayer->playbackState() == QMediaPlayer::StoppedState) {
+        // This is for now, later there will be an auto-play option
+        resetAudioControlsPane();
+        resetAudio();
+    }
+}
+
+void MainWindow::resetAudioControlsPane() {
+    ui->AudioProgressBar->setMaximum(0);
+    ui->AudioProgressBar->setValue(0);
+    ui->MaxTimeLabel->setText("0:00");
+    ui->CurrentTimeLabel->setText("0:00");
+    ui->EpisodeThumbnailLabel->setPixmap({});
+    ui->EpisodeDateLabel->setText("");
+    ui->EpisodeTitleLabel->setText("");
+}
+
+void MainWindow::resetAudio() {
+    mediaPlayer->stop();
+}
+
+void MainWindow::on_SkiptimeBackButton_clicked()
+{
+    mediaPlayer->setPosition(std::max((qint64)0, mediaPlayer->position() - 15000));
+}
+
+
+void MainWindow::on_SkipTimeForwardButton_clicked()
+{
+    mediaPlayer->setPosition(std::min(mediaPlayer->position() + 15000, mediaPlayer->duration()));
+}
+
+void MainWindow::on_NextEpButton_clicked()
+{
+    resetAudioControlsPane();
+    resetAudio();
+    playNextEpisode(episode);
+}
+
+
+void MainWindow::on_PreviousEpButton_clicked()
+{
+    resetAudioControlsPane();
+    resetAudio();
+    playPrevEpisode(episode);
+}
+
