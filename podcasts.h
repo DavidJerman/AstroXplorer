@@ -24,6 +24,10 @@ public:
     static void clearPodcasts();
 
     static bool loadPodcastsFromSourceFolder(QString folder);
+
+    static const std::vector<Podcast*>& getPodcasts();
+    static Podcast* getPodcastById(unsigned int ID);
+    static PodcastEpisode* getEpisodeById(unsigned int ID);
 };
 
 #endif // PODCASTS_H

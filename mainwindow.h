@@ -14,9 +14,9 @@
 
 #include <QSpinBox>
 #include <QDateEdit>
+#include <QListWidgetItem>
 
 #include "enums.h"
-#include "podcasts.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,6 +32,9 @@ public:
 
 private slots:
     void onRequestFinished(QNetworkReply *reply);
+    void saveDataToFile(const QString filePath, const QByteArray& data);
+    QString getValidFileName(QString fileName);
+    QString getValidFileName(std::string fileName);
 
     // Rover imagery
     void on_O_FHAZ_SOLS_Button_clicked();
@@ -98,7 +101,8 @@ private:
 
     // Limit rover imagery input widget range
     void limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate);
-    void limitCameraInputWidgetRanges(QSpinBox* solsWidget, QString& maxSol, QDateEdit* dateWidget, QString& maxDate, QString& landingDate);
+    void limitCameraInputWidgetRanges(QSpinBox* solsWidget, QString& maxSol, QDateEdit* dateWidget,
+                                      QString& maxDate, QString& landingDate);
 
     // Rover manifest
     void updateRoverManifest(QNetworkReply* reply, QListWidget* list, ORIGIN origin, QLabel* imageLabel);
@@ -115,14 +119,21 @@ private:
     void setWelcomeImageInformation(QJsonObject &jsonObj);
 
     void fetchAPIData(QUrl url, ORIGIN origin);
+    void fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel);
 
     void updateStatus(QString msg);
     void popUpDialog(QString msg);
 
-    // Memory management
-    void clearQList(QListWidget* list);
+    // Podcasts
+    void updatePodcastsList();
+    void clearPodcastsList();
+    void clearEpisodesList();
 
 private slots:
+    void populateEpisodesList(QListWidgetItem* item);
+
+    void playEpisode(QListWidgetItem* item);
+
     void imagePopUp(QListWidgetItem*);
 
     void on_LoadPodcastsButton_clicked();

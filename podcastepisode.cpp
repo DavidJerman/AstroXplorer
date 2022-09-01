@@ -1,5 +1,7 @@
 #include "podcastepisode.h"
 
+unsigned int PodcastEpisode::IDCounter = 0;
+
 const QString &PodcastEpisode::getTitle() const
 {
     return title;
@@ -68,6 +70,16 @@ const QString &PodcastEpisode::getRssSource() const
 void PodcastEpisode::setRssSource(const QString &newRssSource)
 {
     rssSource = newRssSource;
+}
+
+unsigned int PodcastEpisode::getID() const
+{
+    return ID;
+}
+
+void PodcastEpisode::setID(unsigned int newID)
+{
+    ID = newID;
 }
 
 PodcastEpisode::PodcastEpisode(QString& title, QString& link, QString& description, QString& MP3Url,

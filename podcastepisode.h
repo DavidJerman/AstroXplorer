@@ -7,6 +7,8 @@ struct PodcastEpisode
 {
 private:
     QString title, link, description, MP3Url, webUrl, date, rssSource;
+    static unsigned int IDCounter;
+    unsigned int ID;
 public:
     PodcastEpisode(QString& title, QString& link, QString& description, QString& MP3Url,
                    QString& webUrl, QString& date, QString& rssSource);
@@ -27,6 +29,9 @@ public:
     void setDate(const QString &newDate);
     const QString &getRssSource() const;
     void setRssSource(const QString &newRssSource);
+
+    unsigned int getID() const;
+    void setID(unsigned int newID);
 };
 
 #endif // PODCASTEPISODE_H

@@ -2998,15 +2998,28 @@
         <item>
          <widget class="QTabWidget" name="RoverManifestTabs">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="CuriosityManifestTab">
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
            <attribute name="title">
             <string>Curiosity</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout_2">
+           <layout class="QGridLayout" name="gridLayout_2" columnstretch="2,2,1">
             <item row="0" column="1">
-             <widget class="QListWidget" name="C_RoverManifestList"/>
+             <widget class="QListWidget" name="C_RoverManifestList">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="C_RoverImageLabel">
@@ -3047,9 +3060,16 @@
            <attribute name="title">
             <string>Opportunity</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout_3">
+           <layout class="QGridLayout" name="gridLayout_3" columnstretch="2,2,1">
             <item row="0" column="1">
-             <widget class="QListWidget" name="O_RoverManifestList"/>
+             <widget class="QListWidget" name="O_RoverManifestList">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="O_RoverImageLabel">
@@ -3090,7 +3110,7 @@
            <attribute name="title">
             <string>Spirit</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout_4">
+           <layout class="QGridLayout" name="gridLayout_4" columnstretch="2,2,1">
             <item row="0" column="0">
              <widget class="QLabel" name="S_RoverImageLabel">
               <property name="text">
@@ -3099,7 +3119,14 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QListWidget" name="S_RoverManifestList"/>
+             <widget class="QListWidget" name="S_RoverManifestList">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item row="1" column="0">
              <spacer name="spacer_22">

@@ -42,6 +42,10 @@ void Podcasts::clearPodcasts() {
     podcasts.clear();
 }
 
+const std::vector<Podcast*>& Podcasts::getPodcasts() {
+    return podcasts;
+}
+
 bool Podcasts::loadPodcasts() {
     if (podcastDOMs.empty()) return false;
 
@@ -93,4 +97,20 @@ bool Podcasts::loadPodcasts() {
     }
 
     return true;
+}
+
+Podcast* Podcasts::getPodcastById(unsigned int ID) {
+    for (auto &podcast: podcasts)
+        if (podcast->getID() == ID)
+            return podcast;
+    return {};
+}
+
+PodcastEpisode* Podcasts::getEpisodeById(unsigned int ID) {
+    for (const auto &podcast: podcasts)
+        for (const auto &episode: podcast->getEpisodes())
+            if (episode->getID() == ID)
+                return episode;
+    return {};
+
 }

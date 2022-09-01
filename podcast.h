@@ -3,16 +3,19 @@
 
 #include "podcastepisode.h"
 #include <vector>
+#include <QUrl>
 
 class Podcast
 {
 private:
     std::vector<PodcastEpisode*> episodes;
     QString title, description, link, language, imageUrl;
+    static unsigned int IDCounter;
+    unsigned int ID;
 public:
     Podcast(QString& title, QString& description, QString& link,
             QString& language, QString& imageUrl);
-    Podcast() = default;
+    Podcast();
 
     ~Podcast();
 
@@ -30,8 +33,11 @@ public:
     void setLink(const QString &newLink);
     const QString &getLanguage() const;
     void setLanguage(const QString &newLanguage);
-    const QString &getImageUrl() const;
+    const QUrl getImageUrl() const;
     void setImageUrl(const QString &newImageUrl);
+
+    unsigned int getID() const;
+    void setID(unsigned int newID);
 };
 
 #endif // PODCAST_H

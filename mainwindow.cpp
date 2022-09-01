@@ -5,6 +5,9 @@
 #include "apihandler.h"
 #include "imagemanipulation.h"
 #include "enums.h"
+#include "podcasts.h"
+
+#include <sstream>
 
 typedef ORIGIN O;
 
@@ -21,8 +24,6 @@ MainWindow::MainWindow(QWidget *parent)
         return;
     this->config = CfgLoader::getConfig();
 
-
-
     // This part handles requests
     const auto _API_KEY = config.find("api_key");
     if (_API_KEY == config.end()) return;
@@ -33,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent)
     const auto APOD_URL = _APOD_URL->second;
 
     manager = new QNetworkAccessManager(this);
-
     QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onRequestFinished(QNetworkReply*)));
 
     updateStatus("Fetching welcome image...");
@@ -118,6 +118,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Welcome image scaling
     ui->WelcomeImageLabel->setScaledContents(true);
+
+    // Podcasts
+    QObject::connect(ui->PodcastSelectorList, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(populateEpisodesList(QListWidgetItem*)));
+    QObject::connect(ui->EpisodeSelectorList, SIGNAL(itemClicked(QListWidgetItem*)),
+                     this, SLOT(playEpisode(QListWidgetItem*)));
 }
 
 void MainWindow::updateStatus(QString msg) {
@@ -146,55 +152,103 @@ void MainWindow::fetchAPIData(QUrl url, ORIGIN origin) {
     request.setUrl(url);
     auto res = manager->get(request);
     res->setProperty("origin", origin);
+    res->setProperty("data_source", "normal");
+}
+
+void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel) {
+    updateStatus("Fetching data for " + origin + "...");
+
+    QNetworkRequest request;
+    request.setUrl(url);
+    auto res = manager->get(request);
+    res->setProperty("origin", origin);
+    res->setProperty("data_source", "podcast");
+    res->setProperty("image_label", QVariant::fromValue(imageLabel));
 }
 
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
-    auto origin = reply->property("origin").value<ORIGIN>();
-    switch (origin) {
-        // APOD
-        case O::APOD_JSON: updateWelcomeData(reply); break;
-        case O::APOD_IMAGE: updateWelcomeImage(reply); break;
-        // Rover imagery
-        case O::C_FHAZ: C_FHAZ_SetImages(reply); break;
-        case O::C_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List); break;
-        case O::C_RHAZ: C_RHAZ_SetImages(reply); break;
-        case O::C_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_RHAZ_List); break;
-        case O::C_MAST: C_MAST_SetImages(reply); break;
-        case O::C_MAST_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MAST_List); break;
-        case O::C_CHEMCAM: C_CHEMCAM_SetImages(reply); break;
-        case O::C_CHEMCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_CHEMCAM_List); break;
-        case O::C_MAHLI: C_MAHLI_SetImages(reply); break;
-        case O::C_MAHLI_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MAHLI_List); break;
-        case O::C_MARDI: C_MARDI_SetImages(reply); break;
-        case O::C_MARDI_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MARDI_List); break;
-        case O::C_NAVCAM: C_NAVCAM_SetImages(reply); break;
-        case O::C_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_NAVCAM_List); break;
-        case O::O_FHAZ: C_FHAZ_SetImages(reply); break;
-        case O::O_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List); break;
-        case O::O_RHAZ: O_RHAZ_SetImages(reply); break;
-        case O::O_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_RHAZ_List); break;
-        case O::O_NAVCAM: O_NAVCAM_SetImages(reply); break;
-        case O::O_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_NAVCAM_List); break;
-        case O::O_PANCAM: O_PANCAM_SetImages(reply); break;
-        case O::O_PANCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_PANCAM_List); break;
-        case O::O_MINITES: O_MINITES_SetImages(reply); break;
-        case O::O_MINITES_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_MINITES_List); break;
-        case O::S_FHAZ: S_FHAZ_SetImages(reply); break;
-        case O::S_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_FHAZ_List); break;
-        case O::S_RHAZ: S_RHAZ_SetImages(reply); break;
-        case O::S_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_RHAZ_List); break;
-        case O::S_NAVCAM: S_NAVCAM_SetImages(reply); break;
-        case O::S_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_NAVCAM_List); break;
-        case O::S_PANCAM: S_PANCAM_SetImages(reply); break;
-        case O::S_PANCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_PANCAM_List); break;
-        case O::S_MINITES: S_MINITES_SetImages(reply); break;
-        case O::S_MINITES_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_MINITES_List); break;
-        // Rover manifest
-        case O::CURIOSITY: updateRoverManifest(reply, ui->C_RoverManifestList, O::CURIOSITY, ui->C_RoverImageLabel); break;
-        case O::OPPORTUNITY: updateRoverManifest(reply, ui->O_RoverManifestList, O::OPPORTUNITY, ui->O_RoverImageLabel); break;
-        case O::SPIRIT: updateRoverManifest(reply, ui->S_RoverManifestList, O::SPIRIT, ui->S_RoverImageLabel); break;
-        default: reply->deleteLater();
+    auto dataSource = reply->property("data_source").value<QString>();
+    if (dataSource == "normal") {
+        auto origin = reply->property("origin").value<ORIGIN>();
+        switch (origin) {
+            // APOD
+            case O::APOD_JSON: updateWelcomeData(reply); break;
+            case O::APOD_IMAGE: updateWelcomeImage(reply); break;
+            // Rover imagery
+            case O::C_FHAZ: C_FHAZ_SetImages(reply); break;
+            case O::C_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List); break;
+            case O::C_RHAZ: C_RHAZ_SetImages(reply); break;
+            case O::C_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_RHAZ_List); break;
+            case O::C_MAST: C_MAST_SetImages(reply); break;
+            case O::C_MAST_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MAST_List); break;
+            case O::C_CHEMCAM: C_CHEMCAM_SetImages(reply); break;
+            case O::C_CHEMCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_CHEMCAM_List); break;
+            case O::C_MAHLI: C_MAHLI_SetImages(reply); break;
+            case O::C_MAHLI_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MAHLI_List); break;
+            case O::C_MARDI: C_MARDI_SetImages(reply); break;
+            case O::C_MARDI_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MARDI_List); break;
+            case O::C_NAVCAM: C_NAVCAM_SetImages(reply); break;
+            case O::C_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_NAVCAM_List); break;
+            case O::O_FHAZ: C_FHAZ_SetImages(reply); break;
+            case O::O_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List); break;
+            case O::O_RHAZ: O_RHAZ_SetImages(reply); break;
+            case O::O_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_RHAZ_List); break;
+            case O::O_NAVCAM: O_NAVCAM_SetImages(reply); break;
+            case O::O_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_NAVCAM_List); break;
+            case O::O_PANCAM: O_PANCAM_SetImages(reply); break;
+            case O::O_PANCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_PANCAM_List); break;
+            case O::O_MINITES: O_MINITES_SetImages(reply); break;
+            case O::O_MINITES_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_MINITES_List); break;
+            case O::S_FHAZ: S_FHAZ_SetImages(reply); break;
+            case O::S_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_FHAZ_List); break;
+            case O::S_RHAZ: S_RHAZ_SetImages(reply); break;
+            case O::S_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_RHAZ_List); break;
+            case O::S_NAVCAM: S_NAVCAM_SetImages(reply); break;
+            case O::S_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_NAVCAM_List); break;
+            case O::S_PANCAM: S_PANCAM_SetImages(reply); break;
+            case O::S_PANCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_PANCAM_List); break;
+            case O::S_MINITES: S_MINITES_SetImages(reply); break;
+            case O::S_MINITES_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_MINITES_List); break;
+            // Rover manifest
+            case O::CURIOSITY: updateRoverManifest(reply, ui->C_RoverManifestList, O::CURIOSITY, ui->C_RoverImageLabel); break;
+            case O::OPPORTUNITY: updateRoverManifest(reply, ui->O_RoverManifestList, O::OPPORTUNITY, ui->O_RoverImageLabel); break;
+            case O::SPIRIT: updateRoverManifest(reply, ui->S_RoverManifestList, O::SPIRIT, ui->S_RoverImageLabel); break;
+            default: reply->deleteLater();
+        }
+    } else if (dataSource == "podcast") {
+        auto origin = reply->property("origin").value<QString>();
+        auto imageLabel = reply->property("image_label").value<QLabel*>();
+        auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(origin) + ".jpg";
+
+        saveDataToFile(filePath, reply->readAll());
+
+        QPixmap p (filePath);
+        p = p.scaled(SIZE, SIZE);
+        imageLabel->setPixmap(p);
+
+        updateStatus("Thumbnail(s) download!");
     }
+}
+
+void MainWindow::saveDataToFile(const QString filePath, const QByteArray& data) {
+    QFile file;
+    file.setFileName(filePath);
+    file.open(QIODevice::WriteOnly);
+
+    file.write(data);
+    file.close();
+}
+
+QString MainWindow::getValidFileName(std::string fileName) {
+    std::string illegal = "#%&{}\\$!'\":@<>*?/+` |=";
+    std::stringstream stream;
+    for (const auto &c: fileName) if (illegal.find(c) == std::string::npos) stream << c;
+    return QString::fromStdString(stream.str());
+}
+
+
+QString MainWindow::getValidFileName(QString fileName) {
+    return getValidFileName(fileName.toStdString());
 }
 
 void MainWindow::updateWelcomeData(QNetworkReply* reply) {
@@ -267,17 +321,11 @@ void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
     }
 
     // Saves the file
-    auto filePath = config.find("welcome_image_path")->second;
-
-    QFile file;
-    file.setFileName(QString::fromStdString(filePath));
-    file.open(QIODevice::WriteOnly);
-
-    file.write(answer);
-    file.close();
+    auto filePath = QString::fromStdString(config.find("welcome_image_path")->second);
+    saveDataToFile(filePath, answer);
 
     // Sets the image to label
-    QPixmap pic(QString::fromStdString(filePath));
+    QPixmap pic(filePath);
     ImageManipulation::roundEdges(pic, CORNER_RADIUS);
     ui->WelcomeImageLabel->setPixmap(pic);
     ui->WelcomeImageLabel->update();
@@ -993,5 +1041,151 @@ void MainWindow::on_LoadPodcastsButton_clicked()
 {
     updateStatus("Loading podcasts...");
     Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
-    updateStatus("Podcasts loaded");
+    updatePodcastsList();
+}
+
+void MainWindow::clearPodcastsList() {
+    ui->PodcastSelectorList->clear();
+}
+
+void MainWindow::clearEpisodesList() {
+    ui->EpisodeSelectorList->clear();
+}
+
+void MainWindow::updatePodcastsList() {
+    clearPodcastsList();
+    for (const auto &podcast: Podcasts::getPodcasts()) {
+        // Create the frame with all the labels
+        auto mainLayout = new QHBoxLayout();
+        QFrame* mainFrame = new QFrame();
+        mainFrame->setLayout(mainLayout);
+        mainFrame->setProperty("ID", podcast->getID());
+
+        auto informationLayout = new QVBoxLayout();
+        QFrame* informationFrame = new QFrame();
+        informationFrame->setLayout(informationLayout);
+
+        const int SIZE = 240;
+        QLabel* imageLabel = new QLabel();
+        imageLabel->setText("Loading image...");
+        imageLabel->setScaledContents(true);
+        imageLabel->setFixedWidth(SIZE);
+        imageLabel->setFixedHeight(SIZE);
+
+        mainLayout->addWidget(imageLabel);
+
+        QLabel* titleLabel = new QLabel();
+        QTextEdit* descriptionTextEdit = new QTextEdit();
+        // TODO: Make it an actual working link
+        QLabel* linkLabel = new QLabel();
+        QLabel* languageLabel = new QLabel();
+
+        titleLabel->setText(podcast->getTitle());
+        descriptionTextEdit->insertPlainText(podcast->getDescription());
+        linkLabel->setText("Link: " + podcast->getLink());
+        languageLabel->setText("Language: " + podcast->getLanguage());
+
+        descriptionTextEdit->setReadOnly(true);
+
+        informationLayout->addWidget(titleLabel);
+        informationLayout->addWidget(descriptionTextEdit);
+        informationLayout->addWidget(linkLabel);
+        informationLayout->addWidget(languageLabel);
+
+        mainLayout->addWidget(informationFrame);
+
+        QListWidgetItem* podcastItem = new QListWidgetItem("");
+        podcastItem->setSizeHint(QSize(SIZE * 2, SIZE + 20));
+
+        ui->PodcastSelectorList->addItem(podcastItem);
+        ui->PodcastSelectorList->setItemWidget(podcastItem, mainFrame);
+
+        auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(podcast->getTitle()) + ".jpg";
+        QFile file;
+        file.setFileName(filePath);
+        if (file.open(QIODevice::ReadOnly)) {
+            QPixmap p (filePath);
+            p = p.scaled(SIZE, SIZE);
+            imageLabel->setPixmap(p);
+            updateStatus("Cached thumbnail(s) found!");
+        } else {
+            fetchPodcastData(podcast->getImageUrl(), podcast->getTitle(), imageLabel);
+            updateStatus("Downloading thumbnails...");
+        }
+    }
+}
+
+void MainWindow::populateEpisodesList(QListWidgetItem* item) {
+
+    clearEpisodesList();
+
+    auto widget = dynamic_cast<QFrame*> (item->listWidget()->itemWidget(item));
+    auto ID = widget->property("ID").toInt();
+    auto podcast = Podcasts::getPodcastById(ID);
+
+    const int SIZE = 160;
+    auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(podcast->getTitle()) + ".jpg";
+    QFile file;
+    QPixmap p;
+    file.setFileName(filePath);
+    if (file.open(QIODevice::ReadOnly)) {
+        p = QPixmap (filePath);
+        p = p.scaled(SIZE, SIZE);
+
+        updateStatus("Cached thumbnail(s) found!");
+    } else {
+        popUpDialog("Podcast data is corrupt, please reload the podcasts!");
+        return;
+    }
+
+    for (const auto &episode: podcast->getEpisodes()) {
+        auto mainLayout = new QHBoxLayout();
+        QFrame* mainFrame = new QFrame();
+        mainFrame->setLayout(mainLayout);
+        mainFrame->setProperty("ID", episode->getID());
+
+        auto informationLayout = new QVBoxLayout();
+        QFrame* informationFrame = new QFrame();
+        informationFrame->setLayout(informationLayout);
+
+        QLabel* imageLabel = new QLabel();
+        imageLabel->setText("Loading image...");
+        imageLabel->setScaledContents(true);
+        imageLabel->setFixedWidth(SIZE);
+        imageLabel->setFixedHeight(SIZE);
+
+        mainLayout->addWidget(imageLabel);
+
+        QLabel* titleLabel = new QLabel();
+        QTextEdit* descriptionLabel = new QTextEdit();
+        QLabel* dateLabel = new QLabel();
+        // TODO: Move the URL inside title as a href
+        QLabel* webUrlLabel = new QLabel();
+
+        titleLabel->setText(episode->getTitle());
+        descriptionLabel->setText(episode->getDescription());
+        dateLabel->setText("Date: " + episode->getDate());
+        webUrlLabel->setText("Transcript: " + episode->getWebUrl());
+
+        descriptionLabel->setReadOnly(true);
+
+        informationLayout->addWidget(titleLabel);
+        informationLayout->addWidget(descriptionLabel);
+        informationLayout->addWidget(dateLabel);
+        informationLayout->addWidget(webUrlLabel);
+
+        mainLayout->addWidget(informationFrame);
+
+        QListWidgetItem* episodeItem = new QListWidgetItem("");
+        episodeItem->setSizeHint(QSize(SIZE * 2, SIZE + 18));
+
+        ui->EpisodeSelectorList->addItem(episodeItem);
+        ui->EpisodeSelectorList->setItemWidget(episodeItem, mainFrame);
+
+        imageLabel->setPixmap(p);
+    }
+}
+
+void MainWindow::playEpisode(QListWidgetItem* item) {
+
 }
