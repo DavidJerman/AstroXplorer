@@ -1112,6 +1112,8 @@ void MainWindow::updatePodcastsList() {
         descriptionTextEdit->setReadOnly(true);
         descriptionTextEdit->setFrameStyle(0);
         descriptionTextEdit->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 11)));
+        descriptionTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        descriptionTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         linkLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 10)));
         languageLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 10)));
 
@@ -1192,26 +1194,28 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
         mainLayout->addWidget(imageLabel);
 
         QLabel* titleLabel = new QLabel();
-        QTextEdit* descriptionLabel = new QTextEdit();
+        QTextEdit* descriptionTextEdit = new QTextEdit();
         QLabel* dateLabel = new QLabel();
         // TODO: Move the URL inside title as a href
-        QLabel* webUrlLabel = new QLabel();
 
-        titleLabel->setText(episode->getTitle());
-        descriptionLabel->setText(episode->getDescription());
+        titleLabel->setText("<a style=\"color: black; text-decoration: none;\"href=\"" + episode->getWebUrl() + "\">" + episode->getTitle() + "</a>");
+        descriptionTextEdit->setText(episode->getDescription());
         dateLabel->setText("Date: " + episode->getDate());
-        webUrlLabel->setText("Transcript: " + episode->getWebUrl());
 
+        titleLabel->setTextFormat(Qt::RichText);
+        titleLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        titleLabel->setOpenExternalLinks(true);
         titleLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "bold", 10)));
-        descriptionLabel->setReadOnly(true);
-        descriptionLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 9)));
-        webUrlLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 9)));
 
+        descriptionTextEdit->setReadOnly(true);
+        descriptionTextEdit->setFrameStyle(0);
+        descriptionTextEdit->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 9)));
+        descriptionTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        descriptionTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
         informationLayout->addWidget(titleLabel);
-        informationLayout->addWidget(descriptionLabel);
+        informationLayout->addWidget(descriptionTextEdit);
         informationLayout->addWidget(dateLabel);
-        informationLayout->addWidget(webUrlLabel);
 
         mainLayout->addWidget(informationFrame);
 

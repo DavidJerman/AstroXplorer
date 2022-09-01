@@ -3499,6 +3499,12 @@
            </item>
            <item row="0" column="2" rowspan="2">
             <widget class="QFrame" name="EpInfoFrame">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="cursor">
               <cursorShape>SizeAllCursor</cursorShape>
              </property>
@@ -3547,7 +3553,7 @@
               <item row="1" column="1">
                <widget class="QTextEdit" name="EpisodeTitleTextEdit">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -3586,6 +3592,12 @@
               </item>
               <item row="2" column="1">
                <widget class="QLabel" name="EpisodeDateLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="font">
                  <font>
                   <pointsize>10</pointsize>
