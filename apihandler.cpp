@@ -37,6 +37,16 @@ QUrl APIHandler::getMarsRoverImagerySols_API_Request_URL(const std::string MARS_
     return {QString::fromStdString(api_url)};
 }
 
+QUrl APIHandler::getMarsRoverImagerySols_API_Request_URL(const std::string MARS_ROVER_URL,
+                                                         const std::string API_KEY,
+                                                         const std::string rover,
+                                                         const std::string camera,
+                                                         const std::string sol)
+{
+    std::string api_url = MARS_ROVER_URL + rover + "/photos" + "?camera=" + camera + "&sol=" + sol + "&api_key=" + API_KEY;
+    return {QString::fromStdString(api_url)};
+}
+
 QUrl APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(const std::string MARS_ROVER_URL,
                                                               const std::string API_KEY,
                                                               ORIGIN rover,

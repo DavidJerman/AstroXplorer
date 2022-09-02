@@ -124,9 +124,15 @@ private:
 
     void fetchAPIData(QUrl url, ORIGIN origin);
     void fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel, unsigned int SIZE);
+    void fetchImages(QUrl url, QString origin, int sol, QString rover, QString camera);
+    void fetchImage(QUrl url, QString filePath);
 
     void updateStatus(QString msg);
     void popUpDialog(QString msg);
+
+    // Downloads
+    void downloadImages(const QString& checkBoxTitle, const unsigned int sol);
+    void downloadImage(const QString& imgSource, const QString& rover, const QString& camera, const unsigned int sol, const unsigned int ID);
 
     // Podcasts
     void updatePodcastsList();
@@ -175,6 +181,8 @@ private slots:
     void on_NextEpButton_clicked();
 
     void on_PreviousEpButton_clicked();
+
+    void on_DownloadsDownloadButton_clicked();
 
 private:
     std::map<std::string, std::string> config;

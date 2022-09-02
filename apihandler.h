@@ -29,6 +29,11 @@ public:
                                                         ORIGIN rover,
                                                         ORIGIN camera,
                                                         const std::string sol);
+    static QUrl getMarsRoverImagerySols_API_Request_URL(const std::string MARS_ROVER_URL,
+                                                        const std::string API_KEY,
+                                                        const std::string rover,
+                                                        const std::string camera,
+                                                        const std::string sol);
     static QUrl getMarsRoverImageryEarthDate_API_Request_URL(const std::string MARS_ROVER_URL,
                                                              const std::string API_KEY,
                                                              ORIGIN rover,

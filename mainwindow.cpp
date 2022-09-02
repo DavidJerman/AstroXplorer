@@ -11,6 +11,7 @@
 #include <QFontDatabase>
 
 #include <QApplication>
+#include <QCheckBox>
 
 typedef ORIGIN O;
 
@@ -213,6 +214,27 @@ void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel, 
     res->setProperty("size", QVariant::fromValue(SIZE));
 }
 
+void MainWindow::fetchImages(QUrl url, QString origin, int sol, QString rover, QString camera) {
+    updateStatus("Downloading data for " + origin + "...");
+
+    QNetworkRequest request;
+    request.setUrl(url);
+    auto res = manager->get(request);
+    res->setProperty("origin", origin);
+    res->setProperty("data_source", "download");
+    res->setProperty("sol", sol);
+    res->setProperty("rover", rover);
+    res->setProperty("camera", camera);
+}
+
+void MainWindow::fetchImage(QUrl url, QString filePath) {
+    QNetworkRequest request;
+    request.setUrl(url);
+    auto res = manager->get(request);
+    res->setProperty("data_source", "image_download");
+    res->setProperty("file_path", filePath);
+}
+
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
     auto dataSource = reply->property("data_source").value<QString>();
     if (dataSource == "normal") {
@@ -272,9 +294,44 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
 
         QPixmap p (filePath);
         p = p.scaled(SIZE, SIZE);
+        ImageManipulation::roundEdges(p, 20);
         imageLabel->setPixmap(p);
 
         updateStatus("Thumbnail(s) download!");
+    } else if (dataSource == "download") {
+        auto answer = reply->readAll();
+        auto parsedData = APIHandler::parseJSON(answer);
+        auto rover = reply->property("rover").toString();
+        auto camera = reply->property("camera").toString();
+        auto sol = reply->property("sol").toInt();
+        if (parsedData.isEmpty()) {
+            // popUpDialog("Failed to get any data from the API");
+            updateStatus("Failed to get any data from the API!");
+        }
+        auto photos = parsedData.find("photos")->toArray();
+        if (photos.isEmpty()) {
+            // popUpDialog("No photos were found for this query");
+            updateStatus("No photos were found for this query");
+        }
+        else {
+            updateStatus("Fetching images...");
+
+            int c = 0;
+            for (const auto &photo: photos)
+                downloadImage(photo.toObject().value("img_src").toString(), rover, camera, sol, c++);
+        }
+    } else if (dataSource == "image_download") {
+        auto fileName = reply->property("file_path").toString();
+
+        QFile file;
+        file.setFileName(fileName);
+        if (file.open(QIODevice::WriteOnly)) {
+            file.write(reply->readAll());
+            file.close();
+        }
+
+        updateStatus("Downladed " + fileName);
+        qApp->processEvents();
     }
 }
 
@@ -573,7 +630,6 @@ void MainWindow::S_MINITES_SetImages(QNetworkReply* reply)
 {
     MarsRoverCamera_SetImages(reply, O::S_MINITES_P);
 }
-
 
 // Rover camera on click events
 void MainWindow::on_S_RHAZ_SOLS_Button_clicked()
@@ -1354,7 +1410,7 @@ void MainWindow::onDurationChanged(qint64 duration) {
     int seconds = duration % 60;
     std::string time;
     if (hours != 0)
-        time = std::to_string(hours) + ":" + (hours > 9 ? "" : "0") + std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
+        time = std::to_string(hours) + ":" + (minutes > 9 ? "" : "0") + std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
     else
         time = std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
     ui->MaxTimeLabel->setText(QString::fromStdString(time));
@@ -1459,3 +1515,45 @@ void MainWindow::on_PreviousEpButton_clicked()
     playPrevEpisode(episode);
 }
 
+
+void MainWindow::on_DownloadsDownloadButton_clicked()
+{
+    auto startSol = ui->DownloadsStartSol->value();
+    auto endSol = ui->DownloadsEndSol->value();
+    for (;startSol <= endSol; startSol++) {
+        for (const auto &e: ui->MarsRoverImagesCfgFrame->children()) {
+            if (e->isWidgetType()) {
+                for (const auto &checkBox: e->findChildren<QCheckBox*>()) {
+                    if (checkBox->isChecked()) {
+                        downloadImages(checkBox->objectName(), startSol);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::downloadImages(const QString& checkBoxTitle, const unsigned int sol) {
+    auto _temp = checkBoxTitle.toStdString();
+    auto camera = _temp.substr(0, _temp.find("_"));
+    auto rover = _temp.substr(_temp.find("_") + 1);
+    for (auto &c: rover) if (std::isupper(c)) c = std::tolower(c);
+    for (auto &c: camera) if (std::islower(c)) c = std::toupper(c);
+    fetchImages(APIHandler::getMarsRoverImagerySols_API_Request_URL(
+                    config.find("mars_rover_url")->second,
+                    config.find("api_key")->second,
+                    rover,
+                    camera,
+                    std::to_string(sol)
+                    ),
+                checkBoxTitle,
+                sol,
+                QString::fromStdString(rover),
+                QString::fromStdString(camera));
+}
+
+void MainWindow::downloadImage(const QString& imgSource, const QString& rover, const QString& camera, const unsigned int sol, const unsigned int ID) {
+    auto fileName = config.find("downloads_path")->second + rover.toStdString() + "_" + camera.toStdString()
+            + "_" + std::to_string(sol) + "_" + std::to_string(ID) + ".jpg";
+    fetchImage(imgSource, QString::fromStdString(fileName));
+}

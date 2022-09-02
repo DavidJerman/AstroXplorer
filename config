@@ -11,3 +11,4 @@ mars_rover_images_path=./mars_rover_photos/
 podcast_sources_path=./podcasts/sources/
 podcast_data_path=./podcasts/data/
 icons_path=./icons/
+downloads_path=./downloads/
