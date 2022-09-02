@@ -537,9 +537,9 @@ void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
             explanation = jsonObj.find("explanation")->toString(),
             date = jsonObj.find("date")->toString();
 
-    ui->WelcomeImageTitleTextEdit->setText(title);
+    ui->WelcomeImageTitleLabel->setText(title);
     ui->WelcomeImageExplanationTextBrowser->append(explanation);
-    ui->WelcomeImageDateTextEdit->setText(date);
+    ui->WelcomeImageDateLabel->setText(date);
 }
 
 // On window resize, change image aspect ration - TODO
@@ -549,7 +549,7 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
 }
 
 void MainWindow::resizeWelcomeImage() {
-    auto maxW = ui->WelcomeImageDateTextEdit->width() - 18;
+    auto maxW = ui->WelcomeImageDateLabel->width() - 18;
     auto maxH = ui->Tabs->height() - ui->WelcomeImageInfoFrame->height() - 70;
 
     auto w = ui->WelcomeImageLabel->pixmap().width();
