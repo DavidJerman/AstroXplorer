@@ -6,15 +6,15 @@
 #include <string>
 #include <QString>
 
-class CfgLoader
-{
+class CfgLoader {
 private:
     static std::map<std::string, std::string> cfg;
 public:
     CfgLoader();
 
     static bool loadConfig(std::string);
-    static const std::map<std::string, std::string>& getConfig();
+
+    static const std::map<std::string, std::string> &getConfig();
 };
 
 #endif // CFGLOADER_H

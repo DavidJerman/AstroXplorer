@@ -1,7 +1,6 @@
 #include "imagemanipulation.h"
 
-ImageManipulation::ImageManipulation()
-{
+ImageManipulation::ImageManipulation() {
 
 }
 
@@ -9,7 +8,7 @@ void ImageManipulation::roundEdges(QPixmap &p, int radius) {
     auto target = QPixmap(p.size());
     target.fill(Qt::transparent);
 
-    QPainter painter (&target);
+    QPainter painter(&target);
 
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setRenderHint(QPainter::SmoothPixmapTransform, true);

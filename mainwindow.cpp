@@ -16,10 +16,7 @@
 typedef ORIGIN O;
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-    , CORNER_RADIUS(25)
-{
+        : QMainWindow(parent), ui(new Ui::MainWindow), CORNER_RADIUS(25) {
     ui->setupUi(this);
 
     // Media
@@ -58,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     const auto APOD_URL = _APOD_URL->second;
 
     manager = new QNetworkAccessManager(this);
-    QObject::connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onRequestFinished(QNetworkReply*)));
+    QObject::connect(manager, SIGNAL(finished(QNetworkReply * )), this, SLOT(onRequestFinished(QNetworkReply * )));
 
     updateStatus("Fetching welcome image...");
     fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), O::APOD_JSON);
@@ -88,40 +85,40 @@ MainWindow::MainWindow(QWidget *parent)
     ui->MINITES_Spirit->setStyleSheet("margin-left:50%; margin-right:50%;");
 
     // Connect all lists
-    QObject::connect(ui->C_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->C_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->C_MAST_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->C_CHEMCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->C_MAHLI_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->C_MARDI_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->C_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->O_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->O_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->O_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->O_PANCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->O_MINITES_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->S_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->S_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->S_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->S_PANCAM_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
-    QObject::connect(ui->S_MINITES_List, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(imagePopUp(QListWidgetItem*)));
+    QObject::connect(ui->C_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->C_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->C_MAST_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->C_CHEMCAM_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->C_MAHLI_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->C_MARDI_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->C_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->O_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->O_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->O_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->O_PANCAM_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->O_MINITES_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->S_FHAZ_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->S_RHAZ_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->S_NAVCAM_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->S_PANCAM_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
+    QObject::connect(ui->S_MINITES_List, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(imagePopUp(QListWidgetItem * )));
 
     // Mars rover imagery
     ui->O_FHAZ_List->setVerticalScrollMode(QListWidget::ScrollPerPixel);
@@ -144,10 +141,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->WelcomeImageLabel->setScaledContents(true);
 
     // Podcasts
-    QObject::connect(ui->PodcastSelectorList, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(populateEpisodesList(QListWidgetItem*)));
-    QObject::connect(ui->EpisodeSelectorList, SIGNAL(itemClicked(QListWidgetItem*)),
-                     this, SLOT(playEpisode(QListWidgetItem*)));
+    QObject::connect(ui->PodcastSelectorList, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(populateEpisodesList(QListWidgetItem * )));
+    QObject::connect(ui->EpisodeSelectorList, SIGNAL(itemClicked(QListWidgetItem * )),
+                     this, SLOT(playEpisode(QListWidgetItem * )));
     ui->EpisodeDateLabel->setMargin(5);
     ui->EpisodeSelectorList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     ui->PodcastSelectorList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
@@ -183,10 +180,10 @@ void MainWindow::popUpDialog(QString msg) {
     msgBox.exec();
 }
 
-void MainWindow::imagePopUp(QListWidgetItem* item) {
+void MainWindow::imagePopUp(QListWidgetItem *item) {
     // Im just not sure, how to handle potential memory leaks here
     auto label = new QLabel();
-    auto widget = dynamic_cast<QLabel*> (item->listWidget()->itemWidget(item));
+    auto widget = dynamic_cast<QLabel *> (item->listWidget()->itemWidget(item));
     label->setPixmap(widget->pixmap());
     label->show();
     label->setAttribute(Qt::WA_DeleteOnClose, true);
@@ -202,7 +199,7 @@ void MainWindow::fetchAPIData(QUrl url, ORIGIN origin) {
     res->setProperty("data_source", "normal");
 }
 
-void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel, unsigned int SIZE) {
+void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel *imageLabel, unsigned int SIZE) {
     updateStatus("Fetching data for " + origin + "...");
 
     QNetworkRequest request;
@@ -241,58 +238,138 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
         auto origin = reply->property("origin").value<ORIGIN>();
         switch (origin) {
             // APOD
-            case O::APOD_JSON: updateWelcomeData(reply); break;
-            case O::APOD_IMAGE: updateWelcomeImage(reply); break;
-            // Rover imagery
-            case O::C_FHAZ: C_FHAZ_SetImages(reply); break;
-            case O::C_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List); break;
-            case O::C_RHAZ: C_RHAZ_SetImages(reply); break;
-            case O::C_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_RHAZ_List); break;
-            case O::C_MAST: C_MAST_SetImages(reply); break;
-            case O::C_MAST_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MAST_List); break;
-            case O::C_CHEMCAM: C_CHEMCAM_SetImages(reply); break;
-            case O::C_CHEMCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_CHEMCAM_List); break;
-            case O::C_MAHLI: C_MAHLI_SetImages(reply); break;
-            case O::C_MAHLI_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MAHLI_List); break;
-            case O::C_MARDI: C_MARDI_SetImages(reply); break;
-            case O::C_MARDI_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_MARDI_List); break;
-            case O::C_NAVCAM: C_NAVCAM_SetImages(reply); break;
-            case O::C_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_NAVCAM_List); break;
-            case O::O_FHAZ: C_FHAZ_SetImages(reply); break;
-            case O::O_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List); break;
-            case O::O_RHAZ: O_RHAZ_SetImages(reply); break;
-            case O::O_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_RHAZ_List); break;
-            case O::O_NAVCAM: O_NAVCAM_SetImages(reply); break;
-            case O::O_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_NAVCAM_List); break;
-            case O::O_PANCAM: O_PANCAM_SetImages(reply); break;
-            case O::O_PANCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_PANCAM_List); break;
-            case O::O_MINITES: O_MINITES_SetImages(reply); break;
-            case O::O_MINITES_P: MarsRoverCamera_AddImageToContainer(reply, ui->O_MINITES_List); break;
-            case O::S_FHAZ: S_FHAZ_SetImages(reply); break;
-            case O::S_FHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_FHAZ_List); break;
-            case O::S_RHAZ: S_RHAZ_SetImages(reply); break;
-            case O::S_RHAZ_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_RHAZ_List); break;
-            case O::S_NAVCAM: S_NAVCAM_SetImages(reply); break;
-            case O::S_NAVCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_NAVCAM_List); break;
-            case O::S_PANCAM: S_PANCAM_SetImages(reply); break;
-            case O::S_PANCAM_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_PANCAM_List); break;
-            case O::S_MINITES: S_MINITES_SetImages(reply); break;
-            case O::S_MINITES_P: MarsRoverCamera_AddImageToContainer(reply, ui->S_MINITES_List); break;
-            // Rover manifest
-            case O::CURIOSITY: updateRoverManifest(reply, ui->C_RoverManifestList, O::CURIOSITY, ui->C_RoverImageLabel); break;
-            case O::OPPORTUNITY: updateRoverManifest(reply, ui->O_RoverManifestList, O::OPPORTUNITY, ui->O_RoverImageLabel); break;
-            case O::SPIRIT: updateRoverManifest(reply, ui->S_RoverManifestList, O::SPIRIT, ui->S_RoverImageLabel); break;
-            default: reply->deleteLater();
+            case O::APOD_JSON:
+                updateWelcomeData(reply);
+                break;
+            case O::APOD_IMAGE:
+                updateWelcomeImage(reply);
+                break;
+                // Rover imagery
+            case O::C_FHAZ:
+                C_FHAZ_SetImages(reply);
+                break;
+            case O::C_FHAZ_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List);
+                break;
+            case O::C_RHAZ:
+                C_RHAZ_SetImages(reply);
+                break;
+            case O::C_RHAZ_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->C_RHAZ_List);
+                break;
+            case O::C_MAST:
+                C_MAST_SetImages(reply);
+                break;
+            case O::C_MAST_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->C_MAST_List);
+                break;
+            case O::C_CHEMCAM:
+                C_CHEMCAM_SetImages(reply);
+                break;
+            case O::C_CHEMCAM_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->C_CHEMCAM_List);
+                break;
+            case O::C_MAHLI:
+                C_MAHLI_SetImages(reply);
+                break;
+            case O::C_MAHLI_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->C_MAHLI_List);
+                break;
+            case O::C_MARDI:
+                C_MARDI_SetImages(reply);
+                break;
+            case O::C_MARDI_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->C_MARDI_List);
+                break;
+            case O::C_NAVCAM:
+                C_NAVCAM_SetImages(reply);
+                break;
+            case O::C_NAVCAM_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->C_NAVCAM_List);
+                break;
+            case O::O_FHAZ:
+                C_FHAZ_SetImages(reply);
+                break;
+            case O::O_FHAZ_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->C_FHAZ_List);
+                break;
+            case O::O_RHAZ:
+                O_RHAZ_SetImages(reply);
+                break;
+            case O::O_RHAZ_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->O_RHAZ_List);
+                break;
+            case O::O_NAVCAM:
+                O_NAVCAM_SetImages(reply);
+                break;
+            case O::O_NAVCAM_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->O_NAVCAM_List);
+                break;
+            case O::O_PANCAM:
+                O_PANCAM_SetImages(reply);
+                break;
+            case O::O_PANCAM_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->O_PANCAM_List);
+                break;
+            case O::O_MINITES:
+                O_MINITES_SetImages(reply);
+                break;
+            case O::O_MINITES_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->O_MINITES_List);
+                break;
+            case O::S_FHAZ:
+                S_FHAZ_SetImages(reply);
+                break;
+            case O::S_FHAZ_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->S_FHAZ_List);
+                break;
+            case O::S_RHAZ:
+                S_RHAZ_SetImages(reply);
+                break;
+            case O::S_RHAZ_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->S_RHAZ_List);
+                break;
+            case O::S_NAVCAM:
+                S_NAVCAM_SetImages(reply);
+                break;
+            case O::S_NAVCAM_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->S_NAVCAM_List);
+                break;
+            case O::S_PANCAM:
+                S_PANCAM_SetImages(reply);
+                break;
+            case O::S_PANCAM_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->S_PANCAM_List);
+                break;
+            case O::S_MINITES:
+                S_MINITES_SetImages(reply);
+                break;
+            case O::S_MINITES_P:
+                MarsRoverCamera_AddImageToContainer(reply, ui->S_MINITES_List);
+                break;
+                // Rover manifest
+            case O::CURIOSITY:
+                updateRoverManifest(reply, ui->C_RoverManifestList, O::CURIOSITY, ui->C_RoverImageLabel);
+                break;
+            case O::OPPORTUNITY:
+                updateRoverManifest(reply, ui->O_RoverManifestList, O::OPPORTUNITY, ui->O_RoverImageLabel);
+                break;
+            case O::SPIRIT:
+                updateRoverManifest(reply, ui->S_RoverManifestList, O::SPIRIT, ui->S_RoverImageLabel);
+                break;
+            default:
+                reply->deleteLater();
         }
     } else if (dataSource == "podcast") {
         auto origin = reply->property("origin").value<QString>();
-        auto imageLabel = reply->property("image_label").value<QLabel*>();
+        auto imageLabel = reply->property("image_label").value<QLabel *>();
         auto SIZE = reply->property("size").value<unsigned int>();
-        auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(origin) + ".jpg";
+        auto filePath =
+                QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(origin) + ".jpg";
 
         saveDataToFile(filePath, reply->readAll());
 
-        QPixmap p (filePath);
+        QPixmap p(filePath);
         p = p.scaled(SIZE, SIZE);
         ImageManipulation::roundEdges(p, 20);
         imageLabel->setPixmap(p);
@@ -312,8 +389,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
         if (photos.isEmpty()) {
             // popUpDialog("No photos were found for this query");
             updateStatus("No photos were found for this query");
-        }
-        else {
+        } else {
             updateStatus("Fetching images...");
 
             int c = 0;
@@ -335,7 +411,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
     }
 }
 
-void MainWindow::saveDataToFile(const QString filePath, const QByteArray& data) {
+void MainWindow::saveDataToFile(const QString filePath, const QByteArray &data) {
     QFile file;
     file.setFileName(filePath);
     file.open(QIODevice::WriteOnly);
@@ -356,7 +432,7 @@ QString MainWindow::getValidFileName(QString fileName) {
     return getValidFileName(fileName.toStdString());
 }
 
-void MainWindow::updateWelcomeData(QNetworkReply* reply) {
+void MainWindow::updateWelcomeData(QNetworkReply *reply) {
 
     updateStatus("Fetching image of the day...");
 
@@ -401,10 +477,11 @@ void MainWindow::updateWelcomeData(QNetworkReply* reply) {
 
         parsedData = APIHandler::parseJSON(jsonData);
 
-        ui->WelcomeImageExplanationTextBrowser->append(QString::fromStdString(std::string("A video of the day was found, but cannot be displayed. Here is the link to it: ")
-                                                                              + "<a href=\""
-                                                                              + parsedData.find("url")->toString().toStdString()
-                                                                              + "\">YouTube</a><br>"));
+        ui->WelcomeImageExplanationTextBrowser->append(QString::fromStdString(
+                std::string("A video of the day was found, but cannot be displayed. Here is the link to it: ")
+                + "<a href=\""
+                + parsedData.find("url")->toString().toStdString()
+                + "\">YouTube</a><br>"));
 
     }
 
@@ -413,7 +490,7 @@ void MainWindow::updateWelcomeData(QNetworkReply* reply) {
     reply->deleteLater();
 }
 
-void MainWindow::updateWelcomeImage(QNetworkReply* reply) {
+void MainWindow::updateWelcomeImage(QNetworkReply *reply) {
     if (reply->error()) {
         qDebug() << reply->errorString();
         return;
@@ -457,8 +534,8 @@ void MainWindow::updateWelcomeVideo(const QUrl &videoUrl) {
 void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
     // Sets all the information provided by the APOD API
     auto title = jsonObj.find("title")->toString(),
-         explanation = jsonObj.find("explanation")->toString(),
-         date = jsonObj.find("date")->toString();
+            explanation = jsonObj.find("explanation")->toString(),
+            date = jsonObj.find("date")->toString();
 
     ui->WelcomeImageTitleTextEdit->setText(title);
     ui->WelcomeImageExplanationTextBrowser->append(explanation);
@@ -466,38 +543,37 @@ void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
 }
 
 // On window resize, change image aspect ration - TODO
-void MainWindow::resizeEvent(QResizeEvent* event) {
+void MainWindow::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event);
     resizeWelcomeImage();
 }
 
 void MainWindow::resizeWelcomeImage() {
-     auto maxW = ui->WelcomeImageDateTextEdit->width() - 18;
-     auto maxH = ui->Tabs->height() - ui->WelcomeImageInfoFrame->height() - 70;
+    auto maxW = ui->WelcomeImageDateTextEdit->width() - 18;
+    auto maxH = ui->Tabs->height() - ui->WelcomeImageInfoFrame->height() - 70;
 
-     auto w = ui->WelcomeImageLabel->pixmap().width();
-     auto h = ui->WelcomeImageLabel->pixmap().height();
+    auto w = ui->WelcomeImageLabel->pixmap().width();
+    auto h = ui->WelcomeImageLabel->pixmap().height();
 
-     auto wP = (double)w / (double)maxW;
-     auto hP = (double)h / (double)maxH;
+    auto wP = (double) w / (double) maxW;
+    auto hP = (double) h / (double) maxH;
 
-     auto max = std::max(wP, hP);
+    auto max = std::max(wP, hP);
 
-     if (max > 1) {
-         ui->WelcomeImageLabel->setMaximumHeight(h / max);
-         ui->WelcomeImageLabel->setMaximumWidth(w / max);
-     }
+    if (max > 1) {
+        ui->WelcomeImageLabel->setMaximumHeight(h / max);
+        ui->WelcomeImageLabel->setMaximumWidth(w / max);
+    }
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
     delete manager;
     delete mediaPlayer;
 }
 
 // Mars Rover Imagery
-void MainWindow::MarsRoverCamera_SetImages(QNetworkReply* reply, ORIGIN origin) {
+void MainWindow::MarsRoverCamera_SetImages(QNetworkReply *reply, ORIGIN origin) {
     auto answer = reply->readAll();
     auto parsedData = APIHandler::parseJSON(answer);
     if (parsedData.isEmpty()) {
@@ -508,8 +584,7 @@ void MainWindow::MarsRoverCamera_SetImages(QNetworkReply* reply, ORIGIN origin) 
     if (photos.isEmpty()) {
         popUpDialog("No photos were found for this query");
         updateStatus("No photos were found for this query");
-    }
-    else {
+    } else {
         updateStatus("Fetching images...");
 
         for (const auto &photo: photos)
@@ -519,7 +594,7 @@ void MainWindow::MarsRoverCamera_SetImages(QNetworkReply* reply, ORIGIN origin) 
     reply->deleteLater();
 }
 
-void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QListWidget* list) {
+void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply *reply, QListWidget *list) {
     auto answer = reply->readAll();
     auto item = new QListWidgetItem("");
     auto label = new QLabel();
@@ -532,10 +607,10 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
     // Set size
     label->setScaledContents(true);
     label->setFixedHeight(SIZE);
-    label->setFixedWidth(p.width() * ((double)SIZE / p.height()));
+    label->setFixedWidth(p.width() * ((double) SIZE / p.height()));
     label->setMargin(5);
 
-    item->setSizeHint(QSize(p.width() * ((double)SIZE / p.height()), SIZE));
+    item->setSizeHint(QSize(p.width() * ((double) SIZE / p.height()), SIZE));
     list->addItem(item);
     list->setItemWidget(item, label);
 
@@ -546,94 +621,76 @@ void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply* reply, QList
 }
 
 // Rover-camera specific functions
-void MainWindow::C_FHAZ_SetImages(QNetworkReply* reply)
-{
+void MainWindow::C_FHAZ_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::C_FHAZ_P);
 }
 
-void MainWindow::C_RHAZ_SetImages(QNetworkReply* reply)
-{
+void MainWindow::C_RHAZ_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::C_RHAZ_P);
 }
 
-void MainWindow::C_MAST_SetImages(QNetworkReply* reply)
-{
+void MainWindow::C_MAST_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::C_MAST_P);
 }
 
-void MainWindow::C_CHEMCAM_SetImages(QNetworkReply* reply)
-{
+void MainWindow::C_CHEMCAM_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::C_CHEMCAM_P);
 }
 
-void MainWindow::C_MAHLI_SetImages(QNetworkReply* reply)
-{
+void MainWindow::C_MAHLI_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::C_MAHLI_P);
 }
 
-void MainWindow::C_MARDI_SetImages(QNetworkReply* reply)
-{
+void MainWindow::C_MARDI_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::C_MARDI_P);
 }
 
-void MainWindow::C_NAVCAM_SetImages(QNetworkReply* reply)
-{
+void MainWindow::C_NAVCAM_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::C_NAVCAM_P);
 }
 
-void MainWindow::O_FHAZ_SetImages(QNetworkReply* reply)
-{
+void MainWindow::O_FHAZ_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::O_FHAZ_P);
 }
 
-void MainWindow::O_RHAZ_SetImages(QNetworkReply* reply)
-{
+void MainWindow::O_RHAZ_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::O_RHAZ_P);
 }
 
-void MainWindow::O_NAVCAM_SetImages(QNetworkReply* reply)
-{
+void MainWindow::O_NAVCAM_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::O_NAVCAM_P);
 }
 
-void MainWindow::O_PANCAM_SetImages(QNetworkReply* reply)
-{
+void MainWindow::O_PANCAM_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::O_PANCAM_P);
 }
 
-void MainWindow::O_MINITES_SetImages(QNetworkReply* reply)
-{
+void MainWindow::O_MINITES_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::O_MINITES_P);
 }
 
-void MainWindow::S_FHAZ_SetImages(QNetworkReply* reply)
-{
+void MainWindow::S_FHAZ_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::S_FHAZ_P);
 }
 
-void MainWindow::S_RHAZ_SetImages(QNetworkReply* reply)
-{
+void MainWindow::S_RHAZ_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::S_RHAZ_P);
 }
 
-void MainWindow::S_NAVCAM_SetImages(QNetworkReply* reply)
-{
+void MainWindow::S_NAVCAM_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::S_NAVCAM_P);
 }
 
-void MainWindow::S_PANCAM_SetImages(QNetworkReply* reply)
-{
+void MainWindow::S_PANCAM_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::S_PANCAM_P);
 }
 
-void MainWindow::S_MINITES_SetImages(QNetworkReply* reply)
-{
+void MainWindow::S_MINITES_SetImages(QNetworkReply *reply) {
     MarsRoverCamera_SetImages(reply, O::S_MINITES_P);
 }
 
 // Rover camera on click events
-void MainWindow::on_S_RHAZ_SOLS_Button_clicked()
-{
+void MainWindow::on_S_RHAZ_SOLS_Button_clicked() {
     ui->S_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -644,20 +701,19 @@ void MainWindow::on_S_RHAZ_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_S_RHAZ_DATE_Button_clicked()
-{
+void MainWindow::on_S_RHAZ_DATE_Button_clicked() {
     ui->S_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::SPIRIT,
                                                                           O::RHAZ,
-                                                                          APIHandler::dateToString(ui->S_RHAZ_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->S_RHAZ_Date->date())),
                  O::S_RHAZ);
 }
 
 
-void MainWindow::on_S_PANCAM_SOLS_Button_clicked()
-{
+void MainWindow::on_S_PANCAM_SOLS_Button_clicked() {
     ui->S_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -668,20 +724,19 @@ void MainWindow::on_S_PANCAM_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_S_PANCAM_DATE_Button_clicked()
-{
+void MainWindow::on_S_PANCAM_DATE_Button_clicked() {
     ui->S_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::SPIRIT,
                                                                           O::PANCAM,
-                                                                          APIHandler::dateToString(ui->S_PANCAM_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->S_PANCAM_Date->date())),
                  O::S_PANCAM);
 }
 
 
-void MainWindow::on_S_NAVCAM_SOLS_Button_clicked()
-{
+void MainWindow::on_S_NAVCAM_SOLS_Button_clicked() {
     ui->S_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -692,20 +747,19 @@ void MainWindow::on_S_NAVCAM_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_S_NAVCAM_DATE_Button_clicked()
-{
+void MainWindow::on_S_NAVCAM_DATE_Button_clicked() {
     ui->S_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::SPIRIT,
                                                                           O::NAVCAM,
-                                                                          APIHandler::dateToString(ui->S_NAVCAM_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->S_NAVCAM_Date->date())),
                  O::S_NAVCAM);
 }
 
 
-void MainWindow::on_S_MINITES_SOLS_Button_clicked()
-{
+void MainWindow::on_S_MINITES_SOLS_Button_clicked() {
     ui->S_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -716,20 +770,19 @@ void MainWindow::on_S_MINITES_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_S_MINITES_DATE_Button_clicked()
-{
+void MainWindow::on_S_MINITES_DATE_Button_clicked() {
     ui->S_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::SPIRIT,
                                                                           O::MINITES,
-                                                                          APIHandler::dateToString(ui->S_MINITES_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->S_MINITES_Date->date())),
                  O::S_MINITES);
 }
 
 
-void MainWindow::on_S_FHAZ_SOLS_Button_clicked()
-{
+void MainWindow::on_S_FHAZ_SOLS_Button_clicked() {
     ui->S_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -740,20 +793,19 @@ void MainWindow::on_S_FHAZ_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_S_FHAZ_DATE_Button_clicked()
-{
+void MainWindow::on_S_FHAZ_DATE_Button_clicked() {
     ui->S_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::SPIRIT,
                                                                           O::FHAZ,
-                                                                          APIHandler::dateToString(ui->S_FHAZ_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->S_FHAZ_Date->date())),
                  O::S_FHAZ);
 }
 
 
-void MainWindow::on_O_RHAZ_SOLS_Button_clicked()
-{
+void MainWindow::on_O_RHAZ_SOLS_Button_clicked() {
     ui->O_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -764,19 +816,18 @@ void MainWindow::on_O_RHAZ_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_O_RHAZ_DATE_Button_clicked()
-{
+void MainWindow::on_O_RHAZ_DATE_Button_clicked() {
     ui->O_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::OPPORTUNITY,
                                                                           O::RHAZ,
-                                                                          APIHandler::dateToString(ui->O_RHAZ_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->O_RHAZ_Date->date())),
                  O::O_RHAZ);
 }
 
-void MainWindow::on_O_PANCAM_SOLS_Button_clicked()
-{
+void MainWindow::on_O_PANCAM_SOLS_Button_clicked() {
     ui->O_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -787,20 +838,19 @@ void MainWindow::on_O_PANCAM_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_O_PANCAM_DATE_Button_clicked()
-{
+void MainWindow::on_O_PANCAM_DATE_Button_clicked() {
     ui->O_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::OPPORTUNITY,
                                                                           O::PANCAM,
-                                                                          APIHandler::dateToString(ui->O_PANCAM_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->O_PANCAM_Date->date())),
                  O::O_PANCAM);
 }
 
 
-void MainWindow::on_O_NAVCAM_SOLS_Button_clicked()
-{
+void MainWindow::on_O_NAVCAM_SOLS_Button_clicked() {
     ui->O_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -811,20 +861,19 @@ void MainWindow::on_O_NAVCAM_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_O_NAVCAM_DATE_Button_clicked()
-{
+void MainWindow::on_O_NAVCAM_DATE_Button_clicked() {
     ui->O_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::OPPORTUNITY,
                                                                           O::NAVCAM,
-                                                                          APIHandler::dateToString(ui->O_NAVCAM_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->O_NAVCAM_Date->date())),
                  O::O_NAVCAM);
 }
 
 
-void MainWindow::on_O_MINITES_SOLS_Button_clicked()
-{
+void MainWindow::on_O_MINITES_SOLS_Button_clicked() {
     ui->O_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -835,20 +884,19 @@ void MainWindow::on_O_MINITES_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_O_MINITES_DATE_Button_clicked()
-{
+void MainWindow::on_O_MINITES_DATE_Button_clicked() {
     ui->O_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::OPPORTUNITY,
                                                                           O::MINITES,
-                                                                          APIHandler::dateToString(ui->O_MINITES_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->O_MINITES_Date->date())),
                  O::O_MINITES);
 }
 
 
-void MainWindow::on_O_FHAZ_SOLS_Button_clicked()
-{
+void MainWindow::on_O_FHAZ_SOLS_Button_clicked() {
     ui->O_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -859,20 +907,19 @@ void MainWindow::on_O_FHAZ_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_O_FHAZ_DATE_Button_clicked()
-{
+void MainWindow::on_O_FHAZ_DATE_Button_clicked() {
     ui->O_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::OPPORTUNITY,
                                                                           O::FHAZ,
-                                                                          APIHandler::dateToString(ui->O_FHAZ_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->O_FHAZ_Date->date())),
                  O::O_FHAZ);
 }
 
 
-void MainWindow::on_C_NAVCAM_SOLS_Button_clicked()
-{
+void MainWindow::on_C_NAVCAM_SOLS_Button_clicked() {
     ui->C_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -883,20 +930,19 @@ void MainWindow::on_C_NAVCAM_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_C_NAVCAM_DATE_Button_clicked()
-{
+void MainWindow::on_C_NAVCAM_DATE_Button_clicked() {
     ui->C_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::CURIOSITY,
                                                                           O::NAVCAM,
-                                                                          APIHandler::dateToString(ui->C_NAVCAM_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->C_NAVCAM_Date->date())),
                  O::C_NAVCAM);
 }
 
 
-void MainWindow::on_C_MAST_SOLS_Button_clicked()
-{
+void MainWindow::on_C_MAST_SOLS_Button_clicked() {
     ui->C_MAST_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -907,20 +953,19 @@ void MainWindow::on_C_MAST_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_C_MAST_DATE_Button_clicked()
-{
+void MainWindow::on_C_MAST_DATE_Button_clicked() {
     ui->C_MAST_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::CURIOSITY,
                                                                           O::MAST,
-                                                                          APIHandler::dateToString(ui->C_MAST_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->C_MAST_Date->date())),
                  O::C_MAST);
 }
 
 
-void MainWindow::on_C_MARDI_SOLS_Button_clicked()
-{
+void MainWindow::on_C_MARDI_SOLS_Button_clicked() {
     ui->C_MARDI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -931,20 +976,19 @@ void MainWindow::on_C_MARDI_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_C_MARDI_DATE_Button_clicked()
-{
+void MainWindow::on_C_MARDI_DATE_Button_clicked() {
     ui->C_MARDI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::CURIOSITY,
                                                                           O::MARDI,
-                                                                          APIHandler::dateToString(ui->C_MARDI_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->C_MARDI_Date->date())),
                  O::C_MARDI);
 }
 
 
-void MainWindow::on_C_MAHLI_SOLS_Button_clicked()
-{
+void MainWindow::on_C_MAHLI_SOLS_Button_clicked() {
     ui->C_MAHLI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -955,20 +999,19 @@ void MainWindow::on_C_MAHLI_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_C_MAHLI_DATE_Button_clicked()
-{
+void MainWindow::on_C_MAHLI_DATE_Button_clicked() {
     ui->C_MAHLI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::CURIOSITY,
                                                                           O::MAHLI,
-                                                                          APIHandler::dateToString(ui->C_MAHLI_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->C_MAHLI_Date->date())),
                  O::C_MAHLI);
 }
 
 
-void MainWindow::on_C_FHAZ_SOLS_Button_clicked()
-{
+void MainWindow::on_C_FHAZ_SOLS_Button_clicked() {
     ui->C_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -979,20 +1022,19 @@ void MainWindow::on_C_FHAZ_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_C_FHAZ_DATE_Button_clicked()
-{
+void MainWindow::on_C_FHAZ_DATE_Button_clicked() {
     ui->C_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::CURIOSITY,
                                                                           O::FHAZ,
-                                                                          APIHandler::dateToString(ui->C_FHAZ_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->C_FHAZ_Date->date())),
                  O::C_FHAZ);
 }
 
 
-void MainWindow::on_C_CHEMCAM_SOLS_Button_clicked()
-{
+void MainWindow::on_C_CHEMCAM_SOLS_Button_clicked() {
     ui->C_CHEMCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -1003,20 +1045,19 @@ void MainWindow::on_C_CHEMCAM_SOLS_Button_clicked()
 }
 
 
-void MainWindow::on_C_CHEMCAM_DATE_Button_clicked()
-{
+void MainWindow::on_C_CHEMCAM_DATE_Button_clicked() {
     ui->C_CHEMCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::CURIOSITY,
                                                                           O::CHEMCAM,
-                                                                          APIHandler::dateToString(ui->C_CHEMCAM_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->C_CHEMCAM_Date->date())),
                  O::C_CHEMCAM);
 }
 
 
-void MainWindow::on_C_RHAZ_SOLS_Button_clicked()
-{
+void MainWindow::on_C_RHAZ_SOLS_Button_clicked() {
     ui->C_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
                                                                      config.find("api_key")->second,
@@ -1026,25 +1067,28 @@ void MainWindow::on_C_RHAZ_SOLS_Button_clicked()
                  O::C_RHAZ);
 }
 
-void MainWindow::on_C_RHAZ_DATE_Button_clicked()
-{
+void MainWindow::on_C_RHAZ_DATE_Button_clicked() {
     ui->C_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
                                                                           config.find("api_key")->second,
                                                                           O::CURIOSITY,
                                                                           O::RHAZ,
-                                                                          APIHandler::dateToString(ui->C_RHAZ_Date->date())),
+                                                                          APIHandler::dateToString(
+                                                                                  ui->C_RHAZ_Date->date())),
                  O::C_RHAZ);
 }
 
-void MainWindow::limitCameraInputWidgetRanges(QSpinBox* solsWidget, QString& maxSol, QDateEdit* dateWidget, QString& maxDate, QString& landingDate) {
+void
+MainWindow::limitCameraInputWidgetRanges(QSpinBox *solsWidget, QString &maxSol, QDateEdit *dateWidget, QString &maxDate,
+                                         QString &landingDate) {
     solsWidget->setMinimum(0);
     solsWidget->setMaximum(maxSol.toInt());
     dateWidget->setMinimumDate(QDate::fromString(landingDate, "yyyy-MM-dd"));
     dateWidget->setMaximumDate(QDate::fromString(maxDate, "yyyy-MM-dd"));
 }
 
-void MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate) {
+void
+MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate) {
     switch (origin) {
         case O::CURIOSITY: {
             limitCameraInputWidgetRanges(ui->C_FHAZ_Sols, maxSol, ui->C_FHAZ_Date, maxDate, landingDate);
@@ -1055,7 +1099,7 @@ void MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSo
             limitCameraInputWidgetRanges(ui->C_MARDI_Sols, maxSol, ui->C_MARDI_Date, maxDate, landingDate);
             limitCameraInputWidgetRanges(ui->C_NAVCAM_Sols, maxSol, ui->C_NAVCAM_Date, maxDate, landingDate);
         };
-        break;
+            break;
 
         case O::OPPORTUNITY: {
             limitCameraInputWidgetRanges(ui->O_FHAZ_Sols, maxSol, ui->O_FHAZ_Date, maxDate, landingDate);
@@ -1064,7 +1108,7 @@ void MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSo
             limitCameraInputWidgetRanges(ui->O_PANCAM_Sols, maxSol, ui->O_PANCAM_Date, maxDate, landingDate);
             limitCameraInputWidgetRanges(ui->O_MINITES_Sols, maxSol, ui->O_MINITES_Date, maxDate, landingDate);
         };
-        break;
+            break;
 
         case O::SPIRIT: {
             limitCameraInputWidgetRanges(ui->S_FHAZ_Sols, maxSol, ui->S_FHAZ_Date, maxDate, landingDate);
@@ -1073,13 +1117,14 @@ void MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSo
             limitCameraInputWidgetRanges(ui->S_PANCAM_Sols, maxSol, ui->S_PANCAM_Date, maxDate, landingDate);
             limitCameraInputWidgetRanges(ui->S_MINITES_Sols, maxSol, ui->S_MINITES_Date, maxDate, landingDate);
         };
-        break;
+            break;
 
-        default: return;
+        default:
+            return;
     }
 }
 
-void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, ORIGIN origin, QLabel* imageLabel) {
+void MainWindow::updateRoverManifest(QNetworkReply *reply, QListWidget *list, ORIGIN origin, QLabel *imageLabel) {
 
     // Set ranges on rover imagery input widgets
     QString maxSol, maxDate, landingDate;
@@ -1099,20 +1144,22 @@ void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, OR
     auto parsedData = APIHandler::parseJSON(reply->readAll());
     auto parsedObj = parsedData.value("rover").toObject();
 
-    for (const auto& key: parsedObj.keys()) {
+    for (const auto &key: parsedObj.keys()) {
 
         auto item = parsedObj.value(key);
-        QLabel* kLabel = new QLabel();
-        kLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"), getFSize("primary_text_size"))));
-        QLabel* vLabel = new QLabel();
-        vLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("primary_text_size"))));
-        QFrame* frame = new QFrame();
-        QHBoxLayout* layout = new QHBoxLayout();
+        QLabel *kLabel = new QLabel();
+        kLabel->setFont(
+                QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"), getFSize("primary_text_size"))));
+        QLabel *vLabel = new QLabel();
+        vLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"),
+                                                  getFSize("primary_text_size"))));
+        QFrame *frame = new QFrame();
+        QHBoxLayout *layout = new QHBoxLayout();
         frame->setLayout(layout);
         layout->addWidget(kLabel);
         layout->addWidget(vLabel);
 
-        QListWidgetItem* i = new QListWidgetItem("");
+        QListWidgetItem *i = new QListWidgetItem("");
 
         // auto _size = item.size();
         if (item.isArray()) {
@@ -1142,7 +1189,7 @@ void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, OR
             else if (k == "max_sol") maxSol = QString::fromStdString(v);
             else if (k == "max_date") maxDate = QString::fromStdString(v);
 
-            for (auto & c: k) c = toupper(c);
+            for (auto &c: k) c = toupper(c);
             kLabel->setText(QString::fromStdString(k));
             vLabel->setText(QString::fromStdString(v));
         }
@@ -1158,8 +1205,7 @@ void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, OR
     reply->deleteLater();
 }
 
-void MainWindow::on_LoadPodcastsButton_clicked()
-{
+void MainWindow::on_LoadPodcastsButton_clicked() {
     updateStatus("Loading podcasts...");
     Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
     updatePodcastsList();
@@ -1184,16 +1230,16 @@ void MainWindow::updatePodcastsList() {
     for (const auto &podcast: Podcasts::getPodcasts()) {
         // Create the frame with all the labels
         auto mainLayout = new QHBoxLayout();
-        QFrame* mainFrame = new QFrame();
+        QFrame *mainFrame = new QFrame();
         mainFrame->setLayout(mainLayout);
         mainFrame->setProperty("ID", podcast->getID());
 
         auto informationLayout = new QVBoxLayout();
-        QFrame* informationFrame = new QFrame();
+        QFrame *informationFrame = new QFrame();
         informationFrame->setLayout(informationLayout);
 
         const int SIZE = 220;
-        QLabel* imageLabel = new QLabel();
+        QLabel *imageLabel = new QLabel();
         imageLabel->setText("Loading image...");
         imageLabel->setScaledContents(true);
         imageLabel->setFixedWidth(SIZE);
@@ -1201,25 +1247,29 @@ void MainWindow::updatePodcastsList() {
 
         mainLayout->addWidget(imageLabel);
 
-        QLabel* titleLabel = new QLabel();
-        QTextEdit* descriptionTextEdit = new QTextEdit();
+        QLabel *titleLabel = new QLabel();
+        QTextEdit *descriptionTextEdit = new QTextEdit();
         // TODO: Make it an actual working link
-        QLabel* linkLabel = new QLabel();
-        QLabel* languageLabel = new QLabel();
+        QLabel *linkLabel = new QLabel();
+        QLabel *languageLabel = new QLabel();
 
         titleLabel->setText(podcast->getTitle());
         descriptionTextEdit->insertPlainText(podcast->getDescription());
         linkLabel->setText("Link: " + podcast->getLink());
         languageLabel->setText("Language: " + podcast->getLanguage());
 
-        titleLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"), getFSize("primary_title_size"))));
+        titleLabel->setFont(
+                QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"), getFSize("primary_title_size"))));
         descriptionTextEdit->setReadOnly(true);
         descriptionTextEdit->setFrameStyle(0);
-        descriptionTextEdit->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("primary_text_size"))));
+        descriptionTextEdit->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"),
+                                                               getFSize("primary_text_size"))));
         descriptionTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         descriptionTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        linkLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("primary_text_small_size"))));
-        languageLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("primary_text_small_size"))));
+        linkLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"),
+                                                     getFSize("primary_text_small_size"))));
+        languageLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"),
+                                                         getFSize("primary_text_small_size"))));
 
         informationLayout->addWidget(titleLabel);
         informationLayout->addWidget(descriptionTextEdit);
@@ -1228,17 +1278,18 @@ void MainWindow::updatePodcastsList() {
 
         mainLayout->addWidget(informationFrame);
 
-        QListWidgetItem* podcastItem = new QListWidgetItem("");
+        QListWidgetItem *podcastItem = new QListWidgetItem("");
         podcastItem->setSizeHint(QSize(SIZE * 2, SIZE + 20));
 
         ui->PodcastSelectorList->addItem(podcastItem);
         ui->PodcastSelectorList->setItemWidget(podcastItem, mainFrame);
 
-        auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(podcast->getTitle()) + ".jpg";
+        auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) +
+                        getValidFileName(podcast->getTitle()) + ".jpg";
         QFile file;
         file.setFileName(filePath);
         if (file.open(QIODevice::ReadOnly)) {
-            QPixmap p (filePath);
+            QPixmap p(filePath);
             p = p.scaled(SIZE, SIZE);
             ImageManipulation::roundEdges(p, 20);
             imageLabel->setPixmap(p);
@@ -1254,21 +1305,23 @@ void MainWindow::updatePodcastsList() {
 
 }
 
-void MainWindow::populateEpisodesList(QListWidgetItem* item) {
+void MainWindow::populateEpisodesList(QListWidgetItem *item) {
 
     clearEpisodesList();
 
-    auto widget = dynamic_cast<QFrame*> (item->listWidget()->itemWidget(item));
+    auto widget = dynamic_cast<QFrame *> (item->listWidget()->itemWidget(item));
     auto ID = widget->property("ID").toInt();
     auto podcast = Podcasts::getPodcastById(ID);
 
     const int SIZE = 140;
-    auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(podcast->getTitle()) + ".jpg";
+    auto filePath =
+            QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(podcast->getTitle()) +
+            ".jpg";
     QFile file;
     QPixmap p;
     file.setFileName(filePath);
     if (file.open(QIODevice::ReadOnly)) {
-        p = QPixmap (filePath);
+        p = QPixmap(filePath);
         p = p.scaled(SIZE, SIZE);
         ImageManipulation::roundEdges(p, 20);
 
@@ -1283,15 +1336,15 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
 
     for (const auto &episode: podcast->getEpisodes()) {
         auto mainLayout = new QHBoxLayout();
-        QFrame* mainFrame = new QFrame();
+        QFrame *mainFrame = new QFrame();
         mainFrame->setLayout(mainLayout);
         mainFrame->setProperty("ID", episode->getID());
 
         auto informationLayout = new QVBoxLayout();
-        QFrame* informationFrame = new QFrame();
+        QFrame *informationFrame = new QFrame();
         informationFrame->setLayout(informationLayout);
 
-        QLabel* imageLabel = new QLabel();
+        QLabel *imageLabel = new QLabel();
         imageLabel->setText("Loading image...");
         imageLabel->setScaledContents(true);
         imageLabel->setFixedWidth(SIZE);
@@ -1299,23 +1352,26 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
 
         mainLayout->addWidget(imageLabel);
 
-        QLabel* titleLabel = new QLabel();
-        QTextEdit* descriptionTextEdit = new QTextEdit();
-        QLabel* dateLabel = new QLabel();
+        QLabel *titleLabel = new QLabel();
+        QTextEdit *descriptionTextEdit = new QTextEdit();
+        QLabel *dateLabel = new QLabel();
         // TODO: Move the URL inside title as a href
 
-        titleLabel->setText("<a style=\"color: black; text-decoration: none;\"href=\"" + episode->getWebUrl() + "\">" + episode->getTitle() + "</a>");
+        titleLabel->setText("<a style=\"color: black; text-decoration: none;\"href=\"" + episode->getWebUrl() + "\">" +
+                            episode->getTitle() + "</a>");
         descriptionTextEdit->setText(episode->getDescription());
         dateLabel->setText("Date: " + episode->getDate());
 
         titleLabel->setTextFormat(Qt::RichText);
         titleLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
         titleLabel->setOpenExternalLinks(true);
-        titleLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"), getFSize("secondary_title_size"))));
+        titleLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"),
+                                                      getFSize("secondary_title_size"))));
 
         descriptionTextEdit->setReadOnly(true);
         descriptionTextEdit->setFrameStyle(0);
-        descriptionTextEdit->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("secondary_text_size"))));
+        descriptionTextEdit->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"),
+                                                               getFSize("secondary_text_size"))));
         descriptionTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         descriptionTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -1325,7 +1381,7 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
 
         mainLayout->addWidget(informationFrame);
 
-        QListWidgetItem* episodeItem = new QListWidgetItem("");
+        QListWidgetItem *episodeItem = new QListWidgetItem("");
         episodeItem->setSizeHint(QSize(SIZE * 2, SIZE + 18));
 
         ui->EpisodeSelectorList->addItem(episodeItem);
@@ -1340,24 +1396,25 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
 
 }
 
-void MainWindow::playEpisode(QListWidgetItem* item) {
-    auto widget = dynamic_cast<QFrame*> (item->listWidget()->itemWidget(item));
+void MainWindow::playEpisode(QListWidgetItem *item) {
+    auto widget = dynamic_cast<QFrame *> (item->listWidget()->itemWidget(item));
     auto ID = widget->property("ID").toInt();
     auto episode = Podcasts::getEpisodeById(ID);
 
     playEpisode(episode);
 }
 
-void MainWindow::playEpisode(PodcastEpisode* episode) {
+void MainWindow::playEpisode(PodcastEpisode *episode) {
     if (!episode) return;
 
     const unsigned int SIZE = 100;
-    auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(Podcasts::getPodcastById(episode->getPID())->getTitle()) + ".jpg";
+    auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) +
+                    getValidFileName(Podcasts::getPodcastById(episode->getPID())->getTitle()) + ".jpg";
     QFile file;
     QPixmap p;
     file.setFileName(filePath);
     if (file.open(QIODevice::ReadOnly)) {
-        p = QPixmap (filePath);
+        p = QPixmap(filePath);
         p = p.scaled(SIZE, SIZE);
         ImageManipulation::roundEdges(p, 20);
 
@@ -1386,7 +1443,7 @@ void MainWindow::playEpisode(PodcastEpisode* episode) {
     updateStatus("Playing " + episode->getTitle());
 }
 
-void MainWindow::playNextEpisode(PodcastEpisode* currentEpisode) {
+void MainWindow::playNextEpisode(PodcastEpisode *currentEpisode) {
     if (!currentEpisode) return;
     auto nextEpisode = Podcasts::getEpisodeById(currentEpisode->getID() + 1);
     if (nextEpisode)
@@ -1394,7 +1451,7 @@ void MainWindow::playNextEpisode(PodcastEpisode* currentEpisode) {
             playEpisode(nextEpisode);
 }
 
-void MainWindow::playPrevEpisode(PodcastEpisode* currentEpisode) {
+void MainWindow::playPrevEpisode(PodcastEpisode *currentEpisode) {
     if (!currentEpisode) return;
     if (currentEpisode->getID() < 1) return;
     auto nextEpisode = Podcasts::getEpisodeById(currentEpisode->getID() - 1);
@@ -1410,7 +1467,8 @@ void MainWindow::onDurationChanged(qint64 duration) {
     int seconds = duration % 60;
     std::string time;
     if (hours != 0)
-        time = std::to_string(hours) + ":" + (minutes > 9 ? "" : "0") + std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
+        time = std::to_string(hours) + ":" + (minutes > 9 ? "" : "0") + std::to_string(minutes) + ":" +
+               (seconds > 9 ? "" : "0") + std::to_string(seconds);
     else
         time = std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
     ui->MaxTimeLabel->setText(QString::fromStdString(time));
@@ -1427,34 +1485,31 @@ void MainWindow::onPositionChanged(qint64 position) {
         int seconds = position % 60;
         std::string time;
         if (hours != 0)
-            time = std::to_string(hours) + ":" + (minutes > 9 ? "" : "0") + std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
+            time = std::to_string(hours) + ":" + (minutes > 9 ? "" : "0") + std::to_string(minutes) + ":" +
+                   (seconds > 9 ? "" : "0") + std::to_string(seconds);
         else
             time = std::to_string(minutes) + ":" + (seconds > 9 ? "" : "0") + std::to_string(seconds);
         ui->CurrentTimeLabel->setText(QString::fromStdString(time));
     }
 }
 
-void MainWindow::on_AudioProgressBar_sliderPressed()
-{
+void MainWindow::on_AudioProgressBar_sliderPressed() {
     AudioProgressBarLocked = true;
 }
 
 
-void MainWindow::on_AudioProgressBar_sliderReleased()
-{
+void MainWindow::on_AudioProgressBar_sliderReleased() {
     if (mediaPlayer->mediaStatus() == QMediaPlayer::BufferedMedia)
         mediaPlayer->setPosition(ui->AudioProgressBar->sliderPosition());
     AudioProgressBarLocked = false;
 }
 
 
-void MainWindow::on_PausePlayButton_clicked()
-{
+void MainWindow::on_PausePlayButton_clicked() {
     if (mediaPlayer->playbackState() == QMediaPlayer::PlayingState) {
         mediaPlayer->pause();
         setButtonToPlay(true);
-    }
-    else if (mediaPlayer->playbackState() == QMediaPlayer::PausedState) {
+    } else if (mediaPlayer->playbackState() == QMediaPlayer::PausedState) {
         mediaPlayer->play();
         setButtonToPlay(false);
     }
@@ -1462,12 +1517,14 @@ void MainWindow::on_PausePlayButton_clicked()
 }
 
 void MainWindow::setButtonToPlay(bool state) {
-    if (!state) ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "stop.png")));
+    if (!state)
+        ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "stop.png")));
     else ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "play.png")));
 }
 
 void MainWindow::onPlaybackStateChanged(QMediaPlayer::PlaybackState) {
-    if (mediaPlayer->playbackState() == QMediaPlayer::StoppedState && mediaPlayer->mediaStatus() == QMediaPlayer::EndOfMedia) {
+    if (mediaPlayer->playbackState() == QMediaPlayer::StoppedState &&
+        mediaPlayer->mediaStatus() == QMediaPlayer::EndOfMedia) {
         // This is for now, later there will be an auto-play option
         resetAudioControlsPane();
         resetAudio();
@@ -1489,41 +1546,36 @@ void MainWindow::resetAudio() {
     mediaPlayer->stop();
 }
 
-void MainWindow::on_SkiptimeBackButton_clicked()
-{
-    mediaPlayer->setPosition(std::max((qint64)0, mediaPlayer->position() - 15000));
+void MainWindow::on_SkiptimeBackButton_clicked() {
+    mediaPlayer->setPosition(std::max((qint64) 0, mediaPlayer->position() - 15000));
 }
 
 
-void MainWindow::on_SkipTimeForwardButton_clicked()
-{
+void MainWindow::on_SkipTimeForwardButton_clicked() {
     mediaPlayer->setPosition(std::min(mediaPlayer->position() + 15000, mediaPlayer->duration()));
 }
 
-void MainWindow::on_NextEpButton_clicked()
-{
+void MainWindow::on_NextEpButton_clicked() {
     resetAudioControlsPane();
     resetAudio();
     playNextEpisode(episode);
 }
 
 
-void MainWindow::on_PreviousEpButton_clicked()
-{
+void MainWindow::on_PreviousEpButton_clicked() {
     resetAudioControlsPane();
     resetAudio();
     playPrevEpisode(episode);
 }
 
 
-void MainWindow::on_DownloadsDownloadButton_clicked()
-{
+void MainWindow::on_DownloadsDownloadButton_clicked() {
     auto startSol = ui->DownloadsStartSol->value();
     auto endSol = ui->DownloadsEndSol->value();
-    for (;startSol <= endSol; startSol++) {
+    for (; startSol <= endSol; startSol++) {
         for (const auto &e: ui->MarsRoverImagesCfgFrame->children()) {
             if (e->isWidgetType()) {
-                for (const auto &checkBox: e->findChildren<QCheckBox*>()) {
+                for (const auto &checkBox: e->findChildren<QCheckBox *>()) {
                     if (checkBox->isChecked()) {
                         downloadImages(checkBox->objectName(), startSol);
                     }
@@ -1533,27 +1585,29 @@ void MainWindow::on_DownloadsDownloadButton_clicked()
     }
 }
 
-void MainWindow::downloadImages(const QString& checkBoxTitle, const unsigned int sol) {
+void MainWindow::downloadImages(const QString &checkBoxTitle, const unsigned int sol) {
     auto _temp = checkBoxTitle.toStdString();
     auto camera = _temp.substr(0, _temp.find("_"));
     auto rover = _temp.substr(_temp.find("_") + 1);
     for (auto &c: rover) if (std::isupper(c)) c = std::tolower(c);
     for (auto &c: camera) if (std::islower(c)) c = std::toupper(c);
     fetchImages(APIHandler::getMarsRoverImagerySols_API_Request_URL(
-                    config.find("mars_rover_url")->second,
-                    config.find("api_key")->second,
-                    rover,
-                    camera,
-                    std::to_string(sol)
-                    ),
+                        config.find("mars_rover_url")->second,
+                        config.find("api_key")->second,
+                        rover,
+                        camera,
+                        std::to_string(sol)
+                ),
                 checkBoxTitle,
                 sol,
                 QString::fromStdString(rover),
                 QString::fromStdString(camera));
 }
 
-void MainWindow::downloadImage(const QString& imgSource, const QString& rover, const QString& camera, const unsigned int sol, const unsigned int ID) {
+void
+MainWindow::downloadImage(const QString &imgSource, const QString &rover, const QString &camera, const unsigned int sol,
+                          const unsigned int ID) {
     auto fileName = config.find("downloads_path")->second + rover.toStdString() + "_" + camera.toStdString()
-            + "_" + std::to_string(sol) + "_" + std::to_string(ID) + ".jpg";
+                    + "_" + std::to_string(sol) + "_" + std::to_string(ID) + ".jpg";
     fetchImage(imgSource, QString::fromStdString(fileName));
 }

@@ -5,8 +5,7 @@
 #include <QPainter>
 #include <QPainterPath>
 
-class ImageManipulation
-{
+class ImageManipulation {
 public:
     ImageManipulation();
 

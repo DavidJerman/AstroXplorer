@@ -1,10 +1,9 @@
 #include "podcasts.h"
 
-std::vector<QDomDocument*> Podcasts::podcastDOMs;
-std::vector<Podcast*> Podcasts::podcasts;
+std::vector<QDomDocument *> Podcasts::podcastDOMs;
+std::vector<Podcast *> Podcasts::podcasts;
 
-Podcasts::Podcasts()
-{
+Podcasts::Podcasts() {
 
 }
 
@@ -26,9 +25,9 @@ bool Podcasts::addPodcastFromXML(QString fileName) {
 bool Podcasts::loadPodcastsFromSourceFolder(QString folder) {
     clearPodcasts();
     clearPodcastDOMs();
-    QDir dir (folder);
+    QDir dir(folder);
     auto files = dir.entryList();
-    for (const auto& file: files) addPodcastFromXML(folder + file);
+    for (const auto &file: files) addPodcastFromXML(folder + file);
     return loadPodcasts();
 }
 
@@ -42,7 +41,7 @@ void Podcasts::clearPodcasts() {
     podcasts.clear();
 }
 
-const std::vector<Podcast*>& Podcasts::getPodcasts() {
+const std::vector<Podcast *> &Podcasts::getPodcasts() {
     return podcasts;
 }
 
@@ -56,7 +55,7 @@ bool Podcasts::loadPodcasts() {
         auto podcastEl = root.firstChild().toElement();
 
         // Data about the podcast
-        Podcast* podcast = new Podcast();
+        Podcast *podcast = new Podcast();
 
         auto item = podcastEl.firstChild().toElement();
         while (!item.isNull()) {
@@ -76,7 +75,7 @@ bool Podcasts::loadPodcasts() {
                 }
             } else if (item.tagName() == "item") {
                 // Get info on the episode
-                PodcastEpisode* episode = new PodcastEpisode(podcast->getID());
+                PodcastEpisode *episode = new PodcastEpisode(podcast->getID());
                 auto subItem = item.firstChild().toElement();
                 while (!subItem.isNull()) {
                     if (subItem.tagName() == "title") episode->setTitle(subItem.text());
@@ -99,14 +98,14 @@ bool Podcasts::loadPodcasts() {
     return true;
 }
 
-Podcast* Podcasts::getPodcastById(unsigned int ID) {
+Podcast *Podcasts::getPodcastById(unsigned int ID) {
     for (auto &podcast: podcasts)
         if (podcast->getID() == ID)
             return podcast;
     return {};
 }
 
-PodcastEpisode* Podcasts::getEpisodeById(unsigned int ID) {
+PodcastEpisode *Podcasts::getEpisodeById(unsigned int ID) {
     for (const auto &podcast: podcasts)
         for (const auto &episode: podcast->getEpisodes())
             if (episode->getID() == ID)

@@ -2,71 +2,58 @@
 
 unsigned int Podcast::IDCounter = 0;
 
-const QString &Podcast::getTitle() const
-{
+const QString &Podcast::getTitle() const {
     return title;
 }
 
-void Podcast::setTitle(const QString &newTitle)
-{
+void Podcast::setTitle(const QString &newTitle) {
     title = newTitle;
 }
 
-const QString &Podcast::getDescription() const
-{
+const QString &Podcast::getDescription() const {
     return description;
 }
 
-void Podcast::setDescription(const QString &newDescription)
-{
+void Podcast::setDescription(const QString &newDescription) {
     description = newDescription;
 }
 
-const QString &Podcast::getLink() const
-{
+const QString &Podcast::getLink() const {
     return link;
 }
 
-void Podcast::setLink(const QString &newLink)
-{
+void Podcast::setLink(const QString &newLink) {
     link = newLink;
 }
 
-const QString &Podcast::getLanguage() const
-{
+const QString &Podcast::getLanguage() const {
     return language;
 }
 
-void Podcast::setLanguage(const QString &newLanguage)
-{
+void Podcast::setLanguage(const QString &newLanguage) {
     language = newLanguage;
 }
 
-const QUrl Podcast::getImageUrl() const
-{
+const QUrl Podcast::getImageUrl() const {
     return QUrl(imageUrl);
 }
 
-void Podcast::setImageUrl(const QString &newImageUrl)
-{
+void Podcast::setImageUrl(const QString &newImageUrl) {
     imageUrl = newImageUrl;
 }
 
-unsigned int Podcast::getID() const
-{
+unsigned int Podcast::getID() const {
     return ID;
 }
 
-void Podcast::setID(unsigned int newID)
-{
+void Podcast::setID(unsigned int newID) {
     ID = newID;
 }
 
-Podcast::Podcast(QString& title, QString& description, QString& link,
-                 QString& language, QString& imageUrl)
-    : title(title), description(description), link(link),
-      language(language), imageUrl(imageUrl)
-{
+Podcast::Podcast(QString &title, QString &description, QString &link,
+                 QString &language, QString &imageUrl)
+        : title(title), description(description), link(link),
+          language(language), imageUrl(imageUrl) {
     IDCounter++;
 }
 
@@ -78,7 +65,7 @@ Podcast::~Podcast() {
     clearEpisodes();
 }
 
-void Podcast::addEpisode(PodcastEpisode* episode) {
+void Podcast::addEpisode(PodcastEpisode *episode) {
     episodes.push_back(episode);
 }
 
@@ -87,6 +74,6 @@ void Podcast::clearEpisodes() {
     episodes.clear();
 }
 
-const std::vector<PodcastEpisode*>& Podcast::getEpisodes() const {
+const std::vector<PodcastEpisode *> &Podcast::getEpisodes() const {
     return episodes;
 }
