@@ -27,6 +27,6 @@ bool CfgLoader::loadConfig(std::string fileName) {
     return true;
 }
 
-std::map<std::string, std::string> CfgLoader::getConfig() {
+const std::map<std::string, std::string>& CfgLoader::getConfig() {
     return cfg;
 }

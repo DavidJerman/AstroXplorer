@@ -123,7 +123,7 @@ private:
     void setWelcomeImageInformation(QJsonObject &jsonObj);
 
     void fetchAPIData(QUrl url, ORIGIN origin);
-    void fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel);
+    void fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel, unsigned int SIZE);
 
     void updateStatus(QString msg);
     void popUpDialog(QString msg);
@@ -138,6 +138,14 @@ private:
     void playNextEpisode(PodcastEpisode*);
     void playPrevEpisode(PodcastEpisode*);
     void setButtonToPlay(bool);
+
+    // CfgLoder extension
+    const QString getCfgValueQ(const std::string key) const;
+    const std::string getCfgValue(const std::string key) const;
+    const QString getFontQ(const std::string key) const;
+    const std::string getFont(const std::string key) const;
+    const unsigned int getFSize(const std::string key) const;
+
 
 private slots:
     void populateEpisodesList(QListWidgetItem* item);
@@ -170,6 +178,8 @@ private slots:
 
 private:
     std::map<std::string, std::string> config;
+    std::map<std::string, std::string> fontCfg;
+
     Ui::MainWindow *ui;
     QNetworkAccessManager *manager;
     QMediaPlayer* mediaPlayer;

@@ -10,6 +10,8 @@
 #include <sstream>
 #include <QFontDatabase>
 
+#include <QApplication>
+
 typedef ORIGIN O;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -39,6 +41,11 @@ MainWindow::MainWindow(QWidget *parent)
     if (!response)
         return;
     this->config = CfgLoader::getConfig();
+
+    response = CfgLoader::loadConfig("fontCfg");
+    if (!response)
+        return;
+    this->fontCfg = CfgLoader::getConfig();
 
     // This part handles requests
     const auto _API_KEY = config.find("api_key");
@@ -141,6 +148,28 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(ui->EpisodeSelectorList, SIGNAL(itemClicked(QListWidgetItem*)),
                      this, SLOT(playEpisode(QListWidgetItem*)));
     ui->EpisodeDateLabel->setMargin(5);
+    ui->EpisodeSelectorList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    ui->PodcastSelectorList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+}
+
+const QString MainWindow::getCfgValueQ(const std::string key) const {
+    return QString::fromStdString(config.find(key)->second);
+}
+
+const std::string MainWindow::getCfgValue(const std::string key) const {
+    return config.find(key)->second;
+}
+
+const QString MainWindow::getFontQ(const std::string key) const {
+    return QString::fromStdString(fontCfg.find(key)->second);
+}
+
+const std::string MainWindow::getFont(const std::string key) const {
+    return fontCfg.find(key)->second;
+}
+
+const unsigned int MainWindow::getFSize(const std::string key) const {
+    return std::stoi(fontCfg.find(key)->second);
 }
 
 void MainWindow::updateStatus(QString msg) {
@@ -172,7 +201,7 @@ void MainWindow::fetchAPIData(QUrl url, ORIGIN origin) {
     res->setProperty("data_source", "normal");
 }
 
-void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel) {
+void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel, unsigned int SIZE) {
     updateStatus("Fetching data for " + origin + "...");
 
     QNetworkRequest request;
@@ -181,6 +210,7 @@ void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel* imageLabel) 
     res->setProperty("origin", origin);
     res->setProperty("data_source", "podcast");
     res->setProperty("image_label", QVariant::fromValue(imageLabel));
+    res->setProperty("size", QVariant::fromValue(SIZE));
 }
 
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
@@ -235,6 +265,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
     } else if (dataSource == "podcast") {
         auto origin = reply->property("origin").value<QString>();
         auto imageLabel = reply->property("image_label").value<QLabel*>();
+        auto SIZE = reply->property("size").value<unsigned int>();
         auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(origin) + ".jpg";
 
         saveDataToFile(filePath, reply->readAll());
@@ -1001,6 +1032,7 @@ void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, OR
     const int MAX_SIZE = 550;
     std::string filePath = config.find("mars_rover_images_path")->second + E::eToS(origin) + ".jpg";
     QPixmap pic(QString::fromStdString(filePath));
+    ImageManipulation::roundEdges(pic, this->CORNER_RADIUS);
     imageLabel->setPixmap(pic);
 
     imageLabel->setScaledContents(true);
@@ -1012,42 +1044,57 @@ void MainWindow::updateRoverManifest(QNetworkReply* reply, QListWidget* list, OR
     auto parsedObj = parsedData.value("rover").toObject();
 
     for (const auto& key: parsedObj.keys()) {
+
         auto item = parsedObj.value(key);
+        QLabel* kLabel = new QLabel();
+        kLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"), getFSize("primary_text_size"))));
+        QLabel* vLabel = new QLabel();
+        vLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("primary_text_size"))));
+        QFrame* frame = new QFrame();
+        QHBoxLayout* layout = new QHBoxLayout();
+        frame->setLayout(layout);
+        layout->addWidget(kLabel);
+        layout->addWidget(vLabel);
+
+        QListWidgetItem* i = new QListWidgetItem("");
+
         // auto _size = item.size();
         if (item.isArray()) {
-
+            // Cameras
             auto k = key.toStdString();
             if (k != "cameras") break;
             for (auto &c: k) c = toupper(c);
-
-            QListWidgetItem* i = new QListWidgetItem("");
-            i->setText(QString::fromStdString(k));
-            list->addItem(i);
-
+            kLabel->setText(QString::fromStdString(k));
+            std::stringstream stream;
+            bool _f = true;
             for (const auto j: item.toArray()) {
+                if (!_f) stream << "\n";
+                else _f = false;
                 auto obj = j.toObject();
                 auto v = obj.value("full_name").toString().toStdString();;
-                i = new QListWidgetItem();
-                i->setText(QString::fromStdString("\t" + v));
-                list->addItem(i);
+                stream << v;
             }
-
+            vLabel->setText(QString::fromStdString(stream.str()));
+            vLabel->setWordWrap(true);
         } else {
-
-            QListWidgetItem* i = new QListWidgetItem("");
+            // Other data
             auto k = key.toStdString();
             std::string v;
             if (item.isString()) v = item.toString().toStdString();
             else v = std::to_string(item.toInt());
-
             if (k == "landing_date") landingDate = QString::fromStdString(v);
             else if (k == "max_sol") maxSol = QString::fromStdString(v);
             else if (k == "max_date") maxDate = QString::fromStdString(v);
 
             for (auto & c: k) c = toupper(c);
-            i->setText(QString::fromStdString(k + ": " + v));
-            list->addItem(i);
+            kLabel->setText(QString::fromStdString(k));
+            vLabel->setText(QString::fromStdString(v));
         }
+
+        i->setSizeHint(vLabel->sizeHint() + QSize(10, 24));
+        list->addItem(i);
+        list->setItemWidget(i, frame);
+        qApp->processEvents();
     }
 
     limitRoverImageryInputWidgetRanges(origin, maxSol, maxDate, landingDate);
@@ -1073,6 +1120,7 @@ void MainWindow::clearEpisodesList() {
 void MainWindow::updatePodcastsList() {
 
     updateStatus("Loading podcasts...");
+    qApp->processEvents();
 
     clearPodcastsList();
     clearEpisodesList();
@@ -1108,14 +1156,14 @@ void MainWindow::updatePodcastsList() {
         linkLabel->setText("Link: " + podcast->getLink());
         languageLabel->setText("Language: " + podcast->getLanguage());
 
-        titleLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "bold", 13)));
+        titleLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"), getFSize("primary_title_size"))));
         descriptionTextEdit->setReadOnly(true);
         descriptionTextEdit->setFrameStyle(0);
-        descriptionTextEdit->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 11)));
+        descriptionTextEdit->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("primary_text_size"))));
         descriptionTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         descriptionTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        linkLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 10)));
-        languageLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 10)));
+        linkLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("primary_text_small_size"))));
+        languageLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("primary_text_small_size"))));
 
         informationLayout->addWidget(titleLabel);
         informationLayout->addWidget(descriptionTextEdit);
@@ -1140,8 +1188,9 @@ void MainWindow::updatePodcastsList() {
             imageLabel->setPixmap(p);
             updateStatus("Cached thumbnail(s) found!");
         } else {
-            fetchPodcastData(podcast->getImageUrl(), podcast->getTitle(), imageLabel);
+            fetchPodcastData(podcast->getImageUrl(), podcast->getTitle(), imageLabel, SIZE);
             updateStatus("Downloading thumbnails...");
+            qApp->processEvents();
         }
     }
 
@@ -1150,8 +1199,6 @@ void MainWindow::updatePodcastsList() {
 }
 
 void MainWindow::populateEpisodesList(QListWidgetItem* item) {
-
-    updateStatus("Loading epsiodes...");
 
     clearEpisodesList();
 
@@ -1174,6 +1221,9 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
         popUpDialog("Podcast data is corrupt, please reload the podcasts!");
         return;
     }
+
+    updateStatus("Loading epsiodes...");
+    qApp->processEvents();
 
     for (const auto &episode: podcast->getEpisodes()) {
         auto mainLayout = new QHBoxLayout();
@@ -1205,11 +1255,11 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
         titleLabel->setTextFormat(Qt::RichText);
         titleLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
         titleLabel->setOpenExternalLinks(true);
-        titleLabel->setFont(QFont(QFontDatabase::font("Segoe UI", "bold", 10)));
+        titleLabel->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("bold"), getFSize("secondary_title_size"))));
 
         descriptionTextEdit->setReadOnly(true);
         descriptionTextEdit->setFrameStyle(0);
-        descriptionTextEdit->setFont(QFont(QFontDatabase::font("Segoe UI", "normal", 9)));
+        descriptionTextEdit->setFont(QFont(QFontDatabase::font(getFontQ("default_font"), getFontQ("normal"), getFSize("secondary_text_size"))));
         descriptionTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         descriptionTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -1226,6 +1276,8 @@ void MainWindow::populateEpisodesList(QListWidgetItem* item) {
         ui->EpisodeSelectorList->setItemWidget(episodeItem, mainFrame);
 
         imageLabel->setPixmap(p);
+
+        qApp->processEvents();
     }
 
     updateStatus("Episodes loaded!");
@@ -1243,7 +1295,7 @@ void MainWindow::playEpisode(QListWidgetItem* item) {
 void MainWindow::playEpisode(PodcastEpisode* episode) {
     if (!episode) return;
 
-    const unsigned int SIZE = 80;
+    const unsigned int SIZE = 100;
     auto filePath = QString::fromStdString(config.find("podcast_data_path")->second) + getValidFileName(Podcasts::getPodcastById(episode->getPID())->getTitle()) + ".jpg";
     QFile file;
     QPixmap p;

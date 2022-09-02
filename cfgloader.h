@@ -4,6 +4,7 @@
 #include <fstream>
 #include <map>
 #include <string>
+#include <QString>
 
 class CfgLoader
 {
@@ -13,7 +14,7 @@ public:
     CfgLoader();
 
     static bool loadConfig(std::string);
-    static std::map<std::string, std::string> getConfig();
+    static const std::map<std::string, std::string>& getConfig();
 };
 
 #endif // CFGLOADER_H
