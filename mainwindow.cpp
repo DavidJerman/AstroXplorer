@@ -1133,7 +1133,7 @@ void MainWindow::updateRoverManifest(QNetworkReply *reply, QListWidget *list, OR
     const int MAX_SIZE = 550;
     std::string filePath = config.find("mars_rover_images_path")->second + E::eToS(origin) + ".jpg";
     QPixmap pic(QString::fromStdString(filePath));
-    ImageManipulation::roundEdges(pic, this->CORNER_RADIUS);
+    ImageManipulation::roundEdges(pic, 35);
     imageLabel->setPixmap(pic);
 
     imageLabel->setScaledContents(true);
@@ -1518,16 +1518,17 @@ void MainWindow::on_PausePlayButton_clicked() {
 
 void MainWindow::setButtonToPlay(bool state) {
     if (!state)
-        ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "stop.png")));
-    else ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "play.png")));
+        ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-pause-circle.png")));
+    else ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-play-circle.png")));
 }
 
 void MainWindow::onPlaybackStateChanged(QMediaPlayer::PlaybackState) {
     if (mediaPlayer->playbackState() == QMediaPlayer::StoppedState &&
         mediaPlayer->mediaStatus() == QMediaPlayer::EndOfMedia) {
-        // This is for now, later there will be an auto-play option
         resetAudioControlsPane();
         resetAudio();
+        if (AudioAutoPlay)
+            playNextEpisode(episode);
     }
 }
 
@@ -1611,3 +1612,23 @@ MainWindow::downloadImage(const QString &imgSource, const QString &rover, const 
                     + "_" + std::to_string(sol) + "_" + std::to_string(ID) + ".jpg";
     fetchImage(imgSource, QString::fromStdString(fileName));
 }
+
+void MainWindow::on_AutoPlayButton_clicked()
+{
+    AudioAutoPlay = !AudioAutoPlay;
+    if (AudioAutoPlay)
+        ui->AutoPlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-podcast.png")));
+    else
+        ui->AutoPlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-headphone.png")));
+}
+
+
+void MainWindow::addFavouriteEpisode(bool) {
+
+}
+
+void MainWindow::on_HeartButton_clicked()
+{
+
+}
+

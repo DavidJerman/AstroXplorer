@@ -34,9 +34,8 @@ public:
 
     ~MainWindow();
 
-private
-    slots:
-            void onRequestFinished(QNetworkReply * reply);
+private slots:
+    void onRequestFinished(QNetworkReply * reply);
 
     void saveDataToFile(const QString filePath, const QByteArray &data);
 
@@ -227,9 +226,8 @@ private:
     const unsigned int getFSize(const std::string key) const;
 
 
-private
-    slots:
-            void populateEpisodesList(QListWidgetItem * item);
+private slots:
+    void populateEpisodesList(QListWidgetItem * item);
 
     void playEpisode(QListWidgetItem *item);
 
@@ -259,6 +257,8 @@ private
 
     void on_DownloadsDownloadButton_clicked();
 
+    void on_AutoPlayButton_clicked();
+
 private:
     std::map <std::string, std::string> config;
     std::map <std::string, std::string> fontCfg;
@@ -269,6 +269,7 @@ private:
     QAudioOutput *audioOutput;
 
     bool AudioProgressBarLocked{false};
+    bool AudioAutoPlay{false};
     PodcastEpisode *episode{nullptr};
 
     const int CORNER_RADIUS;
