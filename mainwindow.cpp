@@ -1684,3 +1684,8 @@ void MainWindow::on_LoadPodcastsButton_clicked()
     updatePodcastsList();
     updateStatus("Podcasts loaded!");
 }
+
+void MainWindow::on_FavoritesButton_clicked()
+{
+
+}

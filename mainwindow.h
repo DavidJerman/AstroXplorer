@@ -267,6 +267,8 @@ private slots:
 
     void on_LoadPodcastsButton_clicked();
 
+    void on_FavoritesButton_clicked();
+
 private:
     std::map <std::string, std::string> config;
     std::map <std::string, std::string> fontCfg;
