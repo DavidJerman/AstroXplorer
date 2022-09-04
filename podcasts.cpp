@@ -2,6 +2,7 @@
 
 std::vector<QDomDocument *> Podcasts::podcastDOMs;
 std::vector<Podcast *> Podcasts::podcasts;
+std::vector<QString> Podcasts::favEpisodes;
 
 Podcasts::Podcasts() {
 
@@ -128,4 +129,37 @@ PodcastEpisode *Podcasts::getEpisodeById(unsigned int ID) {
                 return episode;
     return {};
 
+}
+
+bool Podcasts::setFavouriteEpisode(const PodcastEpisode& episode) {
+    if (std::find(favEpisodes.begin(), favEpisodes.end(), episode.getMP3Url()) == favEpisodes.end()) {
+        favEpisodes.push_back(episode.getMP3Url());
+        return true;
+    } else
+        favEpisodes.erase(std::find(favEpisodes.begin(), favEpisodes.end(), episode.getMP3Url()));
+    return false;
+}
+
+bool Podcasts::isFavouriteEpisode(const PodcastEpisode& episode) {
+    return std::find(favEpisodes.begin(), favEpisodes.end(), episode.getMP3Url()) != favEpisodes.end();
+}
+
+void Podcasts::saveFavEpisodes(const QString& fileName) {
+    std::ofstream stream (fileName.toStdString());
+    if (!stream.is_open()) return;
+    for (const auto &episode: favEpisodes)
+        stream << episode.toStdString() << "\n";
+    stream.close();
+}
+
+void Podcasts::loadFavEpisodes(const QString& fileName) {
+    std::ifstream stream (fileName.toStdString());
+    if (!stream.is_open()) return;
+    favEpisodes.clear();
+    std::string s;
+    while (std::getline(stream, s)) {
+        if (s.length() <= 0) continue;
+        favEpisodes.push_back(QString::fromStdString(s));
+    }
+    stream.close();
 }

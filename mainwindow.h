@@ -214,9 +214,9 @@ private:
 
     void setButtonToPlay(bool);
 
-    void addFavouriteEpisode(bool);
-
     void updateLocalPodcats();
+
+    void updateHeartButtonIcon(PodcastEpisode*);
 
     // CfgLoder extension
     const QString getCfgValueQ(const std::string key) const;
@@ -265,7 +265,7 @@ private slots:
 
     void on_UpdatePodcastsButton_clicked();
 
-    void on_pushButton_clicked();
+    void on_LoadPodcastsButton_clicked();
 
 private:
     std::map <std::string, std::string> config;

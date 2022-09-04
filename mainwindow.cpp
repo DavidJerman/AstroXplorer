@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     updateStatus("Loading podcasts...");
     Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
     updatePodcastsList();
+    Podcasts::loadFavEpisodes(QString::fromStdString(config.find("podcast_fav_episode_path")->second));
 
     // This part handles requests
     const auto _API_KEY = config.find("api_key");
@@ -1442,6 +1443,8 @@ void MainWindow::playEpisode(QListWidgetItem *item) {
 }
 
 void MainWindow::playEpisode(PodcastEpisode *episode) {
+    updateHeartButtonIcon(episode);
+
     if (!episode) return;
 
     const unsigned int SIZE = 100;
@@ -1577,6 +1580,7 @@ void MainWindow::resetAudioControlsPane() {
     ui->EpisodeThumbnailLabel->setPixmap({});
     ui->EpisodeDateLabel->setText("");
     ui->EpisodeTitleTextEdit->setText("");
+    updateHeartButtonIcon(nullptr);
     setButtonToPlay(true);
 }
 
@@ -1659,17 +1663,21 @@ void MainWindow::on_AutoPlayButton_clicked()
         ui->AutoPlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-headphone.png")));
 }
 
-
-void MainWindow::addFavouriteEpisode(bool) {
-
-}
-
 void MainWindow::on_HeartButton_clicked()
 {
-
+    if (!episode || !(mediaPlayer->mediaStatus() == QMediaPlayer::BufferedMedia)) return;
+    auto toFav = Podcasts::setFavouriteEpisode(*episode);
+    if (toFav) ui->HeartButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-heart.png")));
+    else ui->HeartButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-heart.png")));
+    Podcasts::saveFavEpisodes(QString::fromStdString(config.find("podcast_fav_episode_path")->second));
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::updateHeartButtonIcon(PodcastEpisode* episode) {
+    if (!episode || !Podcasts::isFavouriteEpisode(*episode)) ui->HeartButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-heart.png")));
+    else ui->HeartButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-heart.png")));
+}
+
+void MainWindow::on_LoadPodcastsButton_clicked()
 {
     updateStatus("Loading local podcasts...");
     Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));

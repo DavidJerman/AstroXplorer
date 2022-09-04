@@ -5,12 +5,14 @@
 #include <QFile>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "podcast.h"
 
 class Podcasts {
 private:
     static std::vector<QDomDocument *> podcastDOMs;
     static std::vector<Podcast *> podcasts;
+    static std::vector<QString> favEpisodes;
 public:
     Podcasts();
 
@@ -35,6 +37,14 @@ public:
     static QDomDocument* XMLDataToDom(QByteArray& data);
 
     static Podcast* DomToPodcast(QDomDocument* dom);
+
+    static bool setFavouriteEpisode(const PodcastEpisode&);
+
+    static bool isFavouriteEpisode(const PodcastEpisode&);
+
+    static void saveFavEpisodes(const QString& fileName);
+
+    static void loadFavEpisodes(const QString &fileName);
 };
 
 #endif // PODCASTS_H
