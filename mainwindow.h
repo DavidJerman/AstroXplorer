@@ -231,7 +231,7 @@ private:
 
 
 private slots:
-    void populateEpisodesList(QListWidgetItem * item);
+    void populateEpisodesList(QListWidgetItem * item, bool fav = false);
 
     void playEpisode(QListWidgetItem *item);
 
@@ -281,6 +281,8 @@ private:
     bool AudioProgressBarLocked{false};
     bool AudioAutoPlay{false};
     PodcastEpisode *episode{nullptr};
+    unsigned int PID{(unsigned int)(-1)};
+    bool FavoriteEpisode{false};
 
     const int CORNER_RADIUS;
 };

@@ -1343,12 +1343,21 @@ void MainWindow::updatePodcastsList() {
 
 }
 
-void MainWindow::populateEpisodesList(QListWidgetItem *item) {
+void MainWindow::populateEpisodesList(QListWidgetItem *item, bool fav) {
 
     clearEpisodesList();
 
-    auto widget = dynamic_cast<QFrame *> (item->listWidget()->itemWidget(item));
-    auto ID = widget->property("ID").toInt();
+    unsigned int ID;
+    if (item) {
+        auto widget = dynamic_cast<QFrame *> (item->listWidget()->itemWidget(item));
+        ID = widget->property("ID").toInt();
+        PID = ID;
+        FavoriteEpisode = false;
+    } else {
+        ID = PID;
+        FavoriteEpisode = true;
+    }
+
     auto podcast = Podcasts::getPodcastById(ID);
 
     const int SIZE = 140;
@@ -1373,6 +1382,11 @@ void MainWindow::populateEpisodesList(QListWidgetItem *item) {
     qApp->processEvents();
 
     for (const auto &episode: podcast->getEpisodes()) {
+
+        if (fav)
+            if (!Podcasts::isFavouriteEpisode(*episode))
+                continue;
+
         auto mainLayout = new QHBoxLayout();
         QFrame *mainFrame = new QFrame();
         mainFrame->setLayout(mainLayout);
@@ -1484,20 +1498,46 @@ void MainWindow::playEpisode(PodcastEpisode *episode) {
 }
 
 void MainWindow::playNextEpisode(PodcastEpisode *currentEpisode) {
-    if (!currentEpisode) return;
+    if (!currentEpisode) {
+        episode = nullptr;
+        return;
+    }
     auto nextEpisode = Podcasts::getEpisodeById(currentEpisode->getID() + 1);
-    if (nextEpisode)
-        if (currentEpisode->getPID() == nextEpisode->getPID())
-            playEpisode(nextEpisode);
+    if (nextEpisode) {
+        if (currentEpisode->getPID() != nextEpisode->getPID()) {
+            episode = nullptr;
+            return;
+        }
+        if (FavoriteEpisode) {
+            if (!Podcasts::isFavouriteEpisode(*nextEpisode)) {
+                playNextEpisode(nextEpisode);
+            } else {
+                playEpisode(nextEpisode);
+            }
+        } else playEpisode(nextEpisode);
+    } else episode = nullptr;
 }
 
 void MainWindow::playPrevEpisode(PodcastEpisode *currentEpisode) {
-    if (!currentEpisode) return;
+    if (!currentEpisode) {
+        episode = nullptr;
+        return;
+    }
     if (currentEpisode->getID() < 1) return;
     auto nextEpisode = Podcasts::getEpisodeById(currentEpisode->getID() - 1);
-    if (nextEpisode)
-        if (currentEpisode->getPID() == nextEpisode->getPID())
-            playEpisode(nextEpisode);
+    if (nextEpisode) {
+        if (currentEpisode->getPID() != nextEpisode->getPID()) {
+            episode = nullptr;
+            return;
+        }
+        if (FavoriteEpisode) {
+            if (!Podcasts::isFavouriteEpisode(*nextEpisode)) {
+                playPrevEpisode(nextEpisode);
+            } else {
+                playEpisode(nextEpisode);
+            }
+        } else playEpisode(nextEpisode);
+    } else episode = nullptr;
 }
 
 void MainWindow::onDurationChanged(qint64 duration) {
@@ -1687,5 +1727,5 @@ void MainWindow::on_LoadPodcastsButton_clicked()
 
 void MainWindow::on_FavoritesButton_clicked()
 {
-
+    populateEpisodesList(nullptr, true);
 }
