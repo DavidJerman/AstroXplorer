@@ -214,6 +214,10 @@ private:
 
     void setButtonToPlay(bool);
 
+    void addFavouriteEpisode(bool);
+
+    void updateLocalPodcats();
+
     // CfgLoder extension
     const QString getCfgValueQ(const std::string key) const;
 
@@ -239,8 +243,6 @@ private slots:
 
     void imagePopUp(QListWidgetItem *);
 
-    void on_LoadPodcastsButton_clicked();
-
     void on_AudioProgressBar_sliderPressed();
 
     void on_AudioProgressBar_sliderReleased();
@@ -258,6 +260,12 @@ private slots:
     void on_DownloadsDownloadButton_clicked();
 
     void on_AutoPlayButton_clicked();
+
+    void on_HeartButton_clicked();
+
+    void on_UpdatePodcastsButton_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     std::map <std::string, std::string> config;

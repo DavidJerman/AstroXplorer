@@ -45,6 +45,11 @@ MainWindow::MainWindow(QWidget *parent)
         return;
     this->fontCfg = CfgLoader::getConfig();
 
+    // Load podcasts
+    updateStatus("Loading podcasts...");
+    Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
+    updatePodcastsList();
+
     // This part handles requests
     const auto _API_KEY = config.find("api_key");
     if (_API_KEY == config.end()) return;
@@ -408,6 +413,17 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
 
         updateStatus("Downladed " + fileName);
         qApp->processEvents();
+    } else if (dataSource == "rss_download") {
+        updateStatus("RSS fetched!");
+        auto answer = reply->readAll();
+        auto podcast = Podcasts::DomToPodcast(Podcasts::XMLDataToDom(answer));
+        auto fileName = config.find("podcast_sources_path")->second + getValidFileName(podcast->getTitle()).toStdString() + ".rss";
+        QFile file;
+        file.setFileName(QString::fromStdString(fileName));
+        if (!file.open(QIODevice::WriteOnly)) return;
+        file.write(answer);
+        file.close();
+        delete podcast;
     }
 }
 
@@ -1205,10 +1221,31 @@ void MainWindow::updateRoverManifest(QNetworkReply *reply, QListWidget *list, OR
     reply->deleteLater();
 }
 
-void MainWindow::on_LoadPodcastsButton_clicked() {
-    updateStatus("Loading podcasts...");
+void MainWindow::on_UpdatePodcastsButton_clicked()
+{
+    updateStatus("Updating podcasts from web...");
+    updateLocalPodcats();
+    // TODO: Update GUI on finish
+}
+
+void MainWindow::updateLocalPodcats() {
+    clearPodcastsList();
+    clearEpisodesList();
     Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
-    updatePodcastsList();
+    QDir dir;
+    auto path = QString::fromStdString(config.find("podcast_sources_path")->second);
+    dir.setPath(path);
+    for (const auto& podcast: Podcasts::getPodcasts()) {
+        auto selfUrl = podcast->getSelfUrl();
+        QNetworkRequest request;
+        request.setUrl(selfUrl);
+        auto res = manager->get(request);
+        res->setProperty("data_source", "rss_download");
+    }
+    for (const auto& file: dir.entryList()) {
+        QFile f (path + file);
+        f.remove();
+    }
 }
 
 void MainWindow::clearPodcastsList() {
@@ -1632,3 +1669,10 @@ void MainWindow::on_HeartButton_clicked()
 
 }
 
+void MainWindow::on_pushButton_clicked()
+{
+    updateStatus("Loading local podcasts...");
+    Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
+    updatePodcastsList();
+    updateStatus("Podcasts loaded!");
+}

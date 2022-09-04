@@ -50,10 +50,20 @@ void Podcast::setID(unsigned int newID) {
     ID = newID;
 }
 
+const QUrl Podcast::getSelfUrl() const
+{
+    return {selfUrl};
+}
+
+void Podcast::setSelfUrl(const QString &newSelfUrl)
+{
+    selfUrl = newSelfUrl;
+}
+
 Podcast::Podcast(QString &title, QString &description, QString &link,
-                 QString &language, QString &imageUrl)
+                 QString &language, QString &imageUrl, QString& selfUrl)
         : title(title), description(description), link(link),
-          language(language), imageUrl(imageUrl) {
+          language(language), imageUrl(imageUrl), selfUrl(selfUrl) {
     IDCounter++;
 }
 

@@ -31,6 +31,10 @@ public:
     static Podcast *getPodcastById(unsigned int ID);
 
     static PodcastEpisode *getEpisodeById(unsigned int ID);
+
+    static QDomDocument* XMLDataToDom(QByteArray& data);
+
+    static Podcast* DomToPodcast(QDomDocument* dom);
 };
 
 #endif // PODCASTS_H

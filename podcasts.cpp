@@ -22,6 +22,62 @@ bool Podcasts::addPodcastFromXML(QString fileName) {
     return true;
 }
 
+QDomDocument* Podcasts::XMLDataToDom(QByteArray& data) {
+    auto dom = new QDomDocument();
+    dom->setContent(data);
+    if (!dom->hasChildNodes()) return nullptr;
+    return dom;
+}
+
+Podcast* Podcasts::DomToPodcast(QDomDocument* dom) {
+
+    auto root = dom->documentElement();
+    if (root.tagName() != "rss") return nullptr;
+    auto podcastEl = root.firstChild().toElement();
+
+    // Data about the podcast
+    Podcast *podcast = new Podcast();
+
+    auto item = podcastEl.firstChild().toElement();
+    while (!item.isNull()) {
+        // Get info about the podcast
+        if (item.tagName() == "title") podcast->setTitle(item.text());
+        else if (item.tagName() == "description") podcast->setDescription(item.text());
+        else if (item.tagName() == "link") podcast->setLink(item.text());
+        else if (item.tagName() == "language") podcast->setLanguage(item.text());
+        else if (item.tagName() == "image") {
+            auto subItem = item.firstChild().toElement();
+            while (!subItem.isNull()) {
+                if (subItem.tagName() == "url") {
+                    podcast->setImageUrl(subItem.text());
+                    break;
+                }
+                subItem = subItem.nextSibling().toElement();
+            }
+        } else if (item.tagName() == "item") {
+            // Get info on the episode
+            PodcastEpisode *episode = new PodcastEpisode(podcast->getID());
+            auto subItem = item.firstChild().toElement();
+            while (!subItem.isNull()) {
+                if (subItem.tagName() == "title") episode->setTitle(subItem.text());
+                else if (subItem.tagName() == "link") episode->setLink(subItem.text());
+                else if (subItem.tagName() == "description") episode->setDescription(subItem.text());
+                else if (subItem.tagName() == "enclosure") episode->setMP3Url(subItem.attribute("url"));
+                else if (subItem.tagName() == "guid") episode->setWebUrl(subItem.text());
+                else if (subItem.tagName() == "pubDate") episode->setDate(subItem.text());
+                else if (subItem.tagName() == "source") episode->setRssSource(subItem.attribute("url"));
+                subItem = subItem.nextSibling().toElement();
+            }
+            podcast->addEpisode(episode);
+        } else if (item.tagName() == "atom:link" && item.hasAttribute("rel") && item.attribute("rel") == "self") {
+            podcast->setSelfUrl(item.attribute("href"));
+        }
+        item = item.nextSibling().toElement();
+    }
+
+    return podcast;
+}
+
 bool Podcasts::loadPodcastsFromSourceFolder(QString folder) {
     clearPodcasts();
     clearPodcastDOMs();
@@ -50,47 +106,7 @@ bool Podcasts::loadPodcasts() {
 
     for (const auto &dom: podcastDOMs) {
 
-        auto root = dom->documentElement();
-        if (root.tagName() != "rss") continue;
-        auto podcastEl = root.firstChild().toElement();
-
-        // Data about the podcast
-        Podcast *podcast = new Podcast();
-
-        auto item = podcastEl.firstChild().toElement();
-        while (!item.isNull()) {
-            // Get info about the podcast
-            if (item.tagName() == "title") podcast->setTitle(item.text());
-            else if (item.tagName() == "description") podcast->setDescription(item.text());
-            else if (item.tagName() == "link") podcast->setLink(item.text());
-            else if (item.tagName() == "language") podcast->setLanguage(item.text());
-            else if (item.tagName() == "image") {
-                auto subItem = item.firstChild().toElement();
-                while (!subItem.isNull()) {
-                    if (subItem.tagName() == "url") {
-                        podcast->setImageUrl(subItem.text());
-                        break;
-                    }
-                    subItem = subItem.nextSibling().toElement();
-                }
-            } else if (item.tagName() == "item") {
-                // Get info on the episode
-                PodcastEpisode *episode = new PodcastEpisode(podcast->getID());
-                auto subItem = item.firstChild().toElement();
-                while (!subItem.isNull()) {
-                    if (subItem.tagName() == "title") episode->setTitle(subItem.text());
-                    else if (subItem.tagName() == "link") episode->setLink(subItem.text());
-                    else if (subItem.tagName() == "description") episode->setDescription(subItem.text());
-                    else if (subItem.tagName() == "enclosure") episode->setMP3Url(subItem.attribute("url"));
-                    else if (subItem.tagName() == "guid") episode->setWebUrl(subItem.text());
-                    else if (subItem.tagName() == "pubDate") episode->setDate(subItem.text());
-                    else if (subItem.tagName() == "source") episode->setRssSource(subItem.attribute("url"));
-                    subItem = subItem.nextSibling().toElement();
-                }
-                podcast->addEpisode(episode);
-            }
-            item = item.nextSibling().toElement();
-        }
+        auto podcast = DomToPodcast(dom);
 
         podcasts.push_back(podcast);
     }

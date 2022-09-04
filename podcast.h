@@ -8,12 +8,12 @@
 class Podcast {
 private:
     std::vector<PodcastEpisode *> episodes;
-    QString title, description, link, language, imageUrl;
+    QString title, description, link, language, imageUrl, selfUrl;
     static unsigned int IDCounter;
     unsigned int ID;
 public:
     Podcast(QString &title, QString &description, QString &link,
-            QString &language, QString &imageUrl);
+            QString &language, QString &imageUrl, QString& selfUrl);
 
     Podcast();
 
@@ -48,6 +48,10 @@ public:
     unsigned int getID() const;
 
     void setID(unsigned int newID);
+
+    const QUrl getSelfUrl() const;
+
+    void setSelfUrl(const QString &newSelfUrl);
 };
 
 #endif // PODCAST_H
