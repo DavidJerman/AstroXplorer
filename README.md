@@ -12,5 +12,6 @@ A GUI that uses NASA's APIs to fetch useful data about space/Earth etc.
   - search weather by clocking on the map?
   - search weather by selecting/typing a location?
 - podcasts
-  - make it so that the podcasts get updated automatically and loaded automatically
+  - ~~make it so that the podcasts get updated automatically and loaded automatically~~
+  - ~~liked episodes~~
   - remeber the user's last episode etc.
