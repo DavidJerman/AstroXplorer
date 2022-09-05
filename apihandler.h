@@ -46,6 +46,9 @@ public:
     static QUrl getMarsRoverManifest_API_Request_URL(const std::string MARS_ROVER_URL,
                                                      const std::string API_KEY,
                                                      ORIGIN rover);
+    static QUrl getEPICJson_Request_URL(QDate &date);
+
+    static QUrl getEPICImage_Request_URL(QDate &date, QString& type, QString &imageFileName);
 };
 
 #endif // APIHANDLER_H

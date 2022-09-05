@@ -13,3 +13,5 @@ podcast_data_path=./podcasts/data/
 podcast_fav_episode_path=./podcasts/data/favoriteEpisodes.dat
 icons_path=./icons/
 downloads_path=./downloads/
+epic_json_url=https://epic.gsfc.nasa.gov/api/enhanced/date/
+epic_image_url=https://epic.gsfc.nasa.gov/archive/natural/

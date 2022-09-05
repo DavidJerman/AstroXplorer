@@ -65,3 +65,12 @@ QUrl APIHandler::getMarsRoverManifest_API_Request_URL(const std::string MARS_ROV
     std::string api_url = MARS_ROVER_URL + E::eToS(rover) + "?api_key=" + API_KEY;
     return {QString::fromStdString(api_url)};
 }
+
+// TODO
+static QUrl getEPICJson_Request_URL(QDate &date) {
+
+}
+
+static QUrl getEPICImage_Request_URL(QDate &date, QString& type, QString &imageFileName) {
+
+}
