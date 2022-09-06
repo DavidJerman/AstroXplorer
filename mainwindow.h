@@ -221,7 +221,13 @@ private:
     // EPIC
     void fetchEPICJson(QUrl url, ORIGIN origin, QString type);
 
-    void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, QString coord);
+    void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, QString coord, unsigned int count);
+
+    void setEPICWidgetsState(bool enable);
+
+    void clearEPICImagesLabel();
+
+    void updateEPICImagesLabel(int state); // 0 - current, 1 - next, 2 - prev
 
     // CfgLoder extension
     const QString getCfgValueQ(const std::string key) const;
@@ -274,6 +280,14 @@ private slots:
 
     void on_FavoritesButton_clicked();
 
+    void on_EPICSearchButton_clicked();
+
+    void on_EPICNextImageButton_clicked();
+
+    void on_EPICPrevImageButton_clicked();
+
+    void on_EPICImageTypeComboBox_currentIndexChanged(int index);
+
 private:
     std::map <std::string, std::string> config;
     std::map <std::string, std::string> fontCfg;
@@ -288,6 +302,8 @@ private:
     PodcastEpisode *episode{nullptr};
     unsigned int PID{(unsigned int)(-1)};
     bool FavoriteEpisode{false};
+    unsigned int EPICDownloadCount{0};
+    bool EPICDownloadLock{true};
 
     const int CORNER_RADIUS;
 };

@@ -14,18 +14,24 @@ void EPIC::clear() {
     reset();
 }
 
-QPixmap* EPIC::getNextPixmap() {
-    if (*++iterator) return (*iterator)->getPixmap();
-    else return {};
+EPICImage* EPIC::getNextImage() {
+    if (*++iterator) return *iterator;
+    else {
+        iterator = images.begin();
+        return getCurrentImage();
+    }
 }
 
-QPixmap* EPIC::getPrevPixmap() {
-    if (*--iterator) return (*iterator)->getPixmap();
-    else return {};
+EPICImage* EPIC::getPrevImage() {
+    if (iterator == images.begin()) {
+        iterator = images.end() - 1;
+        return *iterator;
+    } else return *--iterator;
 }
 
-QPixmap* EPIC::getCurrentPixmap() {
-    return (*iterator)->getPixmap();
+EPICImage* EPIC::getCurrentImage() {
+    auto ret = *iterator;
+    return ret;
 }
 
 void EPIC::addImage(EPICImage* image) {
@@ -34,4 +40,11 @@ void EPIC::addImage(EPICImage* image) {
 
 void EPIC::reset() {
     iterator = images.begin();
+    sort();
+}
+
+void EPIC::sort() {
+    std::sort(images.begin(), images.end(), [](const EPICImage* i1, const EPICImage* i2) {
+        return i1->getTitle() < i2->getTitle();
+    });
 }

@@ -15,15 +15,17 @@ public:
 
     static void clear();
 
-    static QPixmap* getNextPixmap();
+    static EPICImage* getNextImage();
 
-    static QPixmap* getPrevPixmap();
+    static EPICImage* getPrevImage();
 
-    static QPixmap* getCurrentPixmap();
+    static EPICImage* getCurrentImage();
 
     static void addImage(EPICImage* image);
 
     static void reset();
+
+    static void sort();
 };
 
 #endif // EPIC_H

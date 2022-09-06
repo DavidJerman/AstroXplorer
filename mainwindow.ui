@@ -4144,7 +4144,7 @@
        <attribute name="title">
         <string>EPIC Daily Blue Marble</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_61" stretch="1,1">
+       <layout class="QHBoxLayout" name="horizontalLayout_61" stretch="11,14">
         <item>
          <widget class="QFrame" name="EPICQueryFrame">
           <property name="frameShape">
@@ -4154,6 +4154,40 @@
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout">
+           <item row="4" column="0">
+            <widget class="QComboBox" name="EPICImageTypeComboBox">
+             <item>
+              <property name="text">
+               <string>Natural</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Enhanced</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="EPICSearchButton">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>icons/bx-search-alt-2.png</normaloff>icons/bx-search-alt-2.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>28</width>
+               <height>28</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="0" colspan="2">
             <widget class="QLabel" name="EPICDescriptionLabel">
              <property name="font">
@@ -4188,99 +4222,6 @@ captured by DSCOVR's EPIC imagery instrument</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
-            <widget class="QComboBox" name="EPICImageTypeComboBox"/>
-           </item>
-           <item row="5" column="0" colspan="2">
-            <widget class="QFrame" name="EPICImageDetailsFrame">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>100</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_11">
-              <item row="1" column="0">
-               <widget class="QLabel" name="EPICImageDateLabel">
-                <property name="text">
-                 <string>Date</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="EPICImageTitleLabel_">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="EPICImageCordLabel">
-                <property name="text">
-                 <string>Coordinates</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="EPICImageTitleLabel">
-                <property name="text">
-                 <string>Title</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="EPICImageDateLabel_">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QTextEdit" name="EPICImageDescriptionTextEdit">
-                <property name="frameShape">
-                 <enum>QFrame::NoFrame</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Plain</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="EPICImageCaptionLabel">
-                <property name="text">
-                 <string>Caption</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QLabel" name="EPICImageCordLabel_">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <spacer name="verticalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
            <item row="3" column="0">
             <widget class="QSlider" name="EPICDateSlider">
              <property name="orientation">
@@ -4304,24 +4245,108 @@ captured by DSCOVR's EPIC imagery instrument</string>
            <item row="2" column="0">
             <widget class="QDateEdit" name="EPICDate"/>
            </item>
-           <item row="2" column="1">
-            <widget class="QPushButton" name="EPICSearchButton">
-             <property name="text">
-              <string/>
+           <item row="6" column="0">
+            <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
              </property>
-             <property name="icon">
-              <iconset>
-               <normaloff>icons/bx-search-alt-2.png</normaloff>icons/bx-search-alt-2.png</iconset>
-             </property>
-             <property name="iconSize">
+             <property name="sizeHint" stdset="0">
               <size>
-               <width>28</width>
-               <height>28</height>
+               <width>20</width>
+               <height>40</height>
               </size>
              </property>
-             <property name="flat">
-              <bool>true</bool>
+            </spacer>
+           </item>
+           <item row="5" column="0" colspan="2">
+            <widget class="QFrame" name="EPICImageDetailsFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
              </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="0" column="0">
+               <widget class="QLabel" name="EPICImageTitleLabel">
+                <property name="text">
+                 <string>Title</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabel" name="EPICImageCordLabel_">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="EPICImageCordLabel">
+                <property name="text">
+                 <string>Coordinates</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QTextEdit" name="EPICImageDescriptionTextEdit">
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Plain</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="EPICImageCaptionLabel">
+                <property name="text">
+                 <string>Caption</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="EPICImageDateLabel_">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="EPICImageTitleLabel_">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="EPICImageDateLabel">
+                <property name="text">
+                 <string>Date</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="EPICVersionLabel">
+                <property name="text">
+                 <string>Version</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLabel" name="EPICVersionLabel_">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
@@ -4341,11 +4366,57 @@ captured by DSCOVR's EPIC imagery instrument</string>
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <layout class="QGridLayout" name="gridLayout_7">
-           <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_7" columnstretch="1,50,1">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="EPICNextImageButton">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>icons/bx-skip-next.png</normaloff>icons/bx-skip-next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>48</width>
+               <height>5000</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
             <widget class="QLabel" name="EPICImageLabel">
              <property name="text">
-              <string>&lt;Image&gt;</string>
+              <string/>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="EPICPrevImageButton">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>icons/bx-skip-previous.png</normaloff>icons/bx-skip-previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>48</width>
+               <height>5000</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
              </property>
             </widget>
            </item>

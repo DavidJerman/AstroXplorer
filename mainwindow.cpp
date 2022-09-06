@@ -68,13 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
     fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), O::APOD_JSON);
 
     // EPIC
-    // TODO: Remove
-    fetchEPICJson(APIHandler::getEPICJson_Request_URL(QString::fromStdString(config.find("api_key")->second),
-                                                      QString::fromStdString(config.find("epic_json_url")->second),
-                                                      QDate::fromString("2022-08-25", "yyyy-MM-dd"),
-                                                      E::eToQs(O::EPIC_ENCHANCED)),
-                  O::EPIC_JSON,
-                  E::eToQs(O::EPIC_ENCHANCED));
+    // TODO: Update limits for widgets
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
@@ -258,8 +252,8 @@ void MainWindow::fetchEPICJson(QUrl url, ORIGIN origin, QString type) {
     res->setProperty("type", type);
 }
 
-void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, QString coord) {
-    updateStatus("Fetching image for " + E::eToQs(origin) + "...");
+void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, QString coord, unsigned int count) {
+    updateStatus("Fetching data for " + E::eToQs(origin) + "...");
     QNetworkRequest request;
     request.setUrl(url);
     auto res = manager->get(request);
@@ -270,6 +264,7 @@ void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString 
     res->setProperty("caption", caption);
     res->setProperty("version", version);
     res->setProperty("coord", coord);
+    res->setProperty("count", count);
 }
 
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
@@ -471,6 +466,16 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
         if (origin == O::EPIC_JSON) {
             auto data = "{\"item\":" + answer + "}";
             auto parsedJson = APIHandler::parseJSON(data);
+            auto count = parsedJson.find("item")->toArray().count();
+            if (count == 0) {
+                updateStatus("No data found for this day!");
+                EPICDownloadLock = false;
+                setEPICWidgetsState(true);
+                return;
+            }
+            EPICDownloadCount = 0;
+            EPICDownloadLock = true;
+            EPIC::clear();
             for (const auto& item: parsedJson.find("item")->toArray()) {
                 auto obj = item.toObject();
                 auto date = QDate::fromString(QString::fromStdString(obj.find("date")->toString().toStdString().substr(0, 10)), "yyyy-MM-dd");
@@ -487,7 +492,8 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
                                date.toString(),
                                obj.find("caption")->toString(),
                                obj.find("version")->toString(),
-                               "TEMP"); // TODO: Change
+                               "TEMP",
+                               count);
             }
         } else if (origin == O::EPIC_IMAGE) {
             // auto answer = reply->readAll();
@@ -497,11 +503,21 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             caption = reply->property("caption").toString();
             version = reply->property("version").toString();
             coord = reply->property("coord").toString();
+            unsigned int ct = reply->property("count").toInt();
             auto image = new EPICImage(title, date, caption, version, coord);
             auto pixmap = new QPixmap();
             pixmap->loadFromData(answer);
             image->setPixmap(pixmap);
             EPIC::addImage(image);
+            EPICDownloadCount++;
+            if (EPICDownloadCount == ct) {
+                updateStatus("EPIC Download finished!");
+                EPICDownloadCount = 0;
+                setEPICWidgetsState(true);
+                EPIC::reset();
+                EPICDownloadLock = false;
+                updateEPICImagesLabel(0);
+            }
         }
     }
 }
@@ -1806,4 +1822,56 @@ void MainWindow::on_LoadPodcastsButton_clicked()
 void MainWindow::on_FavoritesButton_clicked()
 {
     populateEpisodesList(nullptr, true);
+}
+
+void MainWindow::setEPICWidgetsState(bool enabled) {
+    ui->EPICSearchButton->setEnabled(enabled);
+}
+
+void MainWindow::on_EPICSearchButton_clicked()
+{
+    setEPICWidgetsState(false);
+    EPICDownloadLock = true;
+    auto mode = (ui->EPICImageTypeComboBox->currentIndex() == 0 ? O::EPIC_NATURAL : O::EPIC_ENCHANCED);
+    fetchEPICJson(APIHandler::getEPICJson_Request_URL(QString::fromStdString(config.find("api_key")->second),
+                                                      QString::fromStdString(config.find("epic_json_url")->second),
+                                                      ui->EPICDate->date(),
+                                                      E::eToQs(mode)),
+                  O::EPIC_JSON,
+                  E::eToQs(mode));
+}
+
+void MainWindow::clearEPICImagesLabel() {
+    ui->EPICImageLabel->setPixmap(QPixmap());
+}
+
+void MainWindow::updateEPICImagesLabel(int state) {
+    if (EPICDownloadLock) return;
+    clearEPICImagesLabel();
+    auto image = (state == 0 ? EPIC::getCurrentImage() : state == 1 ? EPIC::getNextImage() : EPIC::getPrevImage());
+    ui->EPICImageLabel->setPixmap(*image->getPixmap());
+    ui->EPICImageTitleLabel_->setText(image->getTitle());
+    ui->EPICImageDescriptionTextEdit->clear();
+    ui->EPICImageDescriptionTextEdit->append(image->getCaption());
+    ui->EPICImageDateLabel_->setText(image->getDate());
+    ui->EPICImageCordLabel_->setText(image->getCoord());
+    ui->EPICVersionLabel_->setText(image->getVersion());
+} // 0 - current, 1 - next, 2 - prev
+
+void MainWindow::on_EPICNextImageButton_clicked()
+{
+    updateEPICImagesLabel(1);
+}
+
+
+void MainWindow::on_EPICPrevImageButton_clicked()
+{
+    updateEPICImagesLabel(2);
+}
+
+
+void MainWindow::on_EPICImageTypeComboBox_currentIndexChanged(int index)
+{
+    if (index == 0) ui->EPICImageTypeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-color.png")));
+    else ui->EPICImageTypeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-color.png")));
 }
