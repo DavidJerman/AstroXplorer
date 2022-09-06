@@ -56,10 +56,11 @@ enum ORIGIN {
     EPIC_JSON,
     EPIC_IMAGE,
     EPIC_NATURAL,
-    EPIC_ENCHANCED
+    EPIC_ENCHANCED,
+    EPIC_DATA
 };
 
-constexpr unsigned int SIZE = 52;
+constexpr unsigned int SIZE = 53;
 
 class E {
     static std::string VALUES[SIZE];

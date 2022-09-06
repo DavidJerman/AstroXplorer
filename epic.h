@@ -10,6 +10,7 @@ class EPIC
 private:
     static std::vector<EPICImage*> images;
     static std::vector<EPICImage*>::iterator iterator;
+    static std::vector<QDate*> availableDates;
 public:
     EPIC();
 
@@ -26,6 +27,20 @@ public:
     static void reset();
 
     static void sort();
+
+    static void clearDates();
+
+    static void sortDates();
+
+    static void addDate(QDate* date);
+
+    static QDate* getMaxDateWhenSorted();
+
+    static QDate* getMinDateWhenSorted();
+
+    static qint64 getTotalDates();
+
+    static QDate* getDate(qint64 index);
 };
 
 #endif // EPIC_H

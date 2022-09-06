@@ -229,6 +229,8 @@ private:
 
     void updateEPICImagesLabel(int state); // 0 - current, 1 - next, 2 - prev
 
+    void updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate);
+
     // CfgLoder extension
     const QString getCfgValueQ(const std::string key) const;
 
@@ -287,6 +289,8 @@ private slots:
     void on_EPICPrevImageButton_clicked();
 
     void on_EPICImageTypeComboBox_currentIndexChanged(int index);
+
+    void on_EPICDateSlider_sliderReleased();
 
 private:
     std::map <std::string, std::string> config;

@@ -83,3 +83,10 @@ QUrl APIHandler::getEPICImage_Request_URL(QString API_KEY,
     auto url = baseUrl + type + "/" + date.toString("yyyy") + "/" + date.toString("MM") + "/" + date.toString("dd") + "/" + extension + "/" + imageFileName + "." + extension + "?api_key=" + API_KEY;
     return {url};
 }
+
+QUrl APIHandler::getEPICData_Request_URL(QString API_KEY,
+                             QString baseUrl,
+                             QString type) {
+    auto url = baseUrl + type + "/all?api_key" + API_KEY;
+    return {url};
+}

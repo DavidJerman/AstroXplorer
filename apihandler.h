@@ -49,6 +49,8 @@ public:
     static QUrl getEPICJson_Request_URL(QString API_KEY, QString baseUrl, QDate date, QString type);
 
     static QUrl getEPICImage_Request_URL(QString API_KEY, QString baseUrl, QDate date, QString type, QString imageFileName, QString extension);
+
+    static QUrl getEPICData_Request_URL(QString API_KEY, QString baseUrl, QString type);
 };
 
 #endif // APIHANDLER_H

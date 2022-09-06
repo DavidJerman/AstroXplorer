@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
     fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), O::APOD_JSON);
 
     // EPIC
-    // TODO: Update limits for widgets
+    on_EPICImageTypeComboBox_currentIndexChanged(0);
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
@@ -469,12 +469,10 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             auto count = parsedJson.find("item")->toArray().count();
             if (count == 0) {
                 updateStatus("No data found for this day!");
-                EPICDownloadLock = false;
                 setEPICWidgetsState(true);
                 return;
             }
             EPICDownloadCount = 0;
-            EPICDownloadLock = true;
             EPIC::clear();
             for (const auto& item: parsedJson.find("item")->toArray()) {
                 auto obj = item.toObject();
@@ -496,7 +494,6 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
                                count);
             }
         } else if (origin == O::EPIC_IMAGE) {
-            // auto answer = reply->readAll();
             QString title, date, caption, version, coord;
             title = reply->property("title").toString();
             date = reply->property("date").toString();
@@ -513,11 +510,24 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             if (EPICDownloadCount == ct) {
                 updateStatus("EPIC Download finished!");
                 EPICDownloadCount = 0;
-                setEPICWidgetsState(true);
                 EPIC::reset();
-                EPICDownloadLock = false;
+                setEPICWidgetsState(true);
                 updateEPICImagesLabel(0);
             }
+        } else if (origin == O::EPIC_DATA) {
+            EPIC::clearDates();
+            auto data = "{\"item\":" + answer + "}";
+            auto parsedJson = APIHandler::parseJSON(data);
+            for (const auto& item: parsedJson.find("item")->toArray()) {
+                auto obj = item.toObject();
+                EPIC::addDate(new QDate(QDate::fromString(QString::fromStdString(obj.find("date")->toString().toStdString()), "yyyy-MM-dd")));
+            }
+            EPIC::sortDates();
+            auto max = EPIC::getMaxDateWhenSorted();
+            auto min = EPIC::getMinDateWhenSorted();
+            updateEPICDataConstraints(max, min);
+            setEPICWidgetsState(true);
+            updateStatus("New EPIC constraints set!");
         }
     }
 }
@@ -1826,12 +1836,15 @@ void MainWindow::on_FavoritesButton_clicked()
 
 void MainWindow::setEPICWidgetsState(bool enabled) {
     ui->EPICSearchButton->setEnabled(enabled);
+    ui->EPICDate->setEnabled(enabled);
+    ui->EPICDateSlider->setEnabled(enabled);
+    ui->EPICImageTypeComboBox->setEnabled(enabled);
+    EPICDownloadLock = !enabled;
 }
 
 void MainWindow::on_EPICSearchButton_clicked()
 {
     setEPICWidgetsState(false);
-    EPICDownloadLock = true;
     auto mode = (ui->EPICImageTypeComboBox->currentIndex() == 0 ? O::EPIC_NATURAL : O::EPIC_ENCHANCED);
     fetchEPICJson(APIHandler::getEPICJson_Request_URL(QString::fromStdString(config.find("api_key")->second),
                                                       QString::fromStdString(config.find("epic_json_url")->second),
@@ -1872,6 +1885,32 @@ void MainWindow::on_EPICPrevImageButton_clicked()
 
 void MainWindow::on_EPICImageTypeComboBox_currentIndexChanged(int index)
 {
-    if (index == 0) ui->EPICImageTypeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-color.png")));
-    else ui->EPICImageTypeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-color.png")));
+    setEPICWidgetsState(false);
+    if (index == 0) {
+        ui->EPICImageTypeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-color.png")));
+        fetchEPICJson(APIHandler::getEPICData_Request_URL(QString::fromStdString(config.find("api_key")->second),
+                                                          QString::fromStdString(config.find("epic_json_url")->second),
+                                                          E::eToQs(O::EPIC_NATURAL)),
+                      O::EPIC_DATA,
+                      E::eToQs(O::EPIC_NATURAL));
+    } else {
+        ui->EPICImageTypeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-color.png")));
+        fetchEPICJson(APIHandler::getEPICData_Request_URL(QString::fromStdString(config.find("api_key")->second),
+                                                          QString::fromStdString(config.find("epic_json_url")->second),
+                                                          E::eToQs(O::EPIC_ENCHANCED)),
+                      O::EPIC_DATA,
+                      E::eToQs(O::EPIC_ENCHANCED));
+    }
 }
+
+void MainWindow::updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate) {
+    ui->EPICDate->setMaximumDate(*maxDate);
+    ui->EPICDate->setMinimumDate(*minDate);
+    ui->EPICDateSlider->setMaximum(EPIC::getTotalDates() - 1);
+}
+
+void MainWindow::on_EPICDateSlider_sliderReleased()
+{
+    ui->EPICDate->setDate(*EPIC::getDate(ui->EPICDateSlider->value()));
+}
+
