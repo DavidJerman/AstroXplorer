@@ -218,6 +218,11 @@ private:
 
     void updateHeartButtonIcon(PodcastEpisode*);
 
+    // EPIC
+    void fetchEPICJson(QUrl url, ORIGIN origin, QString type);
+
+    void fetchEPICImage(QUrl url, ORIGIN origin);
+
     // CfgLoder extension
     const QString getCfgValueQ(const std::string key) const;
 

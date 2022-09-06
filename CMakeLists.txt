@@ -40,6 +40,10 @@ set(PROJECT_SOURCES
         podcast.cpp
         podcastepisode.h
         podcastepisode.cpp
+        epic.h
+        epic.cpp
+        epicimage.h
+        epicimage.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

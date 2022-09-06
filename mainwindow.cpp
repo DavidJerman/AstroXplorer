@@ -66,6 +66,10 @@ MainWindow::MainWindow(QWidget *parent)
     updateStatus("Fetching welcome image...");
     fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), O::APOD_JSON);
 
+    // EPIC
+    // TODO: Remove
+    fetchEPICJson(APIHandler::getEPICJson_Request_URL(QString::fromStdString(config.find("epic_json_url")->second), QDate::fromString("2022-08-25", "yyyy-MM-dd"), E::eToQs(O::EPIC_ENCHANCED)), O::EPIC_JSON, E::eToQs(O::EPIC_ENCHANCED));
+
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
     ui->WelcomeImageExplanationTextBrowser->setOpenLinks(true);
@@ -238,6 +242,20 @@ void MainWindow::fetchImage(QUrl url, QString filePath) {
     res->setProperty("file_path", filePath);
 }
 
+void MainWindow::fetchEPICJson(QUrl url, ORIGIN origin, QString type) {
+    updateStatus("Downloading data for " + E::eToQs(origin) + "...");
+    QNetworkRequest request;
+    request.setUrl(url);
+    auto res = manager->get(request);
+    res->setProperty("origin", origin);
+    res->setProperty("data_source", "epic");
+    res->setProperty("type", type);
+}
+
+void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin) {
+
+}
+
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
     auto dataSource = reply->property("data_source").value<QString>();
     if (dataSource == "normal") {
@@ -366,6 +384,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             default:
                 reply->deleteLater();
         }
+
     } else if (dataSource == "podcast") {
         auto origin = reply->property("origin").value<QString>();
         auto imageLabel = reply->property("image_label").value<QLabel *>();
@@ -381,6 +400,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
         imageLabel->setPixmap(p);
 
         updateStatus("Thumbnail(s) download!");
+
     } else if (dataSource == "download") {
         auto answer = reply->readAll();
         auto parsedData = APIHandler::parseJSON(answer);
@@ -402,6 +422,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             for (const auto &photo: photos)
                 downloadImage(photo.toObject().value("img_src").toString(), rover, camera, sol, c++);
         }
+
     } else if (dataSource == "image_download") {
         auto fileName = reply->property("file_path").toString();
 
@@ -414,6 +435,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
 
         updateStatus("Downladed " + fileName);
         qApp->processEvents();
+
     } else if (dataSource == "rss_download") {
         updateStatus("RSS fetched!");
         auto answer = reply->readAll();
@@ -425,6 +447,22 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
         file.write(answer);
         file.close();
         delete podcast;
+
+    } else if (dataSource == "epic") {
+
+        auto answer = reply->readAll();
+        auto origin = reply->property("origin").value<ORIGIN>();
+        if (origin == O::EPIC_JSON) {
+            auto data = "{\"item\":" + answer + "}";
+            auto parsedJson = APIHandler::parseJSON(data);
+            for (const auto& item: parsedJson.find("item")->toArray()) {
+                auto obj = item.toObject();
+
+            }
+        } else if (origin == O::EPIC_IMAGE) {
+            QString title, date, caption, version, coordinates;
+
+        }
     }
 }
 

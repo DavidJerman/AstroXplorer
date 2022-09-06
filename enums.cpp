@@ -50,5 +50,9 @@ std::string E::VALUES[SIZE] =
                 "Spirit RHAZ photos",
                 "Spirit NAVCAM photos",
                 "Spirit PANCAM photos",
-                "Spirit MINITES photos"
+                "Spirit MINITES photos",
+                "EPIC JSON data",
+                "EPIC image",
+                "natural",
+                "enhanced"
         };

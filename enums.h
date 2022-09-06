@@ -52,10 +52,14 @@ enum ORIGIN {
     S_RHAZ_P,
     S_NAVCAM_P,
     S_PANCAM_P,
-    S_MINITES_P
+    S_MINITES_P,
+    EPIC_JSON,
+    EPIC_IMAGE,
+    EPIC_NATURAL,
+    EPIC_ENCHANCED
 };
 
-constexpr unsigned int SIZE = 48;
+constexpr unsigned int SIZE = 52;
 
 class E {
     static std::string VALUES[SIZE];
