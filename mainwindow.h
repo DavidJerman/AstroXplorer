@@ -221,7 +221,7 @@ private:
     // EPIC
     void fetchEPICJson(QUrl url, ORIGIN origin, QString type);
 
-    void fetchEPICImage(QUrl url, ORIGIN origin);
+    void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, QString coord);
 
     // CfgLoder extension
     const QString getCfgValueQ(const std::string key) const;

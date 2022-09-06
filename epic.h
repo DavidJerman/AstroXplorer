@@ -9,21 +9,21 @@ class EPIC
 {
 private:
     static std::vector<EPICImage*> images;
-    static std::vector<QPixmap*>::iterator iterator;
+    static std::vector<EPICImage*>::iterator iterator;
 public:
     EPIC();
 
-    void clear();
+    static void clear();
 
-    QPixmap* getNextPixmap() const;
+    static QPixmap* getNextPixmap();
 
-    QPixmap* getPrevPixmap() const;
+    static QPixmap* getPrevPixmap();
 
-    QPixmap* getCurrentPixmap() const;
+    static QPixmap* getCurrentPixmap();
 
-    void addPixmap(QPixmap* pixmap);
+    static void addImage(EPICImage* image);
 
-    void reset();
+    static void reset();
 };
 
 #endif // EPIC_H

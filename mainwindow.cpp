@@ -6,6 +6,7 @@
 #include "imagemanipulation.h"
 #include "enums.h"
 #include "podcasts.h"
+#include "epic.h"
 
 #include <sstream>
 #include <QFontDatabase>
@@ -68,7 +69,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // EPIC
     // TODO: Remove
-    fetchEPICJson(APIHandler::getEPICJson_Request_URL(QString::fromStdString(config.find("epic_json_url")->second), QDate::fromString("2022-08-25", "yyyy-MM-dd"), E::eToQs(O::EPIC_ENCHANCED)), O::EPIC_JSON, E::eToQs(O::EPIC_ENCHANCED));
+    fetchEPICJson(APIHandler::getEPICJson_Request_URL(QString::fromStdString(config.find("api_key")->second),
+                                                      QString::fromStdString(config.find("epic_json_url")->second),
+                                                      QDate::fromString("2022-08-25", "yyyy-MM-dd"),
+                                                      E::eToQs(O::EPIC_ENCHANCED)),
+                  O::EPIC_JSON,
+                  E::eToQs(O::EPIC_ENCHANCED));
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
@@ -252,8 +258,18 @@ void MainWindow::fetchEPICJson(QUrl url, ORIGIN origin, QString type) {
     res->setProperty("type", type);
 }
 
-void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin) {
-
+void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, QString coord) {
+    updateStatus("Fetching image for " + E::eToQs(origin) + "...");
+    QNetworkRequest request;
+    request.setUrl(url);
+    auto res = manager->get(request);
+    res->setProperty("origin", origin);
+    res->setProperty("data_source", "epic");
+    res->setProperty("title", title);
+    res->setProperty("date", date);
+    res->setProperty("caption", caption);
+    res->setProperty("version", version);
+    res->setProperty("coord", coord);
 }
 
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
@@ -457,11 +473,35 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             auto parsedJson = APIHandler::parseJSON(data);
             for (const auto& item: parsedJson.find("item")->toArray()) {
                 auto obj = item.toObject();
-
+                auto date = QDate::fromString(QString::fromStdString(obj.find("date")->toString().toStdString().substr(0, 10)), "yyyy-MM-dd");
+                auto fileName = obj.find("image")->toString();
+                auto url = APIHandler::getEPICImage_Request_URL(QString::fromStdString(config.find("api_key")->second),
+                                                                QString::fromStdString(config.find("epic_image_url")->second),
+                                                                date,
+                                                                reply->property("type").toString(),
+                                                                fileName,
+                                                                "png");
+                fetchEPICImage(url,
+                               O::EPIC_IMAGE,
+                               obj.find("identifier")->toString(),
+                               date.toString(),
+                               obj.find("caption")->toString(),
+                               obj.find("version")->toString(),
+                               "TEMP"); // TODO: Change
             }
         } else if (origin == O::EPIC_IMAGE) {
-            QString title, date, caption, version, coordinates;
-
+            // auto answer = reply->readAll();
+            QString title, date, caption, version, coord;
+            title = reply->property("title").toString();
+            date = reply->property("date").toString();
+            caption = reply->property("caption").toString();
+            version = reply->property("version").toString();
+            coord = reply->property("coord").toString();
+            auto image = new EPICImage(title, date, caption, version, coord);
+            auto pixmap = new QPixmap();
+            pixmap->loadFromData(answer);
+            image->setPixmap(pixmap);
+            EPIC::addImage(image);
         }
     }
 }

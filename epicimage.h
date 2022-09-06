@@ -12,7 +12,7 @@ private:
 public:
     EPICImage(const QString title, const QString date, const QString caption, const QString version, const QString coord);
 
-    EPICImage();
+    EPICImage() = default;
 
     const QString &getTitle() const;
 

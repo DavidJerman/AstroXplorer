@@ -1,5 +1,12 @@
 #include "epicimage.h"
 
+EPICImage::EPICImage(const QString title, const QString date, const QString caption, const QString version, const QString coord)
+    : title(std::move(title)), date(std::move(date)), caption(std::move(caption)), version(std::move(version)), coord(std::move(coord))
+{
+
+}
+
+
 const QString &EPICImage::getTitle() const
 {
     return title;
@@ -58,9 +65,4 @@ QPixmap *EPICImage::getPixmap() const
 void EPICImage::setPixmap(QPixmap *newPixmap)
 {
     pixmap = newPixmap;
-}
-
-EPICImage::EPICImage()
-{
-
 }

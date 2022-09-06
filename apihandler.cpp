@@ -67,16 +67,19 @@ QUrl APIHandler::getMarsRoverManifest_API_Request_URL(const std::string MARS_ROV
 }
 
 // TODO
-QUrl APIHandler::getEPICJson_Request_URL(QString baseUrl,
+QUrl APIHandler::getEPICJson_Request_URL(QString API_KEY,
+                                         QString baseUrl,
                                          QDate date,
                                          QString type) {
-    return {baseUrl + type + "/date/" + date.toString("yyyy-MM-dd")};
+    return {baseUrl + type + "/date/" + date.toString("yyyy-MM-dd") + "?api_key=" + API_KEY};
 }
 
-QUrl APIHandler::getEPICImage_Request_URL(QString baseUrl,
+QUrl APIHandler::getEPICImage_Request_URL(QString API_KEY,
+                                          QString baseUrl,
                                           QDate date,
                                           QString type,
                                           QString imageFileName,
                                           QString extension) {
-    return {baseUrl + type + "/" + date.toString("yyyy") + "/" + date.toString("MM") + "/" + date.toString("dd") + "/" + extension + "/" + imageFileName};
+    auto url = baseUrl + type + "/" + date.toString("yyyy") + "/" + date.toString("MM") + "/" + date.toString("dd") + "/" + extension + "/" + imageFileName + "." + extension + "?api_key=" + API_KEY;
+    return {url};
 }

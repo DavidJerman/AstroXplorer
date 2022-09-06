@@ -1,7 +1,7 @@
 #include "epic.h"
 
 std::vector<EPICImage*> EPIC::images;
-std::vector<QPixmap*>::iterator EPIC::iterator;
+std::vector<EPICImage*>::iterator EPIC::iterator;
 
 EPIC::EPIC()
 {
@@ -14,24 +14,24 @@ void EPIC::clear() {
     reset();
 }
 
-QPixmap* EPIC::getNextPixmap() const {
-    if (*++iterator) return *iterator;
+QPixmap* EPIC::getNextPixmap() {
+    if (*++iterator) return (*iterator)->getPixmap();
     else return {};
 }
 
-QPixmap* EPIC::getPrevPixmap() const {
-    if (*--iterator) return *iterator;
+QPixmap* EPIC::getPrevPixmap() {
+    if (*--iterator) return (*iterator)->getPixmap();
     else return {};
 }
 
-QPixmap* EPIC::getCurrentPixmap() const {
-    return *iterator;
+QPixmap* EPIC::getCurrentPixmap() {
+    return (*iterator)->getPixmap();
 }
 
-void EPIC::addPixmap(QPixmap* pixmap) {
-    // images.push_back(pixmap);
+void EPIC::addImage(EPICImage* image) {
+    images.push_back(image);
 }
 
 void EPIC::reset() {
-    // iterator = images.begin();
+    iterator = images.begin();
 }
