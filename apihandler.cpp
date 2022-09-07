@@ -35,7 +35,7 @@ QUrl APIHandler::getMarsRoverImagerySols_API_Request_URL(const std::string MARS_
     std::string api_url =
             MARS_ROVER_URL + E::eToS(rover) + "/photos" + "?camera=" + E::eToS(camera) + "&sol=" + sol + "&api_key=" +
             API_KEY;
-    return {QString::fromStdString(api_url)};
+    return {QString::fromStdString(std::move(api_url))};
 }
 
 QUrl APIHandler::getMarsRoverImagerySols_API_Request_URL(const std::string MARS_ROVER_URL,
@@ -45,7 +45,7 @@ QUrl APIHandler::getMarsRoverImagerySols_API_Request_URL(const std::string MARS_
                                                          const std::string sol) {
     std::string api_url =
             MARS_ROVER_URL + rover + "/photos" + "?camera=" + camera + "&sol=" + sol + "&api_key=" + API_KEY;
-    return {QString::fromStdString(api_url)};
+    return {QString::fromStdString(std::move(api_url))};
 }
 
 QUrl APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(const std::string MARS_ROVER_URL,
@@ -56,37 +56,36 @@ QUrl APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(const std::string 
     std::string api_url =
             MARS_ROVER_URL + E::eToS(rover) + "/photos" + "?camera=" + E::eToS(camera) + "&earth_date=" + date +
             "&api_key=" + API_KEY;
-    return {QString::fromStdString(api_url)};
+    return {QString::fromStdString(std::move(api_url))};
 }
 
 QUrl APIHandler::getMarsRoverManifest_API_Request_URL(const std::string MARS_ROVER_URL,
                                                       const std::string API_KEY,
                                                       ORIGIN rover) {
     std::string api_url = MARS_ROVER_URL + E::eToS(rover) + "?api_key=" + API_KEY;
-    return {QString::fromStdString(api_url)};
+    return {QString::fromStdString(std::move(api_url))};
 }
 
-// TODO
-QUrl APIHandler::getEPICJson_Request_URL(QString API_KEY,
-                                         QString baseUrl,
-                                         QDate date,
-                                         QString type) {
+QUrl APIHandler::getEPICJson_Request_URL(const QString API_KEY,
+                                         const QString baseUrl,
+                                         const QDate date,
+                                         const QString type) {
     return {baseUrl + type + "/date/" + date.toString("yyyy-MM-dd") + "?api_key=" + API_KEY};
 }
 
-QUrl APIHandler::getEPICImage_Request_URL(QString API_KEY,
-                                          QString baseUrl,
-                                          QDate date,
-                                          QString type,
-                                          QString imageFileName,
-                                          QString extension) {
+QUrl APIHandler::getEPICImage_Request_URL(const QString API_KEY,
+                                          const QString baseUrl,
+                                          const QDate date,
+                                          const QString type,
+                                          const QString imageFileName,
+                                          const QString extension) {
     auto url = baseUrl + type + "/" + date.toString("yyyy") + "/" + date.toString("MM") + "/" + date.toString("dd") + "/" + extension + "/" + imageFileName + "." + extension + "?api_key=" + API_KEY;
-    return {url};
+    return {std::move(url)};
 }
 
-QUrl APIHandler::getEPICData_Request_URL(QString API_KEY,
-                             QString baseUrl,
-                             QString type) {
+QUrl APIHandler::getEPICData_Request_URL(const QString API_KEY,
+                             const QString baseUrl,
+                             const QString type) {
     auto url = baseUrl + type + "/all?api_key" + API_KEY;
-    return {url};
+    return {std::move(url)};
 }

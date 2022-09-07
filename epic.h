@@ -18,11 +18,11 @@ public:
 
     static void clear();
 
-    static EPICImage* getNextImage();
+    static const EPICImage* const getNextImage();
 
-    static EPICImage* getPrevImage();
+    static const EPICImage* const getPrevImage();
 
-    static EPICImage* getCurrentImage();
+    static const EPICImage* const getCurrentImage();
 
     static void addImage(EPICImage* image);
 
@@ -36,13 +36,13 @@ public:
 
     static void addDate(QDate* date);
 
-    static QDate* getMaxDateWhenSorted();
+    static const QDate* const getMaxDateWhenSorted();
 
-    static QDate* getMinDateWhenSorted();
+    static const QDate* const getMinDateWhenSorted();
 
     static qint64 getTotalDates();
 
-    static QDate* getDate(qint64 index);
+    static const QDate* const getDate(qint64 index);
 
     static double distance(double x1, double y1, double z1, double x2, double y2, double z2);
 

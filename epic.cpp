@@ -16,7 +16,7 @@ void EPIC::clear() {
     reset();
 }
 
-EPICImage* EPIC::getNextImage() {
+const EPICImage* const EPIC::getNextImage() {
     if (images.empty()) return {};
     if (iterator == images.end() - 1) {
         iterator = images.begin();
@@ -24,7 +24,7 @@ EPICImage* EPIC::getNextImage() {
     } else return *++iterator;
 }
 
-EPICImage* EPIC::getPrevImage() {
+const EPICImage* const EPIC::getPrevImage() {
     if (images.empty()) return {};
     if (iterator == images.begin()) {
         iterator = images.end() - 1;
@@ -32,7 +32,7 @@ EPICImage* EPIC::getPrevImage() {
     } else return *--iterator;
 }
 
-EPICImage* EPIC::getCurrentImage() {
+const EPICImage* const EPIC::getCurrentImage() {
     if (images.empty()) return {};
     auto ret = *iterator;
     return ret;
@@ -55,7 +55,9 @@ void EPIC::sort() {
 }
 
 void EPIC::clearDates() {
-    for (auto date: availableDates) delete date;
+    for (auto &date: availableDates)
+        if (date)
+            delete date;
     availableDates.clear();
 }
 
@@ -67,14 +69,18 @@ void EPIC::sortDates() {
 
 void EPIC::addDate(QDate* date) {
     if (!date) return;
+    if (!date->isValid()) {
+        delete date;
+        return;
+    }
     availableDates.push_back(date);
 }
 
-QDate* EPIC::getMaxDateWhenSorted() {
+const QDate* const EPIC::getMaxDateWhenSorted() {
     return availableDates[availableDates.size() - 1];
 }
 
-QDate* EPIC::getMinDateWhenSorted() {
+const QDate* const EPIC::getMinDateWhenSorted() {
     return availableDates[0];
 }
 
@@ -82,7 +88,7 @@ qint64 EPIC::getTotalDates() {
     return availableDates.size();
 }
 
-QDate* EPIC::getDate(qint64 index) {
+const QDate* const EPIC::getDate(qint64 index) {
     if (index < 0 || index >= availableDates.size()) return availableDates[0];
     return availableDates[index];
 }

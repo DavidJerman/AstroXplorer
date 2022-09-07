@@ -9,11 +9,11 @@ Podcasts::Podcasts() {
 }
 
 bool Podcasts::addPodcastFromXML(std::string fileName) {
-    return addPodcastFromXML(QString::fromStdString(fileName));
+    return addPodcastFromXML(QString::fromStdString(std::move(fileName)));
 }
 
 bool Podcasts::addPodcastFromXML(QString fileName) {
-    QFile file(fileName);
+    QFile file(std::move(fileName));
     if (!file.open(QIODevice::ReadOnly)) return false;
     auto doc = new QDomDocument();
     doc->setContent(&file);
@@ -84,7 +84,7 @@ bool Podcasts::loadPodcastsFromSourceFolder(QString folder) {
     clearPodcastDOMs();
     QDir dir(folder);
     auto files = dir.entryList();
-    for (const auto &file: files) addPodcastFromXML(folder + file);
+    for (const auto &file: files) addPodcastFromXML(std::move(folder) + file);
     return loadPodcasts();
 }
 

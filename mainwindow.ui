@@ -21,6 +21,9 @@
     </sizepolicy>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_7">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -4144,7 +4147,7 @@
        <attribute name="title">
         <string>EPIC Daily Blue Marble</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_61" stretch="0,14">
+       <layout class="QHBoxLayout" name="horizontalLayout_61" stretch="6,8">
         <item>
          <widget class="QFrame" name="EPICQueryFrame">
           <property name="frameShape">
@@ -4277,11 +4280,14 @@
                 <property name="singleStep">
                  <number>50</number>
                 </property>
+                <property name="pageStep">
+                 <number>50</number>
+                </property>
                 <property name="value">
-                 <number>200</number>
+                 <number>150</number>
                 </property>
                 <property name="sliderPosition">
-                 <number>200</number>
+                 <number>150</number>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -4351,6 +4357,12 @@
              <layout class="QGridLayout" name="gridLayout_11">
               <item row="5" column="0">
                <widget class="QLabel" name="EPICVersionLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Version</string>
                 </property>
@@ -4358,6 +4370,12 @@
               </item>
               <item row="8" column="0">
                <widget class="QLabel" name="EPICSunToEarthLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Sun to Earth</string>
                 </property>
@@ -4406,6 +4424,12 @@
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="EPICImageTitleLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Title</string>
                 </property>
@@ -4413,6 +4437,12 @@
               </item>
               <item row="4" column="0">
                <widget class="QLabel" name="EPICImageCordLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Coordinates</string>
                 </property>
@@ -4420,6 +4450,12 @@
               </item>
               <item row="7" column="0">
                <widget class="QLabel" name="EPICDistanceToEarth">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Distance to Earth</string>
                 </property>
@@ -4427,6 +4463,12 @@
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="EPICImageCaptionLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Caption</string>
                 </property>
@@ -4455,6 +4497,12 @@
               </item>
               <item row="6" column="0">
                <widget class="QLabel" name="EPICDistanceToSunLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Distance to Sun</string>
                 </property>
@@ -4462,6 +4510,12 @@
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="EPICImageDateLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Date</string>
                 </property>
@@ -4469,6 +4523,12 @@
               </item>
               <item row="9" column="0">
                <widget class="QLabel" name="EPICMoonToEarthLabel">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Moon to Earth</string>
                 </property>

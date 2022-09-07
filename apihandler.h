@@ -46,11 +46,11 @@ public:
     static QUrl getMarsRoverManifest_API_Request_URL(const std::string MARS_ROVER_URL,
                                                      const std::string API_KEY,
                                                      ORIGIN rover);
-    static QUrl getEPICJson_Request_URL(QString API_KEY, QString baseUrl, QDate date, QString type);
+    static QUrl getEPICJson_Request_URL(const QString API_KEY, const QString baseUrl, const QDate date, const QString type);
 
-    static QUrl getEPICImage_Request_URL(QString API_KEY, QString baseUrl, QDate date, QString type, QString imageFileName, QString extension);
+    static QUrl getEPICImage_Request_URL(const QString API_KEY, const QString baseUrl, const QDate date, const QString type, const QString imageFileName, const QString extension);
 
-    static QUrl getEPICData_Request_URL(QString API_KEY, QString baseUrl, QString type);
+    static QUrl getEPICData_Request_URL(const QString API_KEY, const QString baseUrl, const QString type);
 };
 
 #endif // APIHANDLER_H

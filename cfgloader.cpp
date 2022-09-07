@@ -7,7 +7,7 @@ CfgLoader::CfgLoader() {
 }
 
 bool CfgLoader::loadConfig(std::string fileName) {
-    std::fstream iStream(fileName);
+    std::fstream iStream(std::move(fileName));
 
     if (iStream.bad()) return false;
 

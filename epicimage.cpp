@@ -45,10 +45,10 @@ EPICImage::EPICImage(const QString title,
                      const QString caption,
                      const QString version,
                      const QString coord,
-                     Coordinates2D centroidCoordinates,
-                     Position3D dscovrPosition,
-                     Position3D lunarPosition,
-                     Position3D sunPosition)
+                     const Coordinates2D centroidCoordinates,
+                     const Position3D dscovrPosition,
+                     const Position3D lunarPosition,
+                     const Position3D sunPosition)
     : title(std::move(title)),
       date(std::move(date)),
       caption(std::move(caption)),
@@ -60,6 +60,10 @@ EPICImage::EPICImage(const QString title,
       sunPosition(std::move(sunPosition))
 {
 
+}
+
+EPICImage::~EPICImage() {
+    delete pixmap;
 }
 
 const QString &EPICImage::getTitle() const
@@ -158,7 +162,7 @@ double EPICImage::distance(double x1, double y1, double z1, double x2, double y2
     return (std::sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2) + (z1 - z2)*(z1 - z2)));
 }
 
-double EPICImage::distance(Position3D p1, Position3D p2) {
+double EPICImage::distance(const Position3D p1, const Position3D p2) {
     return distance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
 }
 

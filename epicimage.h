@@ -22,12 +22,14 @@ public:
               const QString caption,
               const QString version,
               const QString coord,
-              Coordinates2D centroidCoordinates,
-              Position3D dscovrPosition,
-              Position3D lunarPosition,
-              Position3D sunPosition);
+              const Coordinates2D centroidCoordinates,
+              const Position3D dscovrPosition,
+              const Position3D lunarPosition,
+              const Position3D sunPosition);
 
     EPICImage();
+
+    ~EPICImage();
 
     const QString &getTitle() const;
 
@@ -87,7 +89,7 @@ public:
 
     static double distance(double x1, double y1, double z1, double x2, double y2, double z2);
 
-    static double distance(Position3D p1, Position3D p2);
+    static double distance(const Position3D p1, const Position3D p2);
 };
 
 #endif // EPICIMAGE_H

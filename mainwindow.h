@@ -47,115 +47,115 @@ private slots:
     QString getValidFileName(std::string fileName);
 
     // Rover imagery
-    void on_O_FHAZ_SOLS_Button_clicked();
+    const void on_O_FHAZ_SOLS_Button_clicked() const;
 
-    void on_O_FHAZ_DATE_Button_clicked();
+    const void on_O_FHAZ_DATE_Button_clicked() const;
 
-    void on_O_RHAZ_SOLS_Button_clicked();
+    const void on_O_RHAZ_SOLS_Button_clicked() const;
 
-    void on_O_RHAZ_DATE_Button_clicked();
+    const void on_O_RHAZ_DATE_Button_clicked() const;
 
-    void on_S_RHAZ_DATE_Button_clicked();
+    const void on_S_RHAZ_DATE_Button_clicked() const;
 
-    void on_S_RHAZ_SOLS_Button_clicked();
+    const void on_S_RHAZ_SOLS_Button_clicked() const;
 
-    void on_S_PANCAM_SOLS_Button_clicked();
+    const void on_S_PANCAM_SOLS_Button_clicked() const;
 
-    void on_S_PANCAM_DATE_Button_clicked();
+    const void on_S_PANCAM_DATE_Button_clicked() const;
 
-    void on_S_NAVCAM_SOLS_Button_clicked();
+    const void on_S_NAVCAM_SOLS_Button_clicked() const;
 
-    void on_S_NAVCAM_DATE_Button_clicked();
+    const void on_S_NAVCAM_DATE_Button_clicked() const;
 
-    void on_S_MINITES_SOLS_Button_clicked();
+    const void on_S_MINITES_SOLS_Button_clicked() const;
 
-    void on_S_MINITES_DATE_Button_clicked();
+    const void on_S_MINITES_DATE_Button_clicked() const;
 
-    void on_S_FHAZ_SOLS_Button_clicked();
+    const void on_S_FHAZ_SOLS_Button_clicked() const;
 
-    void on_S_FHAZ_DATE_Button_clicked();
+    const void on_S_FHAZ_DATE_Button_clicked() const;
 
-    void on_O_PANCAM_SOLS_Button_clicked();
+    const void on_O_PANCAM_SOLS_Button_clicked() const;
 
-    void on_O_PANCAM_DATE_Button_clicked();
+    const void on_O_PANCAM_DATE_Button_clicked() const;
 
-    void on_O_NAVCAM_SOLS_Button_clicked();
+    const void on_O_NAVCAM_SOLS_Button_clicked() const;
 
-    void on_O_NAVCAM_DATE_Button_clicked();
+    const void on_O_NAVCAM_DATE_Button_clicked() const;
 
-    void on_O_MINITES_SOLS_Button_clicked();
+    const void on_O_MINITES_SOLS_Button_clicked() const;
 
-    void on_O_MINITES_DATE_Button_clicked();
+    const void on_O_MINITES_DATE_Button_clicked() const;
 
-    void on_C_NAVCAM_SOLS_Button_clicked();
+    const void on_C_NAVCAM_SOLS_Button_clicked() const;
 
-    void on_C_NAVCAM_DATE_Button_clicked();
+    const void on_C_NAVCAM_DATE_Button_clicked() const;
 
-    void on_C_MAST_SOLS_Button_clicked();
+    const void on_C_MAST_SOLS_Button_clicked() const;
 
-    void on_C_MAST_DATE_Button_clicked();
+    const void on_C_MAST_DATE_Button_clicked() const;
 
-    void on_C_MARDI_SOLS_Button_clicked();
+    const void on_C_MARDI_SOLS_Button_clicked() const;
 
-    void on_C_MARDI_DATE_Button_clicked();
+    const void on_C_MARDI_DATE_Button_clicked() const;
 
-    void on_C_MAHLI_SOLS_Button_clicked();
+    const void on_C_MAHLI_SOLS_Button_clicked() const;
 
-    void on_C_MAHLI_DATE_Button_clicked();
+    const void on_C_MAHLI_DATE_Button_clicked() const;
 
-    void on_C_FHAZ_SOLS_Button_clicked();
+    const void on_C_FHAZ_SOLS_Button_clicked() const;
 
-    void on_C_FHAZ_DATE_Button_clicked();
+    const void on_C_FHAZ_DATE_Button_clicked() const;
 
-    void on_C_CHEMCAM_SOLS_Button_clicked();
+    const void on_C_CHEMCAM_SOLS_Button_clicked() const;
 
-    void on_C_CHEMCAM_DATE_Button_clicked();
+    const void on_C_CHEMCAM_DATE_Button_clicked() const;
 
-    void on_C_RHAZ_SOLS_Button_clicked();
+    const void on_C_RHAZ_SOLS_Button_clicked() const;
 
-    void on_C_RHAZ_DATE_Button_clicked();
+    const void on_C_RHAZ_DATE_Button_clicked() const;
 
 private:
     // Rover imagery
     // GeneralisedFunctions
-    void MarsRoverCamera_SetImages(QNetworkReply *reply, ORIGIN origin);
+    const void MarsRoverCamera_SetImages(QNetworkReply *reply, ORIGIN origin) const;
 
     void MarsRoverCamera_AddImageToContainer(QNetworkReply *reply, QListWidget *list);
 
     // Tab specific functions
-    void C_FHAZ_SetImages(QNetworkReply *reply);
+    const void C_FHAZ_SetImages(QNetworkReply *reply) const;
 
-    void C_RHAZ_SetImages(QNetworkReply *reply);
+    const void C_RHAZ_SetImages(QNetworkReply *reply) const;
 
-    void C_MAST_SetImages(QNetworkReply *reply);
+    const void C_MAST_SetImages(QNetworkReply *reply) const;
 
-    void C_CHEMCAM_SetImages(QNetworkReply *reply);
+    const void C_CHEMCAM_SetImages(QNetworkReply *reply) const;
 
-    void C_MAHLI_SetImages(QNetworkReply *reply);
+    const void C_MAHLI_SetImages(QNetworkReply *reply) const;
 
-    void C_MARDI_SetImages(QNetworkReply *reply);
+    const void C_MARDI_SetImages(QNetworkReply *reply) const;
 
-    void C_NAVCAM_SetImages(QNetworkReply *reply);
+    const void C_NAVCAM_SetImages(QNetworkReply *reply) const;
 
-    void O_FHAZ_SetImages(QNetworkReply *reply);
+    const void O_FHAZ_SetImages(QNetworkReply *reply) const;
 
-    void O_RHAZ_SetImages(QNetworkReply *reply);
+    const void O_RHAZ_SetImages(QNetworkReply *reply) const;
 
-    void O_NAVCAM_SetImages(QNetworkReply *reply);
+    const void O_NAVCAM_SetImages(QNetworkReply *reply) const;
 
-    void O_PANCAM_SetImages(QNetworkReply *reply);
+    const void O_PANCAM_SetImages(QNetworkReply *reply) const;
 
-    void O_MINITES_SetImages(QNetworkReply *reply);
+    const void O_MINITES_SetImages(QNetworkReply *reply) const;
 
-    void S_FHAZ_SetImages(QNetworkReply *reply);
+    const void S_FHAZ_SetImages(QNetworkReply *reply) const;
 
-    void S_RHAZ_SetImages(QNetworkReply *reply);
+    const void S_RHAZ_SetImages(QNetworkReply *reply) const;
 
-    void S_NAVCAM_SetImages(QNetworkReply *reply);
+    const void S_NAVCAM_SetImages(QNetworkReply *reply) const;
 
-    void S_PANCAM_SetImages(QNetworkReply *reply);
+    const void S_PANCAM_SetImages(QNetworkReply *reply) const;
 
-    void S_MINITES_SetImages(QNetworkReply *reply);
+    const void S_MINITES_SetImages(QNetworkReply *reply) const;
 
     // Limit rover imagery input widget range
     void limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate);
@@ -182,18 +182,18 @@ private:
     void setWelcomeImageInformation(QJsonObject &jsonObj);
 
     // Fetching data
-    void fetchAPIData(QUrl url, ORIGIN origin);
+    const void fetchAPIData(QUrl url, ORIGIN origin) const;
 
-    void fetchPodcastData(QUrl url, QString origin, QLabel *imageLabel, unsigned int SIZE);
+    const void fetchPodcastData(QUrl url, QString origin, QLabel *imageLabel, unsigned int SIZE) const;
 
-    void fetchImages(QUrl url, QString origin, int sol, QString rover, QString camera);
+    const void fetchImages(QUrl url, QString origin, int sol, QString rover, QString camera) const;
 
-    void fetchImage(QUrl url, QString filePath);
+    const void fetchImage(QUrl url, QString filePath) const;
 
     // Information
-    void updateStatus(QString msg);
+    const void updateStatus(QString msg) const;
 
-    void popUpDialog(QString msg);
+    const void popUpDialog(QString msg) const;
 
     // Downloads
     void downloadImages(const QString &checkBoxTitle, const unsigned int sol);
