@@ -13,44 +13,44 @@
 
 class APIHandler {
 public:
-    APIHandler();
+    APIHandler() = default;
 
     static QUrl getAPOD_API_Request_URL(const std::string &APOD_URL, const std::string &API_KEY);
 
-    static QJsonObject parseJSON(const std::string data);
+    static QJsonObject parseJSON(std::string data);
 
-    static QJsonObject parseJSON(const QString data);
+    static QJsonObject parseJSON(QString data);
 
     static QJsonObject parseJSON(const QByteArray &data);
 
-    static std::string dateToString(QDate date);
+    static std::string dateToString(const QDate& date);
 
-    static QUrl getMarsRoverImagerySols_API_Request_URL(const std::string MARS_ROVER_URL,
-                                                        const std::string API_KEY,
+    static QUrl getMarsRoverImagerySols_API_Request_URL(std::string MARS_ROVER_URL,
+                                                        std::string API_KEY,
                                                         ORIGIN rover,
                                                         ORIGIN camera,
-                                                        const std::string sol);
+                                                        std::string sol);
 
-    static QUrl getMarsRoverImagerySols_API_Request_URL(const std::string MARS_ROVER_URL,
-                                                        const std::string API_KEY,
-                                                        const std::string rover,
-                                                        const std::string camera,
-                                                        const std::string sol);
+    static QUrl getMarsRoverImagerySols_API_Request_URL(std::string MARS_ROVER_URL,
+                                                        std::string API_KEY,
+                                                        std::string rover,
+                                                        std::string camera,
+                                                        std::string sol);
 
-    static QUrl getMarsRoverImageryEarthDate_API_Request_URL(const std::string MARS_ROVER_URL,
-                                                             const std::string API_KEY,
+    static QUrl getMarsRoverImageryEarthDate_API_Request_URL(std::string MARS_ROVER_URL,
+                                                             std::string API_KEY,
                                                              ORIGIN rover,
                                                              ORIGIN camera,
-                                                             const std::string date);
+                                                             std::string date);
 
-    static QUrl getMarsRoverManifest_API_Request_URL(const std::string MARS_ROVER_URL,
-                                                     const std::string API_KEY,
+    static QUrl getMarsRoverManifest_API_Request_URL(std::string MARS_ROVER_URL,
+                                                     std::string API_KEY,
                                                      ORIGIN rover);
-    static QUrl getEPICJson_Request_URL(const QString API_KEY, const QString baseUrl, const QDate date, const QString type);
+    static QUrl getEPICJson_Request_URL(QString API_KEY, QString baseUrl, QDate date, QString type);
 
-    static QUrl getEPICImage_Request_URL(const QString API_KEY, const QString baseUrl, const QDate date, const QString type, const QString imageFileName, const QString extension);
+    static QUrl getEPICImage_Request_URL(QString API_KEY, QString baseUrl, QDate date, QString type, QString imageFileName, QString extension);
 
-    static QUrl getEPICData_Request_URL(const QString API_KEY, const QString baseUrl, const QString type);
+    static QUrl getEPICData_Request_URL(QString API_KEY, QString baseUrl, QString type);
 };
 
 #endif // APIHANDLER_H

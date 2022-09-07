@@ -12,8 +12,8 @@ private:
     static unsigned int IDCounter;
     unsigned int ID;
 public:
-    Podcast(QString &title, QString &description, QString &link,
-            QString &language, QString &imageUrl, QString& selfUrl);
+    Podcast(const QString &title, const QString &description, const QString &link,
+            const QString &language, const QString &imageUrl, const QString& selfUrl);
 
     Podcast();
 

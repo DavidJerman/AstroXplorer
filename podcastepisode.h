@@ -10,11 +10,10 @@ private:
     unsigned int ID;
     unsigned int PID;
 public:
-    PodcastEpisode(QString &title, QString &link, QString &description, QString &MP3Url,
-                   QString &webUrl, QString &date, QString &rssSource, unsigned int PID);
+    PodcastEpisode(const QString &title, const QString &link, const QString &description, const QString &MP3Url,
+                   const QString &webUrl, const QString &date, const QString &rssSource, unsigned int PID);
 
     PodcastEpisode(unsigned int PID);
-
 
     const QString &getTitle() const;
 

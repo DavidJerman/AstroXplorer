@@ -2,10 +2,6 @@
 
 std::map <std::string, std::string> CfgLoader::cfg = std::map<std::string, std::string>();
 
-CfgLoader::CfgLoader() {
-
-}
-
 bool CfgLoader::loadConfig(std::string fileName) {
     std::fstream iStream(std::move(fileName));
 

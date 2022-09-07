@@ -17,7 +17,7 @@
 typedef ORIGIN O;
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow), CORNER_RADIUS(25) {
+        : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     // Media
@@ -168,24 +168,24 @@ MainWindow::MainWindow(QWidget *parent)
     ui->PodcastSelectorList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 }
 
-const QString MainWindow::getCfgValueQ(const std::string key) const {
-    return QString::fromStdString(config.find(key)->second);
+const QString MainWindow::getCfgValueQ(std::string key) const {
+    return QString::fromStdString(config.find(std::move(key))->second);
 }
 
-const std::string MainWindow::getCfgValue(const std::string key) const {
-    return config.find(key)->second;
+const std::string MainWindow::getCfgValue(std::string key) const {
+    return config.find(std::move(key))->second;
 }
 
-const QString MainWindow::getFontQ(const std::string key) const {
-    return QString::fromStdString(fontCfg.find(key)->second);
+const QString MainWindow::getFontQ(std::string key) const {
+    return QString::fromStdString(fontCfg.find(std::move(key))->second);
 }
 
-const std::string MainWindow::getFont(const std::string key) const {
-    return fontCfg.find(key)->second;
+const std::string MainWindow::getFont(std::string key) const {
+    return fontCfg.find(std::move(key))->second;
 }
 
-const unsigned int MainWindow::getFSize(const std::string key) const {
-    return std::stoi(fontCfg.find(key)->second);
+const unsigned int MainWindow::getFSize(std::string key) const {
+    return std::stoi(fontCfg.find(std::move(key))->second);
 }
 
 const void MainWindow::updateStatus(QString msg) const {
@@ -211,17 +211,17 @@ const void MainWindow::fetchAPIData(QUrl url, ORIGIN origin) const {
     updateStatus("Fetching data for " + E::eToQs(origin) + "...");
 
     QNetworkRequest request;
-    request.setUrl(url);
+    request.setUrl(std::move(url));
     auto res = manager->get(request);
     res->setProperty("origin", origin);
     res->setProperty("data_source", "normal");
 }
 
 const void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel *imageLabel, unsigned int SIZE) const {
-    updateStatus("Fetching data for " + origin + "...");
+    updateStatus("Fetching data for " + std::move(origin) + "...");
 
     QNetworkRequest request;
-    request.setUrl(url);
+    request.setUrl(std::move(url));
     auto res = manager->get(request);
     res->setProperty("origin", origin);
     res->setProperty("data_source", "podcast");
@@ -230,10 +230,10 @@ const void MainWindow::fetchPodcastData(QUrl url, QString origin, QLabel *imageL
 }
 
 const void MainWindow::fetchImages(QUrl url, QString origin, int sol, QString rover, QString camera) const {
-    updateStatus("Downloading data for " + origin + "...");
+    updateStatus("Downloading data for " + std::move(origin) + "...");
 
     QNetworkRequest request;
-    request.setUrl(url);
+    request.setUrl(std::move(url));
     auto res = manager->get(request);
     res->setProperty("origin", origin);
     res->setProperty("data_source", "download");
@@ -244,7 +244,7 @@ const void MainWindow::fetchImages(QUrl url, QString origin, int sol, QString ro
 
 const void MainWindow::fetchImage(QUrl url, QString filePath) const {
     QNetworkRequest request;
-    request.setUrl(url);
+    request.setUrl(std::move(url));
     auto res = manager->get(request);
     res->setProperty("data_source", "image_download");
     res->setProperty("file_path", filePath);
@@ -253,7 +253,7 @@ const void MainWindow::fetchImage(QUrl url, QString filePath) const {
 const void MainWindow::fetchEPICJson(QUrl url, ORIGIN origin, QString type) const {
     updateStatus("Downloading data for " + E::eToQs(origin) + "...");
     QNetworkRequest request;
-    request.setUrl(url);
+    request.setUrl(std::move(url));
     auto res = manager->get(request);
     res->setProperty("origin", origin);
     res->setProperty("data_source", "epic");
@@ -267,14 +267,14 @@ const void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QS
                                 double sunX, double sunY, double sunZ) const  {
     updateStatus("Fetching data for " + E::eToQs(origin) + "...");
     QNetworkRequest request;
-    request.setUrl(url);
+    request.setUrl(std::move(url));
     auto res = manager->get(request);
     res->setProperty("origin", origin);
     res->setProperty("data_source", "epic");
-    res->setProperty("title", title);
-    res->setProperty("date", date);
-    res->setProperty("caption", caption);
-    res->setProperty("version", version);
+    res->setProperty("title", std::move(title));
+    res->setProperty("date", std::move(date));
+    res->setProperty("caption", std::move(caption));
+    res->setProperty("version", std::move(version));
     res->setProperty("count", count);
     res->setProperty("lat", lat);
     res->setProperty("lon", lon);
@@ -571,7 +571,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
     }
 }
 
-void MainWindow::saveDataToFile(const QString filePath, const QByteArray &data) {
+void MainWindow::saveDataToFile(QString filePath, const QByteArray &data) {
     QFile file;
     file.setFileName(std::move(filePath));
     file.open(QIODevice::WriteOnly);
@@ -592,7 +592,7 @@ QString MainWindow::getValidFileName(QString fileName) {
     return getValidFileName(fileName.toStdString());
 }
 
-void MainWindow::updateWelcomeData(QNetworkReply *reply) {
+const void MainWindow::updateWelcomeData(QNetworkReply *reply) const {
 
     updateStatus("Fetching image of the day...");
 
@@ -616,7 +616,7 @@ void MainWindow::updateWelcomeData(QNetworkReply *reply) {
         auto filePath = config.find("welcome_image_metadata")->second;
 
         QFile file;
-        file.setFileName(QString::fromStdString(filePath));
+        file.setFileName(QString::fromStdString(std::move(filePath)));
         file.open(QIODevice::WriteOnly);
 
         file.write(answer);
@@ -631,7 +631,7 @@ void MainWindow::updateWelcomeData(QNetworkReply *reply) {
         auto filePath = config.find("welcome_image_metadata")->second;
 
         QFile file;
-        file.setFileName(QString::fromStdString(filePath));
+        file.setFileName(QString::fromStdString(std::move(filePath)));
         file.open(QIODevice::ReadOnly);
 
         auto jsonData = file.readAll();
@@ -651,7 +651,7 @@ void MainWindow::updateWelcomeData(QNetworkReply *reply) {
     reply->deleteLater();
 }
 
-void MainWindow::updateWelcomeImage(QNetworkReply *reply) {
+const void MainWindow::updateWelcomeImage(QNetworkReply *reply) const {
     if (reply->error()) {
         qDebug() << reply->errorString();
         reply->deleteLater();
@@ -683,7 +683,7 @@ void MainWindow::updateWelcomeImage(QNetworkReply *reply) {
     resizeWelcomeImage();
 }
 
-void MainWindow::updateWelcomeVideo(const QUrl &videoUrl) {
+const void MainWindow::updateWelcomeVideo(const QUrl &videoUrl) const {
     // Since WebView is deprecated, this will just load the latest image
     // Sets the image to label
     auto filePath = config.find("welcome_image_path")->second;
@@ -694,7 +694,7 @@ void MainWindow::updateWelcomeVideo(const QUrl &videoUrl) {
     return;
 }
 
-void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
+const void MainWindow::setWelcomeImageInformation(const QJsonObject &jsonObj) const {
     // Sets all the information provided by the APOD API
     auto title = jsonObj.find("title")->toString(),
             explanation = jsonObj.find("explanation")->toString(),
@@ -712,7 +712,7 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
     updateEPICImage();
 }
 
-void MainWindow::resizeWelcomeImage() {
+const void MainWindow::resizeWelcomeImage() const {
     auto maxW = ui->WelcomeImageDateLabel->width() - 18;
     auto maxH = ui->Tabs->height() - ui->WelcomeImageInfoFrame->height() - 70;
 
@@ -1245,8 +1245,8 @@ const void MainWindow::on_C_RHAZ_DATE_Button_clicked() const {
 }
 
 void
-MainWindow::limitCameraInputWidgetRanges(QSpinBox *solsWidget, QString &maxSol, QDateEdit *dateWidget, QString &maxDate,
-                                         QString &landingDate) {
+MainWindow::limitCameraInputWidgetRanges(QSpinBox *solsWidget, const QString &maxSol, QDateEdit *dateWidget, const QString &maxDate,
+                                         const QString &landingDate) {
     solsWidget->setMinimum(0);
     solsWidget->setMaximum(maxSol.toInt());
     dateWidget->setMinimumDate(QDate::fromString(landingDate, "yyyy-MM-dd"));
@@ -1356,8 +1356,8 @@ const void MainWindow::updateRoverManifest(QNetworkReply *reply, QListWidget *li
             else if (k == "max_date") maxDate = QString::fromStdString(v);
 
             for (auto &c: k) c = toupper(c);
-            kLabel->setText(QString::fromStdString(k));
-            vLabel->setText(QString::fromStdString(v));
+            kLabel->setText(QString::fromStdString(std::move(k)));
+            vLabel->setText(QString::fromStdString(std::move(v)));
         }
 
         i->setSizeHint(vLabel->sizeHint() + QSize(10, 24));
@@ -1815,7 +1815,7 @@ void MainWindow::on_DownloadsDownloadButton_clicked() {
     }
 }
 
-void MainWindow::downloadImages(const QString &checkBoxTitle, const unsigned int sol) {
+const void MainWindow::downloadImages(const QString &checkBoxTitle, unsigned int sol) const {
     auto _temp = checkBoxTitle.toStdString();
     auto camera = _temp.substr(0, _temp.find("_"));
     auto rover = _temp.substr(_temp.find("_") + 1);
@@ -1834,9 +1834,9 @@ void MainWindow::downloadImages(const QString &checkBoxTitle, const unsigned int
                 QString::fromStdString(std::move(camera)));
 }
 
-void
-MainWindow::downloadImage(const QString &imgSource, const QString &rover, const QString &camera, const unsigned int sol,
-                          const unsigned int ID) {
+const void
+MainWindow::downloadImage(const QString &imgSource, const QString &rover, const QString &camera, unsigned int sol,
+                          unsigned int ID) const {
     auto fileName = config.find("downloads_path")->second + rover.toStdString() + "_" + camera.toStdString()
                     + "_" + std::to_string(sol) + "_" + std::to_string(ID) + ".jpg";
     fetchImage(imgSource, QString::fromStdString(std::move(fileName)));
@@ -1973,7 +1973,7 @@ void MainWindow::on_EPICImageTypeComboBox_currentIndexChanged(int index)
     }
 }
 
-const void MainWindow::updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate) const {
+const void MainWindow::updateEPICDataConstraints(const QDate* const maxDate, const QDate* const minDate) const {
     ui->EPICDate->setMaximumDate(*maxDate);
     ui->EPICDate->setMinimumDate(*minDate);
     ui->EPICDateSlider->setMaximum(EPIC::getTotalDates() - 1);

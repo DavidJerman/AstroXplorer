@@ -5,11 +5,6 @@ std::vector<EPICImage*> EPIC::images;
 std::vector<EPICImage*>::iterator EPIC::iterator;
 std::vector<QDate*> EPIC::availableDates;
 
-EPIC::EPIC()
-{
-
-}
-
 void EPIC::clear() {
     for (auto &e: images) delete e;
     images.clear();

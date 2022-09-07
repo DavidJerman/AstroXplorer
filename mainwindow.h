@@ -40,7 +40,7 @@ private slots:
     // Requests and data
     void onRequestFinished(QNetworkReply * reply);
 
-    static void saveDataToFile(const QString filePath, const QByteArray &data);
+    static void saveDataToFile(QString filePath, const QByteArray &data);
 
     static QString getValidFileName(QString fileName);
 
@@ -160,26 +160,26 @@ private:
     // Limit rover imagery input widget range
     const void limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate) const;
 
-    static void limitCameraInputWidgetRanges(QSpinBox *solsWidget, QString &maxSol, QDateEdit *dateWidget,
-                                             QString &maxDate, QString &landingDate);
+    static void limitCameraInputWidgetRanges(QSpinBox *solsWidget, const QString &maxSol, QDateEdit *dateWidget,
+                                             const QString &maxDate, const QString &landingDate);
 
     // Rover manifest
     const void updateRoverManifest(QNetworkReply *reply, QListWidget *list, ORIGIN origin, QLabel *imageLabel) const;
 
 private:
-    void updateWelcomeImage(QNetworkReply *reply);
+    const void updateWelcomeImage(QNetworkReply *reply) const;
 
-    void updateWelcomeData(QNetworkReply *reply);
+    const void updateWelcomeData(QNetworkReply *reply) const;
 
-    void resizeWelcomeImage();
+    const void resizeWelcomeImage() const;
 
     // Resize handler
     void resizeEvent(QResizeEvent *event);
 
     // Other
-    void updateWelcomeVideo(const QUrl &videoUrl);
+    const void updateWelcomeVideo(const QUrl &videoUrl) const;
 
-    void setWelcomeImageInformation(QJsonObject &jsonObj);
+    const void setWelcomeImageInformation(const QJsonObject &jsonObj) const;
 
     // Fetching data
     const void fetchAPIData(QUrl url, ORIGIN origin) const;
@@ -196,10 +196,10 @@ private:
     const void popUpDialog(QString msg) const;
 
     // Downloads
-    void downloadImages(const QString &checkBoxTitle, const unsigned int sol);
+    const void downloadImages(const QString &checkBoxTitle, unsigned int sol) const;
 
-    void downloadImage(const QString &imgSource, const QString &rover, const QString &camera, const unsigned int sol,
-                       const unsigned int ID);
+    const void downloadImage(const QString &imgSource, const QString &rover, const QString &camera, unsigned int sol,
+                       unsigned int ID) const;
 
     // Podcasts
     const void updatePodcastsList() const;
@@ -227,7 +227,7 @@ private:
     // EPIC
     const void fetchEPICJson(QUrl url, ORIGIN origin, QString type) const;
 
-    const void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, unsigned int count,
+    const void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, const unsigned int count,
                         double lat, double lon,
                         double dscovrX, double dscovrY, double dscovrZ,
                         double lunarX, double lunarY, double lunarZ,
@@ -239,20 +239,20 @@ private:
 
     const void updateEPICImageInformation(int state) const; // 0 - current, 1 - next, 2 - prev
 
-    const void updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate) const;
+    const void updateEPICDataConstraints(const QDate* const maxDate, const QDate* const minDate) const;
 
     const void updateEPICImage() const;
 
     // CfgLoder extension
-    const QString getCfgValueQ(const std::string key) const;
+    const QString getCfgValueQ(std::string key) const;
 
-    const std::string getCfgValue(const std::string key) const;
+    const std::string getCfgValue(std::string key) const;
 
-    const QString getFontQ(const std::string key) const;
+    const QString getFontQ(std::string key) const;
 
-    const std::string getFont(const std::string key) const;
+    const std::string getFont(std::string key) const;
 
-    const unsigned int getFSize(const std::string key) const;
+    const unsigned int getFSize(std::string key) const;
 
 
 private slots:
@@ -335,6 +335,6 @@ private:
     bool EPICAutoPlay{false};
     QTimer* timer;
 
-    const int CORNER_RADIUS;
+    static constexpr int CORNER_RADIUS {25};
 };
 #endif // MAINWINDOW_H

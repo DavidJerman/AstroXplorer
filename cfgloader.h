@@ -10,7 +10,7 @@ class CfgLoader {
 private:
     static std::map<std::string, std::string> cfg;
 public:
-    CfgLoader();
+    CfgLoader() = default;
 
     static bool loadConfig(std::string);
 

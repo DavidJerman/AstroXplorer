@@ -27,8 +27,6 @@ public:
               const Position3D lunarPosition,
               const Position3D sunPosition);
 
-    EPICImage();
-
     ~EPICImage();
 
     const QString &getTitle() const;

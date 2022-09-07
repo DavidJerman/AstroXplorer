@@ -14,7 +14,7 @@ private:
     static std::vector<Podcast *> podcasts;
     static std::vector<QString> favEpisodes;
 public:
-    Podcasts();
+    Podcasts() = default;
 
     static bool addPodcastFromXML(std::string fileName);
 

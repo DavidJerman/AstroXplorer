@@ -14,7 +14,7 @@ private:
     static std::vector<EPICImage*>::iterator iterator;
     static std::vector<QDate*> availableDates;
 public:
-    EPIC();
+    EPIC() = default;
 
     static void clear();
 

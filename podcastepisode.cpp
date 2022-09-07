@@ -66,8 +66,8 @@ unsigned int PodcastEpisode::getPID() const {
     return PID;
 }
 
-PodcastEpisode::PodcastEpisode(QString &title, QString &link, QString &description, QString &MP3Url,
-                               QString &webUrl, QString &date, QString &rssSource, unsigned int PID)
+PodcastEpisode::PodcastEpisode(const QString &title, const QString &link, const QString &description, const QString &MP3Url,
+                               const QString &webUrl, const QString &date, const QString &rssSource, unsigned int PID)
         : title(title), link(link), description(description), MP3Url(MP3Url),
           webUrl(webUrl), date(date), rssSource(rssSource), ID(IDCounter), PID(PID) {
     IDCounter++;

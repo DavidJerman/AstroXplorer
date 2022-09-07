@@ -4,10 +4,6 @@ std::vector<QDomDocument *> Podcasts::podcastDOMs;
 std::vector<Podcast *> Podcasts::podcasts;
 std::vector<QString> Podcasts::favEpisodes;
 
-Podcasts::Podcasts() {
-
-}
-
 bool Podcasts::addPodcastFromXML(std::string fileName) {
     return addPodcastFromXML(QString::fromStdString(std::move(fileName)));
 }

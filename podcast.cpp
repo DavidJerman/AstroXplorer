@@ -60,8 +60,8 @@ void Podcast::setSelfUrl(const QString &newSelfUrl)
     selfUrl = newSelfUrl;
 }
 
-Podcast::Podcast(QString &title, QString &description, QString &link,
-                 QString &language, QString &imageUrl, QString& selfUrl)
+Podcast::Podcast(const QString &title, const QString &description, const QString &link,
+                 const QString &language, const QString &imageUrl, const QString& selfUrl)
         : title(title), description(description), link(link),
           language(language), imageUrl(imageUrl), selfUrl(selfUrl) {
     IDCounter++;
