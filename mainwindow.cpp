@@ -250,7 +250,7 @@ const void MainWindow::fetchImage(QUrl url, QString filePath) const {
     res->setProperty("file_path", filePath);
 }
 
-void MainWindow::fetchEPICJson(QUrl url, ORIGIN origin, QString type) {
+const void MainWindow::fetchEPICJson(QUrl url, ORIGIN origin, QString type) const {
     updateStatus("Downloading data for " + E::eToQs(origin) + "...");
     QNetworkRequest request;
     request.setUrl(url);
@@ -260,11 +260,11 @@ void MainWindow::fetchEPICJson(QUrl url, ORIGIN origin, QString type) {
     res->setProperty("type", type);
 }
 
-void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, unsigned int count,
+const void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, unsigned int count,
                                 double lat, double lon,
                                 double dscovrX, double dscovrY, double dscovrZ,
                                 double lunarX, double lunarY, double lunarZ,
-                                double sunX, double sunY, double sunZ) {
+                                double sunX, double sunY, double sunZ) const  {
     updateStatus("Fetching data for " + E::eToQs(origin) + "...");
     QNetworkRequest request;
     request.setUrl(url);
@@ -760,7 +760,7 @@ const void MainWindow::MarsRoverCamera_SetImages(QNetworkReply *reply, ORIGIN or
     reply->deleteLater();
 }
 
-void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply *reply, QListWidget *list) {
+const void MainWindow::MarsRoverCamera_AddImageToContainer(QNetworkReply *reply, QListWidget *list) const {
     auto answer = reply->readAll();
     auto item = new QListWidgetItem("");
     auto label = new QLabel();
@@ -1253,8 +1253,8 @@ MainWindow::limitCameraInputWidgetRanges(QSpinBox *solsWidget, QString &maxSol, 
     dateWidget->setMaximumDate(QDate::fromString(maxDate, "yyyy-MM-dd"));
 }
 
-void
-MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate) {
+const void
+MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate) const {
     switch (origin) {
         case O::CURIOSITY: {
             limitCameraInputWidgetRanges(ui->C_FHAZ_Sols, maxSol, ui->C_FHAZ_Date, maxDate, landingDate);
@@ -1290,7 +1290,7 @@ MainWindow::limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QS
     }
 }
 
-void MainWindow::updateRoverManifest(QNetworkReply *reply, QListWidget *list, ORIGIN origin, QLabel *imageLabel) {
+const void MainWindow::updateRoverManifest(QNetworkReply *reply, QListWidget *list, ORIGIN origin, QLabel *imageLabel) const {
 
     // Set ranges on rover imagery input widgets
     QString maxSol, maxDate, landingDate;
@@ -1377,7 +1377,7 @@ void MainWindow::on_UpdatePodcastsButton_clicked()
     updateLocalPodcats();
 }
 
-void MainWindow::updateLocalPodcats() {
+const void MainWindow::updateLocalPodcats() const {
     clearPodcastsList();
     clearEpisodesList();
     Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
@@ -1397,15 +1397,15 @@ void MainWindow::updateLocalPodcats() {
     }
 }
 
-void MainWindow::clearPodcastsList() {
+const void MainWindow::clearPodcastsList() const {
     ui->PodcastSelectorList->clear();
 }
 
-void MainWindow::clearEpisodesList() {
+const void MainWindow::clearEpisodesList() const {
     ui->EpisodeSelectorList->clear();
 }
 
-void MainWindow::updatePodcastsList() {
+const void MainWindow::updatePodcastsList() const {
 
     updateStatus("Loading podcasts...");
     qApp->processEvents();
@@ -1744,7 +1744,7 @@ void MainWindow::on_PausePlayButton_clicked() {
 
 }
 
-void MainWindow::setButtonToPlay(bool state) {
+const void MainWindow::setButtonToPlay(bool state) const {
     if (!state)
         ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-pause-circle.png")));
     else ui->PausePlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-play-circle.png")));
@@ -1760,7 +1760,7 @@ void MainWindow::onPlaybackStateChanged(QMediaPlayer::PlaybackState) {
     }
 }
 
-void MainWindow::resetAudioControlsPane() {
+const void MainWindow::resetAudioControlsPane() const {
     ui->AudioProgressBar->setMaximum(0);
     ui->AudioProgressBar->setValue(0);
     ui->MaxTimeLabel->setText("0:00");
@@ -1772,7 +1772,7 @@ void MainWindow::resetAudioControlsPane() {
     setButtonToPlay(true);
 }
 
-void MainWindow::resetAudio() {
+const void MainWindow::resetAudio() const {
     mediaPlayer->stop();
 }
 
@@ -1860,7 +1860,7 @@ void MainWindow::on_HeartButton_clicked()
     Podcasts::saveFavEpisodes(QString::fromStdString(config.find("podcast_fav_episode_path")->second));
 }
 
-void MainWindow::updateHeartButtonIcon(PodcastEpisode* episode) {
+const void MainWindow::updateHeartButtonIcon(PodcastEpisode* episode) const {
     if (!episode || !Podcasts::isFavouriteEpisode(*episode)) ui->HeartButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-heart.png")));
     else ui->HeartButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-heart.png")));
 }
@@ -1904,11 +1904,11 @@ void MainWindow::on_EPICSearchButton_clicked()
                   E::eToQs(mode));
 }
 
-void MainWindow::clearEPICImagesLabel() {
+const void MainWindow::clearEPICImagesLabel() const {
     ui->EPICImageLabel->setPixmap(QPixmap());
 }
 
-void MainWindow::updateEPICImageInformation(int state) {
+const void MainWindow::updateEPICImageInformation(int state) const {
     if (EPICDownloadLock) return;
     clearEPICImagesLabel();
     auto image = (state == 0 ? EPIC::getCurrentImage() : state == 1 ? EPIC::getNextImage() : EPIC::getPrevImage());
@@ -1926,7 +1926,7 @@ void MainWindow::updateEPICImageInformation(int state) {
     ui->EPICImageCordLabel_->setText(image->centroidToString());
 } // 0 - current, 1 - next, 2 - prev
 
-void MainWindow::updateEPICImage() {
+const void MainWindow::updateEPICImage() const {
     auto w = ui->EPICImageFrame->frameSize().width() - 96;
     auto h = ui->EPICImageFrame->frameSize().height() - 24;
 
@@ -1973,7 +1973,7 @@ void MainWindow::on_EPICImageTypeComboBox_currentIndexChanged(int index)
     }
 }
 
-void MainWindow::updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate) {
+const void MainWindow::updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate) const {
     ui->EPICDate->setMaximumDate(*maxDate);
     ui->EPICDate->setMinimumDate(*minDate);
     ui->EPICDateSlider->setMaximum(EPIC::getTotalDates() - 1);

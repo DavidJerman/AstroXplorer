@@ -40,11 +40,11 @@ private slots:
     // Requests and data
     void onRequestFinished(QNetworkReply * reply);
 
-    void saveDataToFile(const QString filePath, const QByteArray &data);
+    static void saveDataToFile(const QString filePath, const QByteArray &data);
 
-    QString getValidFileName(QString fileName);
+    static QString getValidFileName(QString fileName);
 
-    QString getValidFileName(std::string fileName);
+    static QString getValidFileName(std::string fileName);
 
     // Rover imagery
     const void on_O_FHAZ_SOLS_Button_clicked() const;
@@ -120,7 +120,7 @@ private:
     // GeneralisedFunctions
     const void MarsRoverCamera_SetImages(QNetworkReply *reply, ORIGIN origin) const;
 
-    void MarsRoverCamera_AddImageToContainer(QNetworkReply *reply, QListWidget *list);
+    const void MarsRoverCamera_AddImageToContainer(QNetworkReply *reply, QListWidget *list) const;
 
     // Tab specific functions
     const void C_FHAZ_SetImages(QNetworkReply *reply) const;
@@ -158,13 +158,13 @@ private:
     const void S_MINITES_SetImages(QNetworkReply *reply) const;
 
     // Limit rover imagery input widget range
-    void limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate);
+    const void limitRoverImageryInputWidgetRanges(ORIGIN origin, QString maxSol, QString maxDate, QString landingDate) const;
 
-    void limitCameraInputWidgetRanges(QSpinBox *solsWidget, QString &maxSol, QDateEdit *dateWidget,
-                                      QString &maxDate, QString &landingDate);
+    static void limitCameraInputWidgetRanges(QSpinBox *solsWidget, QString &maxSol, QDateEdit *dateWidget,
+                                             QString &maxDate, QString &landingDate);
 
     // Rover manifest
-    void updateRoverManifest(QNetworkReply *reply, QListWidget *list, ORIGIN origin, QLabel *imageLabel);
+    const void updateRoverManifest(QNetworkReply *reply, QListWidget *list, ORIGIN origin, QLabel *imageLabel) const;
 
 private:
     void updateWelcomeImage(QNetworkReply *reply);
@@ -202,15 +202,15 @@ private:
                        const unsigned int ID);
 
     // Podcasts
-    void updatePodcastsList();
+    const void updatePodcastsList() const;
 
-    void clearPodcastsList();
+    const void clearPodcastsList() const;
 
-    void clearEpisodesList();
+    const void clearEpisodesList() const;
 
-    void resetAudioControlsPane();
+    const void resetAudioControlsPane() const;
 
-    void resetAudio();
+    const void resetAudio() const;
 
     void playEpisode(PodcastEpisode *);
 
@@ -218,30 +218,30 @@ private:
 
     void playPrevEpisode(PodcastEpisode *);
 
-    void setButtonToPlay(bool);
+    const void setButtonToPlay(bool) const;
 
-    void updateLocalPodcats();
+    const void updateLocalPodcats() const;
 
-    void updateHeartButtonIcon(PodcastEpisode*);
+    const void updateHeartButtonIcon(PodcastEpisode*) const;
 
     // EPIC
-    void fetchEPICJson(QUrl url, ORIGIN origin, QString type);
+    const void fetchEPICJson(QUrl url, ORIGIN origin, QString type) const;
 
-    void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, unsigned int count,
+    const void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, unsigned int count,
                         double lat, double lon,
                         double dscovrX, double dscovrY, double dscovrZ,
                         double lunarX, double lunarY, double lunarZ,
-                        double sunX, double sunY, double sunZ);
+                        double sunX, double sunY, double sunZ) const;
 
     void setEPICWidgetsState(bool enable);
 
-    void clearEPICImagesLabel();
+    const void clearEPICImagesLabel() const;
 
-    void updateEPICImageInformation(int state); // 0 - current, 1 - next, 2 - prev
+    const void updateEPICImageInformation(int state) const; // 0 - current, 1 - next, 2 - prev
 
-    void updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate);
+    const void updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate) const;
 
-    void updateEPICImage();
+    const void updateEPICImage() const;
 
     // CfgLoder extension
     const QString getCfgValueQ(const std::string key) const;
