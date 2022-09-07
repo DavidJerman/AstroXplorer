@@ -72,10 +72,12 @@ void EPIC::addDate(QDate* date) {
 }
 
 const QDate* const EPIC::getMaxDateWhenSorted() {
+    if (availableDates.empty()) return {};
     return availableDates[availableDates.size() - 1];
 }
 
 const QDate* const EPIC::getMinDateWhenSorted() {
+    if (availableDates.empty()) return {};
     return availableDates[0];
 }
 

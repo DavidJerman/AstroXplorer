@@ -36,16 +36,25 @@ public:
 
     ~MainWindow();
 
+private:
+    bool appVariablesReset();
+
+    bool appSetup();
+
+    bool appNetworkContentSetup();
+
 private slots:
     // Requests and data
     void onRequestFinished(QNetworkReply * reply);
 
+private:
     static void saveDataToFile(QString filePath, const QByteArray &data);
 
     static QString getValidFileName(QString fileName);
 
     static QString getValidFileName(std::string fileName);
 
+private slots:
     // Rover imagery
     const void on_O_FHAZ_SOLS_Button_clicked() const;
 
@@ -316,14 +325,16 @@ private slots:
 
     void on_EPICAutoPlaySpeedSlider_valueChanged(int value);
 
+    void on_RefreshAppButton_clicked();
+
 private:
     std::map <std::string, std::string> config;
     std::map <std::string, std::string> fontCfg;
 
     Ui::MainWindow *ui;
-    QNetworkAccessManager *manager;
-    QMediaPlayer *mediaPlayer;
-    QAudioOutput *audioOutput;
+    QNetworkAccessManager *manager{nullptr};
+    QMediaPlayer *mediaPlayer{nullptr};
+    QAudioOutput *audioOutput{nullptr};
 
     bool AudioProgressBarLocked{false};
     bool AudioAutoPlay{false};
@@ -333,7 +344,7 @@ private:
     unsigned int EPICDownloadCount{0};
     bool EPICDownloadLock{true};
     bool EPICAutoPlay{false};
-    QTimer* timer;
+    QTimer* timer{nullptr};
 
     static constexpr int CORNER_RADIUS {25};
 };

@@ -14,12 +14,67 @@
 #include <QApplication>
 #include <QCheckBox>
 
+#include <chrono>
+#include <thread>
+
 typedef ORIGIN O;
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    if (!appVariablesReset() || !appSetup() || !appNetworkContentSetup()) {
+        qDebug() << "App failed to initialize properly, some things might not work. Try restarting the program, check that you have an internet connection etc.!";
+    }
+}
+
+bool MainWindow::appVariablesReset() {
+     AudioProgressBarLocked = false;
+     AudioAutoPlay = false;
+     episode = nullptr;
+     PID = (unsigned int)(-1);
+     FavoriteEpisode = false;
+     EPICDownloadCount = 0;
+     EPICDownloadLock = true;
+     EPICAutoPlay = false;
+
+     return true;
+}
+
+bool MainWindow::appNetworkContentSetup() {
+    // This part handles requests
+    const auto _API_KEY = config.find("api_key");
+    if (_API_KEY == config.end()) return false;
+    const auto API_KEY = _API_KEY->second;
+
+    const auto _APOD_URL = config.find("apod_url");
+    if (_APOD_URL == config.end()) return false;
+    const auto APOD_URL = _APOD_URL->second;
+
+    updateStatus("Fetching welcome image...");
+    fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), O::APOD_JSON);
+
+    // EPIC
+    on_EPICImageTypeComboBox_currentIndexChanged(0);
+    EPIC::reset();
+
+    // Rover manifest data setup
+    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                  config.find("api_key")->second,
+                                                                  O::CURIOSITY),
+                 O::CURIOSITY);
+    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                  config.find("api_key")->second,
+                                                                  O::OPPORTUNITY),
+                 O::OPPORTUNITY);
+    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
+                                                                  config.find("api_key")->second,
+                                                                  O::SPIRIT),
+                 O::SPIRIT);
+    return true;
+}
+
+bool MainWindow::appSetup() {
     // Media
     mediaPlayer = new QMediaPlayer();
     audioOutput = new QAudioOutput();
@@ -38,38 +93,22 @@ MainWindow::MainWindow(QWidget *parent)
     // Load config
     auto response = CfgLoader::loadConfig("config");
     if (!response)
-        return;
+        return false;
     this->config = CfgLoader::getConfig();
 
     response = CfgLoader::loadConfig("fontCfg");
     if (!response)
-        return;
+        return false;
     this->fontCfg = CfgLoader::getConfig();
+
+    manager = new QNetworkAccessManager(this);
+    QObject::connect(manager, SIGNAL(finished(QNetworkReply * )), this, SLOT(onRequestFinished(QNetworkReply * )));
 
     // Load podcasts
     updateStatus("Loading podcasts...");
     Podcasts::loadPodcastsFromSourceFolder(QString::fromStdString(config.find("podcast_sources_path")->second));
     updatePodcastsList();
     Podcasts::loadFavEpisodes(QString::fromStdString(config.find("podcast_fav_episode_path")->second));
-
-    // This part handles requests
-    const auto _API_KEY = config.find("api_key");
-    if (_API_KEY == config.end()) return;
-    const auto API_KEY = _API_KEY->second;
-
-    const auto _APOD_URL = config.find("apod_url");
-    if (_APOD_URL == config.end()) return;
-    const auto APOD_URL = _APOD_URL->second;
-
-    manager = new QNetworkAccessManager(this);
-    QObject::connect(manager, SIGNAL(finished(QNetworkReply * )), this, SLOT(onRequestFinished(QNetworkReply * )));
-
-    updateStatus("Fetching welcome image...");
-    fetchAPIData(APIHandler::getAPOD_API_Request_URL(APOD_URL, API_KEY), O::APOD_JSON);
-
-    // EPIC
-    on_EPICImageTypeComboBox_currentIndexChanged(0);
-    EPIC::reset();
 
     // AutoPlay Timer
     timer = new QTimer(this);
@@ -141,20 +180,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Mars rover imagery
     ui->O_FHAZ_List->setVerticalScrollMode(QListWidget::ScrollPerPixel);
 
-    // Rover manifest data setup
-    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
-                                                                  config.find("api_key")->second,
-                                                                  O::CURIOSITY),
-                 O::CURIOSITY);
-    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
-                                                                  config.find("api_key")->second,
-                                                                  O::OPPORTUNITY),
-                 O::OPPORTUNITY);
-    fetchAPIData(APIHandler::getMarsRoverManifest_API_Request_URL(config.find("mars_rover_url")->second,
-                                                                  config.find("api_key")->second,
-                                                                  O::SPIRIT),
-                 O::SPIRIT);
-
     // Welcome image scaling
     ui->WelcomeImageLabel->setScaledContents(true);
 
@@ -166,6 +191,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->EpisodeDateLabel->setMargin(5);
     ui->EpisodeSelectorList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     ui->PodcastSelectorList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+
+    return true;
 }
 
 const QString MainWindow::getCfgValueQ(std::string key) const {
@@ -290,6 +317,11 @@ const void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QS
 }
 
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
+    if (reply->error()) {
+        qDebug("No internet connection!");
+        updateStatus("No internet connection, please connect to the internet and refresh the application!");
+        return;
+    }
     auto dataSource = reply->property("data_source").value<QString>();
     if (dataSource == "normal") {
         auto origin = reply->property("origin").value<ORIGIN>();
@@ -545,6 +577,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             image->setPixmap(pixmap);
             EPIC::addImage(image);
             EPICDownloadCount++;
+            updateStatus("Downloaded EPIC image [" + QString::number(EPICDownloadCount) + "/" + QString::number(ct) + "]");
             if (EPICDownloadCount == ct) {
                 updateStatus("EPIC Download finished!");
                 EPICDownloadCount = 0;
@@ -1493,6 +1526,7 @@ const void MainWindow::updatePodcastsList() const {
 
 void MainWindow::populateEpisodesList(QListWidgetItem *item, bool fav) {
 
+    if (fav && ui->EpisodeSelectorList->count() == 0) return;
     clearEpisodesList();
 
     unsigned int ID;
@@ -1927,6 +1961,8 @@ const void MainWindow::updateEPICImageInformation(int state) const {
 } // 0 - current, 1 - next, 2 - prev
 
 const void MainWindow::updateEPICImage() const {
+    if (EPICDownloadLock) return;
+
     auto w = ui->EPICImageFrame->frameSize().width() - 96;
     auto h = ui->EPICImageFrame->frameSize().height() - 24;
 
@@ -1974,6 +2010,7 @@ void MainWindow::on_EPICImageTypeComboBox_currentIndexChanged(int index)
 }
 
 const void MainWindow::updateEPICDataConstraints(const QDate* const maxDate, const QDate* const minDate) const {
+    if (!maxDate || !minDate) return;
     ui->EPICDate->setMaximumDate(*maxDate);
     ui->EPICDate->setMinimumDate(*minDate);
     ui->EPICDateSlider->setMaximum(EPIC::getTotalDates() - 1);
@@ -2017,4 +2054,13 @@ void MainWindow::on_EPICTimerTimeout() {
 void MainWindow::on_EPICAutoPlaySpeedSlider_valueChanged(int value)
 {
     timer->setInterval(value);
+}
+
+void MainWindow::on_RefreshAppButton_clicked()
+{
+    updateStatus("Connecting...");
+    if (!appVariablesReset() || !appNetworkContentSetup()) {
+        qDebug() << "App failed to initialize properly, some things might not work. Try restarting or refreshing the program, check that you have an internet connection etc.!";
+        return;
+    }
 }
