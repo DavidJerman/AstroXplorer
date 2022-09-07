@@ -159,3 +159,45 @@ void Podcasts::loadFavEpisodes(const QString& fileName) {
     }
     stream.close();
 }
+
+bool Podcasts::matches(const QString& text, const PodcastEpisode* const episode) {
+    auto s1 = text.toStdString();
+    auto s2 = episode->getTitle().toStdString();
+    return matches(std::move(s1), std::move(s2));
+}
+
+bool Podcasts::matches(const QString& text, const Podcast* const podcast) {
+    auto s1 = text.toStdString();
+    auto s2 = podcast->getTitle().toStdString();
+    return matches(std::move(s1), std::move(s2));
+}
+
+bool Podcasts::matches(std::string pattern, std::string text) {
+    for (auto &c: pattern) if (std::isupper(c)) c = std::tolower(c);
+    for (auto &c: text) if (std::isupper(c)) c = std::tolower(c);
+    if (text.length() < pattern.length()) return false;
+    if (pattern.length() == 0 || text.length() == 0) return false;
+    // Sunday algorithm
+
+    // Generate BCH table
+    std::vector<int> BCH (256, pattern.length() + 1);
+    for (int i = 0; i < pattern.length(); i++) BCH[(unsigned char)pattern[i]] = (int)pattern.length() - i;
+
+    // Search
+    for (int i = 0; i < text.length();) {
+        bool match = true;
+        for (int j = 0; j < pattern.length(); j++) {
+            if ((unsigned char)text[i + j] != (unsigned char)pattern[j]) {
+                i += BCH[(unsigned char)text[i + pattern.length()]];
+                match = false;
+                break;
+            }
+        }
+        if (match) {
+            return true;
+            i += (int)pattern.length();
+        }
+    }
+
+    return false;
+}

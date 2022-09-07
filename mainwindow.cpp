@@ -1404,7 +1404,7 @@ const void MainWindow::clearEpisodesList() const {
     ui->EpisodeSelectorList->clear();
 }
 
-const void MainWindow::updatePodcastsList() const {
+const void MainWindow::updatePodcastsList(QString search, bool isSearch) const {
 
     updateStatus("Loading podcasts...");
     qApp->processEvents();
@@ -1413,6 +1413,11 @@ const void MainWindow::updatePodcastsList() const {
     clearEpisodesList();
 
     for (const auto &podcast: Podcasts::getPodcasts()) {
+        // Search
+        if (isSearch)
+            if (!Podcasts::matches(search, podcast))
+                continue;
+
         // Create the frame with all the labels
         auto mainLayout = new QHBoxLayout();
         QFrame *mainFrame = new QFrame();
@@ -1487,10 +1492,9 @@ const void MainWindow::updatePodcastsList() const {
     }
 
     updateStatus("Podcasts loaded!");
-
 }
 
-void MainWindow::populateEpisodesList(QListWidgetItem *item, bool fav) {
+void MainWindow::populateEpisodesList(QListWidgetItem *item, bool fav, QString search, bool isSearch) {
 
     if (fav && ui->EpisodeSelectorList->count() == 0) return;
     clearEpisodesList();
@@ -1500,10 +1504,12 @@ void MainWindow::populateEpisodesList(QListWidgetItem *item, bool fav) {
         auto widget = dynamic_cast<QFrame *> (item->listWidget()->itemWidget(item));
         ID = widget->property("ID").toInt();
         PID = ID;
-        FavoriteEpisode = false;
+        if (fav)
+            FavoriteEpisode = false;
     } else {
         ID = PID;
-        FavoriteEpisode = true;
+        if (fav)
+            FavoriteEpisode = true;
     }
 
     auto podcast = Podcasts::getPodcastById(ID);
@@ -1533,6 +1539,11 @@ void MainWindow::populateEpisodesList(QListWidgetItem *item, bool fav) {
 
         if (fav)
             if (!Podcasts::isFavouriteEpisode(*episode))
+                continue;
+
+        // Search
+        if (isSearch)
+            if (!Podcasts::matches(search, episode))
                 continue;
 
         auto mainLayout = new QHBoxLayout();
@@ -2022,4 +2033,18 @@ void MainWindow::on_RefreshAppButton_clicked()
         qDebug() << "App failed to initialize properly, some things might not work. Try restarting or refreshing the program, check that you have an internet connection etc.!";
         return;
     }
+}
+
+void MainWindow::on_SearchPodcastButton_clicked()
+{
+    if (ui->SearchPodcastLineEdit->text().trimmed().length() == 0) updatePodcastsList();
+    else updatePodcastsList(ui->SearchPodcastLineEdit->text(), true);
+}
+
+void MainWindow::on_SearchEpisodeButton_clicked()
+{
+    auto podcast = Podcasts::getPodcastById(PID);
+    if (!podcast) return;
+    if (ui->SearchEpisodeLineDit->text().trimmed().length() == 0) populateEpisodesList(nullptr);
+    else populateEpisodesList(nullptr, false, ui->SearchEpisodeLineDit->text(), true);
 }

@@ -45,6 +45,13 @@ public:
     static void saveFavEpisodes(const QString& fileName);
 
     static void loadFavEpisodes(const QString &fileName);
+
+    static bool matches(const QString& text, const PodcastEpisode* const episode);
+
+    static bool matches(const QString& text, const Podcast* const podcast);
+
+private:
+    static bool matches(std::string s1, std::string s2);
 };
 
 #endif // PODCASTS_H

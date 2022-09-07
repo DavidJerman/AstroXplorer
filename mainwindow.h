@@ -211,7 +211,7 @@ private:
                        unsigned int ID) const;
 
     // Podcasts
-    const void updatePodcastsList() const;
+    const void updatePodcastsList(QString search = "", bool isSearch = false) const;
 
     const void clearPodcastsList() const;
 
@@ -265,7 +265,7 @@ private:
 
 
 private slots:
-    void populateEpisodesList(QListWidgetItem * item, bool fav = false);
+    void populateEpisodesList(QListWidgetItem * item, bool fav = false, QString search = "", bool isSearch = false);
 
     void playEpisode(QListWidgetItem *item);
 
@@ -326,6 +326,10 @@ private slots:
     void on_EPICAutoPlaySpeedSlider_valueChanged(int value);
 
     void on_RefreshAppButton_clicked();
+
+    void on_SearchPodcastButton_clicked();
+
+    void on_SearchEpisodeButton_clicked();
 
 private:
     std::map <std::string, std::string> config;
