@@ -9,13 +9,10 @@
 #include "epic.h"
 
 #include <sstream>
-#include <QFontDatabase>
 
+#include <QFontDatabase>
 #include <QApplication>
 #include <QCheckBox>
-
-#include <chrono>
-#include <thread>
 
 typedef ORIGIN O;
 
@@ -899,7 +896,6 @@ const void MainWindow::on_S_RHAZ_SOLS_Button_clicked() const {
                  O::S_RHAZ);
 }
 
-
 const void MainWindow::on_S_RHAZ_DATE_Button_clicked() const {
     ui->S_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
@@ -911,7 +907,6 @@ const void MainWindow::on_S_RHAZ_DATE_Button_clicked() const {
                  O::S_RHAZ);
 }
 
-
 const void MainWindow::on_S_PANCAM_SOLS_Button_clicked() const {
     ui->S_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -921,7 +916,6 @@ const void MainWindow::on_S_PANCAM_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->S_PANCAM_Sols->value())),
                  O::S_PANCAM);
 }
-
 
 const void MainWindow::on_S_PANCAM_DATE_Button_clicked() const {
     ui->S_PANCAM_List->clear();
@@ -934,7 +928,6 @@ const void MainWindow::on_S_PANCAM_DATE_Button_clicked() const {
                  O::S_PANCAM);
 }
 
-
 const void MainWindow::on_S_NAVCAM_SOLS_Button_clicked() const {
     ui->S_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -944,7 +937,6 @@ const void MainWindow::on_S_NAVCAM_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->S_NAVCAM_Sols->value())),
                  O::S_NAVCAM);
 }
-
 
 const void MainWindow::on_S_NAVCAM_DATE_Button_clicked() const {
     ui->S_NAVCAM_List->clear();
@@ -957,7 +949,6 @@ const void MainWindow::on_S_NAVCAM_DATE_Button_clicked() const {
                  O::S_NAVCAM);
 }
 
-
 const void MainWindow::on_S_MINITES_SOLS_Button_clicked() const {
     ui->S_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -967,7 +958,6 @@ const void MainWindow::on_S_MINITES_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->O_MINITES_Sols->value())),
                  O::S_MINITES);
 }
-
 
 const void MainWindow::on_S_MINITES_DATE_Button_clicked() const {
     ui->S_MINITES_List->clear();
@@ -980,7 +970,6 @@ const void MainWindow::on_S_MINITES_DATE_Button_clicked() const {
                  O::S_MINITES);
 }
 
-
 const void MainWindow::on_S_FHAZ_SOLS_Button_clicked() const {
     ui->S_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -990,7 +979,6 @@ const void MainWindow::on_S_FHAZ_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->S_FHAZ_Sols->value())),
                  O::S_FHAZ);
 }
-
 
 const void MainWindow::on_S_FHAZ_DATE_Button_clicked() const {
     ui->S_FHAZ_List->clear();
@@ -1003,7 +991,6 @@ const void MainWindow::on_S_FHAZ_DATE_Button_clicked() const {
                  O::S_FHAZ);
 }
 
-
 const void MainWindow::on_O_RHAZ_SOLS_Button_clicked() const {
     ui->O_RHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1013,7 +1000,6 @@ const void MainWindow::on_O_RHAZ_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->O_RHAZ_Sols->value())),
                  O::O_RHAZ);
 }
-
 
 const void MainWindow::on_O_RHAZ_DATE_Button_clicked() const {
     ui->O_RHAZ_List->clear();
@@ -1036,7 +1022,6 @@ const void MainWindow::on_O_PANCAM_SOLS_Button_clicked() const {
                  O::O_PANCAM);
 }
 
-
 const void MainWindow::on_O_PANCAM_DATE_Button_clicked() const {
     ui->O_PANCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImageryEarthDate_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1048,7 +1033,6 @@ const void MainWindow::on_O_PANCAM_DATE_Button_clicked() const {
                  O::O_PANCAM);
 }
 
-
 const void MainWindow::on_O_NAVCAM_SOLS_Button_clicked() const {
     ui->O_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1058,7 +1042,6 @@ const void MainWindow::on_O_NAVCAM_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->O_NAVCAM_Sols->value())),
                  O::O_NAVCAM);
 }
-
 
 const void MainWindow::on_O_NAVCAM_DATE_Button_clicked() const {
     ui->O_NAVCAM_List->clear();
@@ -1071,7 +1054,6 @@ const void MainWindow::on_O_NAVCAM_DATE_Button_clicked() const {
                  O::O_NAVCAM);
 }
 
-
 const void MainWindow::on_O_MINITES_SOLS_Button_clicked() const {
     ui->O_MINITES_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1081,7 +1063,6 @@ const void MainWindow::on_O_MINITES_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->O_MINITES_Sols->value())),
                  O::O_MINITES);
 }
-
 
 const void MainWindow::on_O_MINITES_DATE_Button_clicked() const {
     ui->O_MINITES_List->clear();
@@ -1094,7 +1075,6 @@ const void MainWindow::on_O_MINITES_DATE_Button_clicked() const {
                  O::O_MINITES);
 }
 
-
 const void MainWindow::on_O_FHAZ_SOLS_Button_clicked() const {
     ui->O_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1104,7 +1084,6 @@ const void MainWindow::on_O_FHAZ_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->O_FHAZ_Sols->value())),
                  O::O_FHAZ);
 }
-
 
 const void MainWindow::on_O_FHAZ_DATE_Button_clicked() const {
     ui->O_FHAZ_List->clear();
@@ -1117,7 +1096,6 @@ const void MainWindow::on_O_FHAZ_DATE_Button_clicked() const {
                  O::O_FHAZ);
 }
 
-
 const void MainWindow::on_C_NAVCAM_SOLS_Button_clicked() const {
     ui->C_NAVCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1127,7 +1105,6 @@ const void MainWindow::on_C_NAVCAM_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->C_NAVCAM_Sols->value())),
                  O::C_NAVCAM);
 }
-
 
 const void MainWindow::on_C_NAVCAM_DATE_Button_clicked() const {
     ui->C_NAVCAM_List->clear();
@@ -1140,7 +1117,6 @@ const void MainWindow::on_C_NAVCAM_DATE_Button_clicked() const {
                  O::C_NAVCAM);
 }
 
-
 const void MainWindow::on_C_MAST_SOLS_Button_clicked() const {
     ui->C_MAST_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1150,7 +1126,6 @@ const void MainWindow::on_C_MAST_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->C_MAST_Sols->value())),
                  O::C_MAST);
 }
-
 
 const void MainWindow::on_C_MAST_DATE_Button_clicked() const {
     ui->C_MAST_List->clear();
@@ -1163,7 +1138,6 @@ const void MainWindow::on_C_MAST_DATE_Button_clicked() const {
                  O::C_MAST);
 }
 
-
 const void MainWindow::on_C_MARDI_SOLS_Button_clicked() const {
     ui->C_MARDI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1173,7 +1147,6 @@ const void MainWindow::on_C_MARDI_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->C_MARDI_Sols->value())),
                  O::C_MARDI);
 }
-
 
 const void MainWindow::on_C_MARDI_DATE_Button_clicked() const {
     ui->C_MARDI_List->clear();
@@ -1186,7 +1159,6 @@ const void MainWindow::on_C_MARDI_DATE_Button_clicked() const {
                  O::C_MARDI);
 }
 
-
 const void MainWindow::on_C_MAHLI_SOLS_Button_clicked() const {
     ui->C_MAHLI_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1196,7 +1168,6 @@ const void MainWindow::on_C_MAHLI_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->C_MAHLI_Sols->value())),
                  O::C_MAHLI);
 }
-
 
 const void MainWindow::on_C_MAHLI_DATE_Button_clicked() const {
     ui->C_MAHLI_List->clear();
@@ -1209,7 +1180,6 @@ const void MainWindow::on_C_MAHLI_DATE_Button_clicked() const {
                  O::C_MAHLI);
 }
 
-
 const void MainWindow::on_C_FHAZ_SOLS_Button_clicked() const {
     ui->C_FHAZ_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1219,7 +1189,6 @@ const void MainWindow::on_C_FHAZ_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->C_FHAZ_Sols->value())),
                  O::C_FHAZ);
 }
-
 
 const void MainWindow::on_C_FHAZ_DATE_Button_clicked() const {
     ui->C_FHAZ_List->clear();
@@ -1232,7 +1201,6 @@ const void MainWindow::on_C_FHAZ_DATE_Button_clicked() const {
                  O::C_FHAZ);
 }
 
-
 const void MainWindow::on_C_CHEMCAM_SOLS_Button_clicked() const {
     ui->C_CHEMCAM_List->clear();
     fetchAPIData(APIHandler::getMarsRoverImagerySols_API_Request_URL(config.find("mars_rover_url")->second,
@@ -1242,7 +1210,6 @@ const void MainWindow::on_C_CHEMCAM_SOLS_Button_clicked() const {
                                                                      std::to_string(ui->C_CHEMCAM_Sols->value())),
                  O::C_CHEMCAM);
 }
-
 
 const void MainWindow::on_C_CHEMCAM_DATE_Button_clicked() const {
     ui->C_CHEMCAM_List->clear();
@@ -1254,7 +1221,6 @@ const void MainWindow::on_C_CHEMCAM_DATE_Button_clicked() const {
                                                                                   ui->C_CHEMCAM_Date->date())),
                  O::C_CHEMCAM);
 }
-
 
 const void MainWindow::on_C_RHAZ_SOLS_Button_clicked() const {
     ui->C_RHAZ_List->clear();
@@ -1759,13 +1725,11 @@ void MainWindow::on_AudioProgressBar_sliderPressed() {
     AudioProgressBarLocked = true;
 }
 
-
 void MainWindow::on_AudioProgressBar_sliderReleased() {
     if (mediaPlayer->mediaStatus() == QMediaPlayer::BufferedMedia)
         mediaPlayer->setPosition(ui->AudioProgressBar->sliderPosition());
     AudioProgressBarLocked = false;
 }
-
 
 void MainWindow::on_PausePlayButton_clicked() {
     if (mediaPlayer->playbackState() == QMediaPlayer::PlayingState) {
@@ -1825,13 +1789,11 @@ void MainWindow::on_NextEpButton_clicked() {
     playNextEpisode(episode);
 }
 
-
 void MainWindow::on_PreviousEpButton_clicked() {
     resetAudioControlsPane();
     resetAudio();
     playPrevEpisode(episode);
 }
-
 
 void MainWindow::on_DownloadsDownloadButton_clicked() {
     auto startSol = ui->DownloadsStartSol->value();
@@ -1982,12 +1944,10 @@ void MainWindow::on_EPICNextImageButton_clicked()
     updateEPICImageInformation(1);
 }
 
-
 void MainWindow::on_EPICPrevImageButton_clicked()
 {
     updateEPICImageInformation(2);
 }
-
 
 void MainWindow::on_EPICImageTypeComboBox_currentIndexChanged(int index)
 {
@@ -2038,7 +1998,6 @@ void MainWindow::on_Tabs_currentChanged(int index)
     resizeWelcomeImage();
     updateEPICImage();
 }
-
 
 void MainWindow::on_EPICAutoPlayButton_clicked()
 {
