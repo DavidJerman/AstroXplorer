@@ -35,6 +35,7 @@ public:
     ~MainWindow();
 
 private slots:
+    // Requests and data
     void onRequestFinished(QNetworkReply * reply);
 
     void saveDataToFile(const QString filePath, const QByteArray &data);
@@ -173,10 +174,12 @@ private:
     // Resize handler
     void resizeEvent(QResizeEvent *event);
 
+    // Other
     void updateWelcomeVideo(const QUrl &videoUrl);
 
     void setWelcomeImageInformation(QJsonObject &jsonObj);
 
+    // Fetching data
     void fetchAPIData(QUrl url, ORIGIN origin);
 
     void fetchPodcastData(QUrl url, QString origin, QLabel *imageLabel, unsigned int SIZE);
@@ -185,6 +188,7 @@ private:
 
     void fetchImage(QUrl url, QString filePath);
 
+    // Information
     void updateStatus(QString msg);
 
     void popUpDialog(QString msg);
@@ -221,15 +225,21 @@ private:
     // EPIC
     void fetchEPICJson(QUrl url, ORIGIN origin, QString type);
 
-    void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, QString coord, unsigned int count);
+    void fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, unsigned int count,
+                        double lat, double lon,
+                        double dscovrX, double dscovrY, double dscovrZ,
+                        double lunarX, double lunarY, double lunarZ,
+                        double sunX, double sunY, double sunZ);
 
     void setEPICWidgetsState(bool enable);
 
     void clearEPICImagesLabel();
 
-    void updateEPICImagesLabel(int state); // 0 - current, 1 - next, 2 - prev
+    void updateEPICImageInformation(int state); // 0 - current, 1 - next, 2 - prev
 
     void updateEPICDataConstraints(const QDate* maxDate, const QDate* minDate);
+
+    void updateEPICImage();
 
     // CfgLoder extension
     const QString getCfgValueQ(const std::string key) const;
@@ -291,6 +301,10 @@ private slots:
     void on_EPICImageTypeComboBox_currentIndexChanged(int index);
 
     void on_EPICDateSlider_sliderReleased();
+
+    void on_EPICPrevDateButton_clicked();
+
+    void on_EPICNextDateButton_clicked();
 
 private:
     std::map <std::string, std::string> config;

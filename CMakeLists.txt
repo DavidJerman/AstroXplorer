@@ -44,6 +44,8 @@ set(PROJECT_SOURCES
         epic.cpp
         epicimage.h
         epicimage.cpp
+        Position3D.h
+        Coordinates2D.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

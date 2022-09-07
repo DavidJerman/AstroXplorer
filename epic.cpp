@@ -17,11 +17,10 @@ void EPIC::clear() {
 }
 
 EPICImage* EPIC::getNextImage() {
-    if (*++iterator) return *iterator;
-    else {
+    if (iterator == images.end() - 1) {
         iterator = images.begin();
-        return getCurrentImage();
-    }
+        return *iterator;
+    } else return *++iterator;
 }
 
 EPICImage* EPIC::getPrevImage() {
@@ -83,4 +82,12 @@ qint64 EPIC::getTotalDates() {
 QDate* EPIC::getDate(qint64 index) {
     if (index < 0 || index >= availableDates.size()) return availableDates[0];
     return availableDates[index];
+}
+
+double EPIC::distance(double x1, double y1, double z1, double x2, double y2, double z2) {
+    return (std::sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2) + (z1 - z2)*(z1 - z2)));
+}
+
+double EPIC::distance(Position3D& p1, Position3D& p2) {
+    return distance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
 }

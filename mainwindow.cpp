@@ -72,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
+    ui->EPICImageLabel->setScaledContents(true);
     ui->WelcomeImageExplanationTextBrowser->setOpenLinks(true);
     ui->WelcomeImageExplanationTextBrowser->setOpenExternalLinks(true);
 
@@ -252,7 +253,11 @@ void MainWindow::fetchEPICJson(QUrl url, ORIGIN origin, QString type) {
     res->setProperty("type", type);
 }
 
-void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, QString coord, unsigned int count) {
+void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString date, QString caption, QString version, unsigned int count,
+                                double lat, double lon,
+                                double dscovrX, double dscovrY, double dscovrZ,
+                                double lunarX, double lunarY, double lunarZ,
+                                double sunX, double sunY, double sunZ) {
     updateStatus("Fetching data for " + E::eToQs(origin) + "...");
     QNetworkRequest request;
     request.setUrl(url);
@@ -263,8 +268,18 @@ void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QString 
     res->setProperty("date", date);
     res->setProperty("caption", caption);
     res->setProperty("version", version);
-    res->setProperty("coord", coord);
     res->setProperty("count", count);
+    res->setProperty("lat", lat);
+    res->setProperty("lon", lon);
+    res->setProperty("dscovrX", dscovrX);
+    res->setProperty("dscovrY", dscovrY);
+    res->setProperty("dscovrZ", dscovrZ);
+    res->setProperty("lunarX", lunarX);
+    res->setProperty("lunarY", lunarY);
+    res->setProperty("lunarZ", lunarZ);
+    res->setProperty("sunX", sunX);
+    res->setProperty("sunY", sunY);
+    res->setProperty("sunZ", sunZ);
 }
 
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
@@ -484,14 +499,22 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
                                                                 reply->property("type").toString(),
                                                                 fileName,
                                                                 "png");
+                auto centroidCoordsObj = obj.find("centroid_coordinates")->toObject();
+                auto dscovrCoordsObj = obj.find("dscovr_j2000_position")->toObject();
+                auto lunarCoordsObj = obj.find("lunar_j2000_position")->toObject();
+                auto sunCoordsObj = obj.find("sun_j2000_position")->toObject();
+                // auto
                 fetchEPICImage(url,
                                O::EPIC_IMAGE,
                                obj.find("identifier")->toString(),
                                date.toString(),
                                obj.find("caption")->toString(),
                                obj.find("version")->toString(),
-                               "TEMP",
-                               count);
+                               count,
+                               centroidCoordsObj.find("lat")->toDouble(), centroidCoordsObj.find("lon")->toDouble(),
+                               dscovrCoordsObj.find("x")->toDouble(), dscovrCoordsObj.find("y")->toDouble(), dscovrCoordsObj.find("z")->toDouble(),
+                               lunarCoordsObj.find("x")->toDouble(), lunarCoordsObj.find("y")->toDouble(), lunarCoordsObj.find("z")->toDouble(),
+                               sunCoordsObj.find("x")->toDouble(), sunCoordsObj.find("y")->toDouble(), sunCoordsObj.find("z")->toDouble());
             }
         } else if (origin == O::EPIC_IMAGE) {
             QString title, date, caption, version, coord;
@@ -499,9 +522,13 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             date = reply->property("date").toString();
             caption = reply->property("caption").toString();
             version = reply->property("version").toString();
-            coord = reply->property("coord").toString();
             unsigned int ct = reply->property("count").toInt();
-            auto image = new EPICImage(title, date, caption, version, coord);
+
+            auto image = new EPICImage(title, date, caption, version, coord,
+                                       {reply->property("lon").toDouble(), reply->property("lat").toDouble()},
+                                       {reply->property("dscovrX").toDouble(), reply->property("dscovrY").toDouble(), reply->property("dscovrZ").toDouble()},
+                                       {reply->property("lunarX").toDouble(), reply->property("lunarY").toDouble(), reply->property("lunarZ").toDouble()},
+                                       {reply->property("sunX").toDouble(), reply->property("sunY").toDouble(), reply->property("sunZ").toDouble()});
             auto pixmap = new QPixmap();
             pixmap->loadFromData(answer);
             image->setPixmap(pixmap);
@@ -512,7 +539,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
                 EPICDownloadCount = 0;
                 EPIC::reset();
                 setEPICWidgetsState(true);
-                updateEPICImagesLabel(0);
+                updateEPICImageInformation(0);
             }
         } else if (origin == O::EPIC_DATA) {
             EPIC::clearDates();
@@ -667,6 +694,7 @@ void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
 void MainWindow::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event);
     resizeWelcomeImage();
+
 }
 
 void MainWindow::resizeWelcomeImage() {
@@ -1839,6 +1867,8 @@ void MainWindow::setEPICWidgetsState(bool enabled) {
     ui->EPICDate->setEnabled(enabled);
     ui->EPICDateSlider->setEnabled(enabled);
     ui->EPICImageTypeComboBox->setEnabled(enabled);
+    ui->EPICNextDateButton->setEnabled(enabled);
+    ui->EPICPrevDateButton->setEnabled(enabled);
     EPICDownloadLock = !enabled;
 }
 
@@ -1858,28 +1888,51 @@ void MainWindow::clearEPICImagesLabel() {
     ui->EPICImageLabel->setPixmap(QPixmap());
 }
 
-void MainWindow::updateEPICImagesLabel(int state) {
+void MainWindow::updateEPICImageInformation(int state) {
     if (EPICDownloadLock) return;
     clearEPICImagesLabel();
     auto image = (state == 0 ? EPIC::getCurrentImage() : state == 1 ? EPIC::getNextImage() : EPIC::getPrevImage());
     ui->EPICImageLabel->setPixmap(*image->getPixmap());
+    updateEPICImage();
     ui->EPICImageTitleLabel_->setText(image->getTitle());
     ui->EPICImageDescriptionTextEdit->clear();
     ui->EPICImageDescriptionTextEdit->append(image->getCaption());
     ui->EPICImageDateLabel_->setText(image->getDate());
-    ui->EPICImageCordLabel_->setText(image->getCoord());
     ui->EPICVersionLabel_->setText(image->getVersion());
+    ui->EPICSunToEarthLabel_->setText(image->sunToEarth());
+    ui->EPICDistanceToEarth_->setText(image->dscovrToEarth());
+    ui->EPICDistanceToSunLabel_->setText(image->dscovrToSun());
+    ui->EPICMoonToEarthLabel_->setText(image->moonToEarth());
 } // 0 - current, 1 - next, 2 - prev
+
+void MainWindow::updateEPICImage() {
+
+    auto maxW = ui->EPICImageLabel->width();
+    auto maxH = maxW;
+
+    auto w = ui->EPICImageLabel->pixmap().width();
+    auto h = ui->EPICImageLabel->pixmap().height();
+
+    auto wP = (double) w / (double) maxW;
+    auto hP = (double) h / (double) maxH;
+
+    auto max = std::max(wP, hP);
+
+    if (max > 1) {
+        ui->EPICImageLabel->setMaximumHeight(h / max);
+        ui->EPICImageLabel->setMaximumWidth(w / max);
+    }
+}
 
 void MainWindow::on_EPICNextImageButton_clicked()
 {
-    updateEPICImagesLabel(1);
+    updateEPICImageInformation(1);
 }
 
 
 void MainWindow::on_EPICPrevImageButton_clicked()
 {
-    updateEPICImagesLabel(2);
+    updateEPICImageInformation(2);
 }
 
 
@@ -1914,3 +1967,14 @@ void MainWindow::on_EPICDateSlider_sliderReleased()
     ui->EPICDate->setDate(*EPIC::getDate(ui->EPICDateSlider->value()));
 }
 
+void MainWindow::on_EPICPrevDateButton_clicked()
+{
+    if (ui->EPICDateSlider->value() > 0) ui->EPICDateSlider->setValue(ui->EPICDateSlider->value() - 1);
+    on_EPICDateSlider_sliderReleased();
+}
+
+void MainWindow::on_EPICNextDateButton_clicked()
+{
+    if (ui->EPICDateSlider->value() < ui->EPICDateSlider->maximum()) ui->EPICDateSlider->setValue(ui->EPICDateSlider->value() + 1);
+    on_EPICDateSlider_sliderReleased();
+}
