@@ -19,6 +19,8 @@
 #include <QtMultimedia/QMediaPlayer>
 #include <QtMultimedia/QAudioOutput>
 
+#include <QTimer>
+
 #include "enums.h"
 #include "podcastepisode.h"
 
@@ -306,6 +308,14 @@ private slots:
 
     void on_EPICNextDateButton_clicked();
 
+    void on_Tabs_currentChanged(int index);
+
+    void on_EPICAutoPlayButton_clicked();
+
+    void on_EPICTimerTimeout();
+
+    void on_EPICAutoPlaySpeedSlider_valueChanged(int value);
+
 private:
     std::map <std::string, std::string> config;
     std::map <std::string, std::string> fontCfg;
@@ -322,6 +332,8 @@ private:
     bool FavoriteEpisode{false};
     unsigned int EPICDownloadCount{0};
     bool EPICDownloadLock{true};
+    bool EPICAutoPlay{false};
+    QTimer* timer;
 
     const int CORNER_RADIUS;
 };

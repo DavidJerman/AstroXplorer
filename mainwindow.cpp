@@ -69,6 +69,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     // EPIC
     on_EPICImageTypeComboBox_currentIndexChanged(0);
+    EPIC::reset();
+
+    // AutoPlay Timer
+    timer = new QTimer(this);
+    timer->setInterval(400);
+    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(on_EPICTimerTimeout()));
+    timer->start();
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
@@ -531,6 +538,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
                                        {reply->property("sunX").toDouble(), reply->property("sunY").toDouble(), reply->property("sunZ").toDouble()});
             auto pixmap = new QPixmap();
             pixmap->loadFromData(answer);
+            ImageManipulation::roundEdges(*pixmap, CORNER_RADIUS);
             image->setPixmap(pixmap);
             EPIC::addImage(image);
             EPICDownloadCount++;
@@ -694,7 +702,7 @@ void MainWindow::setWelcomeImageInformation(QJsonObject &jsonObj) {
 void MainWindow::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event);
     resizeWelcomeImage();
-
+    updateEPICImage();
 }
 
 void MainWindow::resizeWelcomeImage() {
@@ -719,6 +727,7 @@ MainWindow::~MainWindow() {
     delete ui;
     delete manager;
     delete mediaPlayer;
+    delete timer;
 }
 
 // Mars Rover Imagery
@@ -1869,6 +1878,10 @@ void MainWindow::setEPICWidgetsState(bool enabled) {
     ui->EPICImageTypeComboBox->setEnabled(enabled);
     ui->EPICNextDateButton->setEnabled(enabled);
     ui->EPICPrevDateButton->setEnabled(enabled);
+    ui->EPICNextImageButton->setEnabled(enabled);
+    ui->EPICPrevImageButton->setEnabled(enabled);
+    ui->EPICAutoPlayButton->setEnabled(enabled);
+    if (EPICAutoPlay) on_EPICAutoPlayButton_clicked();
     EPICDownloadLock = !enabled;
 }
 
@@ -1892,7 +1905,7 @@ void MainWindow::updateEPICImageInformation(int state) {
     if (EPICDownloadLock) return;
     clearEPICImagesLabel();
     auto image = (state == 0 ? EPIC::getCurrentImage() : state == 1 ? EPIC::getNextImage() : EPIC::getPrevImage());
-    ui->EPICImageLabel->setPixmap(*image->getPixmap());
+    if (!image) return;
     updateEPICImage();
     ui->EPICImageTitleLabel_->setText(image->getTitle());
     ui->EPICImageDescriptionTextEdit->clear();
@@ -1906,22 +1919,18 @@ void MainWindow::updateEPICImageInformation(int state) {
 } // 0 - current, 1 - next, 2 - prev
 
 void MainWindow::updateEPICImage() {
+    auto w = ui->EPICImageFrame->frameSize().width() - 96;
+    auto h = ui->EPICImageFrame->frameSize().height() - 24;
 
-    auto maxW = ui->EPICImageLabel->width();
-    auto maxH = maxW;
+    auto min = std::min(w, h);
 
-    auto w = ui->EPICImageLabel->pixmap().width();
-    auto h = ui->EPICImageLabel->pixmap().height();
+    auto image = EPIC::getCurrentImage();
+    if (!image) return;
 
-    auto wP = (double) w / (double) maxW;
-    auto hP = (double) h / (double) maxH;
+    ui->EPICImageLabel->setFixedHeight(min);
+    ui->EPICImageLabel->setFixedWidth(min);
 
-    auto max = std::max(wP, hP);
-
-    if (max > 1) {
-        ui->EPICImageLabel->setMaximumHeight(h / max);
-        ui->EPICImageLabel->setMaximumWidth(w / max);
-    }
+    ui->EPICImageLabel->setPixmap(*image->getPixmap());
 }
 
 void MainWindow::on_EPICNextImageButton_clicked()
@@ -1977,4 +1986,27 @@ void MainWindow::on_EPICNextDateButton_clicked()
 {
     if (ui->EPICDateSlider->value() < ui->EPICDateSlider->maximum()) ui->EPICDateSlider->setValue(ui->EPICDateSlider->value() + 1);
     on_EPICDateSlider_sliderReleased();
+}
+
+void MainWindow::on_Tabs_currentChanged(int index)
+{
+    resizeWelcomeImage();
+    updateEPICImage();
+}
+
+
+void MainWindow::on_EPICAutoPlayButton_clicked()
+{
+    EPICAutoPlay = !EPICAutoPlay;
+    if (EPICAutoPlay) ui->EPICAutoPlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-pause-circle.png")));
+    else ui->EPICAutoPlayButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bx-play-circle.png")));
+}
+
+void MainWindow::on_EPICTimerTimeout() {
+    if (EPICAutoPlay) on_EPICNextImageButton_clicked();
+}
+
+void MainWindow::on_EPICAutoPlaySpeedSlider_valueChanged(int value)
+{
+    timer->setInterval(value);
 }

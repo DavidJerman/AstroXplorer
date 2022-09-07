@@ -17,6 +17,7 @@ void EPIC::clear() {
 }
 
 EPICImage* EPIC::getNextImage() {
+    if (images.empty()) return {};
     if (iterator == images.end() - 1) {
         iterator = images.begin();
         return *iterator;
@@ -24,6 +25,7 @@ EPICImage* EPIC::getNextImage() {
 }
 
 EPICImage* EPIC::getPrevImage() {
+    if (images.empty()) return {};
     if (iterator == images.begin()) {
         iterator = images.end() - 1;
         return *iterator;
@@ -31,6 +33,7 @@ EPICImage* EPIC::getPrevImage() {
 }
 
 EPICImage* EPIC::getCurrentImage() {
+    if (images.empty()) return {};
     auto ret = *iterator;
     return ret;
 }
@@ -41,8 +44,8 @@ void EPIC::addImage(EPICImage* image) {
 }
 
 void EPIC::reset() {
-    iterator = images.begin();
     sort();
+    iterator = images.begin();
 }
 
 void EPIC::sort() {
