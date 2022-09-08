@@ -7,11 +7,12 @@ A GUI that uses NASA's APIs to fetch useful data about space/Earth etc.
   - ~~rover images~~
   - ~~welcome image~~
 - ~~limit the range of rover imagery widgets with the API data~~
-- add more APIs
-- add Earth and Mars weather tabs
+- ~~add more APIs~~
+- add Earth, Mars and Space weather tabs
   - search weather by clocking on the map?
   - search weather by selecting/typing a location?
-- podcasts
+  - space weather over a certain period of time - graph
+- ~~podcasts~~
   - ~~make it so that the podcasts get updated automatically and loaded automatically~~
   - ~~liked episodes~~
-  - remeber the user's last episode etc.
+- add keyboard events to control certain parts of application
