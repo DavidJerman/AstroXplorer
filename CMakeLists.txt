@@ -46,6 +46,10 @@ set(PROJECT_SOURCES
         epicimage.cpp
         Position3D.h
         Coordinates2D.h
+        maps.h
+        maps.cpp
+        maptile.h
+        maptile.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

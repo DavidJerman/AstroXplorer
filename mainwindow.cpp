@@ -34,6 +34,8 @@ bool MainWindow::appVariablesReset() {
      EPICDownloadCount = 0;
      EPICDownloadLock = true;
      EPICAutoPlay = false;
+     MarsRoverDownloadLock = false;
+     MarsRoverDownloadCount = 0;
 
      return true;
 }
@@ -1513,6 +1515,7 @@ void MainWindow::populateEpisodesList(QListWidgetItem *item, bool fav, QString s
     }
 
     auto podcast = Podcasts::getPodcastById(ID);
+    if (!podcast) return;
 
     const int SIZE = 140;
     auto filePath =

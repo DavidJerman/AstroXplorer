@@ -252,6 +252,9 @@ private:
 
     const void updateEPICImage() const;
 
+    // Maps
+
+
     // CfgLoder extension
     const QString getCfgValueQ(std::string key) const;
 
@@ -340,15 +343,20 @@ private:
     QMediaPlayer *mediaPlayer{nullptr};
     QAudioOutput *audioOutput{nullptr};
 
+    // Podcasts
     bool AudioProgressBarLocked{false};
     bool AudioAutoPlay{false};
     PodcastEpisode *episode{nullptr};
     unsigned int PID{(unsigned int)(-1)};
     bool FavoriteEpisode{false};
+    // EPIC
     unsigned int EPICDownloadCount{0};
     bool EPICDownloadLock{true};
     bool EPICAutoPlay{false};
     QTimer* timer{nullptr};
+    // Mars rover imagery
+    bool MarsRoverDownloadLock{false};
+    unsigned int MarsRoverDownloadCount{0};
 
     static constexpr int CORNER_RADIUS {25};
 };
