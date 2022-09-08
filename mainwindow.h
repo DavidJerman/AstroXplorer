@@ -334,6 +334,10 @@ private slots:
 
     void on_SearchEpisodeButton_clicked();
 
+    void on_VolumeSlider_valueChanged(int value);
+
+    void on_VolumeButton_clicked();
+
 private:
     std::map <std::string, std::string> config;
     std::map <std::string, std::string> fontCfg;

@@ -78,7 +78,6 @@ bool MainWindow::appSetup() {
     mediaPlayer = new QMediaPlayer();
     audioOutput = new QAudioOutput();
     mediaPlayer->setAudioOutput(audioOutput);\
-    audioOutput->setVolume(100);
 
     QObject::connect(mediaPlayer, SIGNAL(durationChanged(qint64)),
                      this, SLOT(onDurationChanged(qint64)));
@@ -102,6 +101,9 @@ bool MainWindow::appSetup() {
 
     manager = new QNetworkAccessManager(this);
     QObject::connect(manager, SIGNAL(finished(QNetworkReply * )), this, SLOT(onRequestFinished(QNetworkReply * )));
+
+    // Audio
+    on_VolumeSlider_valueChanged(50);
 
     // Load podcasts
     updateStatus("Loading podcasts...");
@@ -2051,3 +2053,26 @@ void MainWindow::on_SearchEpisodeButton_clicked()
     if (ui->SearchEpisodeLineDit->text().trimmed().length() == 0) populateEpisodesList(nullptr);
     else populateEpisodesList(nullptr, false, ui->SearchEpisodeLineDit->text(), true);
 }
+
+void MainWindow::on_VolumeSlider_valueChanged(int value)
+{
+    audioOutput->setVolume(value / 100.);
+    if (value > 66) ui->VolumeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-volume-full.png")));
+    else if (value > 33) ui->VolumeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-volume-low.png")));
+    else if (value > 0) ui->VolumeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-volume.png")));
+    else if (value == 0) ui->VolumeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-volume-mute.png")));
+}
+
+void MainWindow::on_VolumeButton_clicked()
+{
+    if (audioOutput->volume()) {
+        audioOutput->setVolume(0);
+        ui->VolumeButton->setIcon(QIcon(QString::fromStdString(config.find("icons_path")->second + "bxs-volume-mute.png")));
+    } else {
+        if (ui->VolumeSlider->value()) {
+            audioOutput->setVolume(ui->VolumeSlider->value() / 100.);
+            on_VolumeSlider_valueChanged(ui->VolumeSlider->value());
+        }
+    }
+}
+
