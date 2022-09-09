@@ -15,3 +15,5 @@ icons_path=./icons/
 downloads_path=./downloads/
 epic_json_url=https://epic.gsfc.nasa.gov/api/
 epic_image_url=https://epic.gsfc.nasa.gov/archive/
+wmtc_capabilities_url=https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml
+wmtc_capabilities_path=./maps/WMTSCapabilities.xml

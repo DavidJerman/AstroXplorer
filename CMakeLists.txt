@@ -50,6 +50,8 @@ set(PROJECT_SOURCES
         maps.cpp
         maptile.h
         maptile.cpp
+        maplayer.h
+        maplayer.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

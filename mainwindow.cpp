@@ -7,6 +7,7 @@
 #include "enums.h"
 #include "podcasts.h"
 #include "epic.h"
+#include "maps.h"
 
 #include <sstream>
 
@@ -116,6 +117,9 @@ bool MainWindow::appSetup() {
     timer->setInterval(ui->EPICAutoPlaySpeedSlider->value());
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(on_EPICTimerTimeout()));
     timer->start();
+
+    // Maps
+    loadMaps();
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
@@ -2076,3 +2080,10 @@ void MainWindow::on_VolumeButton_clicked()
     }
 }
 
+const void MainWindow::loadMaps() const {
+    Maps::addLayersFromXML(config.find("wmtc_capabilities_path")->second);
+    ui->MapLayerComboBox->clear();
+    for (const auto &layout: Maps::getLayers())
+        ui->MapLayerComboBox->addItem(layout->getTitle());
+    auto url = Maps::getLayers()[0]->getTileUrl(0, 0, 0, *Maps::getLayers()[0]->getDefaultDate());
+}

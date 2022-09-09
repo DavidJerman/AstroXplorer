@@ -253,7 +253,7 @@ private:
     const void updateEPICImage() const;
 
     // Maps
-
+    const void loadMaps() const;
 
     // CfgLoder extension
     const QString getCfgValueQ(std::string key) const;
