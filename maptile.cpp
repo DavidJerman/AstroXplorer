@@ -1,11 +1,33 @@
 #include "maptile.h"
 
-MapTile::MapTile(unsigned int row, unsigned int column, QPixmap* pixmap)
+MapTile::MapTile(unsigned int row, unsigned int column, unsigned int zoom, QDate* date, QPixmap* pixmap)
     : pixmap(pixmap),
       row(row),
-      column(column)
+      column(column),
+      zoom(zoom),
+      date(date)
 {
 
+}
+
+unsigned int MapTile::getZoom() const
+{
+    return zoom;
+}
+
+void MapTile::setZoom(unsigned int newZoom)
+{
+    zoom = newZoom;
+}
+
+QDate *MapTile::getDate() const
+{
+    return date;
+}
+
+void MapTile::setDate(QDate *newDate)
+{
+    date = newDate;
 }
 
 MapTile::MapTile()

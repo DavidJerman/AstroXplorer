@@ -606,6 +606,31 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             updateStatus("New EPIC constraints set!");
         }
         reply->deleteLater();
+
+    } else if (dataSource == "maps") {
+        auto answer = reply->readAll();
+        auto origin = reply->property("origin").value<ORIGIN>();
+        if (origin == O::MAP_TILE) {
+            auto column = reply->property("column").toInt();
+            auto row = reply->property("row").toInt();
+            auto zoom = reply->property("zoom").toInt();
+            auto ID = reply->property("ID").toString();
+            auto date = reply->property("date").value<QDate*>();
+            if (ID != map->getID()) {
+                reply->deleteLater();
+                return;
+            }
+            auto tile = map->findInRequestedTiles(row, column, zoom, *date);
+            if (!tile) {
+                reply->deleteLater();
+                return;
+            }
+            auto p = new QPixmap();
+            p->loadFromData(answer);
+            tile->setPixmap(p);
+            reply->deleteLater();
+            map->addActiveTile(tile);
+        }
     }
 }
 
@@ -2085,5 +2110,83 @@ const void MainWindow::loadMaps() const {
     ui->MapLayerComboBox->clear();
     for (const auto &layout: Maps::getLayers())
         ui->MapLayerComboBox->addItem(layout->getTitle());
-    auto url = Maps::getLayers()[0]->getTileUrl(0, 0, 0, *Maps::getLayers()[0]->getDefaultDate());
 }
+
+const void MainWindow::downloadTiles() const {
+    while (!map->isTileQueueEmpty()) {
+        auto tile = map->popQueuedTile();
+        QNetworkRequest request;
+        auto url = map->getTileUrl(tile);
+        request.setUrl(std::move(url));
+        auto res = manager->get(request);
+        res->setProperty("data_source", "maps");
+        res->setProperty("origin", O::MAP_TILE);
+        res->setProperty("column", tile->getColumn());
+        res->setProperty("row", tile->getRow());
+        res->setProperty("zoom", tile->getZoom());
+        res->setProperty("ID", map->getID());
+        res->setProperty("date", QVariant::fromValue(tile->getDate()));
+        map->addTileToRequested(tile);
+    }
+}
+
+const void MainWindow::updateMapDisplay() const {
+
+}
+
+void MainWindow::on_MapLayerComboBox_currentIndexChanged(int index)
+{
+    delete map;
+    map = new Maps(Maps::getLayers()[1], 0, 180);
+    map->update(-45, -90, 0, 0);
+    downloadTiles();
+}
+
+
+void MainWindow::on_MapControlsUp_clicked()
+{
+
+}
+
+
+void MainWindow::on_MapControlsLeft_clicked()
+{
+
+}
+
+
+void MainWindow::on_MapControlsRight_clicked()
+{
+
+}
+
+
+void MainWindow::on_MapConstrolsDown_clicked()
+{
+
+}
+
+
+void MainWindow::on_MapControlsZoomOut_clicked()
+{
+
+}
+
+
+void MainWindow::on_MapControlsZoomIn_clicked()
+{
+
+}
+
+
+void MainWindow::on_MapControlsRefresh_clicked()
+{
+
+}
+
+
+void MainWindow::on_horizontalSlider_actionTriggered(int action)
+{
+
+}
+

@@ -55,5 +55,6 @@ std::string E::VALUES[SIZE] =
                 "EPIC image",
                 "natural",
                 "enhanced",
-                "EPIC constraints"
+                "EPIC constraints",
+                "Map Tile"
         };

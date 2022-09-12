@@ -2,10 +2,14 @@
 
 #include <QFile>
 #include <QDomDocument>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
 
 std::vector<MapLayer*> Maps::availableLayers {};
 
-Maps::Maps()
+// Date is temporary, will remove
+Maps::Maps(MapLayer* layer, float lat, float lon)
+    : activeLayer(layer), lat(lat), lon(lon), activeDate(2020, 06, 11)
 {
 
 }
@@ -16,6 +20,7 @@ Maps::~Maps()
 }
 
 void Maps::clearLayers() {
+    for (auto &layer: availableLayers) delete layer;
     availableLayers.clear();
 }
 
@@ -78,7 +83,6 @@ void Maps::addLayersFromXML(QString fileName) {
     }
     file.close();
     sort();
-    auto temp = availableLayers;
 }
 
 void Maps::addLayersFromXML(std::string fileName) {
@@ -99,3 +103,150 @@ void Maps::sort() {
         return l1->getTitle() < l2->getTitle();
     });
 }
+
+float Maps::latToY(float lat) {
+    return lat + 90;
+}
+
+float Maps::lonToX(float lon) {
+    return lon + 180;
+}
+
+float Maps::XToLon(float X) {
+    return X - 180;
+}
+
+float Maps::YToLat(float Y) {
+    return Y - 90;
+}
+
+void Maps::update(float latA, float lonA, float latB, float lonB) {
+    // This will request the right map pieces and remove reduntant ones
+    if (!activeLayer) return;
+    auto midLat = (latA + latB) / 2;
+    auto midLon = (lonA + lonB) / 2;
+    auto diffLat = std::abs(midLat - latA);
+    auto diffLon = std::abs(midLon - lonA);
+    auto maxLon = lonToX(activeLayer->getUpperLon()) - lonToX(activeLayer->getLowerLon());
+    auto maxLat = latToY(activeLayer->getUpperLat()) - latToY(activeLayer->getLowerLat());
+    auto minLon = lonToX(activeLayer->getLowerLon());
+    auto minLat = latToY(activeLayer->getLowerLat());
+    auto xA = (int)(max(lonToX(lonA) - diffLon / 3, minLon)
+                    / (maxLon / (maxColumn + 1)));
+    auto yA = (int)(max(latToY(latA) - diffLat / 3, minLat)
+                    / (maxLat / (maxRow + 1)));
+    auto xB = (int)(min(lonToX(lonB) + diffLon / 3, maxLon)
+                    / (maxLon / (maxColumn + 1)));
+    auto yB = (int)(min(latToY(latB) + diffLat / 3, maxLat)
+                    / (maxLat / (maxRow + 1)));
+    // Puts new tiles in queue for download
+    for (int x = xA; x <= xB; x++) {
+        for (int y = yA; y <= yB; y++) {
+            if (!containsTile(y, x, tiles) && !containsTile(y, x, tilesInQueue) && !containsTile(y, x, requestedTiles))
+                tilesInQueue.push_back(new MapTile(y, x, zoom, new QDate(activeDate)));
+        }
+    }
+    // Deletes/removes old unused tiles
+    for (int x = 0; x <= maxColumn; x++) {
+        for (int y = 0; y <= maxRow; y++) {
+            if (x >= xA && x <= xB && y >= yA && y <= yB) continue;
+            auto item = std::find_if(tiles.begin(), tiles.end(), [&x, &y](const MapTile* const tile) -> bool {
+                if (!tile) return true;
+                return tile->getColumn() == x && tile->getRow() == y;
+            });
+            if (item != tiles.end())
+                tiles.erase(item);
+        }
+    }
+}
+
+template <typename T>
+const T Maps::max(const T t1, const T t2) {
+    if (t1 > t2) return t1;
+    else return t2;
+}
+
+template <typename T>
+const T Maps::min(const T t1, const T t2) {
+    if (t1 < t2) return t1;
+    else return t2;
+}
+
+bool Maps::containsTile(unsigned int row, unsigned int column, const std::vector<MapTile*>& tiles) {
+    for (const auto &tile: tiles)
+        if (tile->getRow() == row && tile->getColumn() == column)
+            return true;
+    return false;
+}
+
+// Tile retrivial and adding
+bool Maps::isTileQueueEmpty() const {
+    return tilesInQueue.empty();
+}
+
+MapTile* Maps::popQueuedTile() {
+    if (tilesInQueue.empty()) return {};
+    auto temp = tilesInQueue.back();
+    tilesInQueue.pop_back();
+    return temp;
+}
+
+
+bool Maps::isRequestQueueEmpty() const {
+    return requestedTiles.empty();
+}
+
+void Maps::addTileToRequested(MapTile* tile) {
+    if (!tile) return;
+    requestedTiles.push_back(tile);
+}
+
+
+MapTile* Maps::popRequestedTile() {
+    if (requestedTiles.empty()) return {};
+    auto temp = requestedTiles.back();
+    requestedTiles.pop_back();
+    return temp;
+}
+
+MapTile* Maps::findInRequestedTiles(unsigned int row, unsigned int column, unsigned int zoom, const QDate& date) {
+    if (requestedTiles.empty()) return {};
+    for (auto beg = requestedTiles.begin(); beg <= requestedTiles.end(); beg++) {
+        if ((*beg)->getColumn() == column && (*beg)->getRow() == row
+                && (*beg)->getZoom() == zoom && *(*beg)->getDate() == date) {
+            auto temp = (*beg);
+            requestedTiles.erase(beg);
+            return temp;
+        }
+    }
+    return {};
+}
+
+bool Maps::isTilesEmpty() const {
+    return tiles.empty();
+}
+
+void Maps::addActiveTile(MapTile* tile) {
+    if (tile->getPixmap()->isNull()) {
+        delete tile;
+        return;
+    } else {
+        tiles.push_back(tile);
+    }
+}
+
+QUrl Maps::getTileUrl(MapTile* tile) const {
+    if (!activeLayer) return {};
+    return activeLayer->getTileUrl(tile->getRow(), tile->getColumn(), tile->getZoom(), *tile->getDate());
+}
+
+void Maps::clear() {
+
+}
+
+
+const QString Maps::getID() const {
+    if (!activeLayer) return {"Invalid!"};
+    else return activeLayer->getID();
+}
+

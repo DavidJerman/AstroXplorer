@@ -23,6 +23,7 @@
 
 #include "enums.h"
 #include "podcastepisode.h"
+#include "maps.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -255,6 +256,10 @@ private:
     // Maps
     const void loadMaps() const;
 
+    const void downloadTiles() const;
+
+    const void updateMapDisplay() const;
+
     // CfgLoder extension
     const QString getCfgValueQ(std::string key) const;
 
@@ -338,6 +343,24 @@ private slots:
 
     void on_VolumeButton_clicked();
 
+    void on_MapLayerComboBox_currentIndexChanged(int index);
+
+    void on_MapControlsUp_clicked();
+
+    void on_MapControlsLeft_clicked();
+
+    void on_MapControlsRight_clicked();
+
+    void on_MapConstrolsDown_clicked();
+
+    void on_MapControlsZoomOut_clicked();
+
+    void on_MapControlsZoomIn_clicked();
+
+    void on_MapControlsRefresh_clicked();
+
+    void on_horizontalSlider_actionTriggered(int action);
+
 private:
     std::map <std::string, std::string> config;
     std::map <std::string, std::string> fontCfg;
@@ -361,6 +384,8 @@ private:
     // Mars rover imagery
     bool MarsRoverDownloadLock{false};
     unsigned int MarsRoverDownloadCount{0};
+    // Maps
+    Maps* map {nullptr};
 
     static constexpr int CORNER_RADIUS {25};
 };
