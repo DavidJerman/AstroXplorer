@@ -9,7 +9,7 @@ std::vector<MapLayer*> Maps::availableLayers {};
 
 // Date is temporary, will remove
 Maps::Maps(MapLayer* layer, float lat, float lon)
-    : activeLayer(layer), lat(lat), lon(lon), activeDate(2020, 06, 11)
+    : activeLayer(new MapLayer(*layer)), lat(lat), lon(lon), activeDate(2020, 06, 11)
 {
 
 }
@@ -96,6 +96,91 @@ const std::vector<MapLayer*>& Maps::getLayers() {
 
 bool Maps::hasLayers() {
     return availableLayers.empty();
+}
+
+MapLayer *Maps::getActiveLayer() const
+{
+    return activeLayer;
+}
+
+const QDate &Maps::getActiveDate() const
+{
+    return activeDate;
+}
+
+float Maps::getLat() const
+{
+    return lat;
+}
+
+float Maps::getLon() const
+{
+    return lon;
+}
+
+int Maps::getZoom() const
+{
+    return zoom;
+}
+
+void Maps::setLat(float newLat)
+{
+    lat = newLat;
+}
+
+void Maps::setLon(float newLon)
+{
+    lon = newLon;
+}
+
+void Maps::setZoom(int newZoom)
+{
+    zoom = newZoom;
+}
+
+int Maps::getMinZoom() const
+{
+    return minZoom;
+}
+
+void Maps::setMinZoom(int newMinZoom)
+{
+    minZoom = newMinZoom;
+}
+
+int Maps::getMaxZoom() const
+{
+    return maxZoom;
+}
+
+void Maps::setMaxZoom(int newMaxZoom)
+{
+    maxZoom = newMaxZoom;
+}
+
+int Maps::getMaxColumn() const
+{
+    return maxColumn;
+}
+
+void Maps::setMaxColumn(int newMaxColumn)
+{
+    maxColumn = newMaxColumn;
+}
+
+int Maps::getMaxRow() const
+{
+    return maxRow;
+}
+
+void Maps::setMaxRow(int newMaxRow)
+{
+    maxRow = newMaxRow;
+}
+
+const std::vector<MapTile *> &Maps::getTiles() const
+{
+    return tiles;
 }
 
 void Maps::sort() {

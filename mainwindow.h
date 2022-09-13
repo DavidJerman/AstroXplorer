@@ -260,6 +260,10 @@ private:
 
     const void updateMapDisplay() const;
 
+    const void updateMapInformation(bool clear = false) const;
+
+    const void setMapControlsState(bool state) const;
+
     // CfgLoder extension
     const QString getCfgValueQ(std::string key) const;
 

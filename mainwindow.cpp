@@ -628,9 +628,11 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             auto p = new QPixmap();
             p->loadFromData(answer);
             tile->setPixmap(p);
-            reply->deleteLater();
             map->addActiveTile(tile);
         }
+        reply->deleteLater();
+        updateMapDisplay();
+        if (map->isRequestQueueEmpty()) setMapControlsState(true);
     }
 }
 
@@ -2131,59 +2133,100 @@ const void MainWindow::downloadTiles() const {
 }
 
 const void MainWindow::updateMapDisplay() const {
+    for (auto &tile: map->getTiles()) {
+        QLabel *label = new QLabel();
+        label->setPixmap(*tile->getPixmap());
+        ui->MapTilesTable->setCellWidget(tile->getRow(), tile->getColumn(), label);
+    }
+}
 
+const void MainWindow::updateMapInformation(bool clear) const {
+    if (clear) {
+        ui->MapDateLabel->setText("");
+        ui->MapMinDateLabel->setText("Min Date");
+        ui->MapMaxDateLabel->setText("Max Date");
+        ui->MapFormatLabel->setText("");
+        ui->MapLatLabel->setText("");
+        ui->MapLonLabel->setText("");
+        ui->MapZoomLabel->setText("0");
+        ui->MapPosLabel->setText("N: 0 E: 0");
+        ui->MapTileMatrixSetLabel->setText("");
+        ui->MapTitleLabel->setText("Title");
+        ui->MapTilesTable->setColumnCount(0);
+        ui->MapTilesTable->setRowCount(0);
+    } else if (map && map->getActiveLayer()) {
+        if (map->getActiveLayer()->getMinDate() && map->getActiveLayer()->getMaxDate()) {
+            ui->MapMinDateLabel->setText(map->getActiveLayer()->getMinDate()->toString("yyyy-MM-dd"));
+            ui->MapMaxDateLabel->setText(map->getActiveLayer()->getMaxDate()->toString("yyyy-MM-dd"));
+        }
+        ui->MapFormatLabel->setText(map->getActiveLayer()->getFormat());
+        ui->MapDateLabel->setText(map->getActiveDate().toString("yyyy-MM-dd"));
+        ui->MapLatLabel->setText(QString::number(map->getLat()));
+        ui->MapLonLabel->setText(QString::number(map->getLon()));
+        ui->MapZoomLabel->setText(QString::number(map->getZoom()));
+        ui->MapPosLabel->setText("N: " + QString::number(map->getLat()) + " E: " + QString::number(map->getLon()));
+        ui->MapTileMatrixSetLabel->setText(map->getActiveLayer()->getTileMatrixSet());
+        ui->MapTitleLabel->setText(map->getActiveLayer()->getTitle());
+        ui->MapTilesTable->setRowCount(map->getMaxRow());
+        ui->MapTilesTable->setColumnCount(map->getMaxColumn());
+    }
+}
+
+const void MainWindow::setMapControlsState(bool enabled) const {
+    ui->MapConstrolsDown->setEnabled(enabled);
+    ui->MapControlsLeft->setEnabled(enabled);
+    ui->MapControlsRefresh->setEnabled(enabled);
+    ui->MapControlsRight->setEnabled(enabled);
+    ui->MapControlsUp->setEnabled(enabled);
+    ui->MapControlsZoomIn->setEnabled(enabled);
+    ui->MapControlsZoomOut->setEnabled(enabled);
+    ui->MapLayerComboBox->setEnabled(enabled);
 }
 
 void MainWindow::on_MapLayerComboBox_currentIndexChanged(int index)
 {
     delete map;
-    map = new Maps(Maps::getLayers()[1], 0, 180);
+    map = new Maps(Maps::getLayers()[index], 0, 180);
     map->update(-45, -90, 0, 0);
+    setMapControlsState(false);
+    updateMapInformation();
     downloadTiles();
 }
-
 
 void MainWindow::on_MapControlsUp_clicked()
 {
 
 }
 
-
 void MainWindow::on_MapControlsLeft_clicked()
 {
 
 }
-
 
 void MainWindow::on_MapControlsRight_clicked()
 {
 
 }
 
-
 void MainWindow::on_MapConstrolsDown_clicked()
 {
 
 }
-
 
 void MainWindow::on_MapControlsZoomOut_clicked()
 {
 
 }
 
-
 void MainWindow::on_MapControlsZoomIn_clicked()
 {
 
 }
 
-
 void MainWindow::on_MapControlsRefresh_clicked()
 {
 
 }
-
 
 void MainWindow::on_horizontalSlider_actionTriggered(int action)
 {

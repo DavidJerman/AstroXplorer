@@ -4062,16 +4062,6 @@ captured by DSCOVR's EPIC imagery instrument</string>
         <string>Earth View</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_15" columnstretch="30,0,10">
-        <item row="0" column="0">
-         <widget class="QLabel" name="MapImageLabel">
-          <property name="text">
-           <string>&lt;Map Image Label&gt;</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="2" rowspan="2">
          <widget class="QFrame" name="MapControlsFrame">
           <property name="frameShape">
@@ -4219,14 +4209,14 @@ captured by DSCOVR's EPIC imagery instrument</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_8">
               <item row="0" column="0">
-               <widget class="QLabel" name="label">
+               <widget class="QLabel" name="MapMinDateLabel">
                 <property name="text">
                  <string>Min Date</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QLabel" name="label_2">
+               <widget class="QLabel" name="MapMaxDateLabel">
                 <property name="text">
                  <string>Max Date</string>
                 </property>
@@ -4331,7 +4321,7 @@ captured by DSCOVR's EPIC imagery instrument</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
               <item row="3" column="0">
-               <widget class="QLabel" name="label_6">
+               <widget class="QLabel" name="MapLat">
                 <property name="font">
                  <font>
                   <pointsize>11</pointsize>
@@ -4344,7 +4334,7 @@ captured by DSCOVR's EPIC imagery instrument</string>
                </widget>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="label_10">
+               <widget class="QLabel" name="MapFormat">
                 <property name="font">
                  <font>
                   <pointsize>11</pointsize>
@@ -4357,7 +4347,7 @@ captured by DSCOVR's EPIC imagery instrument</string>
                </widget>
               </item>
               <item row="0" column="0" colspan="2">
-               <widget class="QLabel" name="label_3">
+               <widget class="QLabel" name="MapTitleLabel">
                 <property name="font">
                  <font>
                   <pointsize>11</pointsize>
@@ -4367,10 +4357,13 @@ captured by DSCOVR's EPIC imagery instrument</string>
                 <property name="text">
                  <string>Title</string>
                 </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="label_4">
+               <widget class="QLabel" name="MapLon">
                 <property name="font">
                  <font>
                   <pointsize>11</pointsize>
@@ -4383,7 +4376,7 @@ captured by DSCOVR's EPIC imagery instrument</string>
                </widget>
               </item>
               <item row="5" column="0">
-               <widget class="QLabel" name="label_8">
+               <widget class="QLabel" name="MapTileMatrixSet">
                 <property name="font">
                  <font>
                   <pointsize>11</pointsize>
@@ -4396,35 +4389,35 @@ captured by DSCOVR's EPIC imagery instrument</string>
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QLabel" name="label_5">
+               <widget class="QLabel" name="MapLonLabel">
                 <property name="text">
                  <string/>
                 </property>
                </widget>
               </item>
               <item row="4" column="1">
-               <widget class="QLabel" name="label_11">
+               <widget class="QLabel" name="MapFormatLabel">
                 <property name="text">
                  <string/>
                 </property>
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QLabel" name="label_9">
+               <widget class="QLabel" name="MapTileMatrixSetLabel">
                 <property name="text">
                  <string/>
                 </property>
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QLabel" name="label_7">
+               <widget class="QLabel" name="MapLatLabel">
                 <property name="text">
                  <string/>
                 </property>
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="label_12">
+               <widget class="QLabel" name="MapDate">
                 <property name="font">
                  <font>
                   <pointsize>11</pointsize>
@@ -4437,7 +4430,7 @@ captured by DSCOVR's EPIC imagery instrument</string>
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLabel" name="label_13">
+               <widget class="QLabel" name="MapDateLabel">
                 <property name="text">
                  <string/>
                 </property>
@@ -4447,28 +4440,28 @@ captured by DSCOVR's EPIC imagery instrument</string>
             </widget>
            </item>
            <item row="3" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
-            <widget class="QLabel" name="label_14">
+            <widget class="QLabel" name="MapZoom">
              <property name="text">
               <string>Zoom</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_15">
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="MapZoomLabel">
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
            <item row="3" column="4" alignment="Qt::AlignHCenter|Qt::AlignBottom">
-            <widget class="QLabel" name="label_16">
+            <widget class="QLabel" name="MapPos">
              <property name="text">
               <string>Pos</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="4">
-            <widget class="QLabel" name="label_17">
+           <item row="4" column="4" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="MapPosLabel">
              <property name="text">
               <string/>
              </property>
@@ -4479,6 +4472,64 @@ captured by DSCOVR's EPIC imagery instrument</string>
         </item>
         <item row="1" column="0">
          <widget class="QComboBox" name="MapLayerComboBox"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="MapTilesTable">
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="tabKeyNavigation">
+           <bool>false</bool>
+          </property>
+          <property name="dragDropOverwriteMode">
+           <bool>true</bool>
+          </property>
+          <property name="verticalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="horizontalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::DotLine</enum>
+          </property>
+          <property name="wordWrap">
+           <bool>false</bool>
+          </property>
+          <property name="cornerButtonEnabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="horizontalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>512</number>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>512</number>
+          </attribute>
+          <attribute name="horizontalHeaderHighlightSections">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderMinimumSectionSize">
+           <number>512</number>
+          </attribute>
+          <attribute name="verticalHeaderDefaultSectionSize">
+           <number>512</number>
+          </attribute>
+         </widget>
         </item>
        </layout>
       </widget>

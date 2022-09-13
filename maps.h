@@ -19,8 +19,8 @@ private:
     QDate activeDate;
     float lat, lon;
     int zoom {2};
-    int minZoom {2}, maxZoom {2};
-    int maxColumn {4}, maxRow {2};
+    int minZoom {0}, maxZoom {2};
+    int maxColumn {5}, maxRow {2};
 
     static void sort();
 public:
@@ -78,6 +78,29 @@ public:
     const QString getID() const;
 
     QUrl getTileUrl(MapTile*) const;
+
+    // Getters
+
+    MapLayer *getActiveLayer() const;
+    const QDate &getActiveDate() const;
+    float getLat() const;
+    float getLon() const;
+    int getZoom() const;
+
+    void setLat(float newLat);
+    void setLon(float newLon);
+    void setZoom(int newZoom);
+    int getMinZoom() const;
+    void setMinZoom(int newMinZoom);
+    int getMaxZoom() const;
+    void setMaxZoom(int newMaxZoom);
+    int getMaxColumn() const;
+    void setMaxColumn(int newMaxColumn);
+    int getMaxRow() const;
+    void setMaxRow(int newMaxRow);
+
+
+    const std::vector<MapTile *> &getTiles() const;
 };
 
 #endif // MAPS_H
