@@ -24,6 +24,7 @@
 #include "enums.h"
 #include "podcastepisode.h"
 #include "maps.h"
+#include "Coordinates2D.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -263,6 +264,11 @@ private:
     const void updateMapInformation(bool clear = false) const;
 
     const void setMapControlsState(bool state) const;
+private slots:
+    const void setMapPosition() const;
+
+private:
+    const void clearMap() const;
 
     // CfgLoder extension
     const QString getCfgValueQ(std::string key) const;
@@ -362,8 +368,6 @@ private slots:
     void on_MapControlsZoomIn_clicked();
 
     void on_MapControlsRefresh_clicked();
-
-    void on_horizontalSlider_actionTriggered(int action);
 
 private:
     std::map <std::string, std::string> config;

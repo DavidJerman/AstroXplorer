@@ -14,6 +14,9 @@
 #include <QFontDatabase>
 #include <QApplication>
 #include <QCheckBox>
+#include <QScrollBar>
+
+#define TILE_SIZE 512
 
 typedef ORIGIN O;
 
@@ -120,6 +123,8 @@ bool MainWindow::appSetup() {
 
     // Maps
     loadMaps();
+    connect(ui->MapTilesTable->horizontalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(setMapPosition()));
+    connect(ui->MapTilesTable->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(setMapPosition()));
 
     // Certain UI properties
     ui->WelcomeImageLabel->setScaledContents(false);
@@ -632,7 +637,6 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
         }
         reply->deleteLater();
         updateMapDisplay();
-        if (map->isRequestQueueEmpty()) setMapControlsState(true);
     }
 }
 
@@ -775,6 +779,8 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event);
     resizeWelcomeImage();
     updateEPICImage();
+    if (ui->Tabs->currentIndex() == 4)
+        setMapPosition();
 }
 
 const void MainWindow::resizeWelcomeImage() const {
@@ -2044,6 +2050,8 @@ void MainWindow::on_Tabs_currentChanged(int index)
 {
     resizeWelcomeImage();
     updateEPICImage();
+    if (index == 4)
+        setMapPosition();
 }
 
 void MainWindow::on_EPICAutoPlayButton_clicked()
@@ -2167,8 +2175,8 @@ const void MainWindow::updateMapInformation(bool clear) const {
         ui->MapPosLabel->setText("N: " + QString::number(map->getLat()) + " E: " + QString::number(map->getLon()));
         ui->MapTileMatrixSetLabel->setText(map->getActiveLayer()->getTileMatrixSet());
         ui->MapTitleLabel->setText(map->getActiveLayer()->getTitle());
-        ui->MapTilesTable->setRowCount(map->getMaxRow());
-        ui->MapTilesTable->setColumnCount(map->getMaxColumn());
+        ui->MapTilesTable->setRowCount(map->getMaxRow() + 1);
+        ui->MapTilesTable->setColumnCount(map->getMaxColumn() + 1);
     }
 }
 
@@ -2187,10 +2195,48 @@ void MainWindow::on_MapLayerComboBox_currentIndexChanged(int index)
 {
     delete map;
     map = new Maps(Maps::getLayers()[index], 0, 180);
-    map->update(-45, -90, 0, 0);
     setMapControlsState(false);
     updateMapInformation();
+    if (ui->Tabs->currentIndex() == 4) {
+        setMapPosition();
+        clearMap();
+    }
     downloadTiles();
+}
+
+const void MainWindow::setMapPosition() const {
+    qDebug("Updating map...");
+    // qDebug() << ui->MapTilesTable->width() << " " << ui->MapTilesTable->height() << " " << ui->MapTilesTable->horizontalScrollBar()->sliderPosition(); // Probably should be on slider changed event huh?
+    auto xL = ui->MapTilesTable->width() / 2;
+    auto xR = TILE_SIZE * map->getMaxColumn() - ui->MapTilesTable->width() / 2;
+    auto diff = xR - xL;
+    auto relDiff = (double)ui->MapTilesTable->horizontalScrollBar()->value() / (ui->MapTilesTable->horizontalScrollBar()->maximum() - ui->MapTilesTable->horizontalScrollBar()->minimum());
+    auto x = xL + relDiff * diff;
+    auto lon = ((double)x / (TILE_SIZE * map->getMaxColumn())) * 360 - 180;
+
+    auto yU = ui->MapTilesTable->height() / 2;
+    auto yD = TILE_SIZE * map->getMaxRow() - ui->MapTilesTable->height() / 2;
+    diff = yD - yU;
+    relDiff = (double)ui->MapTilesTable->verticalScrollBar()->value() / (ui->MapTilesTable->verticalScrollBar()->maximum() - ui->MapTilesTable->horizontalScrollBar()->minimum());
+    auto y = yU + relDiff * diff;
+    auto lat = ((double)y / (TILE_SIZE * map->getMaxRow())) * 180 - 90;
+
+    auto lonDiff = (double)ui->MapTilesTable->width() / (TILE_SIZE * map->getMaxColumn()) * 360;
+    auto latDiff = (double)ui->MapTilesTable->height() / (TILE_SIZE * map->getMaxRow()) * 180;
+
+    // Update map - request correct tiles
+    if (map) map->update(lat - latDiff, lon - lonDiff, lat + latDiff, lon + lonDiff, ui->MapTilesTable);
+
+    // Download the tiles
+    downloadTiles();
+}
+
+const void MainWindow::clearMap() const {
+    for (int i = 0; i < ui->MapTilesTable->columnCount(); i++) {
+        for (int j = 0; j < ui->MapTilesTable->rowCount(); j++) {
+            ui->MapTilesTable->removeCellWidget(j, i);
+        }
+    }
 }
 
 void MainWindow::on_MapControlsUp_clicked()
@@ -2227,9 +2273,3 @@ void MainWindow::on_MapControlsRefresh_clicked()
 {
 
 }
-
-void MainWindow::on_horizontalSlider_actionTriggered(int action)
-{
-
-}
-

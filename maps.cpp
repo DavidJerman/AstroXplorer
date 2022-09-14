@@ -205,25 +205,25 @@ float Maps::YToLat(float Y) {
     return Y - 90;
 }
 
-void Maps::update(float latA, float lonA, float latB, float lonB) {
+void Maps::update(float latA, float lonA, float latB, float lonB, QTableWidget *table) {
     // This will request the right map pieces and remove reduntant ones
     if (!activeLayer) return;
     auto midLat = (latA + latB) / 2;
     auto midLon = (lonA + lonB) / 2;
     auto diffLat = std::abs(midLat - latA);
     auto diffLon = std::abs(midLon - lonA);
-    auto maxLon = lonToX(activeLayer->getUpperLon()) - lonToX(activeLayer->getLowerLon());
-    auto maxLat = latToY(activeLayer->getUpperLat()) - latToY(activeLayer->getLowerLat());
-    auto minLon = lonToX(activeLayer->getLowerLon());
-    auto minLat = latToY(activeLayer->getLowerLat());
+    auto maxLon = std::min((float)180, lonToX(activeLayer->getUpperLon()) - lonToX(activeLayer->getLowerLon()));
+    auto maxLat = std::min((float)90, latToY(activeLayer->getUpperLat()) - latToY(activeLayer->getLowerLat()));
+    auto minLon = std::max((float)-180, lonToX(activeLayer->getLowerLon()));
+    auto minLat = std::max((float)-90, latToY(activeLayer->getLowerLat()));
     auto xA = (int)(max(lonToX(lonA) - diffLon / 3, minLon)
-                    / (maxLon / (maxColumn + 1)));
+                    / (maxLon / (maxColumn)));
     auto yA = (int)(max(latToY(latA) - diffLat / 3, minLat)
-                    / (maxLat / (maxRow + 1)));
+                    / (maxLat / (maxRow)));
     auto xB = (int)(min(lonToX(lonB) + diffLon / 3, maxLon)
-                    / (maxLon / (maxColumn + 1)));
+                    / (maxLon / (maxColumn)));
     auto yB = (int)(min(latToY(latB) + diffLat / 3, maxLat)
-                    / (maxLat / (maxRow + 1)));
+                    / (maxLat / (maxRow)));
     // Puts new tiles in queue for download
     for (int x = xA; x <= xB; x++) {
         for (int y = yA; y <= yB; y++) {
@@ -239,8 +239,12 @@ void Maps::update(float latA, float lonA, float latB, float lonB) {
                 if (!tile) return true;
                 return tile->getColumn() == x && tile->getRow() == y;
             });
-            if (item != tiles.end())
+            if (item != tiles.end()) {
+                delete *item;
                 tiles.erase(item);
+                table->removeCellWidget(y, x);
+                // delete *item;
+            }
         }
     }
 }

@@ -5,6 +5,7 @@
 #include <string>
 #include <QString>
 #include <QDate>
+#include <QTableWidget>
 #include "maptile.h"
 #include "maplayer.h"
 
@@ -18,9 +19,9 @@ private:
     MapLayer* activeLayer;
     QDate activeDate;
     float lat, lon;
-    int zoom {2};
+    int zoom {4};
     int minZoom {0}, maxZoom {2};
-    int maxColumn {5}, maxRow {2};
+    int maxColumn {19}, maxRow {9};
 
     static void sort();
 public:
@@ -46,7 +47,7 @@ public:
 
     static float YToLat(float Y);
 
-    void update(float latA, float lonA, float latB, float lonB);
+    void update(float latA, float lonA, float latB, float lonB, QTableWidget *table);
 
     static bool containsTile(unsigned int row, unsigned int column, const std::vector<MapTile*>& tiles);
 
