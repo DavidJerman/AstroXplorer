@@ -212,17 +212,17 @@ void Maps::update(float latA, float lonA, float latB, float lonB, QTableWidget *
     auto midLon = (lonA + lonB) / 2;
     auto diffLat = std::abs(midLat - latA);
     auto diffLon = std::abs(midLon - lonA);
-    auto maxLon = std::min((float)180, lonToX(activeLayer->getUpperLon()) - lonToX(activeLayer->getLowerLon()));
-    auto maxLat = std::min((float)90, latToY(activeLayer->getUpperLat()) - latToY(activeLayer->getLowerLat()));
-    auto minLon = std::max((float)-180, lonToX(activeLayer->getLowerLon()));
-    auto minLat = std::max((float)-90, latToY(activeLayer->getLowerLat()));
-    auto xA = (int)(max(lonToX(lonA) - diffLon / 3, minLon)
+    auto maxLon = std::min((float)360, lonToX(activeLayer->getUpperLon()) - lonToX(activeLayer->getLowerLon()));
+    auto maxLat = std::min((float)180, latToY(activeLayer->getUpperLat()) - latToY(activeLayer->getLowerLat()));
+    auto minLon = std::max((float)0, lonToX(activeLayer->getLowerLon()));
+    auto minLat = std::max((float)0, latToY(activeLayer->getLowerLat()));
+    auto xA = (int)(max(lonToX(lonA) - lonToX(diffLon) / 2, minLon)
                     / (maxLon / (maxColumn)));
-    auto yA = (int)(max(latToY(latA) - diffLat / 3, minLat)
+    auto yA = (int)(max(latToY(latA) - latToY(diffLat) / 2, minLat)
                     / (maxLat / (maxRow)));
-    auto xB = (int)(min(lonToX(lonB) + diffLon / 3, maxLon)
+    auto xB = (int)(min(lonToX(lonB) + lonToX(diffLon) / 2, maxLon)
                     / (maxLon / (maxColumn)));
-    auto yB = (int)(min(latToY(latB) + diffLat / 3, maxLat)
+    auto yB = (int)(min(latToY(latB) + latToY(diffLat) / 2, maxLat)
                     / (maxLat / (maxRow)));
     // Puts new tiles in queue for download
     for (int x = xA; x <= xB; x++) {

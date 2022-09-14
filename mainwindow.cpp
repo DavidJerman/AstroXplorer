@@ -2172,7 +2172,7 @@ const void MainWindow::updateMapInformation(bool clear) const {
         ui->MapLatLabel->setText(QString::number(map->getLat()));
         ui->MapLonLabel->setText(QString::number(map->getLon()));
         ui->MapZoomLabel->setText(QString::number(map->getZoom()));
-        ui->MapPosLabel->setText("N: " + QString::number(map->getLat()) + " E: " + QString::number(map->getLon()));
+        ui->MapPosLabel->setText("N: " + QString::number(map->getLat(), 'g', 2) + " \nE: " + QString::number(map->getLon(), 'g', 3));
         ui->MapTileMatrixSetLabel->setText(map->getActiveLayer()->getTileMatrixSet());
         ui->MapTitleLabel->setText(map->getActiveLayer()->getTitle());
         ui->MapTilesTable->setRowCount(map->getMaxRow() + 1);
@@ -2205,24 +2205,32 @@ void MainWindow::on_MapLayerComboBox_currentIndexChanged(int index)
 }
 
 const void MainWindow::setMapPosition() const {
-    qDebug("Updating map...");
-    // qDebug() << ui->MapTilesTable->width() << " " << ui->MapTilesTable->height() << " " << ui->MapTilesTable->horizontalScrollBar()->sliderPosition(); // Probably should be on slider changed event huh?
+    auto columns = map->getMaxColumn() + 1;
+    auto rows = map->getMaxRow() + 1;
+    // qDebug("Updating map...");
+    // qDebug() << ui->MapTilesTable->horizontalScrollBar()->value() << " " << ui->MapTilesTable->horizontalScrollBar()->minimum() << " " << ui->MapTilesTable->horizontalScrollBar()->maximum();
     auto xL = ui->MapTilesTable->width() / 2;
-    auto xR = TILE_SIZE * map->getMaxColumn() - ui->MapTilesTable->width() / 2;
+    auto xR = TILE_SIZE * columns - ui->MapTilesTable->width() / 2;
     auto diff = xR - xL;
-    auto relDiff = (double)ui->MapTilesTable->horizontalScrollBar()->value() / (ui->MapTilesTable->horizontalScrollBar()->maximum() - ui->MapTilesTable->horizontalScrollBar()->minimum());
+    auto relDiff = (float)ui->MapTilesTable->horizontalScrollBar()->value() / (ui->MapTilesTable->horizontalScrollBar()->maximum() - ui->MapTilesTable->horizontalScrollBar()->minimum());
     auto x = xL + relDiff * diff;
-    auto lon = ((double)x / (TILE_SIZE * map->getMaxColumn())) * 360 - 180;
+    auto lon = ((float)x / (TILE_SIZE * columns)) * 360 - 180;
 
     auto yU = ui->MapTilesTable->height() / 2;
-    auto yD = TILE_SIZE * map->getMaxRow() - ui->MapTilesTable->height() / 2;
+    auto yD = TILE_SIZE * rows - ui->MapTilesTable->height() / 2;
     diff = yD - yU;
-    relDiff = (double)ui->MapTilesTable->verticalScrollBar()->value() / (ui->MapTilesTable->verticalScrollBar()->maximum() - ui->MapTilesTable->horizontalScrollBar()->minimum());
+    relDiff = (float)ui->MapTilesTable->verticalScrollBar()->value() / (ui->MapTilesTable->verticalScrollBar()->maximum() - ui->MapTilesTable->horizontalScrollBar()->minimum());
     auto y = yU + relDiff * diff;
-    auto lat = ((double)y / (TILE_SIZE * map->getMaxRow())) * 180 - 90;
+    auto lat = ((float)y / (TILE_SIZE * rows)) * 180 - 90;
 
-    auto lonDiff = (double)ui->MapTilesTable->width() / (TILE_SIZE * map->getMaxColumn()) * 360;
-    auto latDiff = (double)ui->MapTilesTable->height() / (TILE_SIZE * map->getMaxRow()) * 180;
+    // Set UI properties
+    map->setLat(lat);
+    map->setLon(lon);
+    updateMapInformation();
+    // qDebug() << "Lat: " << lat << " Lon: " << lon;
+
+    auto lonDiff = (float)xL / (TILE_SIZE * columns) * 360;
+    auto latDiff = (float)yU / (TILE_SIZE * rows) * 180;
 
     // Update map - request correct tiles
     if (map) map->update(lat - latDiff, lon - lonDiff, lat + latDiff, lon + lonDiff, ui->MapTilesTable);
