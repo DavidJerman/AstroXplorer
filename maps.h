@@ -8,11 +8,13 @@
 #include <QTableWidget>
 #include "maptile.h"
 #include "maplayer.h"
+#include "tilematrixset.h"
 
 class Maps
 {
 private:
     static std::vector<MapLayer*> availableLayers;
+    static std::vector<TileMatrixSet*> tileMatrixSets;
     std::vector<MapTile*> tiles;
     std::vector<MapTile*> tilesInQueue;
     std::vector<MapTile*> requestedTiles;
@@ -79,6 +81,13 @@ public:
     const QString getID() const;
 
     QUrl getTileUrl(MapTile*) const;
+
+    // Tile matrices
+    static void addTileMatrixSet(TileMatrixSet* set);
+
+    static void addMatrixSetsFromXML(QString fileName);
+
+    static void addMatrixSetsFromXML(std::string fileName);
 
     // Getters
 

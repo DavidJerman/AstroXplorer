@@ -52,6 +52,9 @@ set(PROJECT_SOURCES
         maptile.cpp
         maplayer.h
         maplayer.cpp
+        tilematrixset.h
+        tilematrixset.cpp
+        TileMatrix.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

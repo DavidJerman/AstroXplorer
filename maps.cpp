@@ -6,6 +6,7 @@
 #include <QNetworkRequest>
 
 std::vector<MapLayer*> Maps::availableLayers {};
+std::vector<TileMatrixSet*> Maps::tileMatrixSets {};
 
 // Date is temporary, will remove
 Maps::Maps(MapLayer* layer, float lat, float lon)
@@ -337,5 +338,63 @@ void Maps::clear() {
 const QString Maps::getID() const {
     if (!activeLayer) return {"Invalid!"};
     else return activeLayer->getID();
+}
+
+void Maps::addTileMatrixSet(TileMatrixSet* set) {
+    tileMatrixSets.push_back(set);
+}
+
+
+void Maps::addMatrixSetsFromXML(QString fileName) {
+    QFile file;
+    file.setFileName(std::move(fileName));
+    if (file.open(QIODevice::ReadOnly)) {
+        auto dom = new QDomDocument();
+        dom->setContent(&file);
+        auto root = dom->documentElement();
+        qDebug() << root.tagName();
+        auto item = root.firstChild().toElement();
+        while (!item.isNull()) {
+            if (item.tagName() == "Contents") {
+                auto layerEl = item.firstChild().toElement();
+                while (!layerEl.isNull()) {
+                    if (layerEl.tagName() == "TileMatrixSet") {
+                        auto layerItem = layerEl.firstChild().toElement();
+                        QString setID;
+                        unsigned int ID, w, h;
+                        TileMatrixSet* set {nullptr};
+                        while (!layerItem.isNull()) {
+                            layerItem = layerItem.nextSibling().toElement();
+                            auto tag = layerItem.tagName();
+                            if (tag == "ows:Identifier") {
+                                setID = layerItem.text();
+                                set = new TileMatrixSet(setID);
+                            }
+                            if (set && tag == "TileMatrix") {
+                                auto subItem = layerItem.firstChild().toElement();
+                                while (!subItem.isNull()) {
+                                    tag = subItem.tagName();
+                                    if (tag == "ows:Identifier") ID = subItem.text().toInt();
+                                    if (tag == "MatrixWidth") w = subItem.text().toInt();
+                                    if (tag == "MatrixHeight") h = subItem.text().toInt();
+                                    subItem = subItem.nextSibling().toElement();
+                                }
+                                set->addMatrix(new TileMatrix(w, h, ID));
+                            }
+                        }
+                        if (set)
+                            tileMatrixSets.push_back(set);
+                    }
+                    layerEl = layerEl.nextSibling().toElement();
+                }
+            }
+            item = item.nextSibling().toElement();
+        }
+    }
+    file.close();
+}
+
+void Maps::addMatrixSetsFromXML(std::string fileName) {
+    addMatrixSetsFromXML(QString::fromStdString(fileName));
 }
 

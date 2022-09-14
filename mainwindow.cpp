@@ -2116,6 +2116,7 @@ void MainWindow::on_VolumeButton_clicked()
 }
 
 const void MainWindow::loadMaps() const {
+    Maps::addMatrixSetsFromXML(config.find("wmtc_capabilities_path")->second);
     Maps::addLayersFromXML(config.find("wmtc_capabilities_path")->second);
     ui->MapLayerComboBox->clear();
     for (const auto &layout: Maps::getLayers())
