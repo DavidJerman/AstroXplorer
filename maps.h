@@ -21,9 +21,8 @@ private:
     MapLayer* activeLayer;
     QDate activeDate;
     float lat, lon;
-    int zoom {4};
+    int zoom {2};
     int minZoom {0}, maxZoom {2};
-    int maxColumn {19}, maxRow {9};
 
     static void sort();
 public:
@@ -90,7 +89,6 @@ public:
     static void addMatrixSetsFromXML(std::string fileName);
 
     // Getters
-
     MapLayer *getActiveLayer() const;
     const QDate &getActiveDate() const;
     float getLat() const;
@@ -105,10 +103,7 @@ public:
     int getMaxZoom() const;
     void setMaxZoom(int newMaxZoom);
     int getMaxColumn() const;
-    void setMaxColumn(int newMaxColumn);
     int getMaxRow() const;
-    void setMaxRow(int newMaxRow);
-
 
     const std::vector<MapTile *> &getTiles() const;
 };

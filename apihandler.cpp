@@ -1,4 +1,6 @@
 #include "apihandler.h"
+#include <fstream>
+#include <cstdio>
 
 QUrl APIHandler::getAPOD_API_Request_URL(const std::string &APOD_URL, const std::string &API_KEY) {
     std::string api_url = APOD_URL + "?api_key=" + API_KEY;
@@ -88,4 +90,44 @@ QUrl APIHandler::getEPICData_Request_URL(QString API_KEY,
                              QString type) {
     auto url = std::move(baseUrl) + std::move(type) + "/all?api_key" + std::move(API_KEY);
     return {std::move(url)};
+}
+
+void APIHandler::clearXMLFile(QString fileName) {
+    clearXMLFile(fileName.toStdString());
+}
+
+// Removes any breaks in XML file
+void APIHandler::clearXMLFile(std::string fileName) {
+    // TODO: Remove
+    std::string temp = fileName + ".temp";
+    std::ifstream stream (fileName);
+    std::ofstream oStream (temp);
+    char *c = new char[1];
+    char *b = new char[1];
+    bool detect = false;
+    bool first = true;
+    while (!stream.eof()) {
+        stream.read(c, 1);
+        if (c[0] == '\'') {
+            if (b[0] != 'b') {
+                stream.read(c, 1);
+                stream.read(c, 1);
+                if (c[0] == '\'') stream.read(c, 1);
+            } else {
+                stream.read(b, 1);
+                stream.read(c, 1);
+            }
+        }
+        if (!first)
+            oStream << b[0];
+        else
+            first = !first;
+        b[0] = c[0];
+    }
+    delete [] b;
+    delete [] c;
+    stream.close();
+    oStream.close();
+    std::remove(fileName.c_str());
+    std::rename(temp.c_str(), fileName.c_str());
 }

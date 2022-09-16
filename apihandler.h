@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QDate>
+#include <fstream>
 
 #include "enums.h"
 
@@ -51,6 +52,10 @@ public:
     static QUrl getEPICImage_Request_URL(QString API_KEY, QString baseUrl, QDate date, QString type, QString imageFileName, QString extension);
 
     static QUrl getEPICData_Request_URL(QString API_KEY, QString baseUrl, QString type);
+
+    static void clearXMLFile(QString fileName);
+
+    static void clearXMLFile(std::string fileName);
 };
 
 #endif // APIHANDLER_H

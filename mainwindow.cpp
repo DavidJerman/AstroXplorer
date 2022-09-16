@@ -329,6 +329,7 @@ const void MainWindow::fetchEPICImage(QUrl url, ORIGIN origin, QString title, QS
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
     if (reply->error()) {
         qDebug("No internet connection!");
+        qDebug() << reply->request().url();
         updateStatus("No internet connection, please connect to the internet and refresh the application!");
         return;
     }
@@ -634,6 +635,7 @@ void MainWindow::onRequestFinished(QNetworkReply *reply) {
             p->loadFromData(answer);
             tile->setPixmap(p);
             map->addActiveTile(tile);
+            setMapControlsState(true);
         }
         reply->deleteLater();
         updateMapDisplay();
@@ -2116,8 +2118,9 @@ void MainWindow::on_VolumeButton_clicked()
 }
 
 const void MainWindow::loadMaps() const {
-    Maps::addMatrixSetsFromXML(config.find("wmtc_capabilities_path")->second);
+    APIHandler::clearXMLFile(config.find("wmtc_capabilities_path")->second);
     Maps::addLayersFromXML(config.find("wmtc_capabilities_path")->second);
+    Maps::addMatrixSetsFromXML(config.find("wmtc_capabilities_path")->second);
     ui->MapLayerComboBox->clear();
     for (const auto &layout: Maps::getLayers())
         ui->MapLayerComboBox->addItem(layout->getTitle());
@@ -2157,7 +2160,7 @@ const void MainWindow::updateMapInformation(bool clear) const {
         ui->MapFormatLabel->setText("");
         ui->MapLatLabel->setText("");
         ui->MapLonLabel->setText("");
-        ui->MapZoomLabel->setText("0");
+        ui->MapZoomLabel->setText("0x");
         ui->MapPosLabel->setText("N: 0 E: 0");
         ui->MapTileMatrixSetLabel->setText("");
         ui->MapTitleLabel->setText("Title");
@@ -2172,12 +2175,12 @@ const void MainWindow::updateMapInformation(bool clear) const {
         ui->MapDateLabel->setText(map->getActiveDate().toString("yyyy-MM-dd"));
         ui->MapLatLabel->setText(QString::number(map->getLat()));
         ui->MapLonLabel->setText(QString::number(map->getLon()));
-        ui->MapZoomLabel->setText(QString::number(map->getZoom()));
+        ui->MapZoomLabel->setText(QString::number(map->getZoom()) + "x");
         ui->MapPosLabel->setText("N: " + QString::number(map->getLat(), 'g', 2) + " \nE: " + QString::number(map->getLon(), 'g', 3));
         ui->MapTileMatrixSetLabel->setText(map->getActiveLayer()->getTileMatrixSet());
         ui->MapTitleLabel->setText(map->getActiveLayer()->getTitle());
         ui->MapTilesTable->setRowCount(map->getMaxRow() + 1);
-        ui->MapTilesTable->setColumnCount(map->getMaxColumn() + 1);
+        ui->MapTilesTable->setColumnCount(map->getMaxColumn());
     }
 }
 
@@ -2208,8 +2211,7 @@ void MainWindow::on_MapLayerComboBox_currentIndexChanged(int index)
 const void MainWindow::setMapPosition() const {
     auto columns = map->getMaxColumn() + 1;
     auto rows = map->getMaxRow() + 1;
-    // qDebug("Updating map...");
-    // qDebug() << ui->MapTilesTable->horizontalScrollBar()->value() << " " << ui->MapTilesTable->horizontalScrollBar()->minimum() << " " << ui->MapTilesTable->horizontalScrollBar()->maximum();
+
     auto xL = ui->MapTilesTable->width() / 2;
     auto xR = TILE_SIZE * columns - ui->MapTilesTable->width() / 2;
     auto diff = xR - xL;
@@ -2228,7 +2230,6 @@ const void MainWindow::setMapPosition() const {
     map->setLat(lat);
     map->setLon(lon);
     updateMapInformation();
-    // qDebug() << "Lat: " << lat << " Lon: " << lon;
 
     auto lonDiff = (float)xL / (TILE_SIZE * columns) * 360;
     auto latDiff = (float)yU / (TILE_SIZE * rows) * 180;
@@ -2250,35 +2251,42 @@ const void MainWindow::clearMap() const {
 
 void MainWindow::on_MapControlsUp_clicked()
 {
-
+    ui->MapTilesTable->verticalScrollBar()->setValue(std::max(0, ui->MapTilesTable->verticalScrollBar()->value() - 20));
 }
 
 void MainWindow::on_MapControlsLeft_clicked()
 {
-
+    ui->MapTilesTable->horizontalScrollBar()->setValue(std::max(0, ui->MapTilesTable->horizontalScrollBar()->value() - 20));
 }
 
 void MainWindow::on_MapControlsRight_clicked()
 {
-
+    ui->MapTilesTable->horizontalScrollBar()->setValue(std::min(ui->MapTilesTable->horizontalScrollBar()->maximum(), ui->MapTilesTable->horizontalScrollBar()->value() + 20));
 }
 
 void MainWindow::on_MapConstrolsDown_clicked()
 {
-
+    ui->MapTilesTable->verticalScrollBar()->setValue(std::min(ui->MapTilesTable->verticalScrollBar()->maximum(), ui->MapTilesTable->verticalScrollBar()->value() + 20));
 }
 
 void MainWindow::on_MapControlsZoomOut_clicked()
 {
-
+    map->setZoom(map->getZoom() - 1);
+    ui->MapZoomLabel->setText(QString::number(map->getZoom()) + "x");
+    clearMap();
+    setMapPosition();
 }
 
 void MainWindow::on_MapControlsZoomIn_clicked()
 {
-
+    map->setZoom(map->getZoom() + 1);
+    ui->MapZoomLabel->setText(QString::number(map->getZoom()) + "x");
+    clearMap();
+    setMapPosition();
 }
 
 void MainWindow::on_MapControlsRefresh_clicked()
 {
-
+    clearMap();
+    setMapPosition();
 }

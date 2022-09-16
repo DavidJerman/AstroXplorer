@@ -12,7 +12,12 @@ std::vector<TileMatrixSet*> Maps::tileMatrixSets {};
 Maps::Maps(MapLayer* layer, float lat, float lon)
     : activeLayer(new MapLayer(*layer)), lat(lat), lon(lon), activeDate(2020, 06, 11)
 {
-
+    for (const auto &set: tileMatrixSets) {
+        if (layer->getTileMatrixSet() == set->getID()) {
+            maxZoom = set->getMaxTileMatrix();
+            minZoom = set->getMinTileMatrix();
+        }
+    }
 }
 
 Maps::~Maps()
@@ -31,52 +36,54 @@ void Maps::addLayersFromXML(QString fileName) {
     if (file.open(QIODevice::ReadOnly)) {
         auto dom = new QDomDocument();
         dom->setContent(&file);
+
         auto root = dom->documentElement();
-        qDebug() << root.tagName();
         auto item = root.firstChild().toElement();
         while (!item.isNull()) {
             if (item.tagName() == "Contents") {
                 auto layerEl = item.firstChild().toElement();
                 while (!layerEl.isNull()) {
-                    auto layer = new MapLayer();
-                    auto layerItem = layerEl.firstChild().toElement();
-                    // Temporary variables
-                    QString title, ID, format, tileMatrixSet, _template;
-                    QDate *minDate, *maxDate;
-                    int lowerLat, lowerLon, upperLat, upperLon;
-                    while (!layerItem.isNull()) {
-                        // Set values
-                        auto tag = layerItem.tagName();
-                        if (tag == "ows:Title") layer->setTitle(layerItem.text());
-                        else if (tag == "ows:WGS84BoundingBox") {
-                            auto lower = layerItem.firstChild().toElement().text().toStdString();
-                            auto upper = layerItem.firstChild().nextSibling().toElement().text().toStdString();
-                            layer->setLowerLon(stoi(lower.substr(0, lower.find(" "))));
-                            layer->setLowerLat(stoi(lower.substr(lower.find(" ") + 1)));
-                            layer->setUpperLon(stoi(upper.substr(0, upper.find(" "))));
-                            layer->setUpperLat(stoi(upper.substr(upper.find(" ") + 1)));
-                        }
-                        else if (tag == "ows:Identifier") layer->setID(layerItem.text());
-                        else if (tag == "Format") layer->setFormat(layerItem.text());
-                        else if (tag == "Dimension") {
-                            auto sub = layerItem.firstChild().toElement();
-                            while (!sub.isNull()) {
-                                sub = sub.nextSibling().toElement();
-                                tag = sub.tagName();
-                                if (tag == "Default") layer->setDefaultDate(new QDate(QDate::fromString(sub.text(), "yyyy-MM-dd")));
+                    if (layerEl.tagName() == "Layer") {
+                        auto layer = new MapLayer();
+                        auto layerItem = layerEl.firstChild().toElement();
+                        // Temporary variables
+                        QString title, ID, format, tileMatrixSet, _template;
+                        QDate *minDate, *maxDate;
+                        int lowerLat, lowerLon, upperLat, upperLon;
+                        while (!layerItem.isNull()) {
+                            // Set values
+                            auto tag = layerItem.tagName();
+                            if (tag == "ows:Title") layer->setTitle(layerItem.text());
+                            else if (tag == "ows:WGS84BoundingBox") {
+                                auto lower = layerItem.firstChild().toElement().text().toStdString();
+                                auto upper = layerItem.firstChild().nextSibling().toElement().text().toStdString();
+                                layer->setLowerLon(stoi(lower.substr(0, lower.find(" "))));
+                                layer->setLowerLat(stoi(lower.substr(lower.find(" ") + 1)));
+                                layer->setUpperLon(stoi(upper.substr(0, upper.find(" "))));
+                                layer->setUpperLat(stoi(upper.substr(upper.find(" ") + 1)));
                             }
+                            else if (tag == "ows:Identifier") layer->setID(layerItem.text());
+                            else if (tag == "Format") layer->setFormat(layerItem.text());
+                            else if (tag == "Dimension") {
+                                auto sub = layerItem.firstChild().toElement();
+                                while (!sub.isNull()) {
+                                    sub = sub.nextSibling().toElement();
+                                    tag = sub.tagName();
+                                    if (tag == "Default") layer->setDefaultDate(new QDate(QDate::fromString(sub.text(), "yyyy-MM-dd")));
+                                }
+                            }
+                            else if (tag == "TileMatrixSetLink") layer->setTileMatrixSet(layerItem.firstChild().toElement().text());
+                            else if (tag == "ResourceURL") {
+                                if (layerItem.hasAttribute("format"))
+                                    layer->setFormat(layerItem.attribute("format"));
+                                if (layerItem.hasAttribute("template"))
+                                    layer->setTemplate(layerItem.attribute("template"));
+                            }
+                            layerItem = layerItem.nextSibling().toElement();
                         }
-                        else if (tag == "TileMatrixSetLink") layer->setTileMatrixSet(layerItem.firstChild().toElement().text());
-                        else if (tag == "ResourceURL") {
-                            if (layerItem.hasAttribute("format"))
-                                layer->setFormat(layerItem.attribute("format"));
-                            if (layerItem.hasAttribute("template"))
-                                layer->setTemplate(layerItem.attribute("template"));
-                        }
-                        layerItem = layerItem.nextSibling().toElement();
+                        availableLayers.push_back(layer);
                     }
                     layerEl = layerEl.nextSibling().toElement();
-                    availableLayers.push_back(layer);
                 }
             }
             item = item.nextSibling().toElement();
@@ -136,7 +143,7 @@ void Maps::setLon(float newLon)
 
 void Maps::setZoom(int newZoom)
 {
-    zoom = newZoom;
+    zoom = std::max(0, std::min(newZoom, maxZoom));
 }
 
 int Maps::getMinZoom() const
@@ -161,22 +168,18 @@ void Maps::setMaxZoom(int newMaxZoom)
 
 int Maps::getMaxColumn() const
 {
-    return maxColumn;
-}
-
-void Maps::setMaxColumn(int newMaxColumn)
-{
-    maxColumn = newMaxColumn;
+    for (const auto &set: tileMatrixSets)
+        if (activeLayer->getTileMatrixSet() == set->getID())
+            return set->getW(zoom);
+    return 0;
 }
 
 int Maps::getMaxRow() const
 {
-    return maxRow;
-}
-
-void Maps::setMaxRow(int newMaxRow)
-{
-    maxRow = newMaxRow;
+    for (const auto &set: tileMatrixSets)
+        if (activeLayer->getTileMatrixSet() == set->getID())
+            return set->getH(zoom);
+    return 0;
 }
 
 const std::vector<MapTile *> &Maps::getTiles() const
@@ -218,13 +221,13 @@ void Maps::update(float latA, float lonA, float latB, float lonB, QTableWidget *
     auto minLon = std::max((float)0, lonToX(activeLayer->getLowerLon()));
     auto minLat = std::max((float)0, latToY(activeLayer->getLowerLat()));
     auto xA = (int)(max(lonToX(lonA) - lonToX(diffLon) / 2, minLon)
-                    / (maxLon / (maxColumn)));
+                    / (maxLon / (getMaxColumn() - 1)));
     auto yA = (int)(max(latToY(latA) - latToY(diffLat) / 2, minLat)
-                    / (maxLat / (maxRow)));
+                    / (maxLat / (getMaxRow())));
     auto xB = (int)(min(lonToX(lonB) + lonToX(diffLon) / 2, maxLon)
-                    / (maxLon / (maxColumn)));
+                    / (maxLon / (getMaxColumn() - 1)));
     auto yB = (int)(min(latToY(latB) + latToY(diffLat) / 2, maxLat)
-                    / (maxLat / (maxRow)));
+                    / (maxLat / (getMaxRow())));
     // Puts new tiles in queue for download
     for (int x = xA; x <= xB; x++) {
         for (int y = yA; y <= yB; y++) {
@@ -233,21 +236,43 @@ void Maps::update(float latA, float lonA, float latB, float lonB, QTableWidget *
         }
     }
     // Deletes/removes old unused tiles
-    for (int x = 0; x <= maxColumn; x++) {
-        for (int y = 0; y <= maxRow; y++) {
-            if (x >= xA && x <= xB && y >= yA && y <= yB) continue;
-            auto item = std::find_if(tiles.begin(), tiles.end(), [&x, &y](const MapTile* const tile) -> bool {
-                if (!tile) return true;
-                return tile->getColumn() == x && tile->getRow() == y;
-            });
-            if (item != tiles.end()) {
-                delete *item;
-                tiles.erase(item);
-                table->removeCellWidget(y, x);
-                // delete *item;
-            }
+    for (auto beg = tilesInQueue.begin(); beg < tilesInQueue.end(); beg++) {
+        if (!((*beg)->getColumn() >= xA && xB >= (*beg)->getColumn() && yA <= (*beg)->getRow() && yB >= (*beg)->getRow()) || zoom != (*beg)->getZoom()) {
+            delete *beg;
+            tilesInQueue.erase(beg);
+            beg--;
         }
     }
+    for (auto beg = requestedTiles.begin(); beg < requestedTiles.end(); beg++) {
+        if (!((*beg)->getColumn() >= xA && xB >= (*beg)->getColumn() && yA <= (*beg)->getRow() && yB >= (*beg)->getRow()) || zoom != (*beg)->getZoom()) {
+            delete *beg;
+            requestedTiles.erase(beg);
+            beg--;
+        }
+    }
+    for (auto beg = tiles.begin(); beg < tiles.end(); beg++) {
+        if (!((*beg)->getColumn() >= xA && xB >= (*beg)->getColumn() && yA <= (*beg)->getRow() && yB >= (*beg)->getRow()) || zoom != (*beg)->getZoom()) {
+            table->removeCellWidget((*beg)->getRow(), (*beg)->getColumn());
+            delete *beg;
+            tiles.erase(beg);
+            beg--;
+        }
+    }
+//    for (int x = 0; x <= getMaxColumn(); x++) {
+//        for (int y = 0; y <= getMaxRow(); y++) {
+//            if (x >= xA && x <= xB && y >= yA && y <= yB) continue;
+//            auto item = std::find_if(tiles.begin(), tiles.end(), [&x, &y](const MapTile* const tile) -> bool {
+//                if (!tile) return true;
+//                return tile->getColumn() == x && tile->getRow() == y;
+//            });
+//            if (item != tiles.end()) {
+//                delete *item;
+//                tiles.erase(item);
+//                table->removeCellWidget(y, x);
+//                // delete *item;
+//            }
+//        }
+//    }
 }
 
 template <typename T>
@@ -352,7 +377,6 @@ void Maps::addMatrixSetsFromXML(QString fileName) {
         auto dom = new QDomDocument();
         dom->setContent(&file);
         auto root = dom->documentElement();
-        qDebug() << root.tagName();
         auto item = root.firstChild().toElement();
         while (!item.isNull()) {
             if (item.tagName() == "Contents") {
@@ -360,11 +384,10 @@ void Maps::addMatrixSetsFromXML(QString fileName) {
                 while (!layerEl.isNull()) {
                     if (layerEl.tagName() == "TileMatrixSet") {
                         auto layerItem = layerEl.firstChild().toElement();
-                        QString setID;
-                        unsigned int ID, w, h;
+                        QString setID {};
+                        unsigned int ID {0}, w {0}, h {0};
                         TileMatrixSet* set {nullptr};
                         while (!layerItem.isNull()) {
-                            layerItem = layerItem.nextSibling().toElement();
                             auto tag = layerItem.tagName();
                             if (tag == "ows:Identifier") {
                                 setID = layerItem.text();
@@ -379,8 +402,10 @@ void Maps::addMatrixSetsFromXML(QString fileName) {
                                     if (tag == "MatrixHeight") h = subItem.text().toInt();
                                     subItem = subItem.nextSibling().toElement();
                                 }
+                                set->setMaxTileMatrix(ID);
                                 set->addMatrix(new TileMatrix(w, h, ID));
                             }
+                            layerItem = layerItem.nextSibling().toElement();
                         }
                         if (set)
                             tileMatrixSets.push_back(set);
@@ -392,6 +417,7 @@ void Maps::addMatrixSetsFromXML(QString fileName) {
         }
     }
     file.close();
+    auto &ref = tileMatrixSets;
 }
 
 void Maps::addMatrixSetsFromXML(std::string fileName) {
