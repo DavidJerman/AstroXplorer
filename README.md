@@ -52,4 +52,3 @@ This tab allows the user to play podacasts, that can be loaded from RSS files. I
 ## TODO:
 - prevent user from multiple image requests
 - add keyboard events to control certain parts of application
-- create a maps tab
